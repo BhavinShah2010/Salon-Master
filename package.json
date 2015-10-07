@@ -17,6 +17,7 @@
     "bcrypt-nodejs": "*",
     "mongoose": "*",
     "passport": "*",
+    "express-session":"*",
     "passport-local": "*"
 
   }

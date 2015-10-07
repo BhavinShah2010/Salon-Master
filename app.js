@@ -5,6 +5,12 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+var session = require('express-session');
+var mongoose = require('mongoose');
+var MongoStore = require('connect-mongo')(session);
+var dburi="mongodb://student:student123@ds035713.mongolab.com:35713/salonmaster";
+var db=mongoose.connect(dburi);
+
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
