@@ -10,7 +10,7 @@ var users = require('./routes/users');
 
 var app = express();
 //gfdsf
-
+// test commite
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -57,5 +57,6 @@ app.use(function(err, req, res, next) {
   });
 });
 
+// chk test
 
 module.exports = app;
