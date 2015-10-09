@@ -1,4 +1,6 @@
 var mongoose = require('mongoose');
+var a=require('./Address');
+var Address = require('mongoose').model('Address').schema;
 var bcrypt = require('bcrypt-nodejs');
 var schema = mongoose.Schema({
 	username:{
@@ -20,10 +22,22 @@ var schema = mongoose.Schema({
 	active:{
 		type:Boolean,
 		default:false
+	},
+	address:{type: mongoose.Schema.Types.ObjectId, ref: 'Address'},
+	gender:{
+		type:String,
+		required:true
+	},
+	email:{
+		type:String,
+		required:true
+	},
+	phno:{
+		type:Number,
+		required:true
 	}
-	
-
 });
+
 schema.methods.generateHash = function(password){
 	return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
 };
