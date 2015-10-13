@@ -2,7 +2,8 @@ var express = require('express');
 var user = require('../modules/User');
 var address = require('../modules/Address');
 var salon = require('../modules/Salon');
-var service = require('../modules/Service')
+var service = require('../modules/Service');
+var offer = require('../modules/Offer');
 var router = express.Router();
 
 
@@ -81,6 +82,25 @@ router.post('/_service',function(req,res){
 			}
 			else{
 				console.log("Service entity successfully uploaded.");
+			}
+		})
+});
+
+router.post('/_offer',function(req,res){
+	data=req.body;
+	var _offer=new offer();
+	_offer.serviceID=data.serviceID;
+	_offer.discount=data.discount;
+	_offer.startDate = data.startDate;
+	_offer.endDate = data.endDate;
+	_offer.count = data.count;
+	_offer.description = data.description;
+	_offer.save(function(err){
+			if(err){
+				console.log(err);
+			}
+			else{
+				console.log("Offer entity successfully uploaded.");
 			}
 		})
 });
