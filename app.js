@@ -11,6 +11,10 @@ var MongoStore = require('connect-mongo')(session);
 var dburi="mongodb://student:student123@ds035713.mongolab.com:35713/salonmaster";
 var db=mongoose.connect(dburi);
 
+mongoose.connection.once('connected',function(){
+  console.log("successfull")
+});
+
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
