@@ -1,5 +1,5 @@
 var express = require('express');
-var user = require('../modules/salon');
+var salon = require('../modules/salon');
 var address = require('../modules/Address');
 var router = express.Router();
 
@@ -38,8 +38,8 @@ router.post('/add',function(req,res)
 	a.city=data.city;
 	a.state=data.state;
 	a.zipcode=data.zipcode;
-	u.address=a;
-	u.save(function(err){
+	s.address=a;
+	s.save(function(err){
 			if(err){
 				res.send('Database error! '+err);
 			}
