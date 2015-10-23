@@ -19,7 +19,7 @@ mongoose.connection.once('connected',function(){
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
-
+var salons = require('./routes/salons');
 var app = express();
 //gfdsf
 // test commite
@@ -39,7 +39,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
-
+app.use('/salons',salons);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
