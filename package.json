@@ -18,7 +18,8 @@
     "mongoose": "*",
     "passport": "*",
     "express-session":"*",
-    "passport-local": "*"
+    "passport-local": "*",
+    "express-validator":"*"
 
   }
 }
