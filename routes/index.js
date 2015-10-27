@@ -10,10 +10,5 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Sagar' });
 });
 
-router.post('/u',function(req,res){
-	data=req.body;
-	
-});
-
 
 module.exports = router;
