@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-// var a=require('./Address');
+ var Address=require('mongoose').model('Address').schema;;
 var User = require('mongoose').model('User').schema;
 var Event = require('mongoose').model('Event').schema;
 var Salon = require('mongoose').model('Salon').schema;

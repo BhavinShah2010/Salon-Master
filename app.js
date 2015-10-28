@@ -20,6 +20,13 @@ mongoose.connection.once('connected',function(){
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var salons = require('./routes/salons');
+var services = require('./routes/services');
+var events = require('./routes/events');
+var offers = require('./routes/offers');
+//var reviews = require('./routes/reviews');
+//var appoint = require('./routes/appointments');
+
+
 var app = express();
 //gfdsf
 // test commite
@@ -40,6 +47,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/users', users);
 app.use('/salons',salons);
+app.use('/services',services);
+app.use('/events',events);
+app.use('/offers',offers);
+//app.use('/reviews',reviews);
+//app.use('/appointments',appoint);
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

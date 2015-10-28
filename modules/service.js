@@ -1,13 +1,9 @@
 var mongoose = require('mongoose');
-var a=require('./Address');
-var Address = require('mongoose').model('Address').schema;
 var bcrypt = require('bcrypt-nodejs');
+var Salon = require('mongoose').model('Salon').schema;
+
 var schema = mongoose.Schema({
-	salonID:{
-		type:String,
-		required:true,
-		unique:true
-	},
+	salonID:{type: mongoose.Schema.Types.ObjectId, ref: 'Salon'},
 	name:{
 		type:String,
 		required:true
