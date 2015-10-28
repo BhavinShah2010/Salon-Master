@@ -1,6 +1,7 @@
 var express = require('express');
-var user = require('../modules/User');
-var address = require('../modules/Address');
+var user = require('./../modules/User');
+// var u = require('mongoose').model('User').schema;
+var address = require('./../modules/Address');
 var router = express.Router();
 
 
