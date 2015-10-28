@@ -1,7 +1,8 @@
 var express = require('express');
-var salon = require('../modules/salon');
-var address = require('../modules/Address');
 var router = express.Router();
+// var salon = require('../modules/salon');
+// var address = require('../modules/Address');
+
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
