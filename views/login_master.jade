@@ -31,7 +31,7 @@ html(lang='en')
               .shop-menu.pull-right
                 ul.nav.navbar-nav
                   li
-                    a.active(href='login.html')
+                    a.active(href='/')
                       i.fa.fa-lock
                       | Login
       .header-bottom
@@ -60,9 +60,9 @@ html(lang='en')
           .col-sm-4.col-sm-offset-1
             .login-form
               h2 Login
-              form(action='#')
-                input(type='email', placeholder='User Name')
-                input(type='password', placeholder='Password')
+              form(action='/users/login', method='post')
+                input(name='username',type='email', placeholder='User Name')
+                input(name='password',type='password', placeholder='Password')
                 span
                   input.checkbox(type='checkbox')
                   |                                 Keep me signed in

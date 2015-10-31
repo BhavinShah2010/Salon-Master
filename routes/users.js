@@ -2,11 +2,12 @@ var express = require('express');
 var router = express.Router();
 var user = require('../modules/user');
 var address = require('../modules/address');
+var passport = require('./../auth');
 
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+  res.render('contactUs');
 });
 
 // To check username is available or not
@@ -20,6 +21,19 @@ router.get('/checkUname', function(req,res){
 	  	}
 	});
 });
+
+
+router.post('/login',passport.authenticate('local',{
+	failureRedirect:'/',
+	successRedirect:'/users/'
+	
+}));
+
+router.get('/logout',function(req,res){
+	req.logout();
+	res.redirect('/');
+});
+
 
 router.post('/add',function(req,res)
 {
@@ -53,7 +67,7 @@ router.post('/add',function(req,res)
 	var u=new user();
 	u.name=data.name;
 	u.username=data.username;
-	u.password=data.password;
+	u.password=u.generateHash(data.password);
 	u.gender=data.gender;
 	u.email=data.email;
 	u.phno=data.phno;
