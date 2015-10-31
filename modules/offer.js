@@ -22,4 +22,4 @@ schema.methods.generateHash = function(password){
 schema.methods.validPassword = function(password){
 	return bcrypt.compareSync(password, this.password);
 };
-module.exports=mongoose.model('Offer',schema);
+module.exports=mongoose.model('offer',schema);

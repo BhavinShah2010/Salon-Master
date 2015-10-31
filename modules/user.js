@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
-var a=require('./Address');
-var Address = require('mongoose').model('Address').schema;
+var a=require('./address');
+var Address = require('mongoose').model('address').schema;
 var bcrypt = require('bcrypt-nodejs');
 var schema = mongoose.Schema({
 	username:{
@@ -23,7 +23,7 @@ var schema = mongoose.Schema({
 		type:Boolean,
 		default:false
 	},
-	address:{type: mongoose.Schema.Types.ObjectId, ref: 'Address'},
+	address:{type: mongoose.Schema.Types.ObjectId, ref: 'address'},
 	gender:{
 		type:String,
 		required:true
@@ -44,4 +44,4 @@ schema.methods.generateHash = function(password){
 schema.methods.validPassword = function(password){
 	return bcrypt.compareSync(password, this.password);
 };
-module.exports=mongoose.model('User',schema);
+module.exports=mongoose.model('user',schema);

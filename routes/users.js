@@ -1,7 +1,8 @@
 var express = require('express');
-var user = require('../modules/User');
-var address = require('../modules/Address');
 var router = express.Router();
+var user = require('../modules/user');
+var address = require('../modules/address');
+
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {

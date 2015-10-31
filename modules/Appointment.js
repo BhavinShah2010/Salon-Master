@@ -1,14 +1,21 @@
 var mongoose = require('mongoose');
+<<<<<<< HEAD
  var Address=require('mongoose').model('Address').schema;;
 var User = require('mongoose').model('User').schema;
 var Event = require('mongoose').model('Event').schema;
 var Salon = require('mongoose').model('Salon').schema;
+=======
+// var a=require('./Address');
+var User = require('mongoose').model('user').schema;
+var Event = require('mongoose').model('event').schema;
+var Salon = require('mongoose').model('salon').schema;
+>>>>>>> 817422d87bf736cf768bc27936e172135f0cc096
 
 var schema = mongoose.Schema({
-	user:{type: mongoose.Schema.Types.ObjectId, ref: 'User',required:true},
+	user:{type: mongoose.Schema.Types.ObjectId, ref: 'user',required:true},
 	salon:{type: mongoose.Schema.Types.ObjectId, ref: 'salon',required:true},
-	event:{type: mongoose.Schema.Types.ObjectId, ref: 'Event',required:true},
-	serviceslist:[type: mongoose.Schema.Types.ObjectId, ref: 'Address',required:true],
+	event:{type: mongoose.Schema.Types.ObjectId, ref: 'event',required:true},
+	serviceslist:[type: mongoose.Schema.Types.ObjectId, ref: 'address',required:true],
 	time:{
 		type:Date,
 		required:true
@@ -30,4 +37,4 @@ var schema = mongoose.Schema({
 	}
 });
 
-module.exports=mongoose.model('Appointment',schema);
+module.exports=mongoose.model('appointment',schema);

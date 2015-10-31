@@ -18,4 +18,4 @@ var schema = mongoose.Schema({
 });
 
 
-module.exports=mongoose.model('Event',schema);
+module.exports=mongoose.model('event',schema);
