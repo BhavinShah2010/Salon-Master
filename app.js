@@ -11,6 +11,9 @@ var mongoose = require('mongoose');
 var MongoStore = require('connect-mongo')(session);
 var dburi="mongodb://student:student123@ds035713.mongolab.com:35713/salonmaster";
 var db=mongoose.connect(dburi);
+var passport= require('passport');
+var LocalStrategy = require('passport-local');
+
 
 mongoose.connection.once('connected',function(){
   console.log("successfull")
@@ -43,6 +46,27 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({secret: 'supernova', saveUninitialized: true, resave: true}));
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+app.use(function(req, res, next){
+  var err = req.session.error,
+      msg = req.session.notice,
+      success = req.session.success;
+
+  delete req.session.error;
+  delete req.session.success;
+  delete req.session.notice;
+
+  if (err) res.locals.error = err;
+  if (msg) res.locals.notice = msg;
+  if (success) res.locals.success = success;
+
+  next();
+});
+
 
 app.use('/', routes);
 app.use('/users', users);
