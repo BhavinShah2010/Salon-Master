@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
-var a=require('./Address');
-var Address = require('mongoose').model('Address').schema;
+var a=require('./address');
+var Address = require('mongoose').model('address').schema;
 var bcrypt = require('bcrypt-nodejs');
 var schema = mongoose.Schema({
 	salonID:{
@@ -31,4 +31,4 @@ schema.methods.generateHash = function(password){
 schema.methods.validPassword = function(password){
 	return bcrypt.compareSync(password, this.password);
 };
-module.exports=mongoose.model('Service',schema);
+module.exports=mongoose.model('service',schema);

@@ -27,4 +27,4 @@ var schema = mongoose.Schema({
 	}
 
 });
-module.exports=mongoose.model('Address',schema);
+module.exports=mongoose.model('address',schema);
