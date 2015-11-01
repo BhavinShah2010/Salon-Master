@@ -1,11 +1,8 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt-nodejs');
+var Service = require('mongoose').model('service').schema;
 var schema = mongoose.Schema({
-	serviceID:{
-		type:String,
-		required:true,
-		unique:true
-	},
+	serviceID:{type: mongoose.Schema.Types.ObjectId, ref: 'Service', required: true},
 	discount:{type: Number},// (discount will be offered in percentage).
 	
 	startDate:{

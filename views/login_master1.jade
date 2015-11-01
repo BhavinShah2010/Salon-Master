@@ -1,0 +1,83 @@
+include header
+doctype html
+html(lang='en')
+  head
+    title Login | Salon Master
+  body
+    section#Loginform
+      .container
+        .row
+          .col-sm-4.col-sm-offset-1
+            .login-form
+              h2 Login
+              form(action='#')
+                div
+                  div
+                    input#txtLoginUserEmailID(type='email', name='txtLoginUserEmailID', placeholder='User Name')
+                    .validation
+                      label#lblEmail ffff
+                  div
+                    input#txtLoginPassword(type='password', placeholder='Password', name='txtLoginPassword')
+                    .validation Please enter Password
+                  div
+                    span
+                      input.checkbox(type='checkbox')
+                      |                                         Keep me signed in
+                    div(style='float')
+                      a(href='#') Forgot Password ?
+                    #divResult.validation
+                    button#btnLogin(type='submit') Login
+          .col-sm-1
+            h2.or OR
+          .col-sm-4
+            .signup-form
+              h2 New User ?, Signup!
+              form(action='#')
+                .col-sm-12
+                  input(type='text', placeholder='Name')
+                .col-sm-6
+                  input(type='text', placeholder='Name')
+                .col-sm-6
+                  input(type='email', placeholder='Email Address')
+                .col-sm-6
+                  input(type='password', placeholder='Password')
+                .col-sm-6
+                  input(type='password', placeholder='Confirm Password')
+                .col-sm-12
+                  table
+                    tr
+                      td(style='width: 50%')
+                        input#m_radioStyle(type='radio', name='gender', value='Male')
+                        span(style='font-size: large') Male
+                      td
+                        input#f_radioStyle(type='radio', name='gender', value='Female')
+                        span(style='font-size: large') Female
+                br
+                br
+                button.btn.btn-default(type='submit') Signup
+    include footer            
+    script.
+      $(document).ready(function () {
+      $("#btnLogin").click(function () {
+      var isValid = true;
+      $('.validation').hide();
+      if ($("#txtLoginUserEmailID").val() == '') {
+      $("#lblEmail").html("Please enter Email");
+      $("#txtLoginUserEmailID").parent().find('.validation').show();
+      isValid = false;
+      }
+      if ($("#txtLoginUserEmailID").val() != '') {
+      $("#lblEmail").html("Please enter valid Email id");
+      var filter = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$/;
+      if (!filter.test(($("#txtLoginUserEmailID").val()))) {
+      $("#txtLoginUserEmailID").parent().find('.validation').show();
+      isValid = false;
+      }
+      }
+      if ($("#txtLoginPassword").val() == '') {
+      $("#txtLoginPassword").parent().find('.validation').show();
+      isValid = false;
+      }
+      return isValid;
+      });
+      });

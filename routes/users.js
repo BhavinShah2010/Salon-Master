@@ -60,7 +60,7 @@ router.post('/add',function(req,res)
   	if (errors) {
     	res.send(errors);
     	return;
-  } else {
+    } else {
     // normal processing here
 
      data=req.body;
