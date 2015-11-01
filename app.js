@@ -24,8 +24,9 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 var salons = require('./routes/salons');
 var app = express();
-//gfdsf
-// test commite
+
+
+// test commit
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
