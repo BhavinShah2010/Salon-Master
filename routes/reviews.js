@@ -1,8 +1,6 @@
-<<<<<<< HEAD
 var express = require('express');
 var router = express.Router();
-var review = require('../modules/Review');
-
+var review = require('../modules/review');
 
 /* GET reviews listing. */
 router.get('/', function(req, res, next) {
@@ -12,25 +10,23 @@ router.get('/', function(req, res, next) {
 
 router.post('/add',function(req,res){
 	//refer : https://github.com/chriso/validator.js#validators
-
     data=req.body;
 	var r=new review();
 	r.user=data.user;
 	r.salon=data.salon;
 	r.title=data.title;
 	r.description=data.description;
-	r.timestamp=data.timestamp;
 	s.save(function(err){
 			if(err){
 				res.send('Database error! '+err);
 			}
 			else{
-				res.send('Salon successfully added');
+				res.send('Review successfully added');
 			}
 		})
-	}
 });
 
+/*
 
 router.post('/delete',function(req,res){
 	data=req.body;
@@ -44,7 +40,9 @@ router.post('/delete',function(req,res){
   		}
 	});
 });
-=======
+*/
+
+/*
 var event = require('../modules/Event');
 var express = require('express');
 var router = express.Router();
@@ -75,7 +73,5 @@ router.post('/events',function(req,res){
             }
         })
 });
-
-
->>>>>>> 32490bea3e14274a31b349821e37e84383cbbc66
+*/
 module.exports = router;

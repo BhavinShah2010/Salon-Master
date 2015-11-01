@@ -1,11 +1,8 @@
 var mongoose = require('mongoose');
-<<<<<<< HEAD
-=======
 var a=require('./address');
 var Address = require('mongoose').model('address').schema;
->>>>>>> 817422d87bf736cf768bc27936e172135f0cc096
 var bcrypt = require('bcrypt-nodejs');
-var Salon = require('mongoose').model('Salon').schema;
+var Salon = require('mongoose').model('salon').schema;
 
 var schema = mongoose.Schema({
 	salonID:{type: mongoose.Schema.Types.ObjectId, ref: 'Salon'},

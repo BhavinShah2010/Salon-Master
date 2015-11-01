@@ -6,7 +6,7 @@ var schema = mongoose.Schema({
 	},
 	type:{
 		type:String,
-		enum:['Funeral','Marriage','Party','general'], //
+		enum:['Funeral','Marriage','Party','General'],
 		required:true
 	},
 	

@@ -1,4 +1,4 @@
-var offer = require('../modules/Offer');
+var offer = require('../modules/offer');
 var express = require('express');
 var router = express.Router();
 

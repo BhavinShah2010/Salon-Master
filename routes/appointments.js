@@ -1,7 +1,7 @@
 var appointment = require('../modules/Appointment');
-var userA = require('../modules/User');
-var salonA = require('../modules/Salon');
-var eventA = require('../modules/Event');
+var userA = require('../modules/user');
+var salonA = require('../modules/salon');
+var eventA = require('../modules/event');
 var express = require('express');
 var router = express.Router();
 

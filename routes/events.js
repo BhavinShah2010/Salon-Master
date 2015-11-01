@@ -1,4 +1,4 @@
-var event = require('../modules/Event');
+var event = require('../modules/event');
 var express = require('express');
 var router = express.Router();
 

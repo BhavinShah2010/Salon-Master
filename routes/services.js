@@ -1,6 +1,6 @@
 var express = require('express');
-var service = require('../modules/Service');
-var address = require('../modules/Address');
+var service = require('../modules/service');
+var address = require('../modules/address');
 var router = express.Router();
 
 /* GET users listing. */
