@@ -31,5 +31,25 @@ router.post('/add',function(req,res){
         })
 });
 
+router.post('/checkStock',function(req,res){
+    offer.findOne({username:req.query.username},function(err, salons) {
+      if(salons){
+            res.send('Username not Available');
+        }
+        else{
+            res.send('Available');
+        }
+    });
+});
+
+router.post('/delete',function(req,res){
+    data=req.body;
+    var objectId=data.objectId;
+    offer.remove(
+            {_id: new mongodb.ObjectID( objectId) }, 
+            function (err, result){ 
+               res.send('Deletion Error');
+              })
+});
 
 module.exports = router;

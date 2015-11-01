@@ -18,11 +18,13 @@ var schema = mongoose.Schema({
 	serviceslist:[{type: mongoose.Schema.Types.ObjectId, ref: 'service',required:true}],
 	time:{
 		type:Date,
-		required:true
+		required:true,
+		default:Date.now
 	},
 	status:{
 		type:String,
-		enum:['completed','canceled','approved','pending']		
+		enum:['completed','canceled','approved','pending'],
+		default:'pending'
 	},
 	rating:{
 		type:Number,

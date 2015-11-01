@@ -4,9 +4,6 @@ var User = require('mongoose').model('user').schema;
 var Salon = require('mongoose').model('salon').schema;
 
 var schema = mongoose.Schema({
-	user:{type: mongoose.Schema.Types.ObjectId, ref: 'User',required:true},
-	salon:{type: mongoose.Schema.Types.ObjectId, ref: 'Salon',required:true},
-
 	user:{type: mongoose.Schema.Types.ObjectId, ref: 'user',required:true},
 	salon:{type: mongoose.Schema.Types.ObjectId, ref: 'salon',required:true},
 	title:{

@@ -12,8 +12,6 @@ router.post('/add',function(req,res){
     appoint.salon=data.salon;
     appoint.event = data.event;
     appoint.servicesList=data.servicesList;
-    appoint.time = data.time;
-    appoint.status = data.status;
     appoint.rating=data.rating;
     appoint.totalprice = data.totalprice;
     
@@ -23,7 +21,7 @@ router.post('/add',function(req,res){
             console.log(err);
             return;
         }
-        
+    
     //to check if there is any technical or syntax error    
     appoint.save(function(err){
             if(err){
@@ -34,5 +32,18 @@ router.post('/add',function(req,res){
             }
         })
 });
+
+
+//Cancelling appontment using ObjectId, parameter will be mongodb objectId
+router.post('/cancel',function(req,res){
+    data=req.body;
+    var objectId=data.objectId;
+    salon.remove(
+            {_id: new mongodb.ObjectID( objectId) }, 
+            function (err, result){ 
+               res.send('Deletion Error');
+              })
+});
+
 
 module.exports = router;

@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var salon = require('../modules/salon');
 var address = require('../modules/address');
-
+var passport = require('./../auth');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -19,6 +19,17 @@ router.get('/checkUname', function(req,res){
 	  		res.send('Available');
 	  	}
 	});
+});
+
+router.post('/login',passport.authenticate('local',{
+	failureRedirect:'/',
+	successRedirect:'/salons/'
+	
+}));
+
+router.get('/logout',function(req,res){
+	req.logout();
+	res.redirect('/');
 });
 
 router.post('/add',function(req,res){
