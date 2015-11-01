@@ -1,12 +1,12 @@
 var mongoose = require('mongoose');
 var schema = mongoose.Schema({
-	name:{
+	name:{ 		// event name
 		type:String,
 		required:true,
 	},
 	type:{
 		type:String,
-		enum:['Funeral','Marriage','Party','general'], //
+		enum:['Funeral','Marriage','Party','General'],
 		required:true
 	},
 	
