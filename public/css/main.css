@@ -16,6 +16,22 @@ body {
 ul li {
   list-style: none;
 }
+#usersubmenu
+{
+	background-color:#FFF;
+	border:solid;
+	border-width:thin;
+	border-color:#CCC;
+	color:#000;
+}
+.usermenufont
+{
+	color:#333 !important;
+}
+#nav_after_login
+{
+	display:none;
+}
 
 a:hover {
 outline: none;
