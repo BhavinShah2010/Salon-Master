@@ -8,7 +8,7 @@ html(lang='en')
           .col-sm-4.col-sm-offset-1
             .login-form
               h2 Login
-              form(action='#')
+              form(action='/users/login', method='post')
                 div
                   div
                     input#txtLoginUserEmailID(type='email', name='username', placeholder='User Name')
@@ -28,7 +28,7 @@ html(lang='en')
           .col-sm-4
             .signup-form
               h2 New User ?, Signup!
-              form(action='#')
+              form(action='/users/add', method='post')
                 .col-sm-12
                   input#txtName(type='text', placeholder='Name', name='name')
                 .col-sm-12
@@ -78,7 +78,7 @@ html(lang='en')
       $(".alert-danger").hide();
       if ($("#txtLoginUserEmailID").val() == '') {
       // alert(1);
-      $("#lblError").html("Please Enter User Name");
+      $("#lblError").html("Please Enter Email");
       $("#divResult").css("display", "block");
       return false;
       }
@@ -104,7 +104,7 @@ html(lang='en')
       if ($("#txtUserEmailid").val() != '') {
       var filter = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$/;
       if (!filter.test(($("#txtUserEmailid").val()))) {
-      $("#lblSingUpError").html("Please Enter Valid Email Id");
+      $("#lblSingUpError").html("inValid Email Id");
       $("#divSingup").css("display", "block");
       return false;
       }
