@@ -47,7 +47,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(session({secret: 'supernova', saveUninitialized: true, resave: true}));
+app.use(session({secret: 'supernova1234567890qwertydontyouworrychild', saveUninitialized: true, resave: true,store: new MongoStore({ mongooseConnection: mongoose.connection })}));
 app.use(passport.initialize());
 app.use(passport.session());
 

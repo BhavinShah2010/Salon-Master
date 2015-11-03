@@ -8,5 +8,10 @@ router.get('/', function(req, res, next) {
 });
 
 
+router.get('/login', function(req, res, next) {
+	console.log();
+  res.render('login_master');
+});
+
 
 module.exports = router;
