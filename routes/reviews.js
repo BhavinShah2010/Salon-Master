@@ -16,7 +16,7 @@ router.post('/add',function(req,res){
 	r.salon=data.salon;
 	r.title=data.title;
 	r.description=data.description;
-	s.save(function(err){
+	r.save(function(err){
 			if(err){
 				res.send('Database error! '+err);
 			}
@@ -26,21 +26,21 @@ router.post('/add',function(req,res){
 		})
 });
 
-/*
+
 
 router.post('/delete',function(req,res){
 	data=req.body;
-	var uname=data.username;
-	salon.findOneAndRemove({ username:uname }, function(err){
+	var reviewid=data.review;
+	review.findOneAndRemove({ _id:reviewid }, function(err){
   		if (err){
   			res.send('Deletion Problem' + err);
   		}
   		else{
-  			res.send('Salon Deleted successfully'+uname);
+  			res.send('Salon Deleted successfully'+reviewid);
   		}
 	});
 });
-*/
+
 
 /*
 var event = require('../modules/Event');
