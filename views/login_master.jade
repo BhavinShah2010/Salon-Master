@@ -1,122 +1,166 @@
+include header
 doctype html
 html(lang='en')
-  head
-    meta(charset='utf-8')
-    meta(name='viewport', content='width=device-width, initial-scale=1.0')
-    meta(name='description', content='')
-    meta(name='author', content='')
-    title Login | E-Shopper
-    link(href='css/bootstrap.min.css', rel='stylesheet')
-    link(href='css/font-awesome.min.css', rel='stylesheet')
-    link(href='css/prettyPhoto.css', rel='stylesheet')
-    link(href='css/price-range.css', rel='stylesheet')
-    link(href='css/animate.css', rel='stylesheet')
-    link(href='css/main.css', rel='stylesheet')
-    link(href='css/responsive.css', rel='stylesheet')
-    link(rel='shortcut icon', href='images/ico/favicon.ico')
-    link(rel='apple-touch-icon-precomposed', sizes='144x144', href='images/ico/apple-touch-icon-144-precomposed.png')
-    link(rel='apple-touch-icon-precomposed', sizes='114x114', href='images/ico/apple-touch-icon-114-precomposed.png')
-    link(rel='apple-touch-icon-precomposed', sizes='72x72', href='images/ico/apple-touch-icon-72-precomposed.png')
-    link(rel='apple-touch-icon-precomposed', href='images/ico/apple-touch-icon-57-precomposed.png')
   body
-    header#header
-      .header-middle
-        .container
-          .row
-            .col-sm-4
-              .logo.pull-left
-                a(href='index.html')
-                  img(src='images/home/logo.png', alt='')
-            .col-sm-8
-              .shop-menu.pull-right
-                ul.nav.navbar-nav
-                  li
-                    a.active(href='/login_master')
-                      i.fa.fa-lock
-                      | Login
-      .header-bottom
-        .container
-          .row
-            .col-sm-9
-              .navbar-header
-                button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
-                  span.sr-only Toggle navigation
-                  span.icon-bar
-                  span.icon-bar
-                  span.icon-bar
-              .mainmenu.pull-left
-                ul.nav.navbar-nav.collapse.navbar-collapse
-                  li
-                    a(href='index.html') Home
-                  li
-                    a(href='contact-us.html') Salon
-                  li
-                    a(href='contact-us.html') Map
-                  li
-                    a(href='contact-us.html') Contact Us
     section#Loginform
       .container
         .row
           .col-sm-4.col-sm-offset-1
             .login-form
               h2 Login
-              form(action='/users/login', method='post')
-                input(name='username',type='email', placeholder='User Name')
-                input(name='password',type='password', placeholder='Password')
-                span
-                  input.checkbox(type='checkbox')
-                  |                                 Keep me signed in
-                button.btn.btn-default(type='submit') Login
+              form(action='#')
+                div
+                  div
+                    input#txtLoginUserEmailID(type='email', name='username', placeholder='User Name')
+                  div
+                    input#txtLoginPassword(type='password', placeholder='Password', name='password')
+                  div
+                    span
+                      input.checkbox(type='checkbox')
+                      |                                         Keep me signed in
+                    div(style='float: right')
+                      a(href='#') Forgot Password ?
+                    #divResult.alert.alert-danger(style='height: 50px; display: none;')
+                      label#lblError
+                    button#btnLogin(type='submit') Login
           .col-sm-1
             h2.or OR
           .col-sm-4
             .signup-form
               h2 New User ?, Signup!
               form(action='#')
-                input(type='text', placeholder='Name')
-                input(type='email', placeholder='Email Address')
-                input(type='password', placeholder='Password')
-                input(type='password', placeholder='Confirm Password')
-                input(type='text', placeholder='Mobile Number')
-                table
-                  tr
-                    td(style='width: 50%')
-                      input#m_radioStyle(type='radio', name='gender', value='Male')
-                      span(style='font-size: large') Male
-                    td
-                      input#f_radioStyle(type='radio', name='gender', value='Female')
-                      span(style='font-size: large') Female
+                .col-sm-12
+                  input#txtName(type='text', placeholder='Name', name='name')
+                .col-sm-12
+                  input#txtUserEmailid(type='email', placeholder='Email Address', name='email')
+                .col-sm-6
+                  input#txtUserName(type='text', placeholder='User Name', name='username')
+                .col-sm-6
+                  input#txtUserMobileNum(type='text', placeholder='Mobile Number', maxlength='10', name='phno')
+                .col-sm-6
+                  input#txtUserPassword(type='password', placeholder='Password', name='password')
+                .col-sm-6
+                  input#txtConifemPwd(type='password', placeholder='Confirm Password')
+                .col-sm-6
+                  input#txtArea(type='text', placeholder='Area', name='area')
+                .col-sm-6
+                  input#txtCity(type='text', placeholder='City', name='city')
+                .col-sm-6
+                  input#txtState(type='text', placeholder='State', name='state')
+                .col-sm-6
+                  input#txtZipcode(type='text', placeholder='Zipcode', name='zipcode')
+                .col-sm-12
+                  table
+                    tr
+                      td(style='width: 50%')
+                        input#m_radioStyle(type='radio', name='gender', value='Male')
+                        span(style='font-size: large') Male
+                      td
+                        input#f_radioStyle(type='radio', name='gender', value='Female', checked='checked')
+                        span(style='font-size: large') Female
                 br
                 br
-                button.btn.btn-default(type='submit') Signup
-    .footer_top
-      .container
-        .row
-          .col-sm-6
-            .contactinfo
-              ul.nav.nav-pills
-                li &copy Copyright @ Salon Master
-          .col-sm-6
-            .social-icons.pull-right
-              ul.nav.navbar-nav
-                li
-                  a(href='')
-                    i.fa.fa-facebook
-                li
-                  a(href='')
-                    i.fa.fa-twitter
-                li
-                  a(href='')
-                    i.fa.fa-linkedin
-                li
-                  a(href='')
-                    i.fa.fa-dribbble
-                li
-                  a(href='')
-                    i.fa.fa-google-plus
+                .col-sm-12
+                  #divSingup.alert.alert-danger(style='height: 50px; display: none;')
+                    label#lblSingUpError
+                button#btnSingup(type='submit') Signup
     script(src='js/jquery.js')
+    script(src='js/jquery.validate.js')
     script(src='js/price-range.js')
     script(src='js/jquery.scrollUp.min.js')
     script(src='js/bootstrap.min.js')
     script(src='js/jquery.prettyPhoto.js')
     script(src='js/main.js')
+    script.
+      $(document).ready(function () {
+      $("#btnLogin").click(function () {
+      $(".alert").hide();
+      $(".alert-danger").hide();
+      if ($("#txtLoginUserEmailID").val() == '') {
+      // alert(1);
+      $("#lblError").html("Please Enter User Name");
+      $("#divResult").css("display", "block");
+      return false;
+      }
+      if ($("#txtLoginPassword").val() == '') {
+      $("#lblError").html("Please Enter Password");
+      $("#divResult").css("display", "block");
+      return false;
+      }
+      });
+      $("#btnSingup").click(function () {
+      $(".alert").hide();
+      $(".alert-danger").hide();
+      if ($("#txtName").val() == '') {
+      $("#lblSingUpError").html("Please Enter Name");
+      $("#divSingup").css("display", "block");
+      return false;
+      }
+      if ($("#txtUserEmailid").val() == '') {
+      $("#lblSingUpError").html("Please Enter Email");
+      $("#divSingup").css("display", "block");
+      return false;
+      }
+      if ($("#txtUserEmailid").val() != '') {
+      var filter = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$/;
+      if (!filter.test(($("#txtUserEmailid").val()))) {
+      $("#lblSingUpError").html("Please Enter Valid Email Id");
+      $("#divSingup").css("display", "block");
+      return false;
+      }
+      }
+      if ($("#txtUserName").val() == '') {
+      $("#lblSingUpError").html("Please Enter User Name");
+      $("#divSingup").css("display", "block");
+      return false;
+      }
+      if ($("#txtUserMobileNum").val() == '') {
+      $("#lblSingUpError").html("Please Enter Mobile Number");
+      $("#divSingup").css("display", "block");
+      return false;
+      }
+      if ($("#txtUserMobileNum").val() != '') {
+      var num = /^[-+]?[0-9]+$/;
+      if (!($("#txtUserMobileNum").val().match(num))) {
+      $("#lblSingUpError").html("Invalid Mobile Number");
+      $("#divSingup").css("display", "block");
+      return false;
+      }
+      }
+      if ($("#txtUserMobileNum").val().length < 10) {
+      $("#lblSingUpError").html("Invalid Mobile Number");
+      $("#divSingup").css("display", "block");
+      return false;
+      }
+      if ($("#txtUserPassword").val() == '') {
+      $("#lblSingUpError").html("Please Enter Password");
+      $("#divSingup").css("display", "block");
+      return false;
+      }
+      if ($("#txtConifemPwd").val() == '') {
+      $("#lblSingUpError").html("Please Enter Confirm Password");
+      $("#divSingup").css("display", "block");
+      return false;
+      }
+      if ($("#txtUserPassword").val() != $("#txtConifemPwd").val()) {
+      $("#lblSingUpError").html("Passoword does not match!");
+      $("#divSingup").css("display", "block");
+      return false;
+      }
+      if ($("#txtArea").val() == '') {
+      $("#lblSingUpError").html("Please Enter Area");
+      $("#divSingup").css("display", "block");
+      return false;
+      }
+      if ($("#txtCity").val() == '') {
+      $("#lblSingUpError").html("Please Enter City");
+      $("#divSingup").css("display", "block");
+      return false;
+      }
+      if ($("#txtState").val() == '') {
+      $("#lblSingUpError").html("Please Enter State");
+      $("#divSingup").css("display", "block");
+      return false;
+      }
+      });
+      });
