@@ -84,7 +84,7 @@ router.post('/getDetails',function(req,res){
 
 //Update Profile
 router.post('/updateProfile',function(req,res){
-	/*req.checkBody(  
+	/*req.checkBody(
 	  "phno", 
 	  "Enter a valid phone number.").isMobilePhone("en-US");
 
@@ -107,25 +107,52 @@ router.post('/updateProfile',function(req,res){
     	res.send(errors);
     	return;
     } else {
-  */  data=req.body;
+  */data=req.body;
 	var a=new address();
 	a.area=data.area;
 	a.city=data.city;
 	a.state=data.state;
-	user.findOneAndUpdate({ "_id": data.objectId }, { username: data.username, name:data.name, active:true, address:a}, function(err, updatedUser) {
+	var now=new Date();
+	user.findOneAndUpdate({"_id":data.objectId}, { username: data.username, name:data.name, active:true, address:a, modified:now , gender:data.gender, email: data.email, phno:data.phno}, function(err, updatedUser) {
 	a.zipcode=data.zipcode;
   	if (err) throw err;
   	user.find({ "_id": data.objectId}).exec(function(err, finaluser) {
   	if(err) throw err;
-	console.log(finaluser);
 	})
   })
 //  }
 });
 
 //active account
+router.post('/activateUser',function(req,res){
+	var now=new Date();
+	user.findOneAndUpdate({"_id":req.body.objectId}, {active:true, modified:now}, function(err, activeUser) {
+		if(err) throw err;
+		res.send("Activated");
+	})
+});
 
 //deactive Account
+router.post('/deactivateUser',function(req,res){
+	var now=new Date();
+	user.findOneAndUpdate({"_id":req.body.objectId}, {active:false, modified:now}, function(err, deactiveUser) {
+		if(err) throw err;
+		res.send("Deactivated");
+	})
+});
+
+//Change Password
+router.post('/changePassword',function(req,res){
+	data=req.body;
+	var u=new user();
+	u.password=u.generateHash(data.newpassword);
+	var now=new Date();
+	user.findOneAndUpdate({"_id":data.objectId, "password":u.generateHash(data.oldpassword)}, {password: u.password}, function(err, data) {
+		if(err) throw err;
+		//It will not change password if old password is wrong without notifying right now.
+		res.send("Done if old password was you entered correct.");
+	})
+});
 
 
 /* GET users listing. */
