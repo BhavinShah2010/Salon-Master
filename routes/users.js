@@ -17,7 +17,7 @@ router.get('/checkUname', function(req,res){
 	  		res.send('Username not Available');
 	  	}
 	  	else{
-	  		res.send('Available');
+	  		res.send('0');
 	  	}
 	});
 });
