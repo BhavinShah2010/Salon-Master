@@ -32,8 +32,7 @@ router.post('/add',function(req,res)
     	return;
     } else {
     // normal processing here
-
-     data=req.body;
+    data=req.body;
 	var u=new user();
 	u.name=data.name;
 	u.username=data.username;
@@ -83,6 +82,7 @@ router.post('/getDetails',function(req,res){
 });
 
 //Update Profile
+//Pending task - Validating data at the time of updation
 router.post('/updateProfile',function(req,res){
 	/*req.checkBody(
 	  "phno", 
