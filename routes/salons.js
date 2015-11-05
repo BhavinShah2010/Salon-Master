@@ -99,12 +99,28 @@ router.post('/getDetails',function(req,res){
 
 });
 
+//getSalons
+router.post('/getSalons',function(req,res){
+  salon.find({}, function(err, salons) {
+    if (err) throw err;
+  res.send(salons);
+  })
+});
+
 //Update Rating
 router.post('/updateRatings',function(req,res){
-	salon.findOneAndUpdate({"_id":req.body.objectId}, {ratings:req.body.ratings}, function(err, updatedSalon) {
+	salon.find({"_id":req.body.objectId}, function(err, salon1) {
+  	if (err) throw err;
+  	var oldRatings=salon1.ratings;
+  	var oldPersons=salon1.personsVisited;
+  	var newRatings=req.body.ratings;
+  	var updatedRatings=((oldRatings*oldPersons)+newRatings)/oldPersons+1;
+  	salon.findOneAndUpdate({"_id":req.body.objectId}, {ratings:updateRatings, personsVisited:oldPersons+1}, function(err, updatedSalon) {
 		if(err) throw err;
 		res.send("Ratings updated successfully");
 	})
+	})
+	
 });
 
 /* GET users listing. */

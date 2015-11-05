@@ -112,9 +112,9 @@ router.post('/updateProfile',function(req,res){
 	a.area=data.area;
 	a.city=data.city;
 	a.state=data.state;
+	a.zipcode=data.zipcode;
 	var now=new Date();
 	user.findOneAndUpdate({"_id":data.objectId}, { username: data.username, name:data.name, active:true, address:a, modified:now , gender:data.gender, email: data.email, phno:data.phno}, function(err, updatedUser) {
-	a.zipcode=data.zipcode;
   	if (err) throw err;
   	user.find({ "_id": data.objectId}).exec(function(err, finaluser) {
   	if(err) throw err;
