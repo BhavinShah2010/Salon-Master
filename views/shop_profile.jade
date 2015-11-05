@@ -1,0 +1,243 @@
+include header
+doctype html(lang='en')
+head
+    link(href='css/stylesheet.css', rel='stylesheet')
+    |     
+    title Shop Details | E-Shopper
+  body
+    section
+      .container
+        .row
+          #Shop_Details.col-sm-9.padding-right
+            .product-details
+              .col-sm-5
+                .view-product
+                  img(src='images/product-details/1.jpg', alt='')
+              |                         
+              .col-sm-7
+                .product-information
+                  label#lbl_shopname
+                    h2 Anne Klein Sleeveless Colorblock Scuba
+                  |                                 
+                  br
+                  |                                 
+                  label#lblShopEmail Email ID: abc@ gmail.com
+                  br
+                  |                                 
+                  label#lblShopMobile Mobile: 1234567890
+                  br
+                  |                                 
+                  label#lblShopAddress Address: 58, Umiyadhara flat,Addresss
+                  br
+                  |                                 
+                  label#lblShopDescription Our shop is.Description....
+                  br
+                  |                                 
+                  label#lblservicelabel Services are
+                  |                                 
+                  table.formtable
+                    tr
+                      th
+                        | Service 1
+                      |                                 
+                      th
+                        | Service 1
+                      |                                 
+                      th
+                        | Service 1
+                    |                                 
+                    tr
+                      th
+                        | Service 1
+                      |                                 
+                      th
+                        | Service 1
+                      |                                 
+                      th
+                        | Service 1
+                  | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                  p
+                    span.starRating(style='width:35%;')
+                      input#rating5(type='radio', name='rating', value='5')
+                      |                                         
+                      label(for='rating5') 5
+                      |                                         
+                      input#rating4(type='radio', name='rating', value='4')
+                      |                                         
+                      label(for='rating4') 4
+                      |                                         
+                      input#rating3(type='radio', name='rating', value='3', checked='')
+                      |                                         
+                      label(for='rating3') 3
+                      |                                         
+                      input#rating2(type='radio', name='rating', value='2')
+                      |                                         
+                      label(for='rating2') 2
+                      |                                         
+                      input#rating1(type='radio', name='rating', value='1')
+                      |                                         
+                      label(for='rating1') 1
+                  |                                     
+                  span
+                    button.btn.btn-fefault.cart(type='button')
+                      i.fa.fa-shopping-cart
+                      |                                             Book Shop
+            |                     
+            .category-tab.shop-details-tab
+              .col-sm-12
+                ul.nav.nav-tabs
+                  li
+                    a(href='#companyprofile', data-toggle='tab') Previous Appointments
+                  |                                 
+                  li.active
+                    a(href='#reviews', data-toggle='tab') Reviews
+              |                         
+              .tab-content
+                #companyprofile.tab-pane.fade
+                  .col-sm-11
+                    table.table(border='2')
+                      tr
+                        th Date
+                        |                                             
+                        th Service
+                        |                                             
+                        th Rating
+                        |                                             
+                        th Price
+                      |                                          
+                      tr
+                        td AAAAA
+                        |                                             
+                        td BBBBB
+                        |                                             
+                        td CCCCC
+                        |                                             
+                        td DDDDD
+                      |                                         
+                      tr
+                        td AAAAA
+                        |                                             
+                        td BBBBB
+                        |                                             
+                        td CCCCC
+                        |                                             
+                        td DDDDD
+                      |                                         
+                      tr
+                        td AAAAA
+                        |                                             
+                        td BBBBB
+                        |                                             
+                        td CCCCC
+                        |                                             
+                        td DDDDD
+                      |                                         
+                      tr
+                        td AAAAA
+                        |                                             
+                        td BBBBB
+                        |                                             
+                        td CCCCC
+                        |                                             
+                        td DDDDD
+                      |                                         
+                      tr
+                        td AAAAA
+                        |                                             
+                        td BBBBB
+                        |                                             
+                        td CCCCC
+                        |                                             
+                        td DDDDD
+                      |                                         
+                      tr
+                        td AAAAA
+                        |                                             
+                        td BBBBB
+                        |                                             
+                        td CCCCC
+                        |                                             
+                        td DDDDD
+                      |                                         
+                      tr
+                        td AAAAA
+                        |                                             
+                        td BBBBB
+                        |                                             
+                        td CCCCC
+                        |                                             
+                        td DDDDD
+                      |                                         
+                      tr
+                        td AAAAA
+                        |                                             
+                        td BBBBB
+                        |                                             
+                        td CCCCC
+                        |                                             
+                        td DDDDD
+                      |                                         
+                      tr
+                        td AAAAA
+                        |                                             
+                        td BBBBB
+                        |                                             
+                        td CCCCC
+                        |                                             
+                        td DDDDD
+                  |                                 
+                  div
+                    ul#PageBackround.pagination
+                      li
+                        a(href='#') &laquo;
+                      |                                         
+                      li
+                        a(href='#') 1
+                      |                                         
+                      li
+                        a(href='#') 2
+                      |                                         
+                      li
+                        a(href='#') 3
+                      |                                         
+                      li
+                        a(href='#') 4
+                      |                                         
+                      li
+                        a(href='#') 5
+                      |                                         
+                      li
+                        a(href='#') &raquo;
+                |                             
+                #reviews.tab-pane.fade.active.in
+                  .col-sm-12
+                    ul
+                      li
+                        a(href='#')
+                          i.fa.fa-user
+                          | UserName
+                      |                                         
+                      li
+                        a(href='#')
+                          i.fa.fa-clock-o
+                          | 12:41 PM
+                      |                                         
+                      li
+                        a(href='#')
+                          i.fa.fa-calendar-o
+                          | 31 DEC 2014
+                    |                                     
+                    p
+                      | Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                    |                                     
+                    p
+                      b Write Your Review
+                    |                                     
+                    form(action='#')
+                      textarea(name='')
+                      |                                         
+                      b Rating: 
+                      |                                         
+                      button.btn.btn-default.pull-right(type='button')
+                        | Submit
+include footer

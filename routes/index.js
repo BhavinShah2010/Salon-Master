@@ -13,5 +13,10 @@ router.get('/login', function(req, res, next) {
   res.render('login_master');
 });
 
+router.get('/shop_profile', function(req, res, next) {
+	console.log();
+  res.render('shop_profile');
+});
+
 
 module.exports = router;

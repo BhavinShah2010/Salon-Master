@@ -4,7 +4,6 @@ var user = require('../modules/user');
 var address = require('../modules/address');
 var passport = require('./../auth');
 
-<<<<<<< HEAD
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -36,9 +35,7 @@ router.get('/logout',function(req,res){
 });
 
 
-=======
 //Register new User
->>>>>>> ab015e9684f435dccd0a5cb7c32f2a2b44eca8fc
 router.post('/add',function(req,res)
 {
 	//refer : https://github.com/chriso/validator.js#validators
