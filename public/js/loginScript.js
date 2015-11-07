@@ -5,7 +5,7 @@ $(document).ready(function () {
         $(".alert").hide();
         $(".alert-danger").hide();
 
-        if ($("#txtLoginUserEmailID").val() == '') {
+        if ($("#txtLoginUserName").val() == '') {
             // alert(1);
             $("#lblError").html("Please User Name");
             $("#divResult").css("display", "block");
@@ -99,6 +99,14 @@ $(document).ready(function () {
             $("#lblSingUpError").html("Please Enter Zipcode");
             $("#divSingup").css("display", "block");
             return false;
+        }
+        if ($("#txtZipcode").val() != '') {
+            var num = /^[-+]?[0-9]+$/;
+            if (!($("#txtZipcode").val().match(num))) {
+                $("#lblSingUpError").html("Invalid Zipcode");
+                $("#divSingup").css("display", "block");
+                return false;
+            }
         }
 
     });
