@@ -32,35 +32,37 @@ html
           .row
             .col-sm-4
               .logo.pull-left
-                a(href='index.html')
+                a(href='./views/login_master')
                   img(src='images/home/logo.png', alt='')
             .col-sm-8
               .shop-menu.pull-right
-                ul#nav_before_login.nav.navbar-nav
-                  li
-                    a.active(href='login.html')
-                      i.fa.fa-lock
-                      | Login
-                ul#nav_after_login.nav.navbar-nav
-                  li
-                    a(href='#') Location
-                    ul#usersubmenu.sub-menu(role='menu')
-                      li
-                        .signup-form
-                          form
-                            input(type='text', placeholder='Enter Location')
-                            button(type='submit')
-                              | Find
-                  li.dropdown
-                    a(href='#')
-                      | Welcome , UserName
-                      i.fa.fa-angle-down
-                    ul#usersubmenu.sub-menu(role='menu')
-                      li
-                        a.usermenufont(href='#') Myaccount
-                      br
-                      li
-                        a.usermenufont(href='#') Logout
+                if (!user)  
+                  ul
+                    li
+                      a.active(href='login.html') 
+                        i.fa.fa-lock
+                        | Login
+                else                        
+                  ul
+                    li
+                      a(href='#') Location 
+                      ul#usersubmenu.sub-menu(role='menu')
+                        li
+                          .signup-form
+                            form
+                              input(type='text', placeholder='Enter Location')
+                              button(type='submit')
+                                | Find
+                    li.dropdown
+                      a(href='/users/logout').dropdown-toggle
+                        | Welcome , #{user.username}
+                        i.fa.fa-angle-down
+                      ul.sub-menu(role='menu', aria-labelledby='dropdownMenu')
+                        li
+                          a(href='#') Myaccount
+                        li.divider  
+                        li
+                          a(href='/logout') Logout
       .header-bottom
         // header-bottom
         .container
@@ -75,10 +77,12 @@ html
               .mainmenu.pull-left
                 ul.nav.navbar-nav.collapse.navbar-collapse
                   li
-                    a(href='index.html') Home
+                    a(href='/login_master') Home
                   li
-                    a(href='contact-us.html') Salon
+                    a(href='/contactUs') Salon
                   li
-                    a(href='contact-us.html') Map
+                    a(href='/contactUs') Map
                   li
-                    a(href='contact-us.html') Contact Us
+                    a(href='/salons/') Contact Us
+    script.
+        $('.dropdown-toggle').dropdown();      

@@ -3,15 +3,20 @@ var router = express.Router();
 var user = require('../modules/user');
 var address = require('../modules/address');
 var passport = require('./../auth');
+var LocalStrategy = require('passport-local').Strategy;
 
 //Register new User
 router.post('/add',function(req,res)
 {
 	//refer : https://github.com/chriso/validator.js#validators
-	req.checkBody(  
-	  "phno", 
-	  "Enter a valid phone number.").isMobilePhone("en-US");
 
+	//This validation works when you want to enter the number of US. 
+	//req.checkBody(  
+	//  "phno", 
+	//  "Enter a valid phone number.").isMobilePhone("en-US");
+
+	
+	
 	req.checkBody(  
 	  "email", 
 	   "Enter a valid Email").isEmail();
@@ -47,6 +52,8 @@ router.post('/add',function(req,res)
 	a.state=data.state;
 	a.zipcode=data.zipcode;
 	u.address=a;
+	
+
 	u.save(function(err){
 			if(err){
 				res.send('Database error! '+err);
@@ -56,13 +63,56 @@ router.post('/add',function(req,res)
 			}
 		})
   }
+
+  // to validate the inputted data
+    var err = u.validateSync();
+    if(err){
+            console.log(err);
+            return;
+        }
+        
+    //to check if there is any technical or syntax error    
+    u.save(function(err){
+        if(err){
+            console.log(err);
+        }
+    else{
+            console.log("Service's data is successfully uploaded.");
+        }
+    });
+
 });
 
 //Login
+/*
+passport.use(new LocalStrategy(function(username,password,done){
+	user.findOne({username:username},function(err, users) {
+	  if (err) { return done(err); }
+      if (!users) {
+        return done(null, null);
+      }
+      if (!users.validPassword(password)) {
+        return done(null, null);
+      }
+      return done(null, {username:username,password:password});
+	});
+}));
+
+passport.serializeUser(function(user, done) {
+  done(null, user.username);
+});
+
+passport.deserializeUser(function(username, done) {
+  User.findById(id, function(err, users) {
+    done(err, {username:username,password:password});
+  });
+});
+*/
+
 router.post('/login',passport.authenticate('local',{
 	failureRedirect:'/',
-	successRedirect:'/salons/'
-	
+	successRedirect:'/salons/',
+	//failureFlash:true	
 }));
 
 //Logout
@@ -171,19 +221,6 @@ router.get('/checkUname', function(req,res){
 	  	}
 	});
 });
-
-
-router.post('/login',passport.authenticate('local',{
-	failureRedirect:'/',
-	successRedirect:'/users/'
-	
-}));
-
-router.get('/logout',function(req,res){
-	req.logout();
-	res.redirect('/');
-});
-
 
 
 module.exports = router;

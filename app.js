@@ -7,18 +7,25 @@ var bodyParser = require('body-parser');
 var validator = require('express-validator'); // to validate the data refer : https://booker.codes/input-validation-in-express-with-express-validator/
 
 var session = require('express-session');
+//database connection with the system...
 var mongoose = require('mongoose');
 var MongoStore = require('connect-mongo')(session);
 var dburi="mongodb://student:student123@ds035713.mongolab.com:35713/salonmaster";
-var db=mongoose.connect(dburi);
+var db=mongoose.connect(dburi,function(err,res){
+  if(err){
+    console.log('Error connected to'+dburi+' .'+err);
+  }
+  else
+  {
+    console.log('Application is successfully connected to '+dburi);
+  }
+});
 var passport= require('passport');
-var LocalStrategy = require('passport-local');
-
+var LocalStrategy = require('passport-local').Strategy;
 
 mongoose.connection.once('connected',function(){
-  console.log("successfull")
+//  console.log("successful")
 });
-
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -28,7 +35,8 @@ var events = require('./routes/events');
 var offers = require('./routes/offers');
 var reviews = require('./routes/reviews');
 var appointments = require('./routes/appointments');
-
+var auth = require('./routes/auth');
+//var user = require('../modules/User');
 
 var app = express();
 
@@ -46,10 +54,46 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
+app.use(require('stylus').middleware(path.join(__dirname,'public')));
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(session({secret: 'supernova1234567890qwertydontyouworrychild', saveUninitialized: true, resave: true,store: new MongoStore({ mongooseConnection: mongoose.connection })}));
+//app.use(session({secret: 'supernova1234567890qwertydontyouworrychild', saveUninitialized: true, resave: true,store: new MongoStore({ mongooseConnection: mongoose.connection })}));
+
+//initialize session middleware
+app.use(session({
+  secret:'salonMaster',
+  resave:true,
+  saveUninitialized:false
+}));
+
+//passport configuration
 app.use(passport.initialize());
 app.use(passport.session());
+
+var user = require('./modules/user');
+//passport.use(user.createStrategy());
+//passport.use(new LocalStrategy(user.authenticate()));
+
+//to verify username and password
+/*passport.use(new LocalStrategy(
+  function(username, password, done) {
+    user.findOne({ username: username }, function(err, users) {
+      if (err) { return done(err); }
+      if (!users) {
+        console.log('Invalid Username');
+        return done(null, false, { message: 'Incorrect username.' });
+      }
+      if (!users.validPassword(password)) {
+        return done(null, false, { message: 'Incorrect password.' });
+      }
+      return done(null, users);
+    });
+  }
+));
+*/
+//define serialize and deserialized methods:
+passport.serializeUser(user.serializeUser());
+passport.deserializeUser(user.deserializeUser());
+
 
 
 app.use(function(req, res, next){
@@ -77,6 +121,7 @@ app.use('/events',events);
 app.use('/offers',offers);
 app.use('/reviews',reviews);
 app.use('/appointments',appointments);
+app.use('/auth', auth);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -108,7 +153,5 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
-
 // chk test
-
 module.exports = app;

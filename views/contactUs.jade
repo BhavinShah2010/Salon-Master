@@ -1,3 +1,4 @@
+include header
 doctype html
 html(lang='en')
   head
@@ -19,41 +20,7 @@ html(lang='en')
     link(rel='apple-touch-icon-precomposed', sizes='72x72', href='/images/ico/apple-touch-icon-72-precomposed.png')
     link(rel='apple-touch-icon-precomposed', href='/images/ico/apple-touch-icon-57-precomposed.png')
   body
-    header#header
-      .header-middle
-        .container
-          .row
-            .col-sm-4
-              .logo.pull-left
-                a(href='index.html')
-                  img(src='images/home/logo.png', alt='')
-            .col-sm-8
-              .shop-menu.pull-right
-                ul.nav.navbar-nav
-                  li
-                    a(href='login.html')
-                      i.fa.fa-lock
-                      |  Login
-      .header-bottom
-        .container
-          .row
-            .col-sm-9
-              .navbar-header
-                button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
-                  span.sr-only Toggle navigation
-                  span.icon-bar
-                  span.icon-bar
-                  span.icon-bar
-              .mainmenu.pull-left
-                ul.nav.navbar-nav.collapse.navbar-collapse
-                  li
-                    a(href='index.html') Home
-                  li
-                    a(href='contact-us.html') Salon
-                  li
-                    a(href='contact-us.html') Map
-                  li
-                    a(href='contact-us.html') Contact Us
+    
     #contact-page.container
       .bg
         .row

@@ -11,17 +11,17 @@ html(lang='en')
               form(action='/users/login', method='post')
                 div
                   div
-                    input#txtLoginUserEmailID(type='email', name='username', placeholder='User Name')
+                    input#txtLoginUserName(type='text', name='username', placeholder='User Name')
                   div
                     input#txtLoginPassword(type='password', placeholder='Password', name='password')
                   div
                     span
                       input.checkbox(type='checkbox')
-                      |                                         Keep me signed in
+                      |                                         Keep me signed in 
                     div(style='float: right')
                       a(href='#') Forgot Password ?
                     #divResult.alert.alert-danger(style='height: 50px; display: none;')
-                      label#lblError
+                      label#lblError     
                     button#btnLogin(type='submit') Login
           .col-sm-1
             h2.or OR
@@ -76,7 +76,8 @@ html(lang='en')
       $("#btnLogin").click(function () {
       $(".alert").hide();
       $(".alert-danger").hide();
-      if ($("#txtLoginUserEmailID").val() == '') {
+      
+      if ($("#txtLoginUserName").val() == '') {
       // alert(1);
       $("#lblError").html("Please Enter Email");
       $("#divResult").css("display", "block");
@@ -102,7 +103,7 @@ html(lang='en')
       return false;
       }
       if ($("#txtUserEmailid").val() != '') {
-      var filter = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$/;
+      var filter = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
       if (!filter.test(($("#txtUserEmailid").val()))) {
       $("#lblSingUpError").html("inValid Email Id");
       $("#divSingup").css("display", "block");

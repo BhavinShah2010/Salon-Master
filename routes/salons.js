@@ -5,8 +5,20 @@ var address = require('../modules/address');
 var passport = require('./../auth');
 
 /* GET users listing. */
+
+//refirect to index.js if user is not logged in
+router.use(function(req,res,next){
+  if(!req.user){
+    res.redirect('/');
+  }
+  next();
+});
+
+//redirect to Home page
 router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+  //res.send('respond with a resource');
+  console.log();
+  res.render('contactUs',{user:req.user, views:req.session.views});
 });
 
 // To check username is available or not

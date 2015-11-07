@@ -2,6 +2,8 @@ var mongoose = require('mongoose');
 var a=require('./address');
 var Address = require('mongoose').model('address').schema;
 var bcrypt = require('bcrypt-nodejs');
+var passportLocalMongoose = require('passport-local-mongoose');
+
 var schema = mongoose.Schema({
 	username:{
 		type:String,
@@ -37,6 +39,8 @@ var schema = mongoose.Schema({
 		required:true
 	}
 });
+
+schema.plugin(passportLocalMongoose);
 
 schema.methods.generateHash = function(password){
 	return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
