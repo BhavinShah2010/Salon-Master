@@ -65,9 +65,9 @@ router.post('/updateProfile',function(req,res){
 	a.area=data.area;
 	a.city=data.city;
 	a.state=data.state;
+	a.zipcode=data.zipcode;
 	var now=new Date();
 	salon.findOneAndUpdate({"_id":data.objectId}, { username: data.username, name:data.name, owners: data.owners, address:a, description:data.description , ratings:data.ratings, personsVisited:data.personsVisited, phoneNo:data.phoneNo}, function(err, updatedSalon) {
-	a.zipcode=data.zipcode;
   	if (err) throw err;
   	salon.find({ "_id": data.objectId}).exec(function(err, finalSalon) {
   	if(err) throw err;
