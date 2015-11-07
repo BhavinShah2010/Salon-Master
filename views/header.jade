@@ -24,6 +24,8 @@ html
     script(src='js/price-range.js')
     script(src='js/jquery.prettyPhoto.js')
     script(src='js/main.js')
+    script(src='js/headerScript.js')
+    
   body
     header#header
       .header-middle
@@ -54,15 +56,15 @@ html
                               button(type='submit')
                                 | Find
                     li.dropdown
-                      a(href='/users/logout').dropdown-toggle
-                        | Welcome , #{user.username}
-                        i.fa.fa-angle-down
-                      ul.sub-menu(role='menu', aria-labelledby='dropdownMenu')
-                        li
-                          a(href='#') Myaccount
-                        li.divider  
-                        li
-                          a(href='/logout') Logout
+                      a.dropdown-toggle(href='#', data-toggle='dropdown')
+                        | welcome, #{user.username} 
+                        b.caret
+                        ul.dropdown-menu
+                          li
+                            a(href='#') My Account
+                          br
+                          li
+                            a(href='/users/logout') Logout
       .header-bottom
         // header-bottom
         .container
@@ -84,5 +86,4 @@ html
                     a(href='/contactUs') Map
                   li
                     a(href='/salons/') Contact Us
-    script.
-        $('.dropdown-toggle').dropdown();      
+

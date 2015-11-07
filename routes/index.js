@@ -7,7 +7,12 @@ var router = express.Router();
 
 router.get('/', function(req, res, next) {
 	console.log();
-  res.render('login_master',{msg:req.message, views:req.session.views});
+  res.render('login_master');
+});
+
+router.get('/failure', function(req, res, next) {
+	//console.log('Invalid username or password');
+  res.render('login_master',{msg:'Invalid Username or password', views:req.session.views});
 });
 
 router.get('/contactUs', function(req, res, next) {
@@ -18,7 +23,7 @@ router.get('/contactUs', function(req, res, next) {
 
 router.get('/login', function(req, res, next) {
 	console.log();
-  res.render('login_master',{msg:req.message, views:req.session.views});
+  res.render('login_master');
 });
 
 router.get('/shop_profile', function(req, res, next) {
