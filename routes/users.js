@@ -4,6 +4,37 @@ var user = require('../modules/user');
 var address = require('../modules/address');
 var passport = require('./../auth');
 
+
+/* GET users listing. */
+router.get('/', function(req, res, next) {
+  res.render('contactUs');
+});
+
+// To check username is available or not
+router.get('/checkUname', function(req,res){
+	user.findOne({username:req.query.username},function(err, users) {
+	  if(users){
+	  		res.send('Username not Available');
+	  	}
+	  	else{
+	  		res.send('0');
+	  	}
+	});
+});
+
+
+router.post('/login',passport.authenticate('local',{
+	failureRedirect:'/',
+	successRedirect:'/users/'
+	
+}));
+
+router.get('/logout',function(req,res){
+	req.logout();
+	res.redirect('/');
+});
+
+
 //Register new User
 router.post('/add',function(req,res)
 {
