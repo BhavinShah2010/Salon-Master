@@ -1,6 +1,12 @@
 include header
 doctype html
 html(lang='en')
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(name='description', content='')
+    meta(name='author', content='')
+    title Login | Salon Master
   body
     section#Loginform
       .container
@@ -11,9 +17,13 @@ html(lang='en')
               form(action='/users/login', method='post')
                 div
                   div
+<<<<<<< HEAD
                     input#txtLoginUserName(type='text', name='username', placeholder='User Name')
+=======
+                    input#txtLoginUserEmailID(type='text', name='txtLoginUserEmailID', placeholder='User Name')
+>>>>>>> 02e6058ec570b84b8c76ff298fff3578d46ea528
                   div
-                    input#txtLoginPassword(type='password', placeholder='Password', name='password')
+                    input#txtLoginPassword(type='password', placeholder='Password', name='txtLoginPassword')
                   div
                     span
                       input.checkbox(type='checkbox')
@@ -34,7 +44,7 @@ html(lang='en')
                 .col-sm-12
                   input#txtUserEmailid(type='email', placeholder='Email Address', name='email')
                 .col-sm-6
-                  input#txtUserName(type='text', placeholder='User Name', name='username')
+                  input#txtUserName(type='text', placeholder='User Name', name='username', onchange='Chk()')
                 .col-sm-6
                   input#txtUserMobileNum(type='text', placeholder='Mobile Number', maxlength='10', name='phno')
                 .col-sm-6
@@ -63,6 +73,7 @@ html(lang='en')
                 .col-sm-12
                   #divSingup.alert.alert-danger(style='height: 50px; display: none;')
                     label#lblSingUpError
+<<<<<<< HEAD
                 button#btnSingup(type='submit') Signup
     script(src='js/jquery.js')
     script(src='js/jquery.validate.js')
@@ -165,3 +176,8 @@ html(lang='en')
       }
       });
       });
+=======
+                .col-sm-12
+                  button#btnSingup(type='submit') Signup
+    script(src='/js/loginScript.js')
+>>>>>>> 02e6058ec570b84b8c76ff298fff3578d46ea528

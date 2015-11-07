@@ -5,6 +5,37 @@ var address = require('../modules/address');
 var passport = require('./../auth');
 var LocalStrategy = require('passport-local').Strategy;
 
+
+/* GET users listing. */
+router.get('/', function(req, res, next) {
+  res.render('contactUs');
+});
+
+// To check username is available or not
+router.get('/checkUname', function(req,res){
+	user.findOne({username:req.query.username},function(err, users) {
+	  if(users){
+	  		res.send('Username not Available');
+	  	}
+	  	else{
+	  		res.send('0');
+	  	}
+	});
+});
+
+
+router.post('/login',passport.authenticate('local',{
+	failureRedirect:'/',
+	successRedirect:'/users/'
+	
+}));
+
+router.get('/logout',function(req,res){
+	req.logout();
+	res.redirect('/');
+});
+
+
 //Register new User
 router.post('/add',function(req,res)
 {
@@ -37,8 +68,7 @@ router.post('/add',function(req,res)
     	return;
     } else {
     // normal processing here
-
-     data=req.body;
+    data=req.body;
 	var u=new user();
 	u.name=data.name;
 	u.username=data.username;
@@ -133,6 +163,7 @@ router.post('/getDetails',function(req,res){
 });
 
 //Update Profile
+//Pending task - Validating data at the time of updation
 router.post('/updateProfile',function(req,res){
 	/*req.checkBody(
 	  "phno", 
@@ -162,9 +193,9 @@ router.post('/updateProfile',function(req,res){
 	a.area=data.area;
 	a.city=data.city;
 	a.state=data.state;
+	a.zipcode=data.zipcode;
 	var now=new Date();
 	user.findOneAndUpdate({"_id":data.objectId}, { username: data.username, name:data.name, active:true, address:a, modified:now , gender:data.gender, email: data.email, phno:data.phno}, function(err, updatedUser) {
-	a.zipcode=data.zipcode;
   	if (err) throw err;
   	user.find({ "_id": data.objectId}).exec(function(err, finaluser) {
   	if(err) throw err;

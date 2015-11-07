@@ -10,7 +10,7 @@ router.get('/', function(req, res, next) {
 
 router.post('/add',function(req,res){
 	//refer : https://github.com/chriso/validator.js#validators
-    data=req.body;
+  data=req.body;
 	var r=new review();
 	r.user=data.user;
 	r.salon=data.salon;
@@ -26,17 +26,33 @@ router.post('/add',function(req,res){
 		})
 });
 
+//Update Review
+router.post('/updateReview',function(req,res){
+  data=req.body;
+  var now=new Date();
+  review.findOneAndUpdate({"_id":data.reviewid}, { title:data.title, description:data.description, timestamp:now}, function(err, updatedReview) {
+    if (err) throw err;
+    res.send("Review updated successfully");
+  })
+});
+
+//View All Reviews
+router.post('/getReviews',function(req,res){
+  review.find({}, function(err, reviews) {
+    if (err) throw err;
+  res.send(reviews);
+  })
+});
 
 
 router.post('/delete',function(req,res){
 	data=req.body;
-	var reviewid=data.review;
-	review.findOneAndRemove({ _id:reviewid }, function(err){
+	review.findOneAndRemove({ _id:data.reviewid }, function(err){
   		if (err){
   			res.send('Deletion Problem' + err);
   		}
   		else{
-  			res.send('Salon Deleted successfully'+reviewid);
+  			res.send('Review Deleted successfully');
   		}
 	});
 });
