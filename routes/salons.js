@@ -4,7 +4,6 @@ var salon = require('../modules/salon');
 var address = require('../modules/address');
 var passport = require('./../auth');
 
-<<<<<<< HEAD
 /* GET users listing. */
 
 //refirect to index.js if user is not logged in
@@ -45,9 +44,7 @@ router.get('/logout',function(req,res){
 	res.redirect('/');
 });
 
-=======
 //Add new Salon
->>>>>>> 02e6058ec570b84b8c76ff298fff3578d46ea528
 router.post('/add',function(req,res){
 	//refer : https://github.com/chriso/validator.js#validators
 	req.checkBody(  

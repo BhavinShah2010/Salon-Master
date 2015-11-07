@@ -1,6 +1,7 @@
 var express = require('express');
 var service = require('../modules/service');
 var address = require('../modules/address');
+var salon = require('../modules/salon');
 var router = express.Router();
 
 /* GET users listing. */
@@ -51,6 +52,30 @@ router.post('/getServices',function(req,res){
     if (err) throw err;
   res.send(services);
   })
+});
+
+//View Service
+router.post('/getDetails',function(req,res){
+    data=req.body;
+    var objectId=data.objectId;
+    service.find({ "_id": objectId }).exec(function(err, data) {
+        if (err) throw err;
+        res.send(data);
+        });
+
+});
+
+//View Services of a particular Salon
+router.post('/getSalonServices',function(req,res){
+    data=req.body;
+    var salonId=data.salonId;
+    salon.find({ "_id": salonId }).exec(function(err, salonObject) {
+        if (err) throw err;
+        service.find({ "salonID": salonObject }).exec(function(err, data) {
+            if (err) throw err;
+            res.send(data);
+        });
+    });
 });
 
 //delete Service
