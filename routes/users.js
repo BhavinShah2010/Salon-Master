@@ -26,8 +26,8 @@ router.get('/checkUname', function(req,res){
 
 router.post('/login',passport.authenticate('local',{
 	failureRedirect:'/',
-	successRedirect:'/users/'
-	
+	successRedirect:'/salons/',
+	//failureFlash:true	
 }));
 
 router.get('/logout',function(req,res){

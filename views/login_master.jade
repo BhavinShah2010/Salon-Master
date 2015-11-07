@@ -17,13 +17,10 @@ html(lang='en')
               form(action='/users/login', method='post')
                 div
                   div
-<<<<<<< HEAD
+
                     input#txtLoginUserName(type='text', name='username', placeholder='User Name')
-=======
-                    input#txtLoginUserEmailID(type='text', name='txtLoginUserEmailID', placeholder='User Name')
->>>>>>> 02e6058ec570b84b8c76ff298fff3578d46ea528
                   div
-                    input#txtLoginPassword(type='password', placeholder='Password', name='txtLoginPassword')
+                    input#txtLoginPassword(type='password', placeholder='Password', name='password')
                   div
                     span
                       input.checkbox(type='checkbox')
@@ -73,111 +70,5 @@ html(lang='en')
                 .col-sm-12
                   #divSingup.alert.alert-danger(style='height: 50px; display: none;')
                     label#lblSingUpError
-<<<<<<< HEAD
                 button#btnSingup(type='submit') Signup
-    script(src='js/jquery.js')
-    script(src='js/jquery.validate.js')
-    script(src='js/price-range.js')
-    script(src='js/jquery.scrollUp.min.js')
-    script(src='js/bootstrap.min.js')
-    script(src='js/jquery.prettyPhoto.js')
-    script(src='js/main.js')
-    script.
-      $(document).ready(function () {
-      $("#btnLogin").click(function () {
-      $(".alert").hide();
-      $(".alert-danger").hide();
-      
-      if ($("#txtLoginUserName").val() == '') {
-      // alert(1);
-      $("#lblError").html("Please Enter Email");
-      $("#divResult").css("display", "block");
-      return false;
-      }
-      if ($("#txtLoginPassword").val() == '') {
-      $("#lblError").html("Please Enter Password");
-      $("#divResult").css("display", "block");
-      return false;
-      }
-      });
-      $("#btnSingup").click(function () {
-      $(".alert").hide();
-      $(".alert-danger").hide();
-      if ($("#txtName").val() == '') {
-      $("#lblSingUpError").html("Please Enter Name");
-      $("#divSingup").css("display", "block");
-      return false;
-      }
-      if ($("#txtUserEmailid").val() == '') {
-      $("#lblSingUpError").html("Please Enter Email");
-      $("#divSingup").css("display", "block");
-      return false;
-      }
-      if ($("#txtUserEmailid").val() != '') {
-      var filter = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-      if (!filter.test(($("#txtUserEmailid").val()))) {
-      $("#lblSingUpError").html("inValid Email Id");
-      $("#divSingup").css("display", "block");
-      return false;
-      }
-      }
-      if ($("#txtUserName").val() == '') {
-      $("#lblSingUpError").html("Please Enter User Name");
-      $("#divSingup").css("display", "block");
-      return false;
-      }
-      if ($("#txtUserMobileNum").val() == '') {
-      $("#lblSingUpError").html("Please Enter Mobile Number");
-      $("#divSingup").css("display", "block");
-      return false;
-      }
-      if ($("#txtUserMobileNum").val() != '') {
-      var num = /^[-+]?[0-9]+$/;
-      if (!($("#txtUserMobileNum").val().match(num))) {
-      $("#lblSingUpError").html("Invalid Mobile Number");
-      $("#divSingup").css("display", "block");
-      return false;
-      }
-      }
-      if ($("#txtUserMobileNum").val().length < 10) {
-      $("#lblSingUpError").html("Invalid Mobile Number");
-      $("#divSingup").css("display", "block");
-      return false;
-      }
-      if ($("#txtUserPassword").val() == '') {
-      $("#lblSingUpError").html("Please Enter Password");
-      $("#divSingup").css("display", "block");
-      return false;
-      }
-      if ($("#txtConifemPwd").val() == '') {
-      $("#lblSingUpError").html("Please Enter Confirm Password");
-      $("#divSingup").css("display", "block");
-      return false;
-      }
-      if ($("#txtUserPassword").val() != $("#txtConifemPwd").val()) {
-      $("#lblSingUpError").html("Passoword does not match!");
-      $("#divSingup").css("display", "block");
-      return false;
-      }
-      if ($("#txtArea").val() == '') {
-      $("#lblSingUpError").html("Please Enter Area");
-      $("#divSingup").css("display", "block");
-      return false;
-      }
-      if ($("#txtCity").val() == '') {
-      $("#lblSingUpError").html("Please Enter City");
-      $("#divSingup").css("display", "block");
-      return false;
-      }
-      if ($("#txtState").val() == '') {
-      $("#lblSingUpError").html("Please Enter State");
-      $("#divSingup").css("display", "block");
-      return false;
-      }
-      });
-      });
-=======
-                .col-sm-12
-                  button#btnSingup(type='submit') Signup
     script(src='/js/loginScript.js')
->>>>>>> 02e6058ec570b84b8c76ff298fff3578d46ea528
