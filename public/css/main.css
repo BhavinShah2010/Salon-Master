@@ -12,7 +12,10 @@ body {
   position: relative;
   font-weight:400px;
 }
-
+#PageBackround {
+    background:#FFF;
+    border-bottom:none;
+}
 ul li {
   list-style: none;
 }
