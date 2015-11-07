@@ -69,12 +69,12 @@ router.post('/getDetails',function(req,res){
 router.post('/getSalonServices',function(req,res){
     data=req.body;
     var salonId=data.salonId;
-    salon.find({ "_id": salonId }).exec(function(err, salonObject) {
-        if (err) throw err;
-        service.find({ "salonID": salonObject }).exec(function(err, data) {
+//    salon.find({ "_id": salonId }).exec(function(err, salonObject) {
+//        if (err) throw err;
+        service.find({ "salonID": salonId }).exec(function(err, data) {
             if (err) throw err;
             res.send(data);
-        });
+//        });
     });
 });
 
