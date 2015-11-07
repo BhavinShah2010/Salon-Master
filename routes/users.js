@@ -24,9 +24,9 @@ router.get('/checkUname', function(req,res){
 });
 
 
-router.post('/login',passport.authenticate('local',{
+/*router.post('/login',passport.authenticate('local',{
 	failureRedirect:'/',
-	successRedirect:'/users/'
+	successRedirect:'/salons/'
 	
 }));
 
@@ -34,7 +34,7 @@ router.get('/logout',function(req,res){
 	req.logout();
 	res.redirect('/');
 });
-
+*/
 
 //Register new User
 router.post('/add',function(req,res)
