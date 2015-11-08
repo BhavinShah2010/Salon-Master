@@ -17,7 +17,7 @@ router.use(function(req,res,next){
 //redirect to Home page
 router.get('/', function(req, res, next) {
   //res.send('respond with a resource');
-  console.log();
+  //console.log();
   res.render('contactUs',{user:req.user, views:req.session.views});
 });
 

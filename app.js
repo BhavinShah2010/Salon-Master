@@ -24,7 +24,7 @@ var passport= require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
 mongoose.connection.once('connected',function(){
-//  console.log("successful")
+  console.log("successful")
 });
 
 var routes = require('./routes/index');

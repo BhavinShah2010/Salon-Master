@@ -35,7 +35,9 @@ ul li {
 {
 	display:none;
 }
-
+ul li {
+  list-style: none;
+}
 a:hover {
 outline: none;
 text-decoration:none;
@@ -205,8 +207,8 @@ a#scrollUp i{
 }
 
 .dropdown-menu  li  a:hover, .dropdown-menu  li  a:focus {
-  background-color: #FE980F;
-  color: #FFFFFF;
+  background-color: #FFFFFF;
+  color: #000000;
   font-family: 'Roboto', sans-serif;
   text-decoration: none;
 }

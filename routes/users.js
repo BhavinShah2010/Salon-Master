@@ -24,18 +24,6 @@ router.get('/checkUname', function(req,res){
 });
 
 
-router.post('/login',passport.authenticate('local',{
-	failureRedirect:'/',
-	successRedirect:'/salons/',
-	//failureFlash:true	
-}));
-
-router.get('/logout',function(req,res){
-	req.logout();
-	res.redirect('/');
-});
-
-
 //Register new User
 router.post('/add',function(req,res)
 {
@@ -139,8 +127,11 @@ passport.deserializeUser(function(username, done) {
 });
 */
 
+
+
+
 router.post('/login',passport.authenticate('local',{
-	failureRedirect:'/',
+	failureRedirect:'/failure',
 	successRedirect:'/salons/',
 	//failureFlash:true	
 }));
