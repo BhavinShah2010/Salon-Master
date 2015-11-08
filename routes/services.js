@@ -12,7 +12,7 @@ router.get('/', function(req, res, next) {
 router.post('/add',function(req,res){
     data=req.body;
     var serv=new service();
-    serv.salonID=data.salonID;
+    serv.salonId=data.salonId;
     serv.name=data.name;
     serv.description = data.description;
     serv.price = data.price;
