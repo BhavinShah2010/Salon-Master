@@ -6,7 +6,7 @@ var passport = require('./../auth');
 
 /* GET users listing. */
 
-//refirect to index.js if user is not logged in
+//redirect to index.js if user is not logged in
 router.use(function(req,res,next){
   if(!req.user){
     res.redirect('/');
@@ -182,7 +182,7 @@ router.get('/checkUname', function(req,res){
 
 
 
-
+//delete salon
 
 router.post('/delete',function(req,res){
 	data=req.body;

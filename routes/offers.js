@@ -30,6 +30,15 @@ router.post('/add',function(req,res){
         })
 });
 
+//Get Current Offers
+router.post('/getCurrentOffers',function(req,res){
+    var now=new Date();
+    offer.find({"startDate": {"$lte": now}, "endDate":{"gte":now}}, function(err, currentOffers) {
+    if (err) throw err;
+    res.send(currentOffers);
+  })
+});
+
 //Check Stock
 router.post('/checkStock',function(req,res){
     data=req.body;
