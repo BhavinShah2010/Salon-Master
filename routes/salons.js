@@ -63,7 +63,6 @@ router.post('/add',function(req,res){
 	s.username=data.username;
 	s.password=s.generateHash(data.password);
 	s.name=data.name;
-	s.email=data.email;
 	s.owners=data.owners;
 	s.ratings=data.ratings;
 	s.personsVisited=data.personsVisited;
