@@ -33,6 +33,13 @@ router.post('/add',function(req,res){
         })
 });
 
+//Approve Appointment
+router.post('/approveAppointment',function(req,res){
+    appointment.findOneAndUpdate({"_id":req.body.objectId}, {status:approved}, function(err, approvedAppointment) {
+        if(err) throw err;
+        res.send("Approved");
+    })
+});
 
 //Cancelling appontment using ObjectId, parameter will be mongodb objectId
 router.post('/cancel',function(req,res){
