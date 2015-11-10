@@ -6,25 +6,25 @@ html
     meta(name='description', content='')
     meta(name='author', content='')
     title Login | E-Shopper
-    link(href='css/bootstrap.min.css', rel='stylesheet')
-    link(href='css/font-awesome.min.css', rel='stylesheet')
-    link(href='css/prettyPhoto.css', rel='stylesheet')
-    link(href='css/price-range.css', rel='stylesheet')
-    link(href='css/animate.css', rel='stylesheet')
-    link(href='css/main.css', rel='stylesheet')
-    link(href='css/responsive.css', rel='stylesheet')
-    link(rel='shortcut icon', href='images/ico/favicon.ico')
-    link(rel='apple-touch-icon-precomposed', sizes='144x144', href='images/ico/apple-touch-icon-144-precomposed.png')
-    link(rel='apple-touch-icon-precomposed', sizes='114x114', href='images/ico/apple-touch-icon-114-precomposed.png')
-    link(rel='apple-touch-icon-precomposed', sizes='72x72', href='images/ico/apple-touch-icon-72-precomposed.png')
-    link(rel='apple-touch-icon-precomposed', href='images/ico/apple-touch-icon-57-precomposed.png')
-    script(src='js/jquery.js')
-    script(src='js/bootstrap.min.js')
-    script(src='js/jquery.scrollUp.min.js')
-    script(src='js/price-range.js')
-    script(src='js/jquery.prettyPhoto.js')
-    script(src='js/main.js')
-    script(src='js/headerScript.js')
+    link(href='/css/bootstrap.min.css', rel='stylesheet')
+    link(href='/css/font-awesome.min.css', rel='stylesheet')
+    link(href='/css/prettyPhoto.css', rel='stylesheet')
+    link(href='/css/price-range.css', rel='stylesheet')
+    link(href='/css/animate.css', rel='stylesheet')
+    link(href='/css/main.css', rel='stylesheet')
+    link(href='/css/responsive.css', rel='stylesheet')
+    link(rel='shortcut icon', href='/images/ico/favicon.ico')
+    link(rel='apple-touch-icon-precomposed', sizes='144x144', href='/images/ico/apple-touch-icon-144-precomposed.png')
+    link(rel='apple-touch-icon-precomposed', sizes='114x114', href='/images/ico/apple-touch-icon-114-precomposed.png')
+    link(rel='apple-touch-icon-precomposed', sizes='72x72', href='/images/ico/apple-touch-icon-72-precomposed.png')
+    link(rel='apple-touch-icon-precomposed', href='/images/ico/apple-touch-icon-57-precomposed.png')
+    script(src='/js/jquery.js')
+    script(src='/js/bootstrap.min.js')
+    script(src='/js/jquery.scrollUp.min.js')
+    script(src='/js/price-range.js')
+    script(src='/js/jquery.prettyPhoto.js')
+    script(src='/js/main.js')
+    script(src='/js/headerScript.js')
     
   body
     header#header
@@ -34,20 +34,20 @@ html
           .row
             .col-sm-4
               .logo.pull-left
-                a(href='./views/login_master')
-                  img(src='images/home/logo.png', alt='')
+                a(href='#')
+                  img(src='/images/home/logo.png', alt='')
             .col-sm-8
               .shop-menu.pull-right
                 if (!user)  
                   ul
                     li
-                      a.active(href='login.html') 
+                      a.active(href='/') 
                         i.fa.fa-lock
                         | Login
                 else                        
                   ul
                     li
-                      a(href='#') Location 
+                      a(href='/users/logout') Location 
                       ul#usersubmenu.sub-menu(role='menu')
                         li
                           .signup-form
@@ -79,11 +79,10 @@ html
               .mainmenu.pull-left
                 ul.nav.navbar-nav.collapse.navbar-collapse
                   li
-                    a(href='/login_master') Home
+                    a(href='/home') Home
                   li
-                    a(href='/contactUs') Salon
+                    a(href='/contact') Salon
                   li
-                    a(href='/contactUs') Map
+                    a(href='/contact') Map
                   li
-                    a(href='/salons/') Contact Us
-
+                    a(href='/contact') Contact Us

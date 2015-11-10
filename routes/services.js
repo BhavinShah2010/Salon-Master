@@ -54,6 +54,15 @@ router.post('/getServices',function(req,res){
   })
 });
 
+//Get service details by entering service name
+router.post('/getServiceDetail',function(req,res){
+    service.find({"name": req.body.name}).exec(function(err, data) {
+        if (err) throw err;
+        res.json(data);
+        });
+});
+
+
 //View Service
 router.post('/getDetails',function(req,res){
     data=req.body;

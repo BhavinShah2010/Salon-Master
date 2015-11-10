@@ -3,6 +3,8 @@ var router = express.Router();
 var salon = require('../modules/salon');
 var address = require('../modules/address');
 var passport = require('./../auth');
+//This library is imported to perform join operation
+//var populatePlugin = require('mongoose-power-populate')(mongoose);
 
 /* GET users listing. */
 
@@ -14,11 +16,22 @@ router.use(function(req,res,next){
   next();
 });
 
-//redirect to Home page
+//redirect to Home page after retrieving all salons data
+
 router.get('/', function(req, res, next) {
-  //res.send('respond with a resource');
-  //console.log();
-  res.render('contactUs',{user:req.user, views:req.session.views});
+  salon.find({}).populate('address').exec(function(err, salons) {
+    if (err) throw err;
+    res.render('home',{salonData:salons, user:req.user, views:req.session.views});
+  	//res.json(salons);
+  })
+});
+
+
+router.get('/', function(req, res, next) {
+  salon.find({}, function(err, salons) {
+    if (err) throw err;
+    res.render('home',{salonData:salons, user:req.user, views:req.session.views});
+  })
 });
 
 // To check username is available or not
@@ -73,6 +86,12 @@ router.post('/add',function(req,res){
 	a.city=data.city;
 	a.state=data.state;
 	a.zipcode=data.zipcode;
+	a.save(function(err){
+			if(err){
+				res.send('Database error! '+err);
+			}
+		})
+	
 	s.address=a;
 	s.save(function(err){
 			if(err){
@@ -139,13 +158,38 @@ router.post('/getDetails',function(req,res){
 
 });
 
-//getSalons
+
+
+//get all details of salon
+
+
+router.get('/getSalons', function(req, res, next) {
+  salon.find({}).populate('address').exec(function(err, salons) {
+    if (err) throw err;
+    //res.render('home',{salonData:salons, user:req.user, views:req.session.views});
+  	res.json(salons);
+  	//return salons;
+  })
+});
+
+
 router.post('/getSalons',function(req,res){
   salon.find({}, function(err, salons) {
     if (err) throw err;
-  res.send(salons);
+//    res.render('home',{salonData:salons, user:req.user, views:req.session.views});
+    //return res.end(JSON.stringify(salons));
+  res.json(salons);
   })
 });
+
+router.get('/getSalons', function(req, res, next) {
+  salon.find({}).populate('address').exec(function(err, salons) {
+    if (err) throw err;
+    //res.render('home',{salonData:salons, user:req.user, views:req.session.views});
+  	//res.json(salons);
+  })
+});
+
 
 //Update Rating
 router.post('/updateRatings',function(req,res){

@@ -15,6 +15,9 @@ $('ul.nav li.dropdown').hover(function() {
 });
 
 $(document).ready(function(){
+                      
+	var data = JSON.sparse('/salons/getSalons');
+	alert(data);
 	$(function () {
 		$.scrollUp({
 	        scrollName: 'scrollUp', // Element ID
