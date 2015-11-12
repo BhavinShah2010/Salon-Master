@@ -112,7 +112,7 @@ $(document).ready(function () {
     });
     $("#txtUserName").focusout(function () {
         // alert('working');
-       //alert($("#txtUserName").val());
+        //alert($("#txtUserName").val());
         $.get("/users/checkUname?", { username: $("#txtUserName").val() }, function (data) {
 
             if (data != "0") {

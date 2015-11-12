@@ -1,0 +1,174 @@
+include header
+doctype html
+html(lang='en', xmlns='http://www.w3.org/1999/xhtml')
+  head
+    meta(charset='utf-8')
+    title
+    link(href='/css/Demo.css', rel='stylesheet')
+    script(src='/js/ProfileScript.js')
+    script(type='text/javascript', src='/js/user_profile.js')
+    script(type='text/javascript', src='/js/user_profile_script.js')
+  body
+    label#txtData(style='display: none')
+    div
+      .card.hovercard
+        .card-background
+          img.card-bkimg(alt='', src='http://lorempixel.com/100/100/people/9/')
+          // http://lorempixel.com/850/280/people/9/
+        .useravatar
+          img(alt='', src='http://lorempixel.com/100/100/people/9/')
+        .card-info
+          span.card-title Pamela Anderson
+      .btn-pref.btn-group.btn-group-justified.btn-group-lg(role='group', aria-label='...')
+        .btn-group(role='group')
+          button#following.btn.btn-primary(type='button', href='#tab1', data-toggle='tab')
+            span.glyphicon.glyphicon-user(aria-hidden='true')
+            .hidden-xs About
+        .btn-group(role='group')
+          button#favorites.btn.btn-default(type='button', href='#tab2', data-toggle='tab')
+            span.glyphicon.glyphicon-heart(aria-hidden='true')
+            .hidden-xs Change Password
+        .btn-group(role='group')
+          button#stars.btn.btn-default(type='button', href='#tab3', data-toggle='tab')
+            span.glyphicon.glyphicon-star(aria-hidden='true')
+            .hidden-xs Previous Booking
+      div
+        .tab-content
+          #tab1.tab-pane.fade.in.active
+            #user_det_cnt
+              #user_det_edit_box(onclick='edit_det_call()')
+                img(src='/images/user_images/Edit_button.png', height='20')
+              .panel-body
+                .padd
+                  .form.quick-post
+                    // Edit profile form (not working)
+                    form.form-horizontal
+                      // Title
+                      .form-group
+                        label.control-label.col-lg-2(for='Name') Name
+                        #user_name.col-lg-3.user_det_value
+                          label#lblUserName.control-label(for='Name') Alaf Shaikh
+                        #user_name_text.col-lg-3(style='display: none;')
+                          input#user_name_val.form-control(type='text', name='user_name')
+                      .form-group
+                        label.control-label.col-lg-2(for='Email') Email
+                        #user_email.user_det_value
+                          label#lblUserEmail.control-label(for='Email') Altaf@gmail.com
+                        #user_email_text.col-lg-3(style='display: none;')
+                          input#user_email_val.form-control(type='text', name='user_email')
+                      .form-group
+                        label.control-label.col-lg-2(for='Email') Contact Number
+                        #user_contact.user_det_value
+                          label#lblUserContact.control-label(for='Email') 978525421
+                        #user_contact_text.col-lg-3(style='display: none;')
+                          input#user_contact_val.form-control(type='text', name='user_contact')
+                      .form-group
+                        label.control-label.col-lg-2(for='Email') Gender
+                        .user_det_value
+                          label#lblUserGender.control-label(for='Gender') Male
+                      // Buttons
+                      .form-group
+                        // Buttons
+                        .col-lg-7
+                          #user_det_change_btn(style='height: 12%; margin-left: 30%; display: none;')
+                            div
+                              #divResult.alert.alert-danger.col-lg-7(style='height: 50px; display: none;')
+                                label#lblError
+                            .clearfix
+                            div
+                              input#change_det.change_det.btn.btn-primary(type='button', value='Save', onclick='user_det_save()')
+                              | &nbsp
+                              input#cancel_det.cancel_det.btn.btn-primary(type='button', value='Cancel')
+                          //
+                            <button type="submit" class="btn btn-primary">Publish</button>
+                            <button type="submit" class="btn btn-danger">Save Draft</button>
+                            <button type="reset" class="btn btn-default">Reset</button>
+                .widget-foot
+                  // Footer goes here
+          #tab2.tab-pane.fade.in
+            .panel-body
+              .padd
+                .form.quick-post
+                  // Edit profile form (not working)
+                  form.form-horizontal
+                    // Title
+                    .form-group
+                      label.control-label.col-lg-2(for='Name') Email
+                      #Div1.col-lg-3.user_det_value
+                        label#lblChangePwdUserEmail.control-label(for='Email') Altaf@gmail.com
+                    .form-group
+                      label.control-label.col-lg-2(for='Email')  Current Password 
+                      #divChangePwdEmail.col-lg-3
+                        input#txtChangePwdUser.form-control(type='password', name='user_email')
+                    .form-group
+                      label.control-label.col-lg-2(for='Email')  New Password 
+                      #div2.col-lg-3
+                        input#txtChangePwdNewPassword.form-control(type='password', name='user_email')
+                    .form-group
+                      label.control-label.col-lg-2(for='Email')  Confirm New Password 
+                      #div3.col-lg-3
+                        input#txtChangePwdConfirmPassword.form-control(type='password', name='user_email')
+                    // Buttons
+                    .form-group
+                      // Buttons
+                      .col-lg-7
+                        #Div7(style='height: 12%; margin-left: 30%;')
+                          div
+                            #divChangePwdResult.alert.alert-danger.col-lg-7(style='height: 50px; display: none;')
+                              label#lblChangePwdError
+                          .clearfix
+                          div
+                            input#btnChangePwd.change_det.btn.btn-primary(type='button', value='Save')
+                            | &nbsp
+                            input#Button2.cancel_det.btn.btn-primary(type='button', value='Cancel')
+                        //
+                          <button type="submit" class="btn btn-primary">Publish</button>
+                          <button type="submit" class="btn btn-danger">Save Draft</button>
+                          <button type="reset" class="btn btn-default">Reset</button>
+              .widget-foot
+                // Footer goes here
+          #tab3.tab-pane.fade.in
+            h3 This is tab 3
+            .panel-body
+              .padd
+                .form.quick-post
+                  // Edit profile form (not working)
+                  form.form-horizontal
+                    // Title
+                    .form-group
+                      label.control-label.col-lg-2(for='title') Title
+                      .col-lg-10
+                        input#Text3.form-control(type='text')
+                    // Content
+                    .form-group
+                      label.control-label.col-lg-2(for='content') Content
+                      .col-lg-10
+                        textarea#Textarea2.form-control
+                    // Cateogry
+                    .form-group
+                      label.control-label.col-lg-2 Category
+                      .col-lg-10
+                        select.form-control
+                          option(value='') - Choose Cateogry -
+                          option(value='1') General
+                          option(value='2') News
+                          option(value='3') Media
+                          option(value='4') Funny
+                    // Tags
+                    .form-group
+                      label.control-label.col-lg-2(for='tags') Tags
+                      .col-lg-10
+                        input#Text4.form-control(type='text')
+                    // Buttons
+                    .form-group
+                      // Buttons
+                      .col-lg-offset-2.col-lg-7
+                        button.btn.btn-primary(type='submit') Publish
+                        button.btn.btn-danger(type='submit') Save Draft
+                        button.btn.btn-default(type='reset') Reset
+              .widget-foot
+                // Footer goes here
+script(type='text/javascript').
+      var frontEndData = !{JSON.stringify(user)}
+      //console.log(frontEndData);     
+      $("#txtData").html(JSON.stringify(frontEndData));

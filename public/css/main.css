@@ -141,6 +141,10 @@ a#scrollUp i{
   -o-transition: all 0.9s ease 0s;
 }
 
+#Shop_Details
+{
+	width:100% !important;
+}
 
 .fa-facebook:hover {
   background: #0083C9;

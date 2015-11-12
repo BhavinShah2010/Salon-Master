@@ -74,6 +74,7 @@ router.post('/getSalonServices',function(req,res){
         service.find({ "salonID": salonId }).exec(function(err, data) {
             if (err) throw err;
             res.send(data);
+            
 //        });
     });
 });

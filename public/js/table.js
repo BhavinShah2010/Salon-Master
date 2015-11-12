@@ -1,7 +1,11 @@
 
 $(function () {
-    $('#driver_for_contractor-table-javascript').bootstrapTable({
-        method: 'get',
+    $('#tblservices').bootstrapTable({
+        
+        alert(0);
+        url:'/services/getSalonServices',
+        method: 'post',
+        post-body:{salonID:'563dd10de00242f823c3cd53'},
         height: 400,
         striped: true,
         pagination: true,
@@ -11,36 +15,35 @@ $(function () {
         showColumns: true,
         showRefresh: true,
         minimumCountColumns: 2,
+        queryParams: function(p)
+        {
+            return {salonId:'563dd10de00242f823c3cd53'}
+        },
         columns: [ 
         {
             field: 'name',
-            title: 'Name',
+            title: 'Service Name',
             align: 'center',
             valign: 'middle',
             sortable: false
         }, 
         {
-            field: 'email',
-            title: 'Email',
+            field: 'price',
+            title: 'Price',
             align: 'left',
             valign: 'top',
             sortable: true
         },
         {
-            field: 'contact',
-            title: 'Contact',
+            field: 'duration',
+            title: 'Duration',
             align: 'left',
             valign: 'top',
             sortable: true
-        },
-        {
-            field: 'operate',
-            title: '',
-            align: 'center',
-            valign: 'middle',
-            formatter: deleteFormatter,
-            events: driverByContractorEvents
-        }]
+        }],
+       // formatSearch: function () {
+       // return '563dd10de00242f823c3cd53';
+    }
     });
     $('#driver_app_for_admin-table-javascript').bootstrapTable({
         method: 'get',

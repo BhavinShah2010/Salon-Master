@@ -14,11 +14,21 @@ router.get('/contactUs', function(req, res, next) {
   console.log();
   res.render('contactUs');
 });
+router.get('/user_profile', function(req, res, next) {
+  console.log();
+  //res.render('contactUs');
+   res.render('user_profile',{msg:req.message, views:req.session.views});
+});
+
 
 
 router.get('/login', function(req, res, next) {
 	console.log();
   res.render('login_master',{msg:req.message, views:req.session.views});
+});
+router.get('/saloneP', function(req, res, next) {
+	console.log();
+  res.render('shop_profile1',{msg:req.message, views:req.session.views});
 });
 
 router.get('/shop_profile', function(req, res, next) {

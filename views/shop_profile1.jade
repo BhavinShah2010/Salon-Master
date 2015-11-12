@@ -1,0 +1,172 @@
+include header
+doctype html
+html(lang='en')
+  head
+    link(href='css/stylesheet.css', rel='stylesheet')
+    title Shop Details | E-Shopper
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(name='description', content='')
+    meta(name='author', content='')
+  body
+    section
+      .container
+        .row
+          #Shop_Details.col-sm-9.padding-right
+            .product-details
+              .col-sm-5
+                .view-product
+                  img(src='images/product-details/1.jpg', alt='')
+              .col-sm-7
+                .product-information
+                  h2
+                    label#lbl_shopname
+                  br
+                  |                                 Email ID:
+                  label#lblShopEmail
+                  br
+                  b Mobile:
+                  label#lblShopMobile
+                  br
+                  |                                 Address:
+                  label#lblShopAddress
+                  br
+                  label#lblShopDescription Our shop is.Description....
+                  br
+                  label#lblservicelabel Offers are
+                  table#tblService.formtable
+                    tr
+                      th
+                        | Offer 1
+                      th
+                        | Offer 2
+                      th
+                        | Offer 3
+                    tr
+                      th
+                        | Offer 4
+                      th
+                        | Offer 5
+                      th
+                        | Offer 6
+                  p
+                    span.starRating(style='width: 30%;')
+                      input#rating5(type='radio', name='rating', value='5')
+                      label(for='rating5') 5
+                      input#rating4(type='radio', name='rating', value='4')
+                      label(for='rating4') 4
+                      input#rating3(type='radio', name='rating', value='3', checked='')
+                      label(for='rating3') 3
+                      input#rating2(type='radio', name='rating', value='2')
+                      label(for='rating2') 2
+                      input#rating1(type='radio', name='rating', value='1')
+                      label(for='rating1') 1
+                  span
+                    button.btn.btn-fefault.cart(type='button')
+                      i.fa.fa-shopping-cart
+                      |                                         Book Shop
+            .category-tab.shop-details-tab
+              .col-sm-12
+                ul.nav.nav-tabs
+                  li#aService.active
+                    a(href='#services', data-toggle='tab') Services
+                  li#aPreviousApp
+                    a(href='#companyprofile', data-toggle='tab') Previous Appointments
+                  li#aReviews
+                    a(href='#reviews', data-toggle='tab') Reviews
+              .tab-content
+                #companyprofile.tab-pane.fade
+                  .col-sm-11
+                    table.table(border='2')
+                      tr
+                        th Date
+                        th Service
+                        th Rating
+                        th Price
+                      tr
+                        td AAAAA
+                        td BBBBB
+                        td CCCCC
+                        td DDDDD
+                      tr
+                        td AAAAA
+                        td BBBBB
+                        td CCCCC
+                        td DDDDD
+                      tr
+                        td AAAAA
+                        td BBBBB
+                        td CCCCC
+                        td DDDDD
+                      tr
+                        td AAAAA
+                        td BBBBB
+                        td CCCCC
+                        td DDDDD
+                      tr
+                        td AAAAA
+                        td BBBBB
+                        td CCCCC
+                        td DDDDD
+                      tr
+                        td AAAAA
+                        td BBBBB
+                        td CCCCC
+                        td DDDDD
+                      tr
+                        td AAAAA
+                        td BBBBB
+                        td CCCCC
+                        td DDDDD
+                      tr
+                        td AAAAA
+                        td BBBBB
+                        td CCCCC
+                        td DDDDD
+                      tr
+                        td AAAAA
+                        td BBBBB
+                        td CCCCC
+                        td DDDDD
+                #services.tab-pane.fade.active.in
+                  .col-sm-11
+                    table#tblservices(data-url='/services/getSalonServices')
+                  div
+                    ul#PageBackround.pagination
+                      li
+                        a(href='#') «
+                      li
+                        a(href='#') 1
+                      li
+                        a(href='#') 2
+                      li
+                        a(href='#') 3
+                      li
+                        a(href='#') 4
+                      li
+                        a(href='#') 5
+                      li
+                        a(href='#') »
+                #reviews.tab-pane.fade
+                  .col-sm-12
+                    #divAddReviews
+                      //
+                        <ul>
+                        <li><a href="#"><i class="fa fa-user"></i>UserName</a></li>
+                        <li><a href="#"><i class="fa fa-clock-o"></i>12:41 PM</a></li>
+                        <li><a href="#"><i class="fa fa-calendar-o"></i>31 DEC 2014</a></li>
+                        </ul>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                    #divReviewP
+                      p
+                    p
+                      b Write Your Review
+                    form(action='#')
+                      textarea(name='')
+                      b Rating: 
+                      button.btn.btn-default.pull-right(type='button')
+                        | Submit
+    include footer
+    script(src='/js/Table_salon.js')
+    script(src='/js/bootstrap-table.js')
+            

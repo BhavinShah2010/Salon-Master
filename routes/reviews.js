@@ -44,6 +44,16 @@ router.post('/getReviews',function(req,res){
   })
 });
 
+// View Review By SalonID
+router.post('/getReviewsBySalon',function(req,res){
+    data=req.body;
+    var objectId=data.objectId;
+    review.find({ "salon": objectId }).populate('user').exec(function(err, data) {
+   // review.find({ "salon": objectId }).exec(function(err, data) {
+      if (err) throw err;
+      res.json(data);
+    });
+});
 
 router.post('/delete',function(req,res){
 	data=req.body;

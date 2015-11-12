@@ -1,0 +1,289 @@
+
+
+#middle_cont
+{
+	width: 100%;
+	height: auto;
+	//border: thin black solid;
+}
+
+
+#left_box
+{
+	width: 20%;
+	height: 350px;
+	//border: thin red solid;
+}
+
+#user_pic_cont
+{
+	width: 10%;
+	height: 150px;
+	//border: thin #ccc solid;
+	margin-left: 25%;
+	border-radius: 80px;
+	background-repeat: no-repeat;
+	
+}
+
+#user_pic_cont .img
+{
+	width: 100%;
+	height: 100%;
+	border: thin green solid;
+}
+
+
+
+#user_det_cnt
+{
+	width: 70%;
+	height: 350px;
+	border: thin #ccc solid;
+	float: right;
+	margin-top: 2%;
+	margin-right: 5%;
+	display: block;
+}
+
+
+#user_det_cnt .user_det
+{
+	width: 70%;
+	height: 15%;
+	//border: thin green solid;
+	margin-top: 2%;
+	margin-left: 1%;
+	position: relative;
+}
+
+
+.user_det .user_det_heading
+{
+
+	width: 50%;
+	height: 100%;
+	//border: thin green solid;
+	margin-left: 1%;
+	float: left;
+}
+
+
+.user_det .user_det_value
+{
+	width:30%;
+	height: 100%;
+	//border: thin red solid; 
+	float: left;
+	margin-left: 1%;
+}
+.user_det_heading span
+{
+	font-size: 15px;
+	color: #000;
+	padding: 15px; 
+	padding-top: 20px !important;
+}
+
+.user_det_value span
+{
+	font-size: 15px;
+	color: #000;
+	padding: 15px; 
+	padding-top: 20px !important;
+}
+
+
+#change_pass_box
+{
+	width: 70%;
+	height: 400px;
+	border: thin #ccc solid;
+	float: right;
+	margin-top: 2%;
+	margin-right: 5%;
+	z-index: 1002;
+	display: none;
+}
+
+
+#change_pass_header
+{
+	width: 100%;
+	height: 10%;
+	border: thin #ccc solid;
+	background: #ccc;
+}
+
+#change_pass_header span
+{
+	font-size: 30px;
+	color: #FE980F;
+	padding-left: 35% ; 
+	margin-top: 20px;
+	text-align: center;
+	padding: 0 auto;
+
+}
+
+.change_pass_text
+{
+	width: 100%;
+	height: 10%;
+	//border: thin green solid;
+	float: left;
+	margin-top: 2%;	
+	border-bottom: thin black solid; 
+}
+
+.change_pass_text .change_pass_tag
+{
+	width: 20%;
+	height: 50%;
+	//border: thin red solid;
+	float:left;
+}
+
+
+.change_pass_tag span
+ 
+ {
+ 	font-size: 15px;
+	color: #000;
+	padding: 15px; 
+	padding-top: 20px !important;
+}
+
+
+.change_pass_text .change_pass_email
+{
+	width: 30%;
+	height: 70%;
+	//border: thin green solid;
+	float: left;
+}
+
+.change_pass_email span
+ 
+ {
+ 	font-size: 15px;
+	color: #000;
+	padding: 15px; 
+	padding-top: 20px !important;
+}
+
+.change_pass_text_box
+{
+	width: 70%;
+	height: 10%;
+	//border: thin green solid;
+	float: left;
+	margin-top: 2%;	
+}
+
+.change_pass_text_box .change_pass_tag
+{
+	width: 30%;
+	height: 70%;
+	//border: thin red solid;
+	float:left;
+}
+
+
+
+
+.change_pass_text_box .change_pass_textbox
+{
+	width: 35%;
+	height: 70%;
+	//border: thin green solid;
+	float: left;
+}
+
+.change_pass_textbox input[type="password"]
+{
+	font-size: 15px;
+	color: #000;
+	border: thin green solid;
+	height: 80%;
+}
+
+
+.change_pass_text_box input[type="button"]
+{
+	width: 15%;
+	height: 85%;
+	border: thin black solid;
+	background: #ccc;
+	color: #000;
+	font-size: 15px;
+}
+
+
+.change_pass_text_box input[type="button"]:hover
+{
+	background: #000;
+	color: #FE980F;
+	-webkit-transition: 300ms;
+  	-moz-transition: 300ms;
+    -o-transition: 300ms;
+    transition: 300ms;
+
+}
+
+
+#previous_booking
+{
+	width: 70%;
+	height: 300px;
+	border: thin red solid;
+	float: right;
+	margin-top: 2%;
+	margin-right: 5%;
+	z-index: 1002;
+	display: none;	
+}
+
+
+#previous_booking_header
+{
+	width: 100%;
+	height: 5%;
+	border: thin red solid;
+}
+
+
+
+#user_det_edit_box
+{
+	width: 3%;
+	height: 30px;
+	//border: thin red solid;
+	float: right;
+	cursor: pointer;
+}
+
+
+
+
+#user_det_change_btn input[type="button"]
+{
+	width: 20%;
+	height: 85%;
+	border: thin black solid;
+	background: #ccc;
+	color: #000;
+	font-size: 15px;
+}
+
+
+#user_det_change_btn input[type="button"]:hover
+{
+	background: #000;
+	color: #FE980F;
+	-webkit-transition: 300ms;
+  	-moz-transition: 300ms;
+    -o-transition: 300ms;
+    transition: 300ms;
+
+}

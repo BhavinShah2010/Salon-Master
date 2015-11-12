@@ -7,18 +7,18 @@ var passport = require('./../auth');
 /* GET users listing. */
 
 //refirect to index.js if user is not logged in
-router.use(function(req,res,next){
+/*router.use(function(req,res,next){
   if(!req.user){
     res.redirect('/');
   }
   next();
 });
-
+*/
 //redirect to Home page
 router.get('/', function(req, res, next) {
   //res.send('respond with a resource');
-  console.log();
-  res.render('contactUs',{user:req.user, views:req.session.views});
+  //console.log("this is salon");
+  res.render('user_profile1',{user:req.user, views:req.session.views});
 });
 
 // To check username is available or not
@@ -134,9 +134,8 @@ router.post('/getDetails',function(req,res){
     var objectId=data.objectId;
     salon.find({ "_id": objectId }).exec(function(err, data) {
   		if (err) throw err;
-  		res.send(data);
+  		res.json(data);
 		});
-
 });
 
 //getSalons
