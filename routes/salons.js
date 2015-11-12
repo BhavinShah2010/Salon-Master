@@ -3,22 +3,49 @@ var router = express.Router();
 var salon = require('../modules/salon');
 var address = require('../modules/address');
 var passport = require('./../auth');
+//This library is imported to perform join operation
+//var populatePlugin = require('mongoose-power-populate')(mongoose);
 
 /* GET users listing. */
 
+<<<<<<< HEAD
 //refirect to index.js if user is not logged in
 /*router.use(function(req,res,next){
+=======
+//redirect to index.js if user is not logged in
+router.use(function(req,res,next){
+>>>>>>> a4dcf105adcfb3c995726d7b4109afb77852d968
   if(!req.user){
     res.redirect('/');
   }
   next();
 });
+<<<<<<< HEAD
 */
 //redirect to Home page
 router.get('/', function(req, res, next) {
   //res.send('respond with a resource');
   //console.log("this is salon");
   res.render('user_profile1',{user:req.user, views:req.session.views});
+=======
+
+//redirect to Home page after retrieving all salons data
+
+router.get('/', function(req, res, next) {
+  salon.find({}).populate('address').exec(function(err, salons) {
+    if (err) throw err;
+    res.render('home',{salonData:salons, user:req.user, views:req.session.views});
+  	//res.json(salons);
+  })
+});
+
+
+router.get('/', function(req, res, next) {
+  salon.find({}, function(err, salons) {
+    if (err) throw err;
+    res.render('home',{salonData:salons, user:req.user, views:req.session.views});
+  })
+>>>>>>> a4dcf105adcfb3c995726d7b4109afb77852d968
 });
 
 // To check username is available or not
@@ -63,7 +90,6 @@ router.post('/add',function(req,res){
 	s.username=data.username;
 	s.password=s.generateHash(data.password);
 	s.name=data.name;
-	s.email=data.email;
 	s.owners=data.owners;
 	s.ratings=data.ratings;
 	s.personsVisited=data.personsVisited;
@@ -73,6 +99,12 @@ router.post('/add',function(req,res){
 	a.city=data.city;
 	a.state=data.state;
 	a.zipcode=data.zipcode;
+	a.save(function(err){
+			if(err){
+				res.send('Database error! '+err);
+			}
+		})
+	
 	s.address=a;
 	s.save(function(err){
 			if(err){
@@ -138,13 +170,38 @@ router.post('/getDetails',function(req,res){
 		});
 });
 
-//getSalons
+
+
+//get all details of salon
+
+
+router.get('/getSalons', function(req, res, next) {
+  salon.find({}).populate('address').exec(function(err, salons) {
+    if (err) throw err;
+    //res.render('home',{salonData:salons, user:req.user, views:req.session.views});
+  	res.json(salons);
+  	//return salons;
+  })
+});
+
+
 router.post('/getSalons',function(req,res){
   salon.find({}, function(err, salons) {
     if (err) throw err;
-  res.send(salons);
+//    res.render('home',{salonData:salons, user:req.user, views:req.session.views});
+    //return res.end(JSON.stringify(salons));
+  res.json(salons);
   })
 });
+
+router.get('/getSalons', function(req, res, next) {
+  salon.find({}).populate('address').exec(function(err, salons) {
+    if (err) throw err;
+    //res.render('home',{salonData:salons, user:req.user, views:req.session.views});
+  	//res.json(salons);
+  })
+});
+
 
 //Update Rating
 router.post('/updateRatings',function(req,res){
@@ -182,7 +239,7 @@ router.get('/checkUname', function(req,res){
 
 
 
-
+//delete salon
 
 router.post('/delete',function(req,res){
 	data=req.body;

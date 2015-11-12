@@ -27,9 +27,14 @@ html(lang='en')
                       |                                         Keep me signed in 
                     div(style='float: right')
                       a(href='#') Forgot Password ?
-                    #divResult.alert.alert-danger(style='height: 50px; display: none;')
-                      label#lblError     
+                    if (msg)
+                      #divResult.alert.alert-danger(style='height: 50px; display: block;')
+                        label#lblError #{msg}
+                    else
+                      #divResult.alert.alert-danger(style='height: 50px; display: none;')
+                        label#lblError     
                     button#btnLogin(type='submit') Login
+                    
           .col-sm-1
             h2.or OR
           .col-sm-4

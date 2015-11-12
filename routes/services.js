@@ -12,7 +12,7 @@ router.get('/', function(req, res, next) {
 router.post('/add',function(req,res){
     data=req.body;
     var serv=new service();
-    serv.salonID=data.salonID;
+    serv.salonId=data.salonId;
     serv.name=data.name;
     serv.description = data.description;
     serv.price = data.price;
@@ -53,6 +53,15 @@ router.post('/getServices',function(req,res){
   res.send(services);
   })
 });
+
+//Get service details by entering service name
+router.post('/getServiceDetail',function(req,res){
+    service.find({"name": req.body.name}).exec(function(err, data) {
+        if (err) throw err;
+        res.json(data);
+        });
+});
+
 
 //View Service
 router.post('/getDetails',function(req,res){

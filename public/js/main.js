@@ -8,7 +8,16 @@
 		
 /*scroll to top*/
 
+$('ul.nav li.dropdown').hover(function() {
+  $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
+}, function() {
+  $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(200);
+});
+
 $(document).ready(function(){
+                      
+	var data = JSON.sparse('/salons/getSalons');
+	alert(data);
 	$(function () {
 		$.scrollUp({
 	        scrollName: 'scrollUp', // Element ID

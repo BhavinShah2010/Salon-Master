@@ -5,7 +5,7 @@ var bcrypt = require('bcrypt-nodejs');
 var Salon = require('mongoose').model('salon').schema;
 
 var schema = mongoose.Schema({
-	salonID:{type: mongoose.Schema.Types.ObjectId, ref: 'Salon'},
+	salonID:{type: mongoose.Schema.Types.ObjectId, ref: 'Salon', sparse:true},
 	name:{
 		type:String,
 		required:true

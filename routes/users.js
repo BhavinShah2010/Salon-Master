@@ -81,6 +81,11 @@ router.post('/add',function(req,res)
 	a.city=data.city;
 	a.state=data.state;
 	a.zipcode=data.zipcode;
+	a.save(function(err){
+			if(err){
+				res.send('Database error! '+err);
+			}
+		})
 	u.address=a;
 	
 

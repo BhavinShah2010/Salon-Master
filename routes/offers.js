@@ -20,7 +20,6 @@ router.post('/add',function(req,res){
         }
         
     //to check if there is any technical or syntax error    
-
     offers.save(function(err){
             if(err){
                 console.log(err);
@@ -31,25 +30,37 @@ router.post('/add',function(req,res){
         })
 });
 
-router.post('/checkStock',function(req,res){
-    offer.findOne({username:req.query.username},function(err, salons) {
-      if(salons){
-            res.send('Username not Available');
-        }
-        else{
-            res.send('Available');
-        }
-    });
+//Get Current Offers
+router.post('/getCurrentOffers',function(req,res){
+    var now=new Date();
+    offer.find({"startDate": {"$lte": now}, "endDate":{"gte":now}}, function(err, currentOffers) {
+    if (err) throw err;
+    res.send(currentOffers);
+  })
 });
 
-router.post('/delete',function(req,res){
+//Check Stock
+router.post('/checkStock',function(req,res){
     data=req.body;
     var objectId=data.objectId;
-    offer.remove(
-            {_id: new mongodb.ObjectID( objectId) }, 
-            function (err, result){ 
-               res.send('Deletion Error');
-              })
+    offer.find({ "_id": objectId }).exec(function(err, data) {
+        if (err) throw err;
+        res.send(data);
+        });
+
+});
+
+//delete Offer
+router.post('/delete',function(req,res){
+    data=req.body;
+    offer.findOneAndRemove({ "_id":data.objectId }, function(err){
+        if (err){
+            res.send('Deletion Problem' + err);
+        }
+        else{
+            res.send('Offer Deleted successfully');
+        }
+    });
 });
 
 module.exports = router;
