@@ -183,7 +183,7 @@ router.post('/getDetails',function(req,res){
 //Update Profile
 //Pending task - Validating data at the time of updation
 router.post('/updateProfile',function(req,res){
-	/*req.checkBody(
+	req.checkBody(
 	  "phno", 
 	  "Enter a valid phone number.").isMobilePhone("en-US");
 
@@ -206,7 +206,7 @@ router.post('/updateProfile',function(req,res){
     	res.send(errors);
     	return;
     } else {
-  */data=req.body;
+  	data=req.body;
 	var a=new address();
 	a.area=data.area;
 	a.city=data.city;
@@ -219,7 +219,7 @@ router.post('/updateProfile',function(req,res){
   	if(err) throw err;
 	})
   })
-//  }
+  }
 });
 
 //active account
@@ -293,6 +293,23 @@ router.get('/checkUname', function(req,res){
 	  		res.send('Available');
 	  	}
 	});
+});
+
+//Sending Email
+router.get('/sendmail', function (req, res, next) {
+  router.mailer.send('email', {
+    to: 'karansoni94@gmail.com', // REQUIRED. This can be a comma delimited string just like a normal email to field.  
+    subject: 'Test Email', // REQUIRED. 
+    otherProperty: 'Other Property' // All additional properties are also passed to the template as local variables. 
+  }, function (err) {
+    if (err) {
+      // handle error 
+      console.log(err);
+      res.send('There was an error sending the email');
+      return;
+    }
+    res.send('Email Sent');
+  });
 });
 
 
