@@ -37,8 +37,8 @@ html
           .row
             .col-sm-4
               .logo.pull-left
-                a(href='/home')
-                  img(src='images/home/logo.png', alt='')
+                a(href='/')
+                  img(src='/images/home/logo.png', alt='')
             .col-sm-8
               .shop-menu.pull-right
                 ul.nav.navbar-nav
@@ -54,7 +54,7 @@ html
                 if (!user)
                   ul#nav_before_login.nav.navbar-nav
                     li
-                      a(href='/login_master')
+                      a(href='/login')
                         i.fa.fa-lock
                         | Login
                 else
@@ -65,7 +65,7 @@ html
                         i.fa.fa-angle-down
                       ul#usersubmenu.sub-menu(role='menu')
                         li
-                          a.usermenufont(href='/user_profile') Myaccount
+                          a.usermenufont(href='/users/profile') Myaccount
                         br
                         li
                           a.usermenufont(href='/users/logout') Logout
@@ -81,10 +81,10 @@ html
               .mainmenu.pull-left
                 ul.nav.navbar-nav.collapse.navbar-collapse
                   li
-                    a(href='/home') Home
+                    a(href='/') Home
                   li
                     a(href='/map') Map
                   li
-                    a(href='/contactUs') Contact Us
+                    a(href='/contactUS') Contact Us
     script.
         $('.dropdown-toggle').dropdown();      

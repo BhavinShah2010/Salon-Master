@@ -7,8 +7,10 @@ var LocalStrategy = require('passport-local').Strategy;
 var bcrypt = require('bcrypt-nodejs');
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.render('contactUs');
+
+
+router.get('/profile', function(req, res, next) {
+  res.render('user_profile1',{user:req.user, views:req.session.views});
 });
 
 // To check username is available or not
@@ -26,7 +28,7 @@ router.get('/checkUname', function(req,res){
 
 router.post('/login',passport.authenticate('local',{
 	failureRedirect:'/failure',
-	successRedirect:'/salons/',
+	successRedirect:'/users/profile',
 	//failureFlash:true	
 }));
 
@@ -117,55 +119,6 @@ router.post('/add',function(req,res)
 
 });
 
-//Login
-/*
-passport.use(new LocalStrategy(function(username,password,done){
-	user.findOne({username:username},function(err, users) {
-	  if (err) { return done(err); }
-      if (!users) {
-        return done(null, null);
-      }
-      if (!users.validPassword(password)) {
-        return done(null, null);
-      }
-      return done(null, {username:username,password:password});
-	});
-}));
-
-passport.serializeUser(function(user, done) {
-  done(null, user.username);
-});
-
-passport.deserializeUser(function(username, done) {
-  User.findById(id, function(err, users) {
-    done(err, {username:username,password:password});
-  });
-});
-*/
-
-router.post('/login',passport.authenticate('local',{
-	failureRedirect:'/',
-	successRedirect:'/salons/',
-	//failureFlash:true	
-}));
-router.get('/', function(req, res, next) {
-  //res.send('respond with a resource');
-  console.log();
-  res.render('contactUs',{user:req.user, views:req.session.views});
-});
-
-//To move page to user profile after login
-router.get('/next', function(req, res, next) {
-  //res.send('respond with a resource');
-  console.log();
-  res.render('user_profile',{user:req.user, views:req.session.views});
-});
-
-//Logout
-router.get('/logout',function(req,res){
-	req.logout();
-	res.redirect('/');
-});
 
 //View Profile
 router.post('/getDetails',function(req,res){
@@ -275,24 +228,5 @@ router.post('/changePassword',function(req,res){
 		res.json("true");
 	})
 });
-
-
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.render('contactUs');
-});
-
-// To check username is available or not
-router.get('/checkUname', function(req,res){
-	user.findOne({username:req.query.username},function(err, users) {
-	  if(users){
-	  		res.send('Username not Available');
-	  	}
-	  	else{
-	  		res.send('Available');
-	  	}
-	});
-});
-
 
 module.exports = router;
