@@ -43,6 +43,10 @@ router.get('/user_profile', function(req, res, next) {
 });
 
 
+router.get('/map', function(req, res, next) {
+  console.log();
+  res.render('map');
+});
 
 router.get('/login', function(req, res, next) {
 	console.log();
