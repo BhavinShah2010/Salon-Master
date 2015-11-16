@@ -7,8 +7,10 @@ var LocalStrategy = require('passport-local').Strategy;
 var bcrypt = require('bcrypt-nodejs');
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.render('contactUs');
+
+
+router.get('/profile', function(req, res, next) {
+  res.render('user_profile1',{user:req.user, views:req.session.views});
 });
 
 // To check username is available or not
@@ -24,9 +26,9 @@ router.get('/checkUname', function(req,res){
 });
 
 
-/*router.post('/login',passport.authenticate('local',{
-	failureRedirect:'/',
-	successRedirect:'/salons/',
+router.post('/login',passport.authenticate('local',{
+	failureRedirect:'/failure',
+	successRedirect:'/users/profile',
 	//failureFlash:true	
 }));
 
@@ -35,7 +37,6 @@ router.get('/logout',function(req,res){
 	res.redirect('/');
 });
 
-*/
 //Register new User
 router.post('/add',function(req,res)
 {
@@ -118,55 +119,6 @@ router.post('/add',function(req,res)
 
 });
 
-//Login
-/*
-passport.use(new LocalStrategy(function(username,password,done){
-	user.findOne({username:username},function(err, users) {
-	  if (err) { return done(err); }
-      if (!users) {
-        return done(null, null);
-      }
-      if (!users.validPassword(password)) {
-        return done(null, null);
-      }
-      return done(null, {username:username,password:password});
-	});
-}));
-
-passport.serializeUser(function(user, done) {
-  done(null, user.username);
-});
-
-passport.deserializeUser(function(username, done) {
-  User.findById(id, function(err, users) {
-    done(err, {username:username,password:password});
-  });
-});
-*/
-
-router.post('/login',passport.authenticate('local',{
-	failureRedirect:'/',
-	successRedirect:'/salons/',
-	//failureFlash:true	
-}));
-router.get('/', function(req, res, next) {
-  //res.send('respond with a resource');
-  console.log();
-  res.render('contactUs',{user:req.user, views:req.session.views});
-});
-
-//To move page to user profile after login
-router.get('/next', function(req, res, next) {
-  //res.send('respond with a resource');
-  console.log();
-  res.render('user_profile',{user:req.user, views:req.session.views});
-});
-
-//Logout
-router.get('/logout',function(req,res){
-	req.logout();
-	res.redirect('/');
-});
 
 //View Profile
 router.post('/getDetails',function(req,res){
@@ -277,6 +229,7 @@ router.post('/changePassword',function(req,res){
 	})
 });
 
+<<<<<<< HEAD
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -313,4 +266,6 @@ router.get('/sendmail', function (req, res, next) {
 });
 
 
+=======
+>>>>>>> ca44b8ce5d1a11ab67a870736d428ca461614e74
 module.exports = router;

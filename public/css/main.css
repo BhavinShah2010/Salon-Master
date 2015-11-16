@@ -16,7 +16,12 @@ body {
 ul li {
   list-style: none;
 }
-
+/*map css*/
+#map
+    {
+      margin:auto;
+    }
+    /*map css ends*/
 a:hover {
 outline: none;
 text-decoration:none;
@@ -2705,7 +2710,7 @@ cursor: pointer;
 }
 .col-sm-6
 {
-  width:90%;
+  width:50%;
 }
 /*Jaydeep CSS Ends.*/
 
