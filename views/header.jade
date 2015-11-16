@@ -41,34 +41,34 @@ html
                   img(src='images/home/logo.png', alt='')
             .col-sm-8
               .shop-menu.pull-right
-                if (!user)  
-                  ul
+                ul.nav.navbar-nav
+                  li
+                    a(href='#') Location
+                    ul#usersubmenu.sub-menu(role='menu')
+                      li
+                        .signup-form
+                          form
+                            input(type='text', placeholder='Enter Location')
+                            button(type='submit')
+                              | Find
+                if (!user)
+                  ul#nav_before_login.nav.navbar-nav
                     li
-                      a.active(href='/login') 
+                      a(href='/login_master')
                         i.fa.fa-lock
                         | Login
-                else                        
+                else
                   ul#nav_after_login.nav.navbar-nav
-                    li
-                      a(href='#') Location
-                      ul#usersubmenu.sub-menu(role='menu')
-                        li
-                          .signup-form
-                            form
-                              input(type='text', placeholder='Enter Location')
-                              button(type='submit') Find
                     li.dropdown
                       a(href='#')
-                        | Welcome ,  #{user.username}
+                        | Welcome , #{user.username}
                         i.fa.fa-angle-down
                       ul#usersubmenu.sub-menu(role='menu')
                         li
-                          a.usermenufont(href='/user_profile1') Myaccount
+                          a.usermenufont(href='/user_profile') Myaccount
                         br
                         li
                           a.usermenufont(href='/users/logout') Logout
-        .header-bottom
-        // header-bottom
         .container
           .row
             .col-sm-9
