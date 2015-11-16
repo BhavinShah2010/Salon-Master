@@ -16,9 +16,10 @@ html(lang='en', xmlns='http://www.w3.org/1999/xhtml')
           img.card-bkimg(alt='', src='http://lorempixel.com/100/100/people/9/')
           // http://lorempixel.com/850/280/people/9/
         .useravatar
-          img(alt='', src='http://lorempixel.com/100/100/people/9/')
+          img(alt='', src='/images/user_images/profile_pic.png')
         .card-info
-          span.card-title Pamela Anderson
+          span
+            label#lblUserProfileName(style='font-size:20px')
       .btn-pref.btn-group.btn-group-justified.btn-group-lg(role='group', aria-label='...')
         .btn-group(role='group')
           button#following.btn.btn-primary(type='button', href='#tab1', data-toggle='tab')
@@ -47,25 +48,26 @@ html(lang='en', xmlns='http://www.w3.org/1999/xhtml')
                       .form-group
                         label.control-label.col-lg-2(for='Name') Name
                         #user_name.col-lg-3.user_det_value
-                          label#lblUserName.control-label(for='Name') Alaf Shaikh
+                          label#lblUserName.control-label(for='Name')
+                            | /label>
                         #user_name_text.col-lg-3(style='display: none;')
                           input#user_name_val.form-control(type='text', name='user_name')
                       .form-group
                         label.control-label.col-lg-2(for='Email') Email
                         #user_email.user_det_value
-                          label#lblUserEmail.control-label(for='Email') Altaf@gmail.com
+                          label#lblUserEmail.control-label(for='Email')
                         #user_email_text.col-lg-3(style='display: none;')
                           input#user_email_val.form-control(type='text', name='user_email')
                       .form-group
                         label.control-label.col-lg-2(for='Email') Contact Number
                         #user_contact.user_det_value
-                          label#lblUserContact.control-label(for='Email') 978525421
+                          label#lblUserContact.control-label(for='Email')
                         #user_contact_text.col-lg-3(style='display: none;')
                           input#user_contact_val.form-control(type='text', name='user_contact')
                       .form-group
                         label.control-label.col-lg-2(for='Email') Gender
                         .user_det_value
-                          label#lblUserGender.control-label(for='Gender') Male
+                          label#lblUserGender.control-label(for='Gender')
                       // Buttons
                       .form-group
                         // Buttons
@@ -86,6 +88,7 @@ html(lang='en', xmlns='http://www.w3.org/1999/xhtml')
                 .widget-foot
                   // Footer goes here
           #tab2.tab-pane.fade.in
+            h3 This is tab 2
             .panel-body
               .padd
                 .form.quick-post
