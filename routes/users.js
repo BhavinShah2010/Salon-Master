@@ -5,7 +5,7 @@ var address = require('../modules/address');
 var passport = require('./../auth');
 var LocalStrategy = require('passport-local').Strategy;
 var bcrypt = require('bcrypt-nodejs');
-
+var nodemailer=require('nodemailer');
 /* GET users listing. */
 
 
@@ -36,6 +36,8 @@ router.get('/logout',function(req,res){
 	req.logout();
 	res.redirect('/');
 });
+
+
 
 //Register new User
 router.post('/add',function(req,res)
@@ -88,37 +90,46 @@ router.post('/add',function(req,res)
 			}
 		})
 	u.address=a;
-	
 
-	u.save(function(err){
-			if(err){
-				res.send('Unsuccessful'+err);
-			}
-			else{
-				res.send('Successful');
-			}
-		})
-  }
-
-  // to validate the inputted data
+ 	// to validate the inputted data
     var err = u.validateSync();
     if(err){
-            res.send("Unsuccessful");
+            res.send("Validation Error");
             return;
-        }
-        
+        }    
     //to check if there is any technical or syntax error    
     u.save(function(err){
         if(err){
-            res.send("Unsuccessful");
+            res.send(err);
         }
-    else{
-            res.send("Successful");
-        }
-    });
+    	else{
+  				var transporter = nodemailer.createTransport({
+        				service: 'Gmail',
+        				auth: {
+	            			user: 'noreply.salonmaster@gmail.com', // Your email id
+    	        			pass: 'salon123' // Your password
+        				}
+    				});
 
-});
+					var mailOptions = {
+    					from: 'noreply.salonMaster@gmail.com', // sender address
+    					to: u.email, // list of receivers
+    					subject: 'Email Verification', // Subject line
+    					text: 'http://localhost:3000/users/activateUser?objectId=' +u._id,
+    					// html: '<b>Hello world ?</b>' // You can choose to send an HTML body instead
+					};
 
+					transporter.sendMail(mailOptions, function(error, info){
+    					if(error){
+        					res.send('Unsuccessful Email');
+    					}else{
+        					res.send('Successful');
+    					}
+					})
+  				}
+        	})
+    	}
+	});
 
 //View Profile
 router.post('/getDetails',function(req,res){
@@ -175,9 +186,9 @@ router.post('/updateProfile',function(req,res){
 });
 
 //active account
-router.post('/activateUser',function(req,res){
+router.get('/activateUser',function(req,res){
 	var now=new Date();
-	user.findOneAndUpdate({"_id":req.body.objectId}, {active:true, modified:now}, function(err, activeUser) {
+	user.findOneAndUpdate({"_id":req.param.objectId}, {active:true, modified:now}, function(err, activeUser) {
 		if(err) throw err;
 		res.send("Activated");
 	})
@@ -242,41 +253,7 @@ router.get('/checkUname', function(req,res){
 	  	else{
 	  		res.send('Available');
 	  	}
-	});
-});
-
-//Email
-var nodemailer = require('nodemailer');
-
-router.get('/hello', function(req, res) {
-  res.send('contactUs');
-    // Not the movie transporter!
-    var transporter = nodemailer.createTransport({
-        service: 'Gmail',
-        auth: {
-            user: 'noreply.salonmaster@gmail.com', // Your email id
-            pass: 'salon123' // Your password
-        }
-    });
-    var text = 'Hello world from \n\n';
-
-var mailOptions = {
-    from: 'noreply.salonMaster@gmail.com', // sender address
-    to: 'karansoni94@gmail.com', // list of receivers
-    subject: 'Email Example', // Subject line
-    text: text //, // plaintext body
-    // html: '<b>Hello world ✔</b>' // You can choose to send an HTML body instead
-};
-
-transporter.sendMail(mailOptions, function(error, info){
-    if(error){
-        console.log(error);
-        res.json({yo: 'error'});
-    }else{
-        console.log('Message sent: ' + info.response);
-        res.json({yo: info.response});
-    };
-});
+	})
 });
 
 

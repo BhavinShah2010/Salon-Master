@@ -52,17 +52,34 @@ router.get('/', function(req, res, next) {
 router.get('/profile', function(req, res, next) {
 	console.log();
   res.render('shop_profile1',{msg:req.message, views:req.session.views});
-
 });
 
 // To check username is available or not
-router.get('/checkUname', function(req,res){
-	salon.findOne({username:req.query.username},function(err, salons) {
+router.post('/checkLogin', function(req,res){
+	salon.findOne({username:req.body.username},function(err, salons) {
 	  if(salons){
-	  		res.send('Username not Available');
+	  		console.log(salons.password);
+	  		var status=salons.comparePassword(req.body.password);
+	  		if(status)
+	  			res.json({"username":salons.username,"password":req.body.password});
+	  		else{
+	  			res.json({"status":"false"});
+	  		}
 	  	}
 	  	else{
-	  		res.send('Available');
+	  		res.json({"status":"false"});
+	  	}
+	});
+});
+
+// To check username is available or not
+router.post('/checkUname', function(req,res){
+	salon.findOne({username:req.body.username},function(err, salons) {
+	  if(salons){
+	  		res.json({"status":"false"});
+	  	}
+	  	else{
+	  		res.json({"status":"true"});
 	  	}
 	});
 });
