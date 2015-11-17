@@ -21,6 +21,7 @@ var schema = mongoose.Schema({
 		type:Number,
 		required:true
 	}
+	
 });
 
 module.exports=mongoose.model('service',schema);

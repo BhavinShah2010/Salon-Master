@@ -156,7 +156,7 @@ app.use(function(err, req, res, next) {
 
 //Email Verification
 
-
+/*
 var app = require('express')(),
     mailer = require('express-mailer');
  
@@ -171,7 +171,7 @@ mailer.extend(app, {
     pass: 'salon123'
   }
 });
-
+*/
 
 // chk test
 module.exports = app;

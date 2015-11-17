@@ -17,6 +17,7 @@ router.post('/add',function(req,res){
     serv.description = data.description;
     serv.price = data.price;
     serv.duration = data.duration;
+    serv.category=data.category;
     // to validate the inputted data
     var err = serv.validateSync();
     if(err){

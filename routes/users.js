@@ -229,7 +229,6 @@ router.post('/changePassword',function(req,res){
 	})
 });
 
-<<<<<<< HEAD
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -266,6 +265,4 @@ router.get('/sendmail', function (req, res, next) {
 });
 
 
-=======
->>>>>>> ca44b8ce5d1a11ab67a870736d428ca461614e74
 module.exports = router;
