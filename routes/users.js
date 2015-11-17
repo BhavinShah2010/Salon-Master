@@ -229,8 +229,6 @@ router.post('/changePassword',function(req,res){
 	})
 });
 
-<<<<<<< HEAD
-
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   res.render('contactUs');
@@ -248,24 +246,6 @@ router.get('/checkUname', function(req,res){
 	});
 });
 
-//Sending Email
-router.get('/sendmail', function (req, res, next) {
-  router.mailer.send('email', {
-    to: 'karansoni94@gmail.com', // REQUIRED. This can be a comma delimited string just like a normal email to field.  
-    subject: 'Test Email', // REQUIRED. 
-    otherProperty: 'Other Property' // All additional properties are also passed to the template as local variables. 
-  }, function (err) {
-    if (err) {
-      // handle error 
-      console.log(err);
-      res.send('There was an error sending the email');
-      return;
-    }
-    res.send('Email Sent');
-  });
-});
 
 
-=======
->>>>>>> ca44b8ce5d1a11ab67a870736d428ca461614e74
 module.exports = router;

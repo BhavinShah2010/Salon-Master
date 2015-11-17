@@ -10,10 +10,9 @@ var passport = require('./../auth');
 
 //refirect to index.js if user is not logged in
 /*router.use(function(req,res,next){
-=======
+
 //redirect to index.js if user is not logged in
 router.use(function(req,res,next){
->>>>>>> a4dcf105adcfb3c995726d7b4109afb77852d968
   if(!req.user){
     res.redirect('/');
   }
@@ -22,14 +21,11 @@ router.use(function(req,res,next){
 
 */
 //redirect to Home page
-<<<<<<< HEAD
 router.get('/', function(req, res, next) {
   //res.send('respond with a resource');
   //console.log("this is salon");
   res.render('user_profile1',{user:req.user, views:req.session.views});
 });
-=======
->>>>>>> ca44b8ce5d1a11ab67a870736d428ca461614e74
 
 // router.get('/', function(req, res, next) {
 //   //res.send('respond with a resource');
@@ -46,18 +42,17 @@ router.get('/', function(req, res, next) {
   })
 });
 
-<<<<<<< HEAD
-
 router.get('/', function(req, res, next) {
   salon.find({}, function(err, salons) {
     if (err) throw err;
     res.render('home',{salonData:salons, user:req.user, views:req.session.views});
-  })
-=======
+  });
+});
+
 router.get('/profile', function(req, res, next) {
 	console.log();
   res.render('shop_profile1',{msg:req.message, views:req.session.views});
->>>>>>> ca44b8ce5d1a11ab67a870736d428ca461614e74
+
 });
 
 // To check username is available or not
@@ -198,8 +193,7 @@ router.post('/updateRatings',function(req,res){
 		if(err) throw err;
 		res.send("Ratings updated successfully");
 	})
-	})
-	
+	})	
 });
 
 
@@ -232,4 +226,5 @@ router.post('/delete',function(req,res){
   		}
 	});
 });
+
 module.exports = router;
