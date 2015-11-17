@@ -17,7 +17,7 @@ router.get('/profile', function(req, res, next) {
 router.get('/checkUname', function(req,res){
 	user.findOne({username:req.query.username},function(err, users) {
 	  if(users){
-	  		res.send('Username not Available');
+	  		res.send('Unvailable');
 	  	}
 	  	else{
 	  		res.send('0');
@@ -84,7 +84,7 @@ router.post('/add',function(req,res)
 	a.zipcode=data.zipcode;
 	a.save(function(err){
 			if(err){
-				res.send('Database error! '+err);
+				res.send('Unsuccessful');
 			}
 		})
 	u.address=a;
@@ -92,10 +92,10 @@ router.post('/add',function(req,res)
 
 	u.save(function(err){
 			if(err){
-				res.send('Database error! '+err);
+				res.send('Unsuccessful'+err);
 			}
 			else{
-				res.send('user successfully added');
+				res.send('Successful');
 			}
 		})
   }
@@ -103,17 +103,17 @@ router.post('/add',function(req,res)
   // to validate the inputted data
     var err = u.validateSync();
     if(err){
-            console.log(err);
+            res.send("Unsuccessful");
             return;
         }
         
     //to check if there is any technical or syntax error    
     u.save(function(err){
         if(err){
-            console.log(err);
+            res.send("Unsuccessful");
         }
     else{
-            console.log("Service's data is successfully uploaded.");
+            res.send("Successful");
         }
     });
 
@@ -210,12 +210,9 @@ router.post('/checkOldPassword',function(req,res){
   		else{
   			res.send("true");
   		}
-
-  		
-  		 
-		});
-
+  	});
 });
+
 //Change Password
 router.post('/changePassword',function(req,res){
 	data=req.body;
@@ -238,7 +235,7 @@ router.get('/', function(req, res, next) {
 router.get('/checkUname', function(req,res){
 	user.findOne({username:req.query.username},function(err, users) {
 	  if(users){
-	  		res.send('Username not Available');
+	  		res.send('Unavailable');
 	  	}
 	  	else{
 	  		res.send('Available');
@@ -246,6 +243,39 @@ router.get('/checkUname', function(req,res){
 	});
 });
 
+//Email
+var nodemailer = require('nodemailer');
+
+router.get('/hello', function(req, res) {
+  res.send('contactUs');
+    // Not the movie transporter!
+    var transporter = nodemailer.createTransport({
+        service: 'Gmail',
+        auth: {
+            user: 'noreply.salonmaster@gmail.com', // Your email id
+            pass: 'salon123' // Your password
+        }
+    });
+    var text = 'Hello world from \n\n';
+
+var mailOptions = {
+    from: 'noreply.salonMaster@gmail.com', // sender address
+    to: 'karansoni94@gmail.com', // list of receivers
+    subject: 'Email Example', // Subject line
+    text: text //, // plaintext body
+    // html: '<b>Hello world ✔</b>' // You can choose to send an HTML body instead
+};
+
+transporter.sendMail(mailOptions, function(error, info){
+    if(error){
+        console.log(error);
+        res.json({yo: 'error'});
+    }else{
+        console.log('Message sent: ' + info.response);
+        res.json({yo: info.response});
+    };
+});
+});
 
 
 module.exports = router;

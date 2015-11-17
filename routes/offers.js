@@ -22,11 +22,10 @@ router.post('/add',function(req,res){
     //to check if there is any technical or syntax error    
     offers.save(function(err){
             if(err){
-                res.send("Error");
-                console.log(err);
+                res.send("Unsuccessful");
             }
             else{
-                res.send("Offer's data is successfully uploaded.");
+                res.send("Successful");
             }
         })
 });
@@ -48,7 +47,9 @@ router.post('/checkStock',function(req,res){
     data=req.body;
     var objectId=data.objectId;
     offer.find({ "_id": objectId }).exec(function(err, data) {
-        if (err) throw err;
+        if (err){
+            res.send('Unsuccessful');
+        }
         res.send(data);
         });
 
@@ -59,10 +60,10 @@ router.post('/delete',function(req,res){
     data=req.body;
     offer.findOneAndRemove({ "_id":data.objectId }, function(err){
         if (err){
-            res.send('Deletion Problem' + err);
+            res.send('Unsuccessful');
         }
         else{
-            res.send('Offer Deleted successfully');
+            res.send('Successful');
         }
     });
 });

@@ -154,9 +154,6 @@ app.use(function(err, req, res, next) {
   });
 });
 
-//Email Verification
-
-
 
 // chk test
 module.exports = app;

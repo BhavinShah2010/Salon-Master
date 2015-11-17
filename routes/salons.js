@@ -67,6 +67,7 @@ router.get('/checkUname', function(req,res){
 	});
 });
 
+
 router.post('/login',passport.authenticate('local',{
 	failureRedirect:'/',
 	successRedirect:'/salons/'
@@ -108,17 +109,17 @@ router.post('/add',function(req,res){
 	a.zipcode=data.zipcode;
 	a.save(function(err){
 			if(err){
-				res.send('Database error! '+err);
+				res.send('Unsuccessful');
 			}
 		})
 	
 	s.address=a;
 	s.save(function(err){
 			if(err){
-				res.send('Database error! '+err);
+				res.send('Unsuccessful');
 			}
 			else{
-				res.send('Salon successfully added');
+				res.send('Successful');
 			}
 		})
 	}
@@ -151,7 +152,7 @@ router.post('/changePassword',function(req,res){
 	salon.findOneAndUpdate({"_id":data.objectId, "password":s.generateHash(data.oldpassword)}, {password: s.password}, function(err, data) {
 		if(err) throw err;
 		//It will not change password if old password is wrong without notifying right now.
-		res.send("Done if old password was you entered correct.");
+		res.send("Successful");
 	})
 });
 
@@ -190,39 +191,24 @@ router.post('/updateRatings',function(req,res){
   	var newRatings=req.body.ratings;
   	var updatedRatings=((oldRatings*oldPersons)+newRatings)/oldPersons+1;
   	salon.findOneAndUpdate({"_id":req.body.objectId}, {ratings:updateRatings, personsVisited:oldPersons+1}, function(err, updatedSalon) {
-		if(err) throw err;
-		res.send("Ratings updated successfully");
-	})
+		if(err)
+			res.send("Unsuccessful");
+		res.send("Successful");
+		})
 	})	
 });
 
 
-// To check username is available or not
-router.get('/checkUname', function(req,res){
-	salon.findOne({username:req.query.username},function(err, salons) {
-	  if(salons){
-	  		res.send('Username not Available');
-	  	}
-	  	else{
-	  		res.send('Available');
-	  	}
-	});
-});
-
-
-
-
 //delete salon
-
 router.post('/delete',function(req,res){
 	data=req.body;
 	var uname=data.username;
 	salon.findOneAndRemove({ username:uname }, function(err){
   		if (err){
-  			res.send('Deletion Problem' + err);
+  			res.send('Unsuccessful');
   		}
   		else{
-  			res.send('Salon Deleted successfully'+uname);
+  			res.send('Successful');
   		}
 	});
 });
