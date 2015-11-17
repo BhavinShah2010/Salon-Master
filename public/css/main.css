@@ -16,7 +16,12 @@ body {
 ul li {
   list-style: none;
 }
-
+/*map css*/
+#map
+    {
+      margin:auto;
+    }
+    /*map css ends*/
 a:hover {
 outline: none;
 text-decoration:none;

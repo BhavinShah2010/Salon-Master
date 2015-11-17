@@ -7,8 +7,10 @@ var LocalStrategy = require('passport-local').Strategy;
 var bcrypt = require('bcrypt-nodejs');
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.render('contactUs');
+
+
+router.get('/profile', function(req, res, next) {
+  res.render('user_profile1',{user:req.user, views:req.session.views});
 });
 
 // To check username is available or not
@@ -26,7 +28,7 @@ router.get('/checkUname', function(req,res){
 
 router.post('/login',passport.authenticate('local',{
 	failureRedirect:'/failure',
-	successRedirect:'/salons/',
+	successRedirect:'/users/profile',
 	//failureFlash:true	
 }));
 
@@ -117,55 +119,6 @@ router.post('/add',function(req,res)
 
 });
 
-//Login
-/*
-passport.use(new LocalStrategy(function(username,password,done){
-	user.findOne({username:username},function(err, users) {
-	  if (err) { return done(err); }
-      if (!users) {
-        return done(null, null);
-      }
-      if (!users.validPassword(password)) {
-        return done(null, null);
-      }
-      return done(null, {username:username,password:password});
-	});
-}));
-
-passport.serializeUser(function(user, done) {
-  done(null, user.username);
-});
-
-passport.deserializeUser(function(username, done) {
-  User.findById(id, function(err, users) {
-    done(err, {username:username,password:password});
-  });
-});
-*/
-
-router.post('/login',passport.authenticate('local',{
-	failureRedirect:'/',
-	successRedirect:'/salons/',
-	//failureFlash:true	
-}));
-router.get('/', function(req, res, next) {
-  //res.send('respond with a resource');
-  console.log();
-  res.render('contactUs',{user:req.user, views:req.session.views});
-});
-
-//To move page to user profile after login
-router.get('/next', function(req, res, next) {
-  //res.send('respond with a resource');
-  console.log();
-  res.render('user_profile',{user:req.user, views:req.session.views});
-});
-
-//Logout
-router.get('/logout',function(req,res){
-	req.logout();
-	res.redirect('/');
-});
 
 //View Profile
 router.post('/getDetails',function(req,res){
@@ -182,7 +135,7 @@ router.post('/getDetails',function(req,res){
 //Update Profile
 //Pending task - Validating data at the time of updation
 router.post('/updateProfile',function(req,res){
-	/*req.checkBody(
+	req.checkBody(
 	  "phno", 
 	  "Enter a valid phone number.").isMobilePhone("en-US");
 
@@ -205,7 +158,7 @@ router.post('/updateProfile',function(req,res){
     	res.send(errors);
     	return;
     } else {
-  */data=req.body;
+  	data=req.body;
 	var a=new address();
 	a.area=data.area;
 	a.city=data.city;
@@ -218,7 +171,7 @@ router.post('/updateProfile',function(req,res){
   	if(err) throw err;
 	})
   })
-//  }
+  }
 });
 
 //active account
@@ -276,6 +229,7 @@ router.post('/changePassword',function(req,res){
 	})
 });
 
+<<<<<<< HEAD
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -294,5 +248,24 @@ router.get('/checkUname', function(req,res){
 	});
 });
 
+//Sending Email
+router.get('/sendmail', function (req, res, next) {
+  router.mailer.send('email', {
+    to: 'karansoni94@gmail.com', // REQUIRED. This can be a comma delimited string just like a normal email to field.  
+    subject: 'Test Email', // REQUIRED. 
+    otherProperty: 'Other Property' // All additional properties are also passed to the template as local variables. 
+  }, function (err) {
+    if (err) {
+      // handle error 
+      console.log(err);
+      res.send('There was an error sending the email');
+      return;
+    }
+    res.send('Email Sent');
+  });
+});
 
+
+=======
+>>>>>>> ca44b8ce5d1a11ab67a870736d428ca461614e74
 module.exports = router;

@@ -23,7 +23,7 @@ var schema = mongoose.Schema({
 	},
 	status:{
 		type:String,
-		enum:['completed','canceled','approved','pending'],
+		enum:['completed','cancelled','approved','pending'],
 		default:'pending'
 	},
 	rating:{

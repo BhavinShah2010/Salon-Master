@@ -5,7 +5,6 @@ html
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
     meta(name='description', content='')
     meta(name='author', content='')
-    title Login | E-Shopper
     link(href='/css/bootstrap.min.css', rel='stylesheet')
     link(href='/css/font-awesome.min.css', rel='stylesheet')
     link(href='/css/prettyPhoto.css', rel='stylesheet')
@@ -38,39 +37,38 @@ html
           .row
             .col-sm-4
               .logo.pull-left
-                a(href='./views/login_master')
-                  img(src='images/home/logo.png', alt='')
+                a(href='/')
+                  img(src='/images/home/logo.png', alt='')
             .col-sm-8
               .shop-menu.pull-right
-                if (!user)  
-                  ul
+                ul.nav.navbar-nav
+                  li
+                    a(href='#') Location
+                    ul#usersubmenu.sub-menu(role='menu')
+                      li
+                        .signup-form
+                          form
+                            input(type='text', placeholder='Enter Location')
+                            button(type='submit')
+                              | Find
+                if (!user)
+                  ul#nav_before_login.nav.navbar-nav
                     li
-                      a.active(href='login.html') 
+                      a(href='/login')
                         i.fa.fa-lock
                         | Login
-                else                        
-                  ul
-                    li
-                      a(href='#') Location 
-                      ul#usersubmenu.sub-menu(role='menu')
-                        li
-                          .signup-form
-                            form
-                              input(type='text', placeholder='Enter Location')
-                              button(type='submit')
-                                | Find
+                else
+                  ul#nav_after_login.nav.navbar-nav
                     li.dropdown
-                      a(href='/users/logout').dropdown-toggle
+                      a(href='#')
                         | Welcome , #{user.username}
                         i.fa.fa-angle-down
-                      ul.sub-menu(role='menu', aria-labelledby='dropdownMenu')
+                      ul#usersubmenu.sub-menu(role='menu')
                         li
-                          a(href='#') Myaccount
-                        li.divider  
+                          a.usermenufont(href='/users/profile') Myaccount
+                        br
                         li
-                          a(href='/logout') Logout
-      .header-bottom
-        // header-bottom
+                          a.usermenufont(href='/users/logout') Logout
         .container
           .row
             .col-sm-9
@@ -83,12 +81,10 @@ html
               .mainmenu.pull-left
                 ul.nav.navbar-nav.collapse.navbar-collapse
                   li
-                    a(href='/login_master') Home
+                    a(href='/') Home
                   li
-                    a(href='/contactUs') Salon
+                    a(href='/map') Map
                   li
-                    a(href='/contactUs') Map
-                  li
-                    a(href='/salons/') Contact Us
+                    a(href='/contactUS') Contact Us
     script.
         $('.dropdown-toggle').dropdown();      
