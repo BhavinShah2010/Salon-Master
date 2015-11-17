@@ -49,4 +49,8 @@ schema.methods.generateHash = function(password){
 schema.methods.validPassword = function(password){
 	return bcrypt.compareSync(password, this.password);
 };
+
+schema.methods.comparePassword = function(plainText) {
+	return bcrypt.compareSync(plainText, this.password);
+	};
 module.exports=mongoose.model('salon',schema);

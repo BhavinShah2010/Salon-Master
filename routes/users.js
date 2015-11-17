@@ -5,7 +5,7 @@ var address = require('../modules/address');
 var passport = require('./../auth');
 var LocalStrategy = require('passport-local').Strategy;
 var bcrypt = require('bcrypt-nodejs');
-
+var nodemailer=require('nodemailer');
 /* GET users listing. */
 
 
@@ -36,6 +36,8 @@ router.get('/logout',function(req,res){
 	req.logout();
 	res.redirect('/');
 });
+
+
 
 //Register new User
 router.post('/add',function(req,res)
@@ -88,8 +90,8 @@ router.post('/add',function(req,res)
 			}
 		})
 	u.address=a;
-	
 
+<<<<<<< HEAD
 	u.save(function(err){
 			if(err){
 				res.send('Database error! '+err);
@@ -104,9 +106,12 @@ router.post('/add',function(req,res)
     var err = u.validateSync();
     if(err){
             console.log(err);
+ 	// to validate the inputted data
+    var err = u.validateSync();
+    if(err){
+            res.send("Validation Error");
             return;
-        }
-        
+        }    
     //to check if there is any technical or syntax error    
     u.save(function(err){
         if(err){
@@ -119,6 +124,36 @@ router.post('/add',function(req,res)
 
 });
 
+            res.send(err);
+        }
+    	else{
+  				var transporter = nodemailer.createTransport({
+        				service: 'Gmail',
+        				auth: {
+	            			user: 'noreply.salonmaster@gmail.com', // Your email id
+    	        			pass: 'salon123' // Your password
+        				}
+    				});
+
+					var mailOptions = {
+    					from: 'noreply.salonMaster@gmail.com', // sender address
+    					to: u.email, // list of receivers
+    					subject: 'Email Verification', // Subject line
+    					text: 'http://localhost:3000/users/activateUser?objectId=' +u._id,
+    					// html: '<b>Hello world ?</b>' // You can choose to send an HTML body instead
+					};
+
+					transporter.sendMail(mailOptions, function(error, info){
+    					if(error){
+        					res.send('Unsuccessful Email');
+    					}else{
+        					res.send('Successful');
+    					}
+					})
+  				}
+        	})
+    	}
+	});
 
 //View Profile
 router.post('/getDetails',function(req,res){
@@ -175,9 +210,9 @@ router.post('/updateProfile',function(req,res){
 });
 
 //active account
-router.post('/activateUser',function(req,res){
+router.get('/activateUser',function(req,res){
 	var now=new Date();
-	user.findOneAndUpdate({"_id":req.body.objectId}, {active:true, modified:now}, function(err, activeUser) {
+	user.findOneAndUpdate({"_id":req.param.objectId}, {active:true, modified:now}, function(err, activeUser) {
 		if(err) throw err;
 		res.send("Activated");
 	})
@@ -262,6 +297,7 @@ router.get('/sendmail', function (req, res, next) {
     }
     res.send('Email Sent');
   });
+	})
 });
 
 
