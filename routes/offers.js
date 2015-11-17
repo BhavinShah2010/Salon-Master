@@ -15,27 +15,31 @@ router.post('/add',function(req,res){
     // to validate the inputted data
     var err = offers.validateSync();
     if(err){
-            console.log(err);
+            res.send(err);
             return;
         }
         
     //to check if there is any technical or syntax error    
     offers.save(function(err){
             if(err){
+                res.send("Error");
                 console.log(err);
             }
             else{
-                console.log("Offer's data is successfully uploaded.");
+                res.send("Offer's data is successfully uploaded.");
             }
         })
 });
 
 //Get Current Offers
 router.post('/getCurrentOffers',function(req,res){
-    var now=new Date();
-    offer.find({"startDate": {"$lte": now}, "endDate":{"gte":now}}, function(err, currentOffers) {
+    var now=new Date().toISOString();
+    //var now = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '')
+  //  console.log("Date" + now);
+    
+    offer.find({"startDate": {"$lte": now}, "endDate":{"$gte":now}}, function(err, currentOffers) {
     if (err) throw err;
-    res.send(currentOffers);
+    res.send(currentOffers);  
   })
 });
 
