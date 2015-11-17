@@ -15,9 +15,12 @@ router.post('/getSalon',function(req,res){
       //res.json(salons);
       res.json(salons);
 
+<<<<<<< HEAD
   })
 });
 
+=======
+>>>>>>> 2395989370da2db03ac5798bc6cda5273fb56607
 //refirect to index.js if user is not logged in
 /*router.use(function(req,res,next){
 */
@@ -27,6 +30,10 @@ router.post('/getSalon',function(req,res){
   }
   next();
 });
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2395989370da2db03ac5798bc6cda5273fb56607
 */
 //redirect to Home page
 router.get('/', function(req, res, next) {
@@ -35,6 +42,12 @@ router.get('/', function(req, res, next) {
   res.render('user_profile1',{user:req.user, views:req.session.views});
 });
 
+
+// router.get('/', function(req, res, next) {
+//   //res.send('respond with a resource');
+//   //console.log("this is salon");
+//   res.render('user_profile1',{user:req.user, views:req.session.views});
+// });
 //redirect to Home page after retrieving all salons data
 
 router.get('/', function(req, res, next) {
@@ -51,17 +64,41 @@ router.get('/', function(req, res, next) {
     if (err) throw err;
     res.render('home',{salonData:salons, user:req.user, views:req.session.views});
   })
-
+router.get('/profile', function(req, res, next) {
+	console.log();
+  res.render('shop_profile1',{msg:req.message, views:req.session.views});
 });
+<<<<<<< .merge_file_a11912
+=======
 
 // To check username is available or not
-router.get('/checkUname', function(req,res){
-	salon.findOne({username:req.query.username},function(err, salons) {
+router.post('/checkLogin', function(req,res){
+	salon.findOne({username:req.body.username},function(err, salons) {
 	  if(salons){
-	  		res.send('Username not Available');
+	  		console.log(salons.password);
+	  		var status=salons.comparePassword(req.body.password);
+	  		if(status)
+	  			res.json({"username":salons.username,"password":req.body.password});
+	  		else{
+	  			res.json({"status":"false"});
+	  		}
 	  	}
 	  	else{
-	  		res.send('Available');
+	  		res.json({"status":"false"});
+	  	}
+	});
+>>>>>>> .merge_file_a07876
+});
+
+
+// To check username is available or not
+router.post('/checkUname', function(req,res){
+	salon.findOne({username:req.body.username},function(err, salons) {
+	  if(salons){
+	  		res.json({"status":"false"});
+	  	}
+	  	else{
+	  		res.json({"status":"true"});
 	  	}
 	});
 });
@@ -124,18 +161,6 @@ router.post('/add',function(req,res){
 	}
 });
 
-//Login
-router.post('/login',passport.authenticate('local',{
-	failureRedirect:'/',
-	successRedirect:'/salons/'
-	
-}));
-
-//Logout
-router.get('/logout',function(req,res){
-	req.logout();
-	res.redirect('/');
-});
 
 //Update Salon Details
 router.post('/updateProfile',function(req,res){
@@ -192,23 +217,6 @@ router.get('/getSalons', function(req, res, next) {
 });
 
 
-router.post('/getSalons',function(req,res){
-  salon.find({}, function(err, salons) {
-    if (err) throw err;
-//    res.render('home',{salonData:salons, user:req.user, views:req.session.views});
-    //return res.end(JSON.stringify(salons));
-  res.json(salons);
-  })
-});
-
-router.get('/getSalons', function(req, res, next) {
-  salon.find({}).populate('address').exec(function(err, salons) {
-    if (err) throw err;
-    //res.render('home',{salonData:salons, user:req.user, views:req.session.views});
-  	//res.json(salons);
-  })
-});
-
 
 
 
@@ -228,10 +236,6 @@ router.post('/updateRatings',function(req,res){
 	
 });
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
 
 // To check username is available or not
 router.get('/checkUname', function(req,res){
@@ -263,7 +267,3 @@ router.post('/delete',function(req,res){
 	});
 });
 module.exports = router;
-
-
-
-

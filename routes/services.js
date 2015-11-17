@@ -18,20 +18,28 @@ router.post('/add',function(req,res){
     serv.description = data.description;
     serv.price = data.price;
     serv.duration = data.duration;
+<<<<<<< HEAD
     //serv.categoryId = data.categoryId;
+=======
+    serv.category=data.category;
+>>>>>>> 2395989370da2db03ac5798bc6cda5273fb56607
     // to validate the inputted data
     var err = serv.validateSync();
     if(err){
-            console.log(err);
+            res.send('Unsuccessful');
             return;
         }
     //to check if there is any technical or syntax error    
     serv.save(function(err){
-        if(err){
-            console.log(err);
+    if(err){
+            res.send("Unsuccessful");
         }
     else{
+<<<<<<< HEAD
             console.log("Instance of service schema is successfully uploaded.");
+=======
+            res.send("Successful");
+>>>>>>> 2395989370da2db03ac5798bc6cda5273fb56607
         }
     });
 });
@@ -43,7 +51,7 @@ router.post('/updateService',function(req,res){
     if (err) throw err;
     service.find({ "_id": data.objectId}).exec(function(err, finalService) {
     if(err) throw err;
-    res.send(finalService);
+    res.send("Successful");
     })
   })
 });
@@ -124,10 +132,10 @@ router.post('/delete',function(req,res){
     data=req.body;
     service.findOneAndRemove({ "_id":data.objectId }, function(err){
         if (err){
-            res.send('Deletion Problem' + err);
+            res.send('Unuccessful');
         }
         else{
-            res.send('Service Deleted successfully');
+            res.send('Successful');
         }
     });
 });

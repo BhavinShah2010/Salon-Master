@@ -18,10 +18,10 @@ router.post('/add',function(req,res){
 	r.description=data.description;
 	r.save(function(err){
 			if(err){
-				res.send('Database error! '+err);
+				res.send('Unsuccessful');
 			}
 			else{
-				res.send('Review successfully added');
+				res.send('Successful');
 			}
 		})
 });
@@ -31,8 +31,10 @@ router.post('/updateReview',function(req,res){
   data=req.body;
   var now=new Date();
   review.findOneAndUpdate({"_id":data.reviewid}, { title:data.title, description:data.description, timestamp:now}, function(err, updatedReview) {
-    if (err) throw err;
-    res.send("Review updated successfully");
+    if (err){
+      res.send("Unsuccessful");
+    }
+    res.send("Successful");
   })
 });
 
@@ -59,10 +61,10 @@ router.post('/delete',function(req,res){
 	data=req.body;
 	review.findOneAndRemove({ _id:data.reviewid }, function(err){
   		if (err){
-  			res.send('Deletion Problem' + err);
+  			res.send('Unsuccessful');
   		}
   		else{
-  			res.send('Review Deleted successfully');
+  			res.send('Successful');
   		}
 	});
 });
