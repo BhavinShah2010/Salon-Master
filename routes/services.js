@@ -1,6 +1,7 @@
 var express = require('express');
 var service = require('../modules/service');
 var address = require('../modules/address');
+var category = require('../modules/category');
 var salon = require('../modules/salon');
 var router = express.Router();
 
@@ -17,6 +18,7 @@ router.post('/add',function(req,res){
     serv.description = data.description;
     serv.price = data.price;
     serv.duration = data.duration;
+    //serv.categoryId = data.categoryId;
     // to validate the inputted data
     var err = serv.validateSync();
     if(err){
@@ -29,7 +31,7 @@ router.post('/add',function(req,res){
             console.log(err);
         }
     else{
-            console.log("Service's data is successfully uploaded.");
+            console.log("Instance of service schema is successfully uploaded.");
         }
     });
 });
@@ -85,6 +87,35 @@ router.post('/getSalonServices',function(req,res){
             res.send(data);
             
 //        });
+    });
+});
+
+
+router.post('/getSalonByServices',function(req,res,next){
+    var services = req.body.services;
+    console.log(services);
+
+    var query = service.find({}).where('name').in(services).select('salonID');
+
+    query.exec(function(err,salonIds) {
+        if(err) {
+            res.json(err);
+            return;
+        }
+        console.log(salonIds);
+        var ids = new Array();
+        for(var i=0; i < salonIds.length ; i++) {
+            ids[i] = salonIds[i]['salonID'];
+        }
+        console.log(ids);
+        var salonQuery = salon.find({}).where('_id').in(ids);
+        salonQuery.populate('address').exec(function(err,salons) {
+           if(err) {
+               res.json(err);
+               return;
+           }
+           res.json(salons); 
+        });
     });
 });
 

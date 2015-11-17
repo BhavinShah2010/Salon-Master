@@ -100,19 +100,19 @@ html(lang='en')
                       ul
                         li
                           | Body Spa 
-                          input#Body_spa(type='checkbox', name='BodySpa', onchange='body_spa_filter (this)')
+                          input#Body_spa(type='checkbox', name='services', value='BodySpa', onchange='body_spa_filter (this)')
                         li
                           | Body Treatment
-                          input(type='checkbox', name='BodyTreatment', onchange='body_treatment_filter (this)')
+                          input(type='checkbox', name='services', value='BodyTreatment', onchange='body_treatment_filter (this)')
                         li
                           | Waxing 
-                          input(type='checkbox', name='Waxing', onchange='waxing_filter (this)')
+                          input(type='checkbox', name='services', value='Waxing', onchange='waxing_filter (this)')
                         li
                           | Laser Hair Removeal
-                          input(type='checkbox', name='LaserHair', onchange='Laser_Hair_filter (this)')
+                          input(type='checkbox', name='services', value='LaserHair', onchange='Laser_Hair_filter (this)')
                         li
                           | Body Scrub 
-                          input(type='checkbox', name='BodyScrup', onchange='Body_scrub(this)')
+                          input(type='checkbox', name='services', value='BodyScrup', onchange='Body_scrub(this)')
                 .panel.panel-default
                   .panel-heading
                     h4.panel-title
@@ -230,7 +230,7 @@ html(lang='en')
                         img(src='/images/home/product1.jpg', alt='')
                         h2
                           a(href='a.html') #{salon.name}
-                        p 
+                        p #{salon.type} salons
                         p #{salon.address.area}
                           | #{salon.address.city}
                         p #{salon.address.state}-#{salon.address.zipcode}

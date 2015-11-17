@@ -40,7 +40,13 @@ var schema = mongoose.Schema({
 	phoneNo:{
 		type:[Number],
 		required:true
+	},
+	type:{
+		type:String,
+		default:'Unisex',
+		enum:['Unisex','Male','Female']
 	}
+
 });
 
 schema.methods.generateHash = function(password){
