@@ -199,7 +199,9 @@ router.post('/checkOldPassword',function(req,res){
 	var x=u.generateHash(data.oldpassword);
    var objectId=data.objectId;
     user.find({ "_id": objectId}).exec(function(err, data) {
-  		if (err) throw err;
+  		if (err){
+  			res.send("false");
+  		}
   			//res.json(x);
   		//if(!data.validPassword(old)){
 					//res.send('Incorrect password.');
