@@ -53,7 +53,10 @@ router.get('/map', function(req, res, next) {
   console.log();
   res.render('map');
 });
-
+router.get('/shop_profile', function(req, res, next) {
+  console.log();
+  res.render('shop_profile1');
+});
 router.get('/login', function(req, res, next) {
 	console.log();
   res.render('login_master');
