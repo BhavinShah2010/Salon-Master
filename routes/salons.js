@@ -20,6 +20,17 @@ router.post('/getSalon',function(req,res){
 });
 
 
+//View Single Salon Profile
+router.post('/getDetails',function(req,res){
+    data=req.body;
+    var objectId=data.objectId;
+    salon.find({ "_id": objectId }).exec(function(err, data) {
+  		if (err) throw err;
+  		res.send(data);
+		});
+
+});
+
 //refirect to index.js if user is not logged in
 /*router.use(function(req,res,next){
 */
@@ -76,7 +87,7 @@ router.post('/checkLogin', function(req,res){
 	  		console.log(salons.password);
 	  		var status=salons.comparePassword(req.body.password);
 	  		if(status)
-	  			res.json({"username":salons.username,"password":req.body.password});
+	  			res.json({"username":salons.username,"password":req.body.password,"salonId":salons._id});
 	  		else{
 	  			res.json({"status":"false"});
 	  		}
@@ -115,15 +126,15 @@ router.get('/logout',function(req,res){
 //Add new Salon
 router.post('/add',function(req,res){
 	//refer : https://github.com/chriso/validator.js#validators
-	req.checkBody(  
-	  "phoneNo", 
-	  "Enter a valid phone number.").isMobilePhone("en-US");
-	var errors = req.validationErrors();
-  	if (errors) {
-    	res.send(errors);
-    	return;
-    }
-    else {
+	// req.checkBody(  
+	//   "phoneNo", 
+	//   "Enter a valid phone number.").isMobilePhone("en-US");
+	// var errors = req.validationErrors();
+ //  	if (errors) {
+ //    	res.send(errors);
+ //    	return;
+ //    }
+ //    else {
     	
     // normal processing here
     data=req.body;
@@ -141,6 +152,22 @@ router.post('/add',function(req,res){
 	a.city=data.city;
 	a.state=data.state;
 	a.zipcode=data.zipcode;
+	a.latitude=data.latitude;
+	a.longitude=data.longitude;
+	a.save(function(err){
+			if(err){
+				res.send('Database error! '+err);
+			}
+		})
+	console.log(s.username+data.username+
+	s.password+s.generateHash(data.password)+
+	s.name+data.name+s.owners+data.owners+
+	s.ratings+data.ratings+s.personsVisited+data.personsVisited+
+	s.phoneNo+data.phoneNo+
+	a.area+data.area+
+	a.city+data.city+
+	a.state+data.state+
+	+a.zipcode+data.zipcode);
 	a.save(function(err){
 			if(err){
 				res.send('Database error! '+err);
@@ -167,6 +194,8 @@ router.post('/updateProfile',function(req,res){
 	a.area=data.area;
 	a.city=data.city;
 	a.state=data.state;
+	a.latitude=data.latitude;
+	a.longitude=data.longitude;
 	a.zipcode=data.zipcode;
 	var now=new Date();
 	salon.findOneAndUpdate({"_id":data.objectId}, { username: data.username, name:data.name, owners: data.owners, address:a, description:data.description , ratings:data.ratings, personsVisited:data.personsVisited, phoneNo:data.phoneNo}, function(err, updatedSalon) {
@@ -226,8 +255,6 @@ router.get('/getSalonById', function(req, res, next) {
 });
 
 
-
-
 //Update Rating
 router.post('/updateRatings',function(req,res){
 	salon.find({"_id":req.body.objectId}, function(err, salon1) {
@@ -240,8 +267,7 @@ router.post('/updateRatings',function(req,res){
 		if(err) throw err;
 		res.send("Ratings updated successfully");
 	})
-	})
-	
+	})	
 });
 
 

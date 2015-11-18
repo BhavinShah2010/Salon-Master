@@ -2696,6 +2696,7 @@ cursor: pointer;
   background-color:#FFF;
   border:solid;
   border-width:thin;
+  margin-left: -50px;
   border-color:#CCC;
   color:#000;
 }

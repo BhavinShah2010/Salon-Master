@@ -12,8 +12,8 @@ router.post('/add',function(req,res){
     appoint.user=data.user;
     appoint.salon=data.salon;
     appoint.event = data.event;
-
-  //  appoint.serviceslist=;
+    appoint.serviceslist=data.serviceslist;
+    appoint.time=data.time;
     appoint.rating=data.rating;
     appoint.totalprice = data.totalprice;
     

@@ -34,7 +34,7 @@ router.post('/add',function(req,res){
 router.post('/getCurrentOffers',function(req,res){
     var now=new Date().toISOString();
     //var now = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '')
-  //  console.log("Date" + now);
+    //console.log("Date" + now);
     
     offer.find({"startDate": {"$lte": now}, "endDate":{"$gte":now}}, function(err, currentOffers) {
     if (err) throw err;
@@ -52,7 +52,6 @@ router.post('/checkStock',function(req,res){
         }
         res.send(data);
         });
-
 });
 
 //delete Offer
