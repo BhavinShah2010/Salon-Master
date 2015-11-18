@@ -88,133 +88,24 @@ html(lang='en')
                       i.fa.fa-plus
                     |                 Services
               #Services.panel-collapse.collapse
-                .panel.panel-default
-                  .panel-heading
-                    h4.panel-title
-                      a(data-toggle='collapse', data-parent='#accordian', href='#servicesForBody')
-                        span.badge.pull-right
-                          i.fa.fa-plus
-                        |                       Body
-                  #servicesForBody.panel-collapse.collapse
-                    .panel-body
-                      ul
-                        li
-                          | Body Spa 
-                          input#Body_spa(type='checkbox', name='services', value='BodySpa', onchange='body_spa_filter (this)')
-                        li
-                          | Body Treatment
-                          input(type='checkbox', name='services', value='BodyTreatment', onchange='body_treatment_filter (this)')
-                        li
-                          | Waxing 
-                          input(type='checkbox', name='services', value='Waxing', onchange='waxing_filter (this)')
-                        li
-                          | Laser Hair Removeal
-                          input(type='checkbox', name='services', value='LaserHair', onchange='Laser_Hair_filter (this)')
-                        li
-                          | Body Scrub 
-                          input(type='checkbox', name='services', value='BodyScrup', onchange='Body_scrub(this)')
-                .panel.panel-default
-                  .panel-heading
-                    h4.panel-title
-                      a(data-toggle='collapse', data-parent='#accordian', href='#Hair')
-                        span.badge.pull-right
-                          i.fa.fa-plus
-                        |                       Hair
-                  #Hair.panel-collapse.collapse
-                    .panel-body
-                      ul
-                        li
-                          | Hair Smoothning
-                          input(type='checkbox', name='HairSmoothning', onchange='hair_smooth(this)')
-                        li
-                          | Hair Cutting
-                          input(type='checkbox', name='HairCutting', onchange='hair_cut(this)')
-                        li
-                          | Hair Wash
-                          input(type='checkbox', name='HairWash', onchange='hair_wash (this)')
-                        li
-                          | Straightenning
-                          input(type='checkbox', name='Straightenning', onchange='straight(this)')
-                        li
-                          | Hair Treatment
-                          input(type='checkbox', name='Hair Treatment', onchange='hair_treatment(this)')
-                .panel.panel-default
-                  .panel-heading
-                    h4.panel-title
-                      a(data-toggle='collapse', data-parent='#accordian', href='#Nail')
-                        span.badge.pull-right
-                          i.fa.fa-plus
-                        |                       Nail
-                  #Nail.panel-collapse.collapse
-                    .panel-body
-                      ul
-                        li
-                          | Nail Art
-                          input(type='checkbox', name='NailArt', onchange='nail_art(this)')
-                        li
-                          | Padicure
-                          input(type='checkbox', name='Padicure', onchange='manicure_padicure(this)')
-                        li
-                          | Menicure
-                          input(type='checkbox', name='Menicure', onchange='manicure_padicure(this)')
-                        li
-                          | Nail Extension 
-                          input(type='checkbox', name='NailExtension', onchange='nail_extension(this)')
-                .panel.panel-default
-                  .panel-heading
-                    h4.panel-title
-                      a(data-toggle='collapse', data-parent='#accordian', href='#face')
-                        span.badge.pull-right
-                          i.fa.fa-plus
-                        |                       face
-                  #face.panel-collapse.collapse
-                    .panel-body
-                      ul
-                        li
-                          | Facial 
-                          input(type='checkbox', name='Facial', onchange='facial(this)')
-                        li
-                          | Bleach 
-                          input(type='checkbox', name='Bleach', onchange='bleach(this)')
-                        li
-                          | Threading
-                          input(type='checkbox', name='Threading', onchange='threading(this)')
-                        li
-                          | Clean-up
-                          input(type='checkbox', name='CleanUp', onchange='cleanup(this)')
-                .panel.panel-default
-                  .panel-heading
-                    h4.panel-title
-                      a(data-toggle='collapse', data-parent='#accordian', href='#Make-up')
-                        span.badge.pull-right
-                          i.fa.fa-plus
-                        |                       Make-up
-                  #Make-up.panel-collapse.collapse
-                    .panel-body
-                      ul
-                        li
-                          | Marriage
-                          input(type='checkbox', name='Marriage', onchange='marriage(this)')
-                        li
-                          | Party
-                          input(type='checkbox', name='Party', onchange='party(this)')
-              .panel-heading
-                h2.panel-title
-                  a(data-toggle='collapse', data-parent='#accordian', href='#Offers')
-                    span.badge.pull-right
-                      i.fa.fa-plus
-                    |                       Offers
-              #Offers.panel-collapse.collapse
-                .panel.panel-default(align='left')
-                  .panel-heading(align='left')
-                    h4.panel-title
-                      a(data-toggle='collapse', data-parent='#accordian', href='#Dove')
-                        #main_offers
-                          .images
-                            img(src='../images/offers/1.png', width='200', height='200')
-                          hr
-                          .images
-                            img(src='../images/offers/1.png', width='200', height='200')
+                each cat in category
+                  .panel.panel-default
+                    .panel-heading
+                      h4.panel-title
+                        a(data-toggle='collapse', data-parent='#accordian', href="\##{cat.name}")
+                          span.badge.pull-right
+                            i.fa.fa-plus
+                          |  #{cat.name}
+                    div(id="#{cat.name}", class="panel-collapse collapse")
+                      .panel-body
+                        -var subCat = cat.sub_cat
+                        ul
+                          each sub in subCat
+                            li 
+                              | #{sub} 
+                              input#Body_spa(type='checkbox', name='services[]', value='#{sub}', onchange='body_spa_filter (this)')
+                          
+                  
         .container
           .col-sm-9.padding-right
             .features_items
@@ -238,6 +129,8 @@ html(lang='en')
                       .product-overlay
                         .overlay-content
                           // features_items
+
+              div(id="demo")            
     .header_top
       .container
         .row
@@ -252,9 +145,4 @@ html(lang='en')
     script(src='/js/jquery.prettyPhoto.js')
     script(src='/js/main.js')
     script(type='text/javascript', src='/js/jquery_min.js')
-    #disablingDiv
-      #location_div
-        #search-box
-          input#search-text(type='text', name='Search_City', placeholder='Search City')
-          input#search-button(type='button', onclick='search_btn(this)', value='Search')
-          span Search
+    

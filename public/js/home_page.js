@@ -101,27 +101,48 @@ function printSalonDetails()
 }
 
 function getSalonByservices()
-{
-	services = [];
-	$('#servicesForBody input:checked').each(function() {
-    services.push($(this).attr('name'));   
-    });
-	alert(services);
-    jQuery.ajax({
+{	var htmlContent = "";
+	jQuery.ajax({
 			url: "/services/getSalonByServices",
 			method: "POST",
 			async: false,
 			data: {services : services},
 			success: function(result) {
+				htmlContent += "<div class='col-sm-4'>
+							<div class='product-image-wrapper'>
+								<div class='single-products' id='first_image'>
+										<div class='productinfo text-center'>
+											<img src='images/home/product1.jpg' alt='' />
+											<h2><a href='a.html'>";
+					htmlContent += "Salon Name";
+					htmlContent += "</a></h2><p>";
+					htmlContent += "Street and Area of Salon";
+					htmlContent += "</p><p>";
+					htmlContent += "Additional info";
+					htmlContent += "</p><p>";
+					htmlContent += "City and State name";
+					htmlContent += "</p></div><div class='product-overlay'>
+											<div class='overlay-content'></div>
+										</div>	
+								</div>
+								
+							</div>
+						</div>"
+				document.getElementById("demo").innerHTML = htmlContent;
 				//alert(JSON.stringify(result));
 			}
 		});
 }
 
 function body_spa_filter (obj) {
-		var services = $.document.getElementById(obj);
+		services = [];
+		//var services = $.document.getElementById(obj);
+		//var services = $(obj).val();
+		$("input[name='services[]']:checked").each(function() {
+    		services.push($(this).val());   
+    	});
 		alert(services);
-	   //getSalonByservices();
+	    //getSalonByservices();
 }
 
 
