@@ -90,71 +90,27 @@ router.post('/add',function(req,res)
 			}
 		})
 	u.address=a;
-
-<<<<<<< HEAD
-	u.save(function(err){
-			if(err){
-				res.send('Database error! '+err);
-			}
-			else{
-				res.send('user successfully added');
-			}
-		})
+	
   }
 
   // to validate the inputted data
     var err = u.validateSync();
     if(err){
             console.log(err);
- 	// to validate the inputted data
-    var err = u.validateSync();
-    if(err){
-            res.send("Validation Error");
             return;
-        }    
+        }
+        
     //to check if there is any technical or syntax error    
     u.save(function(err){
         if(err){
             console.log(err);
         }
     else{
-            console.log("Service's data is successfully uploaded.");
+            console.log("Instance of user schema is successfully uploaded.");
         }
     });
 
 });
-
-            res.send(err);
-        }
-    	else{
-  				var transporter = nodemailer.createTransport({
-        				service: 'Gmail',
-        				auth: {
-	            			user: 'noreply.salonmaster@gmail.com', // Your email id
-    	        			pass: 'salon123' // Your password
-        				}
-    				});
-
-					var mailOptions = {
-    					from: 'noreply.salonMaster@gmail.com', // sender address
-    					to: u.email, // list of receivers
-    					subject: 'Email Verification', // Subject line
-    					text: 'http://localhost:3000/users/activateUser?objectId=' +u._id,
-    					// html: '<b>Hello world ?</b>' // You can choose to send an HTML body instead
-					};
-
-					transporter.sendMail(mailOptions, function(error, info){
-    					if(error){
-        					res.send('Unsuccessful Email');
-    					}else{
-        					res.send('Successful');
-    					}
-					})
-  				}
-        	})
-    	}
-	});
-
 //View Profile
 router.post('/getDetails',function(req,res){
     data=req.body;
@@ -297,8 +253,7 @@ router.get('/sendmail', function (req, res, next) {
     }
     res.send('Email Sent');
   });
-	})
-});
+	});
 
 
 module.exports = router;

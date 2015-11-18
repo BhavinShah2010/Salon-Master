@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var salon = require('../modules/salon');
+var category = require('../modules/category');
+
 
 
 /* GET home page. */
@@ -18,6 +20,19 @@ router.get('/', function(req, res, next) {
     if (err) throw err;
     console.log(salons.address)
     res.render('home',{salonData:salons, user:req.user, views:req.session.views});
+    //res.json(salons);
+  })
+});
+
+router.get('/home', function(req, res, next) {
+    salon.find({}).populate('address').exec(function(err, salons) {
+    if (err) throw err;
+    //console.log(salons.address)
+    var query = category.find({});
+    query.exec(function(err,categories){
+      res.render('home',{salonData:salons, category:categories, user:req.user, views:req.session.views});  
+    })
+    
     //res.json(salons);
   })
 });
