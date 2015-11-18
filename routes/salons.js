@@ -51,8 +51,13 @@ router.get('/', function(req, res, next) {
 router.get('/', function(req, res, next) {
   salon.find({}).populate('address').exec(function(err, salons) {
     if (err) throw err;
-    res.render('home',{salonData:salons, user:req.user, views:req.session.views});
-  	//res.json(salons);
+    //console.log(salons.address)
+    var query = category.find({});
+    query.exec(function(err,categories){
+      res.render('home',{salonData:salons, category:categories, user:req.user, views:req.session.views});  
+    })
+    
+    //res.json(salons);
   })
 });
 
@@ -209,6 +214,16 @@ router.get('/getSalons', function(req, res, next) {
   })
 });
 
+router.get('/getSalonById', function(req, res, next) {
+  
+  //console.log(req.query.id);
+  salon.find({"_id": req.query.id}).populate('address').	exec(function(err, salons) {
+    if (err) throw err;
+    //res.render('shop_profile1',{salon:salons, user:req.user, views:req.session.views});
+  	res.json(salons);
+  	//return salons;
+  })
+});
 
 
 

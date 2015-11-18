@@ -103,34 +103,31 @@ html(lang='en')
                           each sub in subCat
                             li 
                               | #{sub} 
-                              input#Body_spa(type='checkbox', name='services[]', value='#{sub}', onchange='body_spa_filter (this)')
-                          
-                  
+                              input#Body_spa(type='checkbox', name='services[]', value='#{sub}', onchange='updateSalons(this)')
         .container
-          .col-sm-9.padding-right
+          div(class="col-sm-9 padding-right", id="divSalons")         
             .features_items
               // features_items
               h2.title.text-center
                 | Salons in 
                 span#text_value  
               each salon in salonData
-                .col-sm-4
-                  .product-image-wrapper
-                    #first_image.single-products
-                      .productinfo.text-center
-                        img(src='/images/home/product1.jpg', alt='')
-                        h2
-                          a(href='a.html') #{salon.name}
-                        p #{salon.type} salons
-                        p #{salon.address.area}
-                          | #{salon.address.city}
-                        p #{salon.address.state}-#{salon.address.zipcode}
-                        p Contact No: #{salon.phoneNo}
-                      .product-overlay
-                        .overlay-content
+                div(class="col-sm-4" id="#{salon._id}")
+                  a(href="salons/getSalonById?id=#{salon._id}")
+                    .product-image-wrapper
+                      #first_image.single-products
+                        .productinfo.text-center
+                          img(src='/images/home/product1.jpg', alt='')
+                          h2
+                            a(href='a.html') #{salon.name}
+                          p #{salon.type} salons
+                          p #{salon.address.area}
+                            | #{salon.address.city}
+                          p #{salon.address.state}-#{salon.address.zipcode}
+                          p Contact No: #{salon.phoneNo}
+                        .product-overlay
+                          .overlay-content
                           // features_items
-
-              div(id="demo")            
     .header_top
       .container
         .row
@@ -145,4 +142,5 @@ html(lang='en')
     script(src='/js/jquery.prettyPhoto.js')
     script(src='/js/main.js')
     script(type='text/javascript', src='/js/jquery_min.js')
-    
+
+
