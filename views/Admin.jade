@@ -1,0 +1,108 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(name='description', content='Creative - Bootstrap 3 Responsive Admin Template')
+    meta(name='author', content='GeeksLabs')
+    meta(name='keyword', content='Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal')
+    link(rel='shortcut icon', href='/img/favicon.png')
+    link(rel='stylesheet',href='/css/bootstrap.min.css')    
+    link(href='/css/bootstrap-theme.css', rel='stylesheet')
+    link(href='/css/elegant-icons-style.css', rel='stylesheet')
+    link(href='/css/font-awesome.min.css', rel='stylesheet')
+    link(href='/css/style.css', rel='stylesheet')
+    link(href='/css/style-responsive.css', rel='stylesheet')
+    link(href='/css/jquery-ui-1.10.4.min.css', rel='stylesheet')
+     
+  body
+    // container section start
+    section#container
+      header.header.dark-bg
+        // logo start
+        a.logo(href='index.html')
+          span.lite Salon Master
+        // logo end
+        #top_menu.nav.search-row
+          // search form start
+          // search form end
+        .top-nav.notification-row
+          // notificatoin dropdown start
+          ul.nav.pull-right.top-menu
+            // task notificatoin start
+            // user login dropdown start
+            li.dropdown
+              a.dropdown-toggle(data-toggle='dropdown', href='#')
+                span.profile-ava
+                  img(alt='', src='img/avatar1_small.jpg')
+                span.username Jenifer Smith
+                b.caret
+              ul.dropdown-menu.extended.logout
+                .log-arrow-up
+                li.eborder-top
+                  a(href='#') Logout
+            // user login dropdown end
+          // notificatoin dropdown end
+      // header end
+      // sidebar start
+      aside
+        #sidebar.nav-collapse
+          // sidebar menu start
+          ul.sidebar-menu
+            li.active
+              a#aCategory(href='#divCategory')
+                span Category
+            li
+              a#aSalon(href='#divSalon')
+                span Salon
+            li
+              a#aUser(href='#divUser')
+                span User
+          // sidebar menu end
+      // sidebar end
+      // main content start
+      section#main-content
+        section.wrapper
+          // overview start
+          #divCategory
+            | This is Category.
+            .row
+              .col-lg-12
+                h2 Category Master 
+                ol.breadcrumb
+                  li.active
+                    a#A1(href='#', runat='server')
+                      i.icon-dashboard
+                  li#aNavigationCategory.active
+                    label#lblaNavigationCategory  Add Category
+                #divresult.alert.alert-info.alert-dismissable(runat='server', style='display:none')
+                  label#lblCategoryResult
+            div
+              #divCategoryAdd.row(runat='server', style='display:none')
+                .col-lg-6
+                  .form-group
+                    label
+                      | Cateogry Name 
+                      span(style='color: red') *
+                    input#txtCategoryName.form-control(type='text')
+                  input#btnAddCategory.btn.btn-primary(type='button', value='Save')
+              #divCategoryList.row(runat='server')
+                .col-lg-6
+                  .form-group
+                .col-lg-6
+                  .form-group
+                .clearfix
+                .col-lg-12
+                  .table-responsive
+                    table#tblCategory(data-url='/categories/getAllCategories')
+          #divSalon(style='display: none')
+            | This is Salon
+          #divUser(style='display: none')
+            | This is divMenu3
+      // main content end
+    // container section start
+    // javascripts
+    script(src='/js/jquery.js')
+    script(src='/js/bootstrap.min.js')
+    script(src='/js/admin.js')
+  

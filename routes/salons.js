@@ -7,17 +7,41 @@ var passport = require('./../auth');
 //var populatePlugin = require('mongoose-power-populate')(mongoose);
 
 /* GET users listing. */
+//Get salon detail through its ID
+router.post('/getSalon',function(req,res){
+  salon.find({_id:req.body.salonId}).populate('address').exec(function(err, salons) {
+    if (err) throw err;
+    //res.render('home',{salonData:salons, user:req.user, views:req.session.views});
+      //res.json(salons);
+      res.json(salons);
+
+
+  })
+});
+
+
+//View Single Salon Profile
+router.post('/getDetails',function(req,res){
+    data=req.body;
+    var objectId=data.objectId;
+    salon.find({ "_id": objectId }).exec(function(err, data) {
+  		if (err) throw err;
+  		res.send(data);
+		});
+
+});
 
 //refirect to index.js if user is not logged in
 /*router.use(function(req,res,next){
-
-//redirect to index.js if user is not logged in
-router.use(function(req,res,next){
+*/
+/*router.use(function(req,res,next){
   if(!req.user){
     res.redirect('/');
   }
   next();
 });
+
+
 
 */
 //redirect to Home page
@@ -26,6 +50,7 @@ router.get('/', function(req, res, next) {
   //console.log("this is salon");
   res.render('user_profile1',{user:req.user, views:req.session.views});
 });
+
 
 // router.get('/', function(req, res, next) {
 //   //res.send('respond with a resource');
@@ -42,17 +67,13 @@ router.get('/', function(req, res, next) {
   })
 });
 
-router.get('/', function(req, res, next) {
-  salon.find({}, function(err, salons) {
-    if (err) throw err;
-    res.render('home',{salonData:salons, user:req.user, views:req.session.views});
-  });
-});
 
 router.get('/profile', function(req, res, next) {
 	console.log();
   res.render('shop_profile1',{msg:req.message, views:req.session.views});
 });
+
+
 
 // To check username is available or not
 router.post('/checkLogin', function(req,res){
@@ -70,7 +91,9 @@ router.post('/checkLogin', function(req,res){
 	  		res.json({"status":"false"});
 	  	}
 	});
+
 });
+
 
 // To check username is available or not
 router.post('/checkUname', function(req,res){
@@ -83,7 +106,6 @@ router.post('/checkUname', function(req,res){
 	  	}
 	});
 });
-
 
 router.post('/login',passport.authenticate('local',{
 	failureRedirect:'/',
@@ -119,6 +141,7 @@ router.post('/add',function(req,res){
 	s.ratings=data.ratings;
 	s.personsVisited=data.personsVisited;
 	s.phoneNo=data.phoneNo;
+	s.type = data.type;
 	var a=new address();
 	a.area=data.area;
 	a.city=data.city;
@@ -126,17 +149,17 @@ router.post('/add',function(req,res){
 	a.zipcode=data.zipcode;
 	a.save(function(err){
 			if(err){
-				res.send('Unsuccessful');
+				res.send('Database error! '+err);
 			}
 		})
 	
 	s.address=a;
 	s.save(function(err){
 			if(err){
-				res.send('Unsuccessful');
+				res.send('Database error! '+err);
 			}
 			else{
-				res.send('Successful');
+				res.send('Instance of salon schema is successfully added');
 			}
 		})
 	}
@@ -169,7 +192,7 @@ router.post('/changePassword',function(req,res){
 	salon.findOneAndUpdate({"_id":data.objectId, "password":s.generateHash(data.oldpassword)}, {password: s.password}, function(err, data) {
 		if(err) throw err;
 		//It will not change password if old password is wrong without notifying right now.
-		res.send("Successful");
+		res.send("Done if old password was you entered correct.");
 	})
 });
 
@@ -199,6 +222,8 @@ router.get('/getSalons', function(req, res, next) {
 
 
 
+
+
 //Update Rating
 router.post('/updateRatings',function(req,res){
 	salon.find({"_id":req.body.objectId}, function(err, salon1) {
@@ -208,26 +233,41 @@ router.post('/updateRatings',function(req,res){
   	var newRatings=req.body.ratings;
   	var updatedRatings=((oldRatings*oldPersons)+newRatings)/oldPersons+1;
   	salon.findOneAndUpdate({"_id":req.body.objectId}, {ratings:updateRatings, personsVisited:oldPersons+1}, function(err, updatedSalon) {
-		if(err)
-			res.send("Unsuccessful");
-		res.send("Successful");
-		})
-	})	
+		if(err) throw err;
+		res.send("Ratings updated successfully");
+	})
+	})
+	
 });
 
 
+// To check username is available or not
+router.get('/checkUname', function(req,res){
+	salon.findOne({username:req.query.username},function(err, salons) {
+	  if(salons){
+	  		res.send('Username not Available');
+	  	}
+	  	else{
+	  		res.send('Available');
+	  	}
+	});
+});
+
+
+
+
 //delete salon
+
 router.post('/delete',function(req,res){
 	data=req.body;
 	var uname=data.username;
 	salon.findOneAndRemove({ username:uname }, function(err){
   		if (err){
-  			res.send('Unsuccessful');
+  			res.send('Deletion Problem' + err);
   		}
   		else{
-  			res.send('Successful');
+  			res.send('Salon Deleted successfully'+uname);
   		}
 	});
 });
-
 module.exports = router;

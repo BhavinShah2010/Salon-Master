@@ -1,6 +1,7 @@
 var express = require('express');
 var service = require('../modules/service');
 var address = require('../modules/address');
+var category = require('../modules/category');
 var salon = require('../modules/salon');
 var router = express.Router();
 
@@ -12,11 +13,16 @@ router.get('/', function(req, res, next) {
 router.post('/add',function(req,res){
     data=req.body;
     var serv=new service();
-    serv.salonId=data.salonId;
+    serv.salonID=data.salonID;
     serv.name=data.name;
     serv.description = data.description;
     serv.price = data.price;
     serv.duration = data.duration;
+
+    //serv.categoryId = data.categoryId;
+
+    //serv.category=data.category;
+
     // to validate the inputted data
     var err = serv.validateSync();
     if(err){
@@ -29,7 +35,11 @@ router.post('/add',function(req,res){
             res.send("Unsuccessful");
         }
     else{
+
+            console.log("Instance of service schema is successfully uploaded.");
+
             res.send("Successful");
+
         }
     });
 });
@@ -82,6 +92,35 @@ router.post('/getSalonServices',function(req,res){
     service.find({ "salonID": salonId }).exec(function(err, data) {
         if (err) throw err;
             res.send(data);
+    });
+});
+
+
+router.post('/getSalonByServices',function(req,res,next){
+    var services = req.body.services;
+    console.log(services);
+
+    var query = service.find({}).where('name').in(services).select('salonID');
+
+    query.exec(function(err,salonIds) {
+        if(err) {
+            res.json(err);
+            return;
+        }
+        console.log(salonIds);
+        var ids = new Array();
+        for(var i=0; i < salonIds.length ; i++) {
+            ids[i] = salonIds[i]['salonID'];
+        }
+        console.log(ids);
+        var salonQuery = salon.find({}).where('_id').in(ids);
+        salonQuery.populate('address').exec(function(err,salons) {
+           if(err) {
+               res.json(err);
+               return;
+           }
+           res.json(salons); 
+        });
     });
 });
 

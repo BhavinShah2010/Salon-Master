@@ -17,7 +17,7 @@ router.get('/profile', function(req, res, next) {
 router.get('/checkUname', function(req,res){
 	user.findOne({username:req.query.username},function(err, users) {
 	  if(users){
-	  		res.send('Unvailable');
+	  		res.send('Username not Available');
 	  	}
 	  	else{
 	  		res.send('0');
@@ -86,51 +86,31 @@ router.post('/add',function(req,res)
 	a.zipcode=data.zipcode;
 	a.save(function(err){
 			if(err){
-				res.send('Unsuccessful');
+				res.send('Database error! '+err);
 			}
 		})
 	u.address=a;
+	
+  }
 
- 	// to validate the inputted data
+  // to validate the inputted data
     var err = u.validateSync();
     if(err){
-            res.send("Validation Error");
+            console.log(err);
             return;
-        }    
+        }
+        
     //to check if there is any technical or syntax error    
     u.save(function(err){
         if(err){
-            res.send(err);
+            console.log(err);
         }
-    	else{
-  				var transporter = nodemailer.createTransport({
-        				service: 'Gmail',
-        				auth: {
-	            			user: 'noreply.salonmaster@gmail.com', // Your email id
-    	        			pass: 'salon123' // Your password
-        				}
-    				});
+    else{
+            console.log("Instance of user schema is successfully uploaded.");
+        }
+    });
 
-					var mailOptions = {
-    					from: 'noreply.salonMaster@gmail.com', // sender address
-    					to: u.email, // list of receivers
-    					subject: 'Email Verification', // Subject line
-    					text: 'http://localhost:3000/users/activateUser?objectId=' +u._id,
-    					// html: '<b>Hello world ?</b>' // You can choose to send an HTML body instead
-					};
-
-					transporter.sendMail(mailOptions, function(error, info){
-    					if(error){
-        					res.send('Unsuccessful Email');
-    					}else{
-        					res.send('Successful');
-    					}
-					})
-  				}
-        	})
-    	}
-	});
-
+<<<<<<< HEAD
 //Forget Password
 router.post('/forgetPassword',function(req,res){
 	data=req.body;
@@ -144,6 +124,9 @@ router.post('/forgetPassword',function(req,res){
 	})
 });
 
+=======
+});
+>>>>>>> 17c6c9c2c12f2540cb108e6c57efff24d13e25c5
 //View Profile
 router.post('/getDetails',function(req,res){
     data=req.body;
@@ -223,9 +206,7 @@ router.post('/checkOldPassword',function(req,res){
 	var x=u.generateHash(data.oldpassword);
    var objectId=data.objectId;
     user.find({ "_id": objectId}).exec(function(err, data) {
-  		if (err){
-  			res.send("false");
-  		}
+  		if (err) throw err;
   			//res.json(x);
   		//if(!data.validPassword(old)){
 					//res.send('Incorrect password.');
@@ -236,9 +217,12 @@ router.post('/checkOldPassword',function(req,res){
   		else{
   			res.send("true");
   		}
-  	});
-});
 
+  		
+  		 
+		});
+
+});
 //Change Password
 router.post('/changePassword',function(req,res){
 	data=req.body;
@@ -252,6 +236,7 @@ router.post('/changePassword',function(req,res){
 	})
 });
 
+
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   res.render('contactUs');
@@ -261,13 +246,30 @@ router.get('/', function(req, res, next) {
 router.get('/checkUname', function(req,res){
 	user.findOne({username:req.query.username},function(err, users) {
 	  if(users){
-	  		res.send('Unavailable');
+	  		res.send('Username not Available');
 	  	}
 	  	else{
 	  		res.send('Available');
 	  	}
-	})
+	});
 });
+
+//Sending Email
+router.get('/sendmail', function (req, res, next) {
+  router.mailer.send('email', {
+    to: 'karansoni94@gmail.com', // REQUIRED. This can be a comma delimited string just like a normal email to field.  
+    subject: 'Test Email', // REQUIRED. 
+    otherProperty: 'Other Property' // All additional properties are also passed to the template as local variables. 
+  }, function (err) {
+    if (err) {
+      // handle error 
+      console.log(err);
+      res.send('There was an error sending the email');
+      return;
+    }
+    res.send('Email Sent');
+  });
+	});
 
 
 module.exports = router;

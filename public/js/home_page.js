@@ -1,52 +1,178 @@
 
 //document.getElementById('disablingDiv').style.display='block';
 
+var services = [];
+var salons = [];
 function servicesForBody(){
-	var services = [];
-	$('#servicesForBody input:checked').each(function() {
+    salons =[];
+    services=[];
+    $('#servicesForBody input:checked').each(function() {
     services.push($(this).attr('name'));   
-	});
+    });
 
-	//Retrieve checked service details
-	$.each(services,function(i,serviceName){
-		//alert(serviceName);
-		$.post("/services/getServiceDetail",{name:serviceName},function(serviceDetail){
-			//console.log(data[0].name);
-			alert(serviceDetail[0].salonID);
-			//alert(serviceName);
-			$.each(serviceDetail,function(index,data){
-				alert(data.salonID);
-			});
+    //Retrieve checked service details
+    $.each(services,function(i,serviceName){
+        /*$.post("/services/getServiceDetail",{name:serviceName},function(serviceDetail){
+            //Get salonIds of salons, who provide selected services
+            //Binary search is used to check existance of salonId in an array
+            $.each(serviceDetail,function(index,data){
+                var start=0,end=salons.length,mid=0;
+                var flag = true;
+                while(start<=end)
+                {
+                    mid = Math.floor((start+end)/2);
+                    if(salons[mid] == data.salonID)
+                    {
+                        flag = false;
+                        break;
+                    }
+                    else if(salons[mid]>data.salonID)
+                    {
+                        end = mid - 1;
+                    }    
+                    else
+                    {
+                        start = mid + 1;
+                    }        
+                }
+                if(flag == true)
+                {
+                    salons.push(data.salonID);
+                }
+            });
+            salons.sort();
+            //alert(salons);
+        });*/
+
+		jQuery.ajax({
+			url: "/services/getServiceDetail",
+			method: "POST",
+			async: false,
+			data: {name : serviceName},
+			success: function(result) {
+				$.each(result,function(index,data){
+				    var start=0,end=salons.length,mid=0;
+				    var flag = true;
+				    while(start<=end)
+				    {
+				        mid = Math.floor((start+end)/2);
+				        if(salons[mid] == data.salonID)
+				        {
+				            flag = false;
+				            break;
+				        }
+				        else if(salons[mid]>data.salonID)
+				        {
+				            end = mid - 1;
+				        }    
+				        else
+				        {
+				            start = mid + 1;
+				        }        
+				    }
+				    if(flag == true)
+				    {
+				        salons.push(data.salonID);
+				    }
+				});
+				salons.sort();
+			}
 		});
-	});
+    });
+    /*if (typeof callback === 'function')
+    {
+        callback();
+    }*/    
+}
+
+function printSalonDetails()
+{
+    //alert(salons);
+    var htmlContent = "<h2 class='title text-center'>Salons in <span id='text_value' > </span> </h2>";
+    $.each(salons,function(i,salon){
+    	//alert(salon);
+        $.post("/salons/getSalon",{salonId:salon},function(salonInfo){
+            //debugger;
+            htmlContent += "";
+            alert(salonInfo[0].name);
+            //document.getElementById("sname").innerHTML = salonInfo[0].name;
+        });
+    });    
+}
+
+function getSalonByservices()
+{	var htmlContent = "";
+	jQuery.ajax({
+			url: "/services/getSalonByServices",
+			method: "POST",
+			async: false,
+			data: {services : services},
+			success: function(result) {
+				htmlContent += "<div class='col-sm-4'>
+							<div class='product-image-wrapper'>
+								<div class='single-products' id='first_image'>
+										<div class='productinfo text-center'>
+											<img src='images/home/product1.jpg' alt='' />
+											<h2><a href='a.html'>";
+					htmlContent += "Salon Name";
+					htmlContent += "</a></h2><p>";
+					htmlContent += "Street and Area of Salon";
+					htmlContent += "</p><p>";
+					htmlContent += "Additional info";
+					htmlContent += "</p><p>";
+					htmlContent += "City and State name";
+					htmlContent += "</p></div><div class='product-overlay'>
+											<div class='overlay-content'></div>
+										</div>	
+								</div>
+								
+							</div>
+						</div>"
+				document.getElementById("demo").innerHTML = htmlContent;
+				//alert(JSON.stringify(result));
+			}
+		});
 }
 
 function body_spa_filter (obj) {
-	servicesForBody();	
+		services = [];
+		//var services = $.document.getElementById(obj);
+		//var services = $(obj).val();
+		$("input[name='services[]']:checked").each(function() {
+    		services.push($(this).val());   
+    	});
+		alert(services);
+	    //getSalonByservices();
 }
 
 
 
 function body_treatment_filter (obj) {
-	servicesForBody();
+    //servicesForBody();
+    //setTimeout(printSalonDetails,1000);
+    getSalonByservices();
 }
 
 
 
 function waxing_filter (obj) {
-	servicesForBody();
+    //servicesForBody();
+    //setTimeout(printSalonDetails,1000);
+    getSalonByservices();
 }
 
 
 
 function Laser_Hair_filter (obj) {
-	servicesForBody();
+    servicesForBody();
+    setTimeout(printSalonDetails,1000);
 }
 
 
 
 function Body_scrub (obj) {
-	servicesForBody();
+    servicesForBody();
+    setTimeout(printSalonDetails,1000);
 }
 
 
@@ -60,12 +186,6 @@ function hair_smooth(obj) {
 		$("#sixth_image").show();
 
 }
-
-
-
-
-
-
 
 function hair_cut (obj) {
 	if (obj.checked == true) {

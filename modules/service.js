@@ -1,6 +1,4 @@
 var mongoose = require('mongoose');
-var a=require('./address');
-var Address = require('mongoose').model('address').schema;
 var bcrypt = require('bcrypt-nodejs');
 var Salon = require('mongoose').model('salon').schema;
 
@@ -20,7 +18,10 @@ var schema = mongoose.Schema({
 	duration:{ //Time service takes (in mins).
 		type:Number,
 		required:true
-	}
-});
+
+	},
+	//categoryId:{type: mongoose.Schema.Types.ObjectId,ref:'category', required:true}
+
+	});
 
 module.exports=mongoose.model('service',schema);
