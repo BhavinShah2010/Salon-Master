@@ -7,21 +7,41 @@ var passport = require('./../auth');
 //var populatePlugin = require('mongoose-power-populate')(mongoose);
 
 /* GET users listing. */
+//Get salon detail through its ID
+router.post('/getSalon',function(req,res){
+  salon.find({_id:req.body.salonId}).populate('address').exec(function(err, salons) {
+    if (err) throw err;
+    //res.render('home',{salonData:salons, user:req.user, views:req.session.views});
+      //res.json(salons);
+      res.json(salons);
 
+<<<<<<< HEAD
+  })
+});
+
+=======
+>>>>>>> 2395989370da2db03ac5798bc6cda5273fb56607
 //refirect to index.js if user is not logged in
 /*router.use(function(req,res,next){
-=======
-//redirect to index.js if user is not logged in
-router.use(function(req,res,next){
->>>>>>> a4dcf105adcfb3c995726d7b4109afb77852d968
+*/
+/*router.use(function(req,res,next){
   if(!req.user){
     res.redirect('/');
   }
   next();
 });
 <<<<<<< HEAD
+=======
+
+>>>>>>> 2395989370da2db03ac5798bc6cda5273fb56607
 */
 //redirect to Home page
+router.get('/', function(req, res, next) {
+  //res.send('respond with a resource');
+  //console.log("this is salon");
+  res.render('user_profile1',{user:req.user, views:req.session.views});
+});
+
 
 // router.get('/', function(req, res, next) {
 //   //res.send('respond with a resource');
@@ -38,19 +58,47 @@ router.get('/', function(req, res, next) {
   })
 });
 
+
+router.get('/', function(req, res, next) {
+  salon.find({}, function(err, salons) {
+    if (err) throw err;
+    res.render('home',{salonData:salons, user:req.user, views:req.session.views});
+  })
 router.get('/profile', function(req, res, next) {
 	console.log();
   res.render('shop_profile1',{msg:req.message, views:req.session.views});
 });
+<<<<<<< .merge_file_a11912
+=======
 
 // To check username is available or not
-router.get('/checkUname', function(req,res){
-	salon.findOne({username:req.query.username},function(err, salons) {
+router.post('/checkLogin', function(req,res){
+	salon.findOne({username:req.body.username},function(err, salons) {
 	  if(salons){
-	  		res.send('Username not Available');
+	  		console.log(salons.password);
+	  		var status=salons.comparePassword(req.body.password);
+	  		if(status)
+	  			res.json({"username":salons.username,"password":req.body.password});
+	  		else{
+	  			res.json({"status":"false"});
+	  		}
 	  	}
 	  	else{
-	  		res.send('Available');
+	  		res.json({"status":"false"});
+	  	}
+	});
+>>>>>>> .merge_file_a07876
+});
+
+
+// To check username is available or not
+router.post('/checkUname', function(req,res){
+	salon.findOne({username:req.body.username},function(err, salons) {
+	  if(salons){
+	  		res.json({"status":"false"});
+	  	}
+	  	else{
+	  		res.json({"status":"true"});
 	  	}
 	});
 });
@@ -89,6 +137,7 @@ router.post('/add',function(req,res){
 	s.ratings=data.ratings;
 	s.personsVisited=data.personsVisited;
 	s.phoneNo=data.phoneNo;
+	s.type = data.type;
 	var a=new address();
 	a.area=data.area;
 	a.city=data.city;
@@ -106,7 +155,7 @@ router.post('/add',function(req,res){
 				res.send('Database error! '+err);
 			}
 			else{
-				res.send('Salon successfully added');
+				res.send('Instance of salon schema is successfully added');
 			}
 		})
 	}
@@ -166,6 +215,8 @@ router.get('/getSalons', function(req, res, next) {
   	//return salons;
   })
 });
+
+
 
 
 

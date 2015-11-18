@@ -11,16 +11,16 @@ router.post('/add',function(req,res){
     // to validate the inputted data
     var err = events.validateSync();
     if(err){
-            console.log(err);
+            res.send("Unsuccessful");
             return;
         }
     //to check if there is any technical or syntax error    
     events.save(function(err){
             if(err){
-                console.log(err);
+                res.send("Unsucessful");
             }
             else{
-                console.log("Event's data is successfully uploaded.");
+                res.send("Successful");
             }
         })
 });

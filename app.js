@@ -28,6 +28,7 @@ mongoose.connection.once('connected',function(){
 });
 
 var routes = require('./routes/index');
+var categories = require('./routes/categories');
 var users = require('./routes/users');
 var salons = require('./routes/salons');
 var services = require('./routes/services');
@@ -35,7 +36,8 @@ var events = require('./routes/events');
 var offers = require('./routes/offers');
 var reviews = require('./routes/reviews');
 var appointments = require('./routes/appointments');
-var auth = require('./routes/auth');
+//var auth = require('./routes/auth');
+
 //var user = require('../modules/User');
 
 var app = express();
@@ -68,6 +70,7 @@ app.use(session({
 //passport configuration
 app.use(passport.initialize());
 app.use(passport.session());
+
 
 var user = require('./modules/user');
 //passport.use(user.createStrategy());
@@ -115,13 +118,14 @@ app.use(function(req, res, next){
 
 app.use('/', routes);
 app.use('/users', users);
+app.use('/categories',categories);
 app.use('/salons',salons);
 app.use('/services',services);
 app.use('/events',events);
 app.use('/offers',offers);
 app.use('/reviews',reviews);
 app.use('/appointments',appointments);
-app.use('/auth', auth);
+//app.use('/auth', auth);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -153,5 +157,25 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
+
+//Email Verification
+
+/*
+var app = require('express')(),
+    mailer = require('express-mailer');
+ 
+mailer.extend(app, {
+  from: 'noreply.salonmaster@gmail.com',
+  host: 'smtp.gmail.com', // hostname 
+  secureConnection: true, // use SSL 
+  port: 465, // port for secure SMTP 
+  transportMethod: 'SMTP', // default is SMTP. Accepts anything that nodemailer accepts 
+  auth: {
+    user: 'noreply.salonmaster@gmail.com',
+    pass: 'salon123'
+  }
+});
+*/
+
 // chk test
 module.exports = app;
