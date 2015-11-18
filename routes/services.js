@@ -54,6 +54,7 @@ router.post('/getServices',function(req,res){
   })
 });
 
+
 //Get service details by entering service name
 router.post('/getServiceDetail',function(req,res){
     service.find({"name": req.body.name}).exec(function(err, data) {
@@ -78,13 +79,9 @@ router.post('/getDetails',function(req,res){
 router.post('/getSalonServices',function(req,res){
     data=req.body;
     var salonId=data.salonId;
-//    salon.find({ "_id": salonId }).exec(function(err, salonObject) {
-//        if (err) throw err;
-        service.find({ "salonID": salonId }).exec(function(err, data) {
-            if (err) throw err;
+    service.find({ "salonID": salonId }).exec(function(err, data) {
+        if (err) throw err;
             res.send(data);
-            
-//        });
     });
 });
 

@@ -61,7 +61,7 @@ router.post('/checkLogin', function(req,res){
 	  		console.log(salons.password);
 	  		var status=salons.comparePassword(req.body.password);
 	  		if(status)
-	  			res.json({"username":salons.username,"password":req.body.password});
+	  			res.json({"username":salons.username,"password":req.body.password,"salonId":salons._id});
 	  		else{
 	  			res.json({"status":"false"});
 	  		}
