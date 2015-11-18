@@ -20,6 +20,17 @@ router.post('/getSalon',function(req,res){
 });
 
 
+//View Single Salon Profile
+router.post('/getDetails',function(req,res){
+    data=req.body;
+    var objectId=data.objectId;
+    salon.find({ "_id": objectId }).exec(function(err, data) {
+  		if (err) throw err;
+  		res.send(data);
+		});
+
+});
+
 //refirect to index.js if user is not logged in
 /*router.use(function(req,res,next){
 */
@@ -71,7 +82,7 @@ router.post('/checkLogin', function(req,res){
 	  		console.log(salons.password);
 	  		var status=salons.comparePassword(req.body.password);
 	  		if(status)
-	  			res.json({"username":salons.username,"password":req.body.password});
+	  			res.json({"username":salons.username,"password":req.body.password,"salonId":salons._id});
 	  		else{
 	  			res.json({"status":"false"});
 	  		}
