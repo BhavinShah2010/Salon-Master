@@ -20,6 +20,22 @@ function updateSalons(obj) {
 	    else
 	    	getAllSalons();	
 }
+function getSalonByServicesDemo(){
+	var allSalons = [];
+	$.get("/salons/getSalons",function(result){
+		allSalons = JSON.stringify(result);
+	});
+	jQuery.ajax({
+		url: "/services/getServices",
+		method: "POST",
+		async: false,
+		success: function(result){
+			var salonWithServices = []
+			salonWithServices[0]['name'] = 'abc'
+		}
+	});	
+}
+
 
 //getSalonByservices() function retrieve salons information from database, and display those salons on home-page.
 function getSalonByservices()
@@ -35,7 +51,7 @@ function getSalonByservices()
 		    			//alert(salon);
 					    htmlContent += "<div class='col-sm-4' id="
 					    htmlContent += salon._id
-					    htmlContent += "><a href='salons/getSalonById?id="
+					    htmlContent += "><a href='salons/profile?id="
 					    htmlContent += salon._id
 					    htmlContent += "'><div class='product-image-wrapper'><div class='single-products' id='first_image'><div class='productinfo text-center'>"
 						htmlContent += "<img src='images/home/product1.jpg' alt='' /><h2><a href='a.html'>"
@@ -54,7 +70,7 @@ function getSalonByservices()
 						htmlContent += salon.address.zipcode
 						htmlContent += "</p><p>"
 						htmlContent += salon.phoneNo
-						htmlContent +="</p></div><div class='product-overlay'><div class='overlay-content'></div></div></div></div></a></div>"
+						htmlContent +="</p></div></div></div></a></div>"
 		    		});				
 				else
 					htmlContent += "<h2>Sorry, Currently no salon is providing selected service(s).</h2>"	

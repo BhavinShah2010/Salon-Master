@@ -5,6 +5,7 @@ var category = require('../modules/category');
 var salon = require('../modules/salon');
 var router = express.Router();
 
+
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   res.send('respond with a resource');
@@ -35,11 +36,8 @@ router.post('/add',function(req,res){
             res.send("Unsuccessful");
         }
     else{
-
             console.log("Instance of service schema is successfully uploaded.");
-
             res.send("Successful");
-
         }
     });
 });
@@ -95,12 +93,49 @@ router.post('/getSalonServices',function(req,res){
     });
 });
 
+router.post('/DemoSalonByServices',function(req,res,next){
+    var services = req.body.services;
+    console.log(services);
+    
+    salon.find({}).populate('address').exec(function(err, salons) {
+    if (err) throw err;
+        
+    //res.render('home',{salonData:salons, user:req.user, views:req.session.views});
+    res.json(salons);
+    //return salons;
+  });
+
+    var query = service.find({});
+
+    query.exec(function(err,salonIds) {
+        if(err) {
+            res.json(err);
+            return;
+        }
+        console.log(salonIds);
+        /*var ids = new Array();
+        for(var i=0; i < salonIds.length ; i++) {
+            ids[i] = salonIds[i]['salonID'];
+        }
+        console.log(ids);
+        var salonQuery = salon.find({}).where('_id').in(ids);
+        salonQuery.populate('address').exec(function(err,salons) {
+           if(err) {
+               res.json(err);
+               return;
+           }
+           res.json(salons); 
+        });*/
+        res.json(salonIds);
+    });
+});
+
 
 router.post('/getSalonByServices',function(req,res,next){
     var services = req.body.services;
     console.log(services);
 
-    var query = service.find({}).where('name').in(services).select('salonID');
+    var query = service.find({}).where('name').in(services).select('salonID name');
 
     query.exec(function(err,salonIds) {
         if(err) {

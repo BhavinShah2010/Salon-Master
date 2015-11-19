@@ -124,6 +124,10 @@ router.post('/forgetPassword',function(req,res){
 	})
 });
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> 12a804838b86ebc4bc3a2b61e52985bf63243e0a
 });
 
 //View Profile

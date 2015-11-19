@@ -14,29 +14,26 @@ router.post('/add',function(req,res){
     appoint.event = data.event;
     var temp=data.serviceslist;
     var list=temp.split(',');
-    appoint.serviceslist=list;
-    console.log(list.toString());
+//    appoint.serviceslist=list;
     
     var date=new Date(data.date);
-    var time=date.time.toString();
-    var time=time.split(':');
+    var temp=data.timestamp.toString();
+    var time=temp.split(':');
     date.setHours(time[0]);
     date.setMinutes(time[1]);
     date.setSeconds(time[2]);
     appoint.time=data.date;
-
-   console.log(date);
     appoint.rating=data.rating;
     appoint.totalprice = data.totalprice;
-/*    
+    /*
     // to validate the inputted data
     var err = appoint.validateSync();
     if(err){
             console.log(err);
-            res.send("Validation"+error);
+            res.send("Validation"+err);
             return;
         }
-    
+    */
     //to check if there is any technical or syntax error    
     appoint.save(function(err){
             if(err){
@@ -47,7 +44,6 @@ router.post('/add',function(req,res){
                 res.send("Successful");
             }
         })
-    */
     });
 
 //Get Appointments of a particular Salon
