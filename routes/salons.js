@@ -192,7 +192,7 @@ router.post('/changePassword',function(req,res){
 	salon.findOneAndUpdate({"_id":data.objectId, "password":s.generateHash(data.oldpassword)}, {password: s.password}, function(err, data) {
 		if(err) throw err;
 		//It will not change password if old password is wrong without notifying right now.
-		res.send("Done if old password was you entered correct.");
+		res.send("Done if old password you entered was correct.");
 	})
 });
 
@@ -242,8 +242,8 @@ router.post('/updateRatings',function(req,res){
 
 
 // To check username is available or not
-router.get('/checkUname', function(req,res){
-	salon.findOne({username:req.query.username},function(err, salons) {
+router.post('/checkUname', function(req,res){
+	salon.findOne({username:req.data.username},function(err, salons) {
 	  if(salons){
 	  		res.send('Username not Available');
 	  	}
