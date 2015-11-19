@@ -13,16 +13,16 @@ router.get('/', function(req, res, next) {
 router.post('/add',function(req,res){
     data=req.body;
     var serv=new service();
-    serv.salonId=data.salonId;
+    serv.salonID=data.salonID;
     serv.name=data.name;
     serv.description = data.description;
     serv.price = data.price;
     serv.duration = data.duration;
-<<<<<<< HEAD
+
     //serv.categoryId = data.categoryId;
-=======
-    serv.category=data.category;
->>>>>>> 2395989370da2db03ac5798bc6cda5273fb56607
+
+    //serv.category=data.category;
+
     // to validate the inputted data
     var err = serv.validateSync();
     if(err){
@@ -35,11 +35,11 @@ router.post('/add',function(req,res){
             res.send("Unsuccessful");
         }
     else{
-<<<<<<< HEAD
+
             console.log("Instance of service schema is successfully uploaded.");
-=======
+
             res.send("Successful");
->>>>>>> 2395989370da2db03ac5798bc6cda5273fb56607
+
         }
     });
 });

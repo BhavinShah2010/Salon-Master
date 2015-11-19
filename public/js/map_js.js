@@ -1,5 +1,5 @@
 function initialize() {
-var coords;
+var coords,coords2;
 var lat,longt;
 //var lat=23.19,longt=72.633;
 if (navigator.geolocation) {
@@ -13,7 +13,8 @@ if (navigator.geolocation) {
                 lat = position.coords.latitude;
                 longt= position.coords.longitude;
                 //alert(lat+" "+ longt);
-      coords = new google.maps.LatLng(lat, longt);  
+      coords = new google.maps.LatLng(lat, longt);
+      coords2 = new google.maps.LatLng(lat+0.0015, longt+0.0015);   
      // 
         var mapCanvas = document.getElementById('map');
         var mapOptions = {
@@ -30,6 +31,11 @@ if (navigator.geolocation) {
             position: coords,
             map: map,
             title: "Current location!"
+            });
+            var marker = new google.maps.Marker({
+            position: coords2,
+            map: map,
+            title: "xyz salon"
             });
             }   
  }

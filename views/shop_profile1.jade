@@ -2,7 +2,11 @@ include header
 doctype html
 html(lang='en')
   head
-    link(href='css/stylesheet.css', rel='stylesheet')
+    link(rel='stylesheet', href='/css/jquery.raty.css')
+    link(href='/css/star.css', rel='stylesheet', type='text/css')
+    script(src='/js/jquery_fixstar.raty.js')
+    script(src='/js/RatingJs.js')
+    link(href='/css/stylesheet.css', rel='stylesheet')
     title Shop Details | Salon Master
     meta(charset='utf-8')
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
@@ -16,7 +20,7 @@ html(lang='en')
             .product-details
               .col-sm-5
                 .view-product
-                  img(src='images/product-details/1.jpg', alt='')
+                  img(src='/images/product-details/1.jpg', alt='')
               .col-sm-7
                 .product-information
                   h2
@@ -35,29 +39,18 @@ html(lang='en')
                   br
                   label#lblservicelabel Offers are
                   table#tblOffers.formtable
-                  p
-                    span.starRating(style='width:30%;')
-                      input#rating5(type='radio', name='rating', value='5')
-                      label(for='rating5') 5
-                      input#rating4(type='radio', name='rating', value='4')
-                      label(for='rating4') 4
-                      input#rating3(type='radio', name='rating', value='3', checked='')
-                      label(for='rating3') 3
-                      input#rating2(type='radio', name='rating', value='2')
-                      label(for='rating2') 2
-                      input#rating1(type='radio', name='rating', value='1')
-                      label(for='rating1') 1
+                  #fixstardefault
+                  br
                   span
                     button.btn.btn-fefault.cart(type='button')
-                      i.fa.fa-shopping-cart
-                      |                                             Book Shop
+                      | Book Appointment
             .category-tab.shop-details-tab
               .col-sm-12
                 ul.nav.nav-tabs
                   li.active
-                    a#aService(href='#services', data-toggle='tab') Services
+                    a#aService(href='#Service', data-toggle='tab') Services
                   li
-                    a#aPrevious(href='#companyprofile', data-toggle='tab') Previous Appointments
+                    a#aPrevious(href='#divPrevious', data-toggle='tab') Previous Appointments
                   li
                     a#aReviews(href='#reviews', data-toggle='tab') Reviews
               .tab-content

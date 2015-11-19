@@ -15,12 +15,11 @@ router.post('/getSalon',function(req,res){
       //res.json(salons);
       res.json(salons);
 
-<<<<<<< HEAD
+
   })
 });
 
-=======
->>>>>>> 2395989370da2db03ac5798bc6cda5273fb56607
+
 //refirect to index.js if user is not logged in
 /*router.use(function(req,res,next){
 */
@@ -30,10 +29,9 @@ router.post('/getSalon',function(req,res){
   }
   next();
 });
-<<<<<<< HEAD
-=======
 
->>>>>>> 2395989370da2db03ac5798bc6cda5273fb56607
+
+
 */
 //redirect to Home page
 router.get('/', function(req, res, next) {
@@ -59,17 +57,12 @@ router.get('/', function(req, res, next) {
 });
 
 
-router.get('/', function(req, res, next) {
-  salon.find({}, function(err, salons) {
-    if (err) throw err;
-    res.render('home',{salonData:salons, user:req.user, views:req.session.views});
-  })
 router.get('/profile', function(req, res, next) {
 	console.log();
   res.render('shop_profile1',{msg:req.message, views:req.session.views});
 });
-<<<<<<< .merge_file_a11912
-=======
+
+
 
 // To check username is available or not
 router.post('/checkLogin', function(req,res){
@@ -87,7 +80,7 @@ router.post('/checkLogin', function(req,res){
 	  		res.json({"status":"false"});
 	  	}
 	});
->>>>>>> .merge_file_a07876
+
 });
 
 
