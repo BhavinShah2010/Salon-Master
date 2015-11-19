@@ -7,48 +7,136 @@
     <meta name="author" content="">
     <title>Appointment | Salon Master</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/jquery.css" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <link href="css/prettyPhoto.css" rel="stylesheet">
     <link href="css/price-range.css" rel="stylesheet">
     <link href="css/animate.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
     <link href="css/responsive.css" rel="stylesheet">
-    <!--[if lt IE 9]>
-    <script src="js/html5shiv.js"></script>
-    <script src="js/respond.min.js"></script>
-    <![endif]-->
+    
+
+    <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2015.3.1111/styles/kendo.common-material.min.css" />
+    <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2015.3.1111/styles/kendo.material.min.css" />
+    <link rel="stylesheet" href="http//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+
     <link rel="shortcut icon" href="images/ico/favicon.ico">
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
-	
-    <style>html { font-size: 14px; font-family: Arial, Helvetica, sans-serif; }</style>
-    <title></title>
-    <link rel="stylesheet" href="//kendo.cdn.telerik.com/2015.3.930/styles/kendo.common-material.min.css" />
-    <link rel="stylesheet" href="//kendo.cdn.telerik.com/2015.3.930/styles/kendo.material.min.css" />
+    
+    
+    <link rel="stylesheet" href="css/jquery.raty.css"> 
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/popup_box.css">
 
-    <script src="//kendo.cdn.telerik.com/2015.3.930/js/jquery.min.js"></script>
-    <script src="//kendo.cdn.telerik.com/2015.3.930/js/kendo.all.min.js"></script>
-
-    <style>html { font-size: 14px; font-family: Arial, Helvetica, sans-serif; }</style>
-    <title></title>
-    <link rel="stylesheet" href="//kendo.cdn.telerik.com/2015.3.930/styles/kendo.common-material.min.css" />
-    <link rel="stylesheet" href="//kendo.cdn.telerik.com/2015.3.930/styles/kendo.material.min.css" />
-
-    <script src="//kendo.cdn.telerik.com/2015.3.930/js/jquery.min.js"></script>
-    <script src="//kendo.cdn.telerik.com/2015.3.930/js/kendo.all.min.js"></script>
-  <style>
-  
-  </style>
-	<script>
-	
-	</script>
-
-</head>
+    </head>
 <!--/head-->
 
 <body>
+
+
+<div id="main_box">
+        <div id="popup_box">
+            <div id="popup_header">
+                <span>Select New Date & Time : </span>
+                <div id="close"><img src="images/Cross/Cross.png" width="20" height="20"></div>
+            </div>
+
+
+            <table class="new_date_time" cellpadding="5px">
+                                        <tr>
+                                            <td>
+                                                <span>Date and Time:</span><br>
+                                            </td>
+                                             <td colspan="2">
+                                                 <div class="demo-section k-content">
+                                                  <input id="new_date_time" style="width: 100%;" maxlength=19/>
+                                                 </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr id="new_date_time_err" class="alert alert-danger" >
+                                            <td colspan="3">
+                                            <label id="new_date_time_err_msg"></label>
+                                            </td>
+                                          </tr>
+                                        <tr>
+                                            <td colspan="3">
+                                                
+                                                <center><button type="button" id="btnDelaySave" style="background: #FE980F; border:none; color:#fff; width:30%; height:2.5em;">Save</button></center>
+                                            
+                                            </td>
+                                        </tr>  
+                                    </table>
+                                    
+
+
+
+        </div>
+</div>
+
+    <header id="header">
+        
+        <div class="header-middle">
+            <!--header-middle-->
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="logo pull-left">
+                            <a href="index.html">
+                                <img src="images/Logo/Salon_logo.png" alt="" width:"130" height="50" /></a>
+                        </div>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="shop-menu pull-right">
+                            <ul id="nav_before_login" class="nav navbar-nav" style="display:none;" >
+                                <li><a href="login.html"><i class="fa fa-lock"></i>Login</a></li>
+                            </ul>
+                            <ul id="nav_after_login" class="nav navbar-nav" >
+                               <li ><a href="#"><span id="loc_name">Location</span></a>
+                               
+                               </li>
+                               <li class="dropdown"><a href="#">Welcome , UserName<i class="fa fa-angle-down"></i></a>
+                                    <ul id="usersubmenu" role="menu" class="sub-menu">
+                                        <li><a href="user_profile.html" class="usermenufont">Myaccount</a></li><br>
+                                        <li><a href="#" class="usermenufont">Logout</a></li>
+                                    </ul>
+                                </li> 
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="header-bottom"><!--header-bottom-->
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-9">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                        </div>
+                        <div class="mainmenu pull-left">
+                             <ul class="nav navbar-nav collapse navbar-collapse">
+                                <li><a href="index.html">Home</a></li>
+                                <li><a href="contact-us.html">Salon</a></li>
+                                <li><a href="contact-us.html">Map</a></li>
+                                
+                                <li><a href="contact-us.html">Contact Us</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!--/header-bottom-->
+    </header><!--/header finish-->
     <section>
         <div class="container">
             <div class="row">
@@ -67,75 +155,173 @@
                                  <div class="col-sm-11">
                                     <table border="2" class="table">
                                           <tr>
+                                            <th> Salon Name</th>
                                             <th>Date</th>
                                             <th>Service</th>
                                             <th>Price</th>
-                                            <th>status</th>
-                                            <th>Rating/Cancel Appointment</th>
+                                            <th>Status</th>
+                                            <th>Give Rating</th>
                                       </tr>
                                         <tr>
+                                            <td> Lips & Tips</td>
                                             <td>AAAAA</td>
                                             <td>BBBBB</td>
                                             <td>CCCCC</td>
-                                            <td>DDDDD</td>
-                                            <td><a href="#">Cancel</a> <a href="#">Delay</a></td>
+                                            <td id="status">DDDDD</td>
+                                            <td>
+        
+           <div id="divDefault"></div> 
+           <div id="cancel_delay_box"><a id="cancel" style="cursor:pointer;"> Cancel</a> / <a id="delay" style="cursor:pointer;"> Delay</a></div>  </td>
                                         </tr>
                                         <tr>
+                                            <td> Lips & Tips</td>
                                             <td>AAAAA</td>
                                             <td>BBBBB</td>
                                             <td>CCCCC</td>
                                             <td>DDDDD</td>
-                                            <td><a href="#">Cancel</a><a href="#">Delay</a></td>
+                                            <td>
+                                             <div id="default"></div>
                                         </tr>
                                         <tr>
+                                            <td> Lips & Tips</td>
                                             <td>AAAAA</td>
                                             <td>BBBBB</td>
                                             <td>CCCCC</td>
                                             <td>DDDDD</td>
-                                            <td><a href="#">Give Rating</a></td>
+                                            <td>
+                                             <span class="rating">
+                                                <input id="rating5" type="radio" name="rating" value="5">
+                                                <label for="rating5">5</label>
+                                                <input id="rating4" type="radio" name="rating" value="4">
+                                                <label for="rating4">4</label>
+                                                <input id="rating3" type="radio" name="rating" value="3">
+                                                <label for="rating3">3</label>
+                                                <input id="rating2" type="radio" name="rating" value="2">
+                                                <label for="rating2">2</label>
+                                                <input id="rating1" type="radio" name="rating" value="1">
+                                                <label for="rating1">1</label>
+                                            </span></td>
 
                                         </tr>
                                         <tr>
+                                            <td> Lips & Tips</td>
                                             <td>AAAAA</td>
                                             <td>BBBBB</td>
                                             <td>CCCCC</td>
                                             <td>DDDDD</td>
-                                            <td><a href="#">GiveRating</a></td>
+                                            <td>
+                                             <span class="rating">
+                                                <input id="rating5" type="radio" name="rating" value="5">
+                                                <label for="rating5">5</label>
+                                                <input id="rating4" type="radio" name="rating" value="4">
+                                                <label for="rating4">4</label>
+                                                <input id="rating3" type="radio" name="rating" value="3">
+                                                <label for="rating3">3</label>
+                                                <input id="rating2" type="radio" name="rating" value="2">
+                                                <label for="rating2">2</label>
+                                                <input id="rating1" type="radio" name="rating" value="1">
+                                                <label for="rating1">1</label>
+                                            </span></td>
                                         </tr>
                                         <tr>
+                                            <td> Lips & Tips</td>
                                             <td>AAAAA</td>
                                             <td>BBBBB</td>
                                             <td>CCCCC</td>
                                             <td>DDDDD</td>
-                                            <td>Rating</td>
+                                            <td>
+                                             <span class="rating">
+                                                <input id="rating5" type="radio" name="rating" value="5">
+                                                <label for="rating5">5</label>
+                                                <input id="rating4" type="radio" name="rating" value="4">
+                                                <label for="rating4">4</label>
+                                                <input id="rating3" type="radio" name="rating" value="3">
+                                                <label for="rating3">3</label>
+                                                <input id="rating2" type="radio" name="rating" value="2">
+                                                <label for="rating2">2</label>
+                                                <input id="rating1" type="radio" name="rating" value="1">
+                                                <label for="rating1">1</label>
+                                            </span></td>
                                         </tr>
                                         <tr>
+                                            <td> Lips & Tips</td>
                                             <td>AAAAA</td>
                                             <td>BBBBB</td>
                                             <td>CCCCC</td>
                                             <td>DDDDD</td>
-                                            <td>Rating</td>
+                                            <td>
+                                             <span class="rating">
+                                                <input id="rating5" type="radio" name="rating" value="5">
+                                                <label for="rating5">5</label>
+                                                <input id="rating4" type="radio" name="rating" value="4">
+                                                <label for="rating4">4</label>
+                                                <input id="rating3" type="radio" name="rating" value="3">
+                                                <label for="rating3">3</label>
+                                                <input id="rating2" type="radio" name="rating" value="2">
+                                                <label for="rating2">2</label>
+                                                <input id="rating1" type="radio" name="rating" value="1">
+                                                <label for="rating1">1</label>
+                                            </span></td>
                                         </tr>
                                         <tr>
+                                            <td> Lips & Tips</td>
                                             <td>AAAAA</td>
                                             <td>BBBBB</td>
                                             <td>CCCCC</td>
                                             <td>DDDDD</td>
-                                            <td>Rating</td>
+                                            <td>
+                                             <span class="rating">
+                                                <input id="rating5" type="radio" name="rating" value="5">
+                                                <label for="rating5">5</label>
+                                                <input id="rating4" type="radio" name="rating" value="4">
+                                                <label for="rating4">4</label>
+                                                <input id="rating3" type="radio" name="rating" value="3">
+                                                <label for="rating3">3</label>
+                                                <input id="rating2" type="radio" name="rating" value="2">
+                                                <label for="rating2">2</label>
+                                                <input id="rating1" type="radio" name="rating" value="1">
+                                                <label for="rating1">1</label>
+                                            </span></td>
                                         </tr>
                                         <tr>
+                                            <td> Lips & Tips</td>
                                             <td>AAAAA</td>
                                             <td>BBBBB</td>
                                             <td>CCCCC</td>
                                             <td>DDDDD</td>
-                                            <td>Rating</td>
+                                            <td>
+                                             <span class="rating">
+                                                <input id="rating5" type="radio" name="rating" value="5">
+                                                <label for="rating5">5</label>
+                                                <input id="rating4" type="radio" name="rating" value="4">
+                                                <label for="rating4">4</label>
+                                                <input id="rating3" type="radio" name="rating" value="3">
+                                                <label for="rating3">3</label>
+                                                <input id="rating2" type="radio" name="rating" value="2">
+                                                <label for="rating2">2</label>
+                                                <input id="rating1" type="radio" name="rating" value="1">
+                                                <label for="rating1">1</label>
+                                            </span></td>
                                         </tr>
                                         <tr>
+                                            <td> Lips & Tips</td>
                                             <td>AAAAA</td>
                                             <td>BBBBB</td>
                                             <td>CCCCC</td>
                                             <td>DDDDD</td>
-                                            <td>Rating</td>
+                                            <td>
+                                             <span class="rating">
+                                                <input id="rating5" type="radio" name="rating" value="5">
+                                                <label for="rating5">5</label>
+                                                <input id="rating4" type="radio" name="rating" value="4">
+                                                <label for="rating4">4</label>
+                                                <input id="rating3" type="radio" name="rating" value="3">
+                                                <label for="rating3">3</label>
+                                                <input id="rating2" type="radio" name="rating" value="2">
+                                                <label for="rating2">2</label>
+                                                <input id="rating1" type="radio" name="rating" value="1">
+                                                <label for="rating1">1</label>
+                                            </span></td>
                                         </tr>
                                     </table>
                                 </div>
@@ -160,11 +346,9 @@
                                             	<span>Date and Time:</span><br>
                                             </td>
                                              <td width="29%">
-                                             <div class="demo-section k-content">
-                                                <input  id="datetimepicker" style="width: 100%;" />
-                                            </div>
-                                                 <!--input type="datetime-local" name="bdaytime" class="fullwidth">
-                                                <!--<input type="text" placeholder="Mobile Number" id="txtUserMobileNum" maxlength="10" name="phno" /-->
+                                                 <div class="demo-section k-content">
+                                                  <input id="datetimepicker" style="width: 100%;" maxlength=19/>
+                                                 </div>
                                             </td>
                                             
                                             <td width="4%">
@@ -190,7 +374,7 @@
                                         </tr>
                                         <tr>
                                         <td colspan="5" id="servicelbltr" class="hiddentr">
-                                        		<span>Select Services:</span>
+                                        		<span>&nbspSelect Services:</span>
                                         </td>
                                         </tr>
                                         <tr >
@@ -288,7 +472,7 @@
                                           </tr>
                                         <tr>
                                             <td>
-                                                <button type="button" id="btnBook" >Book</button>
+                                                <button type="button" id="btnBook">Book</button>
                                             </td>
                                         </tr>
                                         </table>
@@ -303,158 +487,62 @@
         </div>
       </div>
     </section>
+
+
+    <div class="header_top" style="bottom:0 ; position:fixed; width:100%;"><!--header_top-->
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="contactinfo">
+                            <ul class="nav nav-pills">
+                                <li>&copy Copyright @ Salon Master</a></li>
+                                <!--<li><a href=""><i class="fa fa-envelope"></i> info@domain.com</a></li>-->
+                            </ul>
+                        </div>
+                    </div>
+            </div>
+        </div><!--/header_top-->
+<script src="http://kendo.cdn.telerik.com/2015.3.1111/js/jquery.min.js"></script>
+    <script src="http://kendo.cdn.telerik.com/2015.3.1111/js/kendo.all.min.js"></script>
+ 
       <script src="js/jquery.js"></script>
+       <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src="js/price-range.js"></script>
     <script src="js/jquery.scrollUp.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery.prettyPhoto.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/Appointment.js"></script>
 
+     
+   
+<script src="http://kendo.cdn.telerik.com/2015.3.1111/js/jquery.min.js"></script>
+    <script src="http://kendo.cdn.telerik.com/2015.3.1111/js/kendo.all.min.js"></script>
+    
     <script>
-    $(document).ready(function () {
-		$("#datetimepicker").kendoDateTimePicker()
-                                  .closest(".k-widget")
-                                  .attr("id", "datetimepicker_wrapper");
-
-                    var datetimepicker = $("#datetimepicker").data("kendoDateTimePicker");
-
-                    var setValue = function () {
-                        datetimepicker.value($("#value").val());
-                    };
-
-                    $("#enable").click(function() {
-                        datetimepicker.enable();
+                $(document).ready(function () {
+                    // create DateTimePicker from input HTML element
+                    $("#datetimepicker").kendoDateTimePicker({
+                        value:new Date()
                     });
 
-                    $("#disable").click(function() {
-                        datetimepicker.enable(false);
+
+                });
+
+                 $(document).ready(function () {
+                    // create DateTimePicker from input HTML element
+                    $("#new_date_time").kendoDateTimePicker({
+                        value:new Date()
                     });
 
-                    $("#readonly").click(function() {
-                        datetimepicker.readonly();
-                    });
 
-                    $("#openDateView").click(function() {
-                        datetimepicker.open("date");
-                    });
+                });
+            </script>   
 
-                    $("#openTimeView").click(function() {
-                        datetimepicker.open("time");
-                    });
+    <script src="js/jquery.raty.js"></script>
+    <script src="js/RatingJs.js"></script>
+     
 
-                    $("#closeDateView").click(function() {
-                        datetimepicker.close("date");
-                    });
-
-                    $("#closeTimeView").click(function() {
-                        datetimepicker.close("time");
-                    });
-
-                    $("#value").kendoDateTimePicker({
-                        change: setValue
-                    });
-
-                    $("#set").click(setValue);
-
-                    $("#get").click(function() {
-                        alert(datetimepicker.value());
-                    });
-
-		$('#salonList').change(function(){
-			if($('#salonList').val()=='0')
-			{
-				$('#servicelbltr').css('display','none');
-				$('#servicelisttr').css('display','none');
-			}
-			else
-			{
-				$('#servicelbltr').css('display','table-row');
-				$('#servicelisttr').css('display','table');
-			}
-		});
-		$('input[name="event"]').change(function ()
-		{
-			
-			if($('input[name="event"]:checked').val()=='yes')
-			{
-				$('#Eventtr').css('display','table-row');
-			}
-			else
-			{
-				$('#Eventtr').css('display','none');
-			}
-		});
-		$( '#btnBook' ).click(function() {
-			var card_type;
-			var datetimereg=/[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1]) (2[0-3]|[01][0-9]):[0-5][0-9]/;
-			if($('#datetimepicker').val()=='')
-			{
-				$('#errmsg').text('Please Enter Date');
-				$('#errortr').css('display','table-row');
-				return false;
-			}
-			else if(datetimereg.test($('#datetimepicker').val()))
-			{
-				$('#errmsg').text('Please Enter Valid date & Time');
-				$('#errortr').css('display','table-row');
-				return false;
-			}
-		  else if($('#salonList').val()=='0')
-			{
-				$('#errmsg').text('Please Select salon');
-				$('#errortr').css('display','table-row');
-				return false;
-			}
-			else if($('input[type=checkbox]:checked').length == 0)
-			{
-				$('#errmsg').text('Please Select atleast one services');
-				$('#errortr').css('display','table-row');
-				return false;
-			}
-			else if($('input[name="event"]:checked').val()=='yes')
-			{
-				 var filter = /^[a-zA-Z\s]+$/;
-				 if($('#txteventname').val()=='')
-				{
-					$('#errmsg').text('Please enter event name');
-					$('#errortr').css('display','table-row');
-					return false;
-				}
-				else if (!filter.test(($("#txteventname").val()))) {
-					$('#errmsg').text('Event name allow alphabet only');
-					$('#errortr').css('display','table-row');
-					return false;
-				}
-				else if($('#txteventtype').val()=='')
-				{
-					$('#errmsg').text('Please enter event type');
-					$('#errortr').css('display','table-row');
-					return false;
-				}
-				else if (!filter.test(($("#txteventtype").val()))) {
-					$('#errmsg').text('Event type allow alphabet only');
-					$('#errortr').css('display','table-row');
-					return false;
-				}
-			}
-		});
-			
-		$('input[type=checkbox]').change(function () {
-			var pretotprice=parseInt($("#totalprice").val(),10);
-			var checkedboxvalue=parseInt($(this).val(),10);
-    if ($(this).is(":checked")) {
-		var val=pretotprice+checkedboxvalue;
-       $('#totalprice').val(val);
-        return;
-    }
-	var val=pretotprice-checkedboxvalue;
-	$('#totalprice').val(val);
-    //Here do the stuff you want to do when 'unchecked'
-});
-
-});
-    
-    
-    </script>
+             
 </body>
 </html>
