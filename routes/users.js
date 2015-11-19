@@ -110,7 +110,7 @@ router.post('/add',function(req,res)
         }
     });
 
-<<<<<<< HEAD
+
 //Forget Password
 router.post('/forgetPassword',function(req,res){
 	data=req.body;
@@ -124,9 +124,8 @@ router.post('/forgetPassword',function(req,res){
 	})
 });
 
-=======
 });
->>>>>>> 17c6c9c2c12f2540cb108e6c57efff24d13e25c5
+
 //View Profile
 router.post('/getDetails',function(req,res){
     data=req.body;

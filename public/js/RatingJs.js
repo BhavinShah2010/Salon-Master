@@ -2,7 +2,8 @@
 $.fn.raty.defaults.path = 'images/Star';
 
 $(function () {
-
+ $('#divDefault').raty();
+   
    $('#default').raty();
    
   /*  $('#default').raty({
