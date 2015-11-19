@@ -75,7 +75,7 @@ router.get('/', function(req, res, next) {
 
 router.get('/profile', function(req, res, next) {
 	console.log();
-  res.render('shop_profile1',{msg:req.message, views:req.session.views});
+  res.render('shop_profile1',{salonId:req.query.id, msg:req.message, views:req.session.views});
 });
 
 
@@ -183,8 +183,7 @@ router.post('/add',function(req,res){
 				res.send('Instance of salon schema is successfully added');
 			}
 		})
-	}
-});
+	});
 
 
 //Update Salon Details
@@ -246,7 +245,7 @@ router.get('/getSalons', function(req, res, next) {
 router.get('/getSalonById', function(req, res, next) {
   
   //console.log(req.query.id);
-  salon.find({"_id": req.query.id}).populate('address').	exec(function(err, salons) {
+  salon.find({"_id": req.query.id}).populate('address').exec(function(err, salons) {
     if (err) throw err;
     //res.render('shop_profile1',{salon:salons, user:req.user, views:req.session.views});
   	res.json(salons);

@@ -113,7 +113,7 @@ html(lang='en')
                 span#text_value  
               each salon in salonData
                 div(class="col-sm-4" id="#{salon._id}")
-                  a(href="salons/getSalonById?id=#{salon._id}")
+                  a(href="salons/profile?id=#{salon._id}")
                     .product-image-wrapper
                       #first_image.single-products
                         .productinfo.text-center
@@ -125,8 +125,6 @@ html(lang='en')
                             | #{salon.address.city}
                           p #{salon.address.state}-#{salon.address.zipcode}
                           p Contact No: #{salon.phoneNo}
-                        .product-overlay
-                          .overlay-content
                           // features_items
     .header_top
       .container
@@ -142,5 +140,6 @@ html(lang='en')
     script(src='/js/jquery.prettyPhoto.js')
     script(src='/js/main.js')
     script(type='text/javascript', src='/js/jquery_min.js')
-
+    script(type='text/javascript')
+    
 
