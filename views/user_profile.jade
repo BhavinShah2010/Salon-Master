@@ -1,0 +1,105 @@
+include header
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(name='description', content='')
+    meta(name='author', content='')
+    title Profile | Salon Master
+  // /head
+  script(type='text/javascript', src='js/user_profile.js')
+  script(type='text/javascript', src='/js/user_profile_script.js')
+  body
+    label#txtData(style='display:none')
+    #middle_cont
+      #change_pass_box
+        #change_pass_header
+          span  Change Password
+        .change_pass_text
+          .change_pass_tag
+            span  Email : 
+          .change_pass_email
+            span
+              label#lblChangePwdEmail
+        form(action='#')
+          .change_pass_text_box
+            .change_pass_tag
+              span  Current Password : 
+            .change_pass_textbox
+              input#current_pass(type='password', name='current_pass')
+          .change_pass_text_box
+            .change_pass_tag
+              span  New Password : 
+            .change_pass_textbox
+              input#new_password(type='password', name='new_password')
+          .change_pass_text_box
+            .change_pass_tag
+              span  Confirm New Password : 
+            .change_pass_textbox
+              input#confirm_pass(type='password', name='confirm_pass')
+          .change_pass_text_box.col-sm-12
+            #divResult.alert.alert-danger.col-sm-7(style='height: 50px;display:none')
+              label#lblError .
+          .change_pass_text_box(style='border: height: 12%; margin-left:20%;')
+            input#change_pass.change_pass(type='button', value='Save')
+            input#cancel_pass.cancel_pass(type='button', value='Cancel')
+      // Change Password Box Complete
+      #previous_booking
+        #previous_booking_header
+      #user_det_cnt
+        #user_det_edit_box(onclick='edit_det_call()')
+          img(src='/images/user_images/Edit_button.png', height='20')
+        .user_det
+          .user_det_heading
+            span  Name : 
+          #user_name.user_det_value
+            span
+              label#lblUserName
+          #user_name_text(style='display:none;')
+            input#user_name_val(type='text', name='user_name', value='')
+        .user_det
+          .user_det_heading
+            span Email : 
+          #user_email.user_det_value
+            span
+              label#lblUserEmail
+          #user_email_text(style='display:none;')
+            input#user_email_val(type='text', name='user_email', value='')
+        .user_det
+          .user_det_heading
+            span  Contact Number :
+          #user_contact.user_det_value
+            span
+              label#lblUserContact
+          #user_contact_text(style='display:none;')
+            input#user_contact_val(type='text', name='user_contact', value='')
+        .user_det
+          .user_det_heading
+            span  Gender : 
+          .user_det_value
+            span
+              label#lblUserGender
+        #user_det_change_btn(style='height: 12%; margin-left:30%; display:none;')
+          input#change_det.change_det(type='button', value='Save', onclick='user_det_save()')
+          input#cancel_det.cancel_det(type='button', value='Cancel')
+      // user_det_cnt complete
+      #left_box
+        #user_pic_cont
+          img(src='/images/user_images/1.jpg', width='150', height='150')
+        .col-sm-3(style='width:100%;')
+          .left-sidebar
+            #accordian.panel-group.category-products
+              // category-productsr
+              .user.detail(style='cursor:pointer;', onclick='user_det_call()')
+                h2 User Detail
+              #change_pass_menu.change_pass(style='cursor:pointer;', onclick='change_pass_call()')
+                h2 Change Password
+              .previous.booking(style='cursor:pointer;', onclick='previous_booking_call()')
+                h2 Previous Booking
+        // col-sm-3 complete
+    // middle_cnt complete
+ script(type='text/javascript').
+      var frontEndData = !{JSON.stringify(user)}
+      //console.log(frontEndData);     
+      $("#txtData").html(JSON.stringify(frontEndData));

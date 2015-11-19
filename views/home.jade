@@ -1,0 +1,146 @@
+include header
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(name='description', content='')
+    meta(name='author', content='')
+    title Home | Salon Master
+    link(href='/css/bootstrap.min.css', rel='stylesheet')
+    link(href='/css/font-awesome.min.css', rel='stylesheet')
+    link(href='/css/prettyPhoto.css', rel='stylesheet')
+    link(href='/css/price-range.css', rel='stylesheet')
+    link(href='/css/animate.css', rel='stylesheet')
+    link(href='/css/main.css', rel='stylesheet')
+    link(href='/css/responsive.css', rel='stylesheet')
+    script(src='/js/jquery_min.js')
+    script(src='/js/jquery.js')
+    script(type='text/javascript', src='/js/home_page.js')
+    //if lt IE 9
+      script(src='/js/html5shiv.js')
+      script(src='/js/respond.min.js')
+    link(rel='shortcut icon', href='/images/ico/favicon.ico')
+    link(rel='apple-touch-icon-precomposed', sizes='144x144', href='/images/ico/apple-touch-icon-144-precomposed.png')
+    link(rel='apple-touch-icon-precomposed', sizes='114x114', href='/images/ico/apple-touch-icon-114-precomposed.png')
+    link(rel='apple-touch-icon-precomposed', sizes='72x72', href='/images/ico/apple-touch-icon-72-precomposed.png')
+    link(rel='apple-touch-icon-precomposed', href='/images/ico/apple-touch-icon-57-precomposed.png')
+  // /head
+  script(type='text/javascript').
+    $(document).ready(function(){
+    document.getElementById("search-text").value = "";
+    });
+  body
+    section#slider
+      // slider
+      .container
+        .row
+          .col-sm-12
+            #slider-carousel.carousel.slide(data-ride='carousel')
+              ol.carousel-indicators
+                li.active(data-target='#slider-carousel', data-slide-to='0')
+                li(data-target='#slider-carousel', data-slide-to='1')
+                li(data-target='#slider-carousel', data-slide-to='2')
+                li(data-target='#slider-carousel', data-slide-to='3')
+                li(data-target='#slider-carousel', data-slide-to='4')
+              .carousel-inner
+                .item.active
+                  .container
+                    .row
+                      .col-sm-12
+                        #slider-carousel.carousel.slide(data-ride='carousel')
+                          ol.carousel-indicators
+                            li.active(data-target='#slider-carousel', data-slide-to='0')
+                            li(data-target='#slider-carousel', data-slide-to='1')
+                            li(data-target='#slider-carousel', data-slide-to='2')
+                            li(data-target='#slider-carousel', data-slide-to='3')
+                            li(data-target='#slider-carousel', data-slide-to='4')
+                          .carousel-inner
+                  .col-sm
+                    img.girl.img-responsive(src='../images/home/Slideshow_Images/Image5.jpg', alt='')
+                .item
+                  .col-sm
+                    img.girl.img-responsive(src='../images/home/Slideshow_Images/Image2.jpg', alt='')
+                .item
+                  .col-sm
+                    img.girl.img-responsive(src='../images/home/Slideshow_Images/Image3.jpg', alt='')
+                .item
+                  .col-sm
+                    img.girl.img-responsive(src='../images/home/Slideshow_Images/Image4.jpg', alt='')
+                .item
+                  .col-sm
+                    img.girl.img-responsive(src='../images/home/Slideshow_Images/Image1.jpg', alt='')
+              a.left.control-carousel.hidden-xs(href='#slider-carousel', data-slide='prev')
+                i.fa.fa-angle-left
+              a.right.control-carousel.hidden-xs(href='#slider-carousel', data-slide='next')
+                i.fa.fa-angle-right
+    // /slider
+    section
+      .row
+        .col-sm-3
+          .left-sidebar
+            #accordian.panel-group.category-products
+              // category-productsr
+              .panel-heading
+                h2.panel-title
+                  a(data-toggle='collapse', data-parent='#accordian', href='#Services')
+                    span.badge.pull-right
+                      i.fa.fa-plus
+                    |                 Services
+              #Services.panel-collapse.collapse
+                each cat in category
+                  .panel.panel-default
+                    .panel-heading
+                      h4.panel-title
+                        a(data-toggle='collapse', data-parent='#accordian', href="\##{cat.name}")
+                          span.badge.pull-right
+                            i.fa.fa-plus
+                          |  #{cat.name}
+                    div(id="#{cat.name}", class="panel-collapse collapse")
+                      .panel-body
+                        -var subCat = cat.sub_cat
+                        ul
+                          each sub in subCat
+                            li 
+                              | #{sub} 
+                              input#Body_spa(type='checkbox', name='services[]', value='#{sub}', onchange='updateSalons(this)')
+        .container
+          div(class="col-sm-9 padding-right", id="divSalons")         
+            .features_items
+              // features_items
+              h2.title.text-center
+                | Salons in 
+                span#text_value  
+              each salon in salonData
+                div(class="col-sm-4" id="#{salon._id}")
+                  a(href="salons/getSalonById?id=#{salon._id}")
+                    .product-image-wrapper
+                      #first_image.single-products
+                        .productinfo.text-center
+                          img(src='/images/home/product1.jpg', alt='')
+                          h2
+                            a(href='a.html') #{salon.name}
+                          p #{salon.type} salons
+                          p #{salon.address.area}
+                            | #{salon.address.city}
+                          p #{salon.address.state}-#{salon.address.zipcode}
+                          p Contact No: #{salon.phoneNo}
+                        .product-overlay
+                          .overlay-content
+                          // features_items
+    .header_top
+      .container
+        .row
+          .col-sm-6
+            .contactinfo
+              ul.nav.nav-pills
+                li &copy Copyright @ Salon Master
+    script(src='/js/jquery.js')
+    script(src='/js/bootstrap.min.js')
+    script(src='/js/jquery.scrollUp.min.js')
+    script(src='/js/price-range.js')
+    script(src='/js/jquery.prettyPhoto.js')
+    script(src='/js/main.js')
+    script(type='text/javascript', src='/js/jquery_min.js')
+
+

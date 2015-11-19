@@ -15,27 +15,30 @@ router.post('/add',function(req,res){
     // to validate the inputted data
     var err = offers.validateSync();
     if(err){
-            console.log(err);
+            res.send(err);
             return;
         }
         
     //to check if there is any technical or syntax error    
     offers.save(function(err){
             if(err){
-                console.log(err);
+                res.send("Unsuccessful");
             }
             else{
-                console.log("Offer's data is successfully uploaded.");
+                res.send("Successful");
             }
         })
 });
 
 //Get Current Offers
 router.post('/getCurrentOffers',function(req,res){
-    var now=new Date();
-    offer.find({"startDate": {"$lte": now}, "endDate":{"gte":now}}, function(err, currentOffers) {
+    var now=new Date().toISOString();
+    //var now = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '')
+    //console.log("Date" + now);
+    
+    offer.find({"startDate": {"$lte": now}, "endDate":{"$gte":now}}, function(err, currentOffers) {
     if (err) throw err;
-    res.send(currentOffers);
+    res.send(currentOffers);  
   })
 });
 
@@ -44,10 +47,11 @@ router.post('/checkStock',function(req,res){
     data=req.body;
     var objectId=data.objectId;
     offer.find({ "_id": objectId }).exec(function(err, data) {
-        if (err) throw err;
+        if (err){
+            res.send('Unsuccessful');
+        }
         res.send(data);
         });
-
 });
 
 //delete Offer
@@ -55,10 +59,10 @@ router.post('/delete',function(req,res){
     data=req.body;
     offer.findOneAndRemove({ "_id":data.objectId }, function(err){
         if (err){
-            res.send('Deletion Problem' + err);
+            res.send('Unsuccessful');
         }
         else{
-            res.send('Offer Deleted successfully');
+            res.send('Successful');
         }
     });
 });
