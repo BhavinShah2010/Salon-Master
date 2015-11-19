@@ -90,8 +90,8 @@ $(document).ready(function () {
             $("#divSingup").css("display", "block");
             return false;
         }
-        if ($("#txtState").val() == '') {
-            $("#lblSingUpError").html("Please Enter State");
+        if ($("#Statelistdown").val() == 'None') {
+            $("#lblSingUpError").html("Please Select State");
             $("#divSingup").css("display", "block");
             return false;
         }
