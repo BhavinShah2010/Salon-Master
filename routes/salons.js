@@ -7,13 +7,13 @@ var passport = require('./../auth');
 /* GET users listing. */
 
 //redirect to index.js if user is not logged in
-router.use(function(req,res,next){
+/*router.use(function(req,res,next){
   if(!req.user){
     res.redirect('/');
   }
   next();
 });
-
+*/
 //redirect to Home page
 router.get('/', function(req, res, next) {
   //res.send('respond with a resource');

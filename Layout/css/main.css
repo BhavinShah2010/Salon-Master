@@ -1013,8 +1013,8 @@ h2.title {
 }
 
 .category-tab ul {
-  background: #40403E;
-  border-bottom: 1px solid #FE980F;
+ // background: #40403E;
+  //border-bottom: 1px solid #FE980F;
   list-style: none outside none;
   margin: 0 0 30px;
   padding: 0;
@@ -1024,7 +1024,7 @@ h2.title {
 .category-tab ul li a {
   border: 0 none;
   border-radius: 0;
-  color: #B3AFA8;
+  color: #000;
   display: block;
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
@@ -2795,6 +2795,45 @@ float:left !important;
 {
   height:40px;
 }
+
+#cancel_delay_box
+{
+  width: 50%;
+  height: 100%;
+  //border: thin red solid;
+  font-size: 15px;
+  //display: none;
+ // z-index: 1002;
+}
+
+
+#new_date_time_err
+{
+  width:100%;
+  height: 25px; 
+  display: none;
+}
+
+#new_date_time_btn
+{
+  width:17%;
+  height: 35px;
+  //border: thin red solid;
+}
+
+#new_date_time_btn button
+{
+  width: auto;
+  height: 10%;
+  background: #FE980F;
+  color: #fff;
+  //margin: 0 auto;
+  border: none;
+  //margin-left: 40%;
+  margin-top: 10%;
+
+}
+
 /*appointment css ends*/
 
 
