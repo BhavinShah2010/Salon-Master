@@ -13,6 +13,16 @@ router.get('/contact', function(req, res, next) {
   res.render('contactUs');
 });
 
+//altaf Testing
+
+
+router.get('/admin', function(req, res, next) {
+  console.log();
+  res.render('Admin');
+});
+
+//testing end
+
 router.get('/', function(req, res, next) {
     salon.find({}).populate('address').exec(function(err, salons) {
     if (err) throw err;
