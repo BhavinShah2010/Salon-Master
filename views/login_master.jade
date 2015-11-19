@@ -20,7 +20,7 @@ html(lang='en')
 
                     input#txtLoginUserName(type='text', name='username', placeholder='User Name')
                   div
-                    input#txtLoginPassword(type='password', placeholder='Password', name='password')
+                    input#txtLoginPassword(type='password', placeholder='Password',maxlength='15', name='password')
                   div
                     span
                       input.checkbox(type='checkbox')
@@ -50,9 +50,9 @@ html(lang='en')
                 .col-sm-6
                   input#txtUserMobileNum(type='text', placeholder='Mobile Number', maxlength='10', name='phno')
                 .col-sm-6
-                  input#txtUserPassword(type='password', placeholder='Password', name='password')
+                  input#txtUserPassword(type='password', placeholder='Password',maxlength='15', name='password')
                 .col-sm-6
-                  input#txtConifemPwd(type='password', placeholder='Confirm Password')
+                  input#txtConifemPwd(type='password', placeholder='Confirm Password',maxlength='15')
                 .col-sm-6
                   input#txtArea(type='text', placeholder='Area', name='area')
                 .col-sm-6
@@ -96,7 +96,7 @@ html(lang='en')
                     option(value='Uttar Pradesh') Uttar Pradesh
                     option(value='West Bengal') West Bengal
                 .col-sm-6
-                  input#txtZipcode(type='text', placeholder='Zipcode', name='zipcode')
+                  input#txtZipcode(type='text', placeholder='Zipcode', name='zipcode',maxlength='6')
                 .col-sm-12
                   table
                     tr

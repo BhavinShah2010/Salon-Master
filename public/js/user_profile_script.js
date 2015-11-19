@@ -138,14 +138,14 @@ $(document).ready(function () {
         // $("#divChangePwdResult").css("display", "block");
         var isWll = true;
         if ($("#txtChangePwdUser").val() == '') {
-            $("#lblChangePwdError").html("Please your Current Password");
+            $("#lblChangePwdError").html("Please enter your Current Password");
             $("#divChangePwdResult").css("display", "block");
             // $("#change_det").c
             isWll = false;
             return false;
         }
         if ($("#txtChangePwdNewPassword").val() == '') {
-            $("#lblChangePwdError").html("Please New Password");
+            $("#lblChangePwdError").html("Please enter New Password");
             $("#divChangePwdResult").css("display", "block");
             // $("#change_det").c
             isWll = false;
@@ -158,6 +158,12 @@ $(document).ready(function () {
             isWll = false;
             return false;
         }
+         if ($("#txtChangePwdConfirmPassword").val().length < 8) {
+            $("#lblChangePwdError").html("Password required atleast 8 characters");
+            $("#divChangePwdResult").css("display", "block");
+            isWll = false;
+            return false;
+        }
         if ($("#txtChangePwdConfirmPassword").val() != $("#txtChangePwdNewPassword").val()) {
             $("#lblChangePwdError").html("New password does not match!");
             $("#divChangePwdResult").css("display", "block");
@@ -165,6 +171,7 @@ $(document).ready(function () {
             isWll = false;
             return false;
         }
+
         if (isWll == true) {
             alert("Fine");
             $.post("/users/changePassword",

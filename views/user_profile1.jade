@@ -11,15 +11,6 @@ html(lang='en', xmlns='http://www.w3.org/1999/xhtml')
   body
     label#txtData(style='display: none')
     div
-      .card.hovercard
-        .card-background
-          img.card-bkimg(alt='', src='http://lorempixel.com/100/100/people/9/')
-          // http://lorempixel.com/850/280/people/9/
-        .useravatar
-          img(alt='', src='/images/user_images/profile_pic.png')
-        .card-info
-          span
-            label#lblUserProfileName(style='font-size:20px')
       .btn-pref.btn-group.btn-group-justified.btn-group-lg(role='group', aria-label='...')
         .btn-group(role='group')
           button#following.btn.btn-primary(type='button', href='#tab1', data-toggle='tab')
@@ -88,7 +79,7 @@ html(lang='en', xmlns='http://www.w3.org/1999/xhtml')
                 .widget-foot
                   // Footer goes here
           #tab2.tab-pane.fade.in
-            h3 This is tab 2
+            h3 
             .panel-body
               .padd
                 .form.quick-post
@@ -102,15 +93,15 @@ html(lang='en', xmlns='http://www.w3.org/1999/xhtml')
                     .form-group
                       label.control-label.col-lg-2(for='Email')  Current Password 
                       #divChangePwdEmail.col-lg-3
-                        input#txtChangePwdUser.form-control(type='password', name='user_email')
+                        input#txtChangePwdUser.form-control(type='password', name='user_email',maxlength='15')
                     .form-group
                       label.control-label.col-lg-2(for='Email')  New Password 
                       #div2.col-lg-3
-                        input#txtChangePwdNewPassword.form-control(type='password', name='user_email')
+                        input#txtChangePwdNewPassword.form-control(type='password', name='user_email',maxlength='15')
                     .form-group
                       label.control-label.col-lg-2(for='Email')  Confirm New Password 
                       #div3.col-lg-3
-                        input#txtChangePwdConfirmPassword.form-control(type='password', name='user_email')
+                        input#txtChangePwdConfirmPassword.form-control(type='password', name='user_email',maxlength='15')
                     // Buttons
                     .form-group
                       // Buttons
@@ -131,7 +122,7 @@ html(lang='en', xmlns='http://www.w3.org/1999/xhtml')
               .widget-foot
                 // Footer goes here
           #tab3.tab-pane.fade.in
-            h3 This is tab 3
+            h3 
             .panel-body
               .padd
                 .form.quick-post
