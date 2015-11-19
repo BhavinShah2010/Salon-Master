@@ -184,7 +184,7 @@ router.post('/add',function(req,res){
 			}
 		})
 	}
-});
+);
 
 
 //Update Salon Details

@@ -71,6 +71,9 @@ router.get('/login', function(req, res, next) {
 	console.log();
   res.render('login_master');
 });
-
+router.get('/appointment', function(req, res, next) {
+  console.log();
+  res.render('Appointment');
+});
 
 module.exports = router;
