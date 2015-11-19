@@ -12,28 +12,49 @@ router.post('/add',function(req,res){
     appoint.user=data.user;
     appoint.salon=data.salon;
     appoint.event = data.event;
-    appoint.serviceslist=data.serviceslist;
-    appoint.time=data.time;
+    var temp=data.serviceslist;
+    var list=temp.split(',');
+//    appoint.serviceslist=list;
+    
+    var date=new Date(data.date);
+    var temp=data.timestamp.toString();
+    var time=temp.split(':');
+    date.setHours(time[0]);
+    date.setMinutes(time[1]);
+    date.setSeconds(time[2]);
+    appoint.time=data.date;
     appoint.rating=data.rating;
     appoint.totalprice = data.totalprice;
-    
+    /*
     // to validate the inputted data
     var err = appoint.validateSync();
     if(err){
-            res.send("Unsuccessful");
+            console.log(err);
+            res.send("Validation"+err);
             return;
         }
-    
+    */
     //to check if there is any technical or syntax error    
     appoint.save(function(err){
             if(err){
+                console.log(err);
                 res.send("Unsuccessful");
             }
             else{
                 res.send("Successful");
             }
         })
+    });
+
+//Get Appointments of a particular Salon
+router.post('/getSalonAppointment',function(req,res){
+    var salonId=req.body.salonId;
+    appointment.find({ "salon": salonId }).exec(function(err, data) {
+        if (err) throw err;
+            res.send(data);
+    });
 });
+
 
 //Approve Appointment
 router.post('/approveAppointment',function(req,res){

@@ -70,6 +70,11 @@ $(document).ready(function () {
             $("#divSingup").css("display", "block");
             return false;
         }
+        if ($("#txtUserPassword").val().length < 8) {
+            $("#lblSingUpError").html("Password required atleast 8 characters");
+            $("#divSingup").css("display", "block");
+            return false;
+        }
         if ($("#txtConifemPwd").val() == '') {
             $("#lblSingUpError").html("Please Enter Confirm Password");
             $("#divSingup").css("display", "block");
@@ -90,13 +95,18 @@ $(document).ready(function () {
             $("#divSingup").css("display", "block");
             return false;
         }
-        if ($("#txtState").val() == '') {
-            $("#lblSingUpError").html("Please Enter State");
+        if ($("#Statelistdown").val() == 'None') {
+            $("#lblSingUpError").html("Please Select State");
             $("#divSingup").css("display", "block");
             return false;
         }
         if ($("#txtZipcode").val() == '') {
             $("#lblSingUpError").html("Please Enter Zipcode");
+            $("#divSingup").css("display", "block");
+            return false;
+        }
+        if ($("#txtZipcode").val().length < 10) {
+            $("#lblSingUpError").html("Invalid Zipcode");
             $("#divSingup").css("display", "block");
             return false;
         }

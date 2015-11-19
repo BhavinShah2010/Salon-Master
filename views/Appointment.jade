@@ -1,0 +1,315 @@
+include header
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(name='description', content='')
+    meta(name='author', content='')
+    title Appointment | Salon Master
+    link(rel='stylesheet', href='http://kendo.cdn.telerik.com/2015.3.1111/styles/kendo.common-material.min.css')
+    link(rel='stylesheet', href='http://kendo.cdn.telerik.com/2015.3.1111/styles/kendo.material.min.css')
+    link(rel='stylesheet', href='http//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css')
+    link(rel='stylesheet', href='/css/jquery.raty.css')
+    link(rel='stylesheet', type='text/css', href='/css/appointment.css')
+    link(rel='stylesheet', type='text/css', href='/css/popup_box.css')
+  body
+    #main_box
+      #popup_box
+        #popup_header
+          span Select New Date & Time : 
+          #close
+            img(src='/images/Cross/Cross.png', width='20', height='20')
+        table.new_date_time(cellpadding='5px')
+          tr
+            td(width='19%')
+              span Date and Time:
+              br
+            td(width='29%')
+              .demo-section.k-content
+                input#new_date_time(style='width: 100%;', maxlength='19/')
+          tr#new_date_time_err.alert.alert-danger
+            td(colspan='5')
+              label#new_date_time_err_msg
+        #new_date_time_btn
+          button(type='button') Save
+    section
+      .container
+        .row
+          #Shop_Details.col-sm-9.padding-right
+            .tab-content
+              #companyprofile.tab-pane.fade.active.in
+                .category-tab.shop-details-tab
+                  .col-sm-12
+                    ul.nav.nav-tabs
+                      li.active
+                        a(href='#bookAppointment', data-toggle='tab') Book Appointments
+                      li
+                        a(href='#viewAppointment', data-toggle='tab') Previous Appointments
+                  .tab-content
+                    #viewAppointment.tab-pane.fade
+                      .col-sm-11
+                        table.table(border='2')
+                          tr
+                            th  Salon Name
+                            th Date
+                            th Service
+                            th Price
+                            th Status
+                            th Give Rating
+                          tr
+                            td  Lips & Tips
+                            td AAAAA
+                            td BBBBB
+                            td CCCCC
+                            td#status Completed
+                            td
+                              #divDefault
+                              #cancel_delay_box
+                                a#cancel(style='cursor:pointer;')  Cancel
+                                |  / 
+                                a#delay(style='cursor:pointer;')  Delay
+                          tr
+                            td  Lips & Tips
+                            td AAAAA
+                            td BBBBB
+                            td CCCCC
+                            td DDDDD
+                            td
+                              #default
+                          tr
+                            td  Lips & Tips
+                            td AAAAA
+                            td BBBBB
+                            td CCCCC
+                            td DDDDD
+                            td
+                              span.rating
+                                input#rating5(type='radio', name='rating', value='5')
+                                label(for='rating5') 5
+                                input#rating4(type='radio', name='rating', value='4')
+                                label(for='rating4') 4
+                                input#rating3(type='radio', name='rating', value='3')
+                                label(for='rating3') 3
+                                input#rating2(type='radio', name='rating', value='2')
+                                label(for='rating2') 2
+                                input#rating1(type='radio', name='rating', value='1')
+                                label(for='rating1') 1
+                          tr
+                            td  Lips & Tips
+                            td AAAAA
+                            td BBBBB
+                            td CCCCC
+                            td DDDDD
+                            td
+                              span.rating
+                                input#rating5(type='radio', name='rating', value='5')
+                                label(for='rating5') 5
+                                input#rating4(type='radio', name='rating', value='4')
+                                label(for='rating4') 4
+                                input#rating3(type='radio', name='rating', value='3')
+                                label(for='rating3') 3
+                                input#rating2(type='radio', name='rating', value='2')
+                                label(for='rating2') 2
+                                input#rating1(type='radio', name='rating', value='1')
+                                label(for='rating1') 1
+                          tr
+                            td  Lips & Tips
+                            td AAAAA
+                            td BBBBB
+                            td CCCCC
+                            td DDDDD
+                            td
+                              span.rating
+                                input#rating5(type='radio', name='rating', value='5')
+                                label(for='rating5') 5
+                                input#rating4(type='radio', name='rating', value='4')
+                                label(for='rating4') 4
+                                input#rating3(type='radio', name='rating', value='3')
+                                label(for='rating3') 3
+                                input#rating2(type='radio', name='rating', value='2')
+                                label(for='rating2') 2
+                                input#rating1(type='radio', name='rating', value='1')
+                                label(for='rating1') 1
+                          tr
+                            td  Lips & Tips
+                            td AAAAA
+                            td BBBBB
+                            td CCCCC
+                            td DDDDD
+                            td
+                              span.rating
+                                input#rating5(type='radio', name='rating', value='5')
+                                label(for='rating5') 5
+                                input#rating4(type='radio', name='rating', value='4')
+                                label(for='rating4') 4
+                                input#rating3(type='radio', name='rating', value='3')
+                                label(for='rating3') 3
+                                input#rating2(type='radio', name='rating', value='2')
+                                label(for='rating2') 2
+                                input#rating1(type='radio', name='rating', value='1')
+                                label(for='rating1') 1
+                          tr
+                            td  Lips & Tips
+                            td AAAAA
+                            td BBBBB
+                            td CCCCC
+                            td DDDDD
+                            td
+                              span.rating
+                                input#rating5(type='radio', name='rating', value='5')
+                                label(for='rating5') 5
+                                input#rating4(type='radio', name='rating', value='4')
+                                label(for='rating4') 4
+                                input#rating3(type='radio', name='rating', value='3')
+                                label(for='rating3') 3
+                                input#rating2(type='radio', name='rating', value='2')
+                                label(for='rating2') 2
+                                input#rating1(type='radio', name='rating', value='1')
+                                label(for='rating1') 1
+                          tr
+                            td  Lips & Tips
+                            td AAAAA
+                            td BBBBB
+                            td CCCCC
+                            td DDDDD
+                            td
+                              span.rating
+                                input#rating5(type='radio', name='rating', value='5')
+                                label(for='rating5') 5
+                                input#rating4(type='radio', name='rating', value='4')
+                                label(for='rating4') 4
+                                input#rating3(type='radio', name='rating', value='3')
+                                label(for='rating3') 3
+                                input#rating2(type='radio', name='rating', value='2')
+                                label(for='rating2') 2
+                                input#rating1(type='radio', name='rating', value='1')
+                                label(for='rating1') 1
+                          tr
+                            td  Lips & Tips
+                            td AAAAA
+                            td BBBBB
+                            td CCCCC
+                            td DDDDD
+                            td
+                              span.rating
+                                input#rating5(type='radio', name='rating', value='5')
+                                label(for='rating5') 5
+                                input#rating4(type='radio', name='rating', value='4')
+                                label(for='rating4') 4
+                                input#rating3(type='radio', name='rating', value='3')
+                                label(for='rating3') 3
+                                input#rating2(type='radio', name='rating', value='2')
+                                label(for='rating2') 2
+                                input#rating1(type='radio', name='rating', value='1')
+                                label(for='rating1') 1
+                      div
+                        ul#PageBackround.pagination
+                          li
+                            a(href='#') «
+                          li
+                            a(href='#') 1
+                          li
+                            a(href='#') 2
+                          li
+                            a(href='#') 3
+                          li
+                            a(href='#') 4
+                          li
+                            a(href='#') 5
+                          li
+                            a(href='#') »
+                    #bookAppointment.tab-pane.fade.active.in
+                      .Booking-form
+                        form(action='/', method='post', style='border:solid #FFF;')
+                          table.formtable(cellpadding='5px')
+                            tr
+                              td(width='20%')
+                                span Date and Time:
+                                br
+                              td(width='28%')
+                                .demo-section.k-content
+                                  input#datetimepicker(style='width: 100%;', maxlength='19/')
+                              td(width='3%')
+                              td(width='19%')
+                                span Salon name :
+                              td(width='29%')
+                                select#salonList.fullwidth
+                            tr
+                              td#servicelbltr.hiddentr(colspan='5')
+                                span &nbspSelect Services:
+                            tr
+                              td(colspan='5')
+                                table#servicelisttr.hiddentr(width='100%')
+                                  tr
+                                    td
+                                      span#services1 service 1
+                                      span#offer1 offer 1
+                                      span#price1 15
+                                      input.insameline(type='checkbox', name='services', value='15')
+                                    td(width='3%')
+                                    td
+                                      span#services1 service 1
+                                      span#offer1 offer 1
+                                      span#price1 25
+                                      input.insameline(type='checkbox', name='services', value='25')
+                                    td
+                                      span#services1 service 1
+                                      span#offer1 offer 1
+                                      span#price1 35
+                                      input.insameline(type='checkbox', name='services', value='35')
+                                  tr
+                                    td
+                                      span#services1 service 1
+                                      span#offer1 offer 1
+                                      span#price1 45
+                                      input.insameline(type='checkbox', name='services', value='45')
+                                    td(width='3%')
+                                    td
+                                      span#services1 service 1
+                                      span#offer1 offer 1
+                                      span#price1 50
+                                      input.insameline(type='checkbox', name='services', value='50')
+                                    td
+                                      span#services1 service 1
+                                      span#offer1 offer 1
+                                      span#price1 10
+                                      input.insameline(type='checkbox', name='services', value='10')
+                            tr
+                              td
+                                span Any Event
+                              td
+                                input.insameline(type='radio', checked='', name='event', value='no')
+                                span.insameline No
+                                input#eventyes.insameline(type='radio', name='event', value='yes')
+                                span.insameline Yes
+                              td
+                            tr#Eventtr.hiddentr
+                              td
+                                span Event Type:
+                              td
+                                input#txteventtype.fullwidth(type='text')
+                              td(width='3%')
+                              td
+                                span Total Person:
+                              td
+                                input#txteventperson.fullwidth(type='text')
+                            tr
+                              td
+                                span Total price(per person):
+                              td
+                                input#totalprice.fullwidth(type='text', disabled='', value='0')
+                            tr#errortr.alert.alert-danger
+                              td(colspan='5')
+                                label#errmsg
+                            tr
+                              td
+                                button#btnBook(type='button') Book
+    script(src='http://code.jquery.com/jquery-latest.min.js')
+    script(src='/js/Appointment.js')
+    script(src='http://kendo.cdn.telerik.com/2015.3.1111/js/jquery.min.js')
+    script(src='http://kendo.cdn.telerik.com/2015.3.1111/js/kendo.all.min.js')
+    script(src='/js/jquery.raty.js')
+    script(src='/js/RatingJs.js')
+    script(src='/js/apointment_script.js')    
+    include footer
