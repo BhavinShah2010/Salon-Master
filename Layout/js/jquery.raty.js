@@ -168,7 +168,7 @@
       var that = this;
 
       that.stars.on('click.raty', function(evt) {
-       /* var
+        var
           execute = true,
           score   = (that.opt.half || that.opt.precision) ? that.self.data('score') : (this.alt || $(this).data('alt'));
 
@@ -182,7 +182,7 @@
           }
 
           methods._apply.call(that, score);
-        }*/
+        }
       });
     },
 
@@ -235,7 +235,7 @@
     },
 
     _bindOver: function() {
-      /*var that   = this,
+      var that   = this,
           action = that.opt.half ? 'mousemove.raty' : 'mouseover.raty';
 
       that.stars.on(action, function(evt) {
@@ -255,7 +255,7 @@
         if (that.opt.mouseover) {
           that.opt.mouseover.call(that, score, evt);
         }
-      });*/
+      });
     },
 
     _bindOverCancel: function() {

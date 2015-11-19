@@ -7,75 +7,32 @@
     <meta name="author" content="">
     <title>Appointment | Salon Master</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/jquery.css" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <link href="css/prettyPhoto.css" rel="stylesheet">
     <link href="css/price-range.css" rel="stylesheet">
     <link href="css/animate.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
     <link href="css/responsive.css" rel="stylesheet">
-    
+    <link href="css/five_star.css" rel="stylesheet">
 
     <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2015.3.1111/styles/kendo.common-material.min.css" />
     <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2015.3.1111/styles/kendo.material.min.css" />
     <link rel="stylesheet" href="http//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
 
+
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
     <link rel="shortcut icon" href="images/ico/favicon.ico">
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
-    
-    
-    <link rel="stylesheet" href="css/jquery.raty.css"> 
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-    <link rel="stylesheet" type="text/css" href="css/popup_box.css">
-
-    </head>
+</head>
 <!--/head-->
 
 <body>
-
-
-<div id="main_box">
-        <div id="popup_box">
-            <div id="popup_header">
-                <span>Select New Date & Time : </span>
-                <div id="close"><img src="images/Cross/Cross.png" width="20" height="20"></div>
-            </div>
-
-
-            <table class="new_date_time" cellpadding="5px">
-                                        <tr>
-                                            <td>
-                                                <span>Date and Time:</span><br>
-                                            </td>
-                                             <td colspan="2">
-                                                 <div class="demo-section k-content">
-                                                  <input id="new_date_time" style="width: 100%;" maxlength=19/>
-                                                 </div>
-                                            </td>
-                                        </tr>
-
-                                        <tr id="new_date_time_err" class="alert alert-danger" >
-                                            <td colspan="3">
-                                            <label id="new_date_time_err_msg"></label>
-                                            </td>
-                                          </tr>
-                                        <tr>
-                                            <td colspan="3">
-                                                
-                                                <center><button type="button" id="btnDelaySave" style="background: #FE980F; border:none; color:#fff; width:30%; height:2.5em;">Save</button></center>
-                                            
-                                            </td>
-                                        </tr>  
-                                    </table>
-                                    
-
-
-
-        </div>
-</div>
 
     <header id="header">
         
@@ -86,7 +43,7 @@
                     <div class="col-sm-4">
                         <div class="logo pull-left">
                             <a href="index.html">
-                                <img src="images/Logo/Salon_logo.png" alt="" width:"130" height="50" /></a>
+                                <img src="Logo_images/Salon_logo.png" alt="" width:"130" height="50" /></a>
                         </div>
                     </div>
                     <div class="col-sm-8">
@@ -167,11 +124,24 @@
                                             <td>AAAAA</td>
                                             <td>BBBBB</td>
                                             <td>CCCCC</td>
-                                            <td id="status">DDDDD</td>
+                                            <td>DDDDD</td>
                                             <td>
         
-           <div id="divDefault"></div> 
-           <div id="cancel_delay_box"><a id="cancel" style="cursor:pointer;"> Cancel</a> / <a id="delay" style="cursor:pointer;"> Delay</a></div>  </td>
+            <span class="rating">
+                <input id="rating5" type="radio" name="rating" value="5">
+                <label for="rating5">5</label>
+                <input id="rating4" type="radio" name="rating" value="4">
+                <label for="rating4">4</label>
+                <input id="rating3" type="radio" name="rating" value="3">
+                <label for="rating3">3</label>
+                <input id="rating2" type="radio" name="rating" value="2">
+                <label for="rating2">2</label>
+                <input id="rating1" type="radio" name="rating" value="1">
+                <label for="rating1">1</label>
+            </span>
+        
+        
+</td>
                                         </tr>
                                         <tr>
                                             <td> Lips & Tips</td>
@@ -180,7 +150,18 @@
                                             <td>CCCCC</td>
                                             <td>DDDDD</td>
                                             <td>
-                                             <div id="default"></div>
+                                             <span class="rating">
+                                                <input id="rating5" type="radio" name="rating" value="5">
+                                                <label for="rating5">5</label>
+                                                <input id="rating4" type="radio" name="rating" value="4">
+                                                <label for="rating4">4</label>
+                                                <input id="rating3" type="radio" name="rating" value="3">
+                                                <label for="rating3">3</label>
+                                                <input id="rating2" type="radio" name="rating" value="2">
+                                                <label for="rating2">2</label>
+                                                <input id="rating1" type="radio" name="rating" value="1">
+                                                <label for="rating1">1</label>
+                                            </span></td>
                                         </tr>
                                         <tr>
                                             <td> Lips & Tips</td>
@@ -347,7 +328,7 @@
                                             </td>
                                              <td width="29%">
                                                  <div class="demo-section k-content">
-                                                  <input id="datetimepicker" style="width: 100%;" maxlength=19/>
+                                                    <input id="datetimepicker" style="width: 100%;" />
                                                  </div>
                                             </td>
                                             
@@ -472,7 +453,7 @@
                                           </tr>
                                         <tr>
                                             <td>
-                                                <button type="button" id="btnBook">Book</button>
+                                                <button type="button" id="btnBook" >Book</button>
                                             </td>
                                         </tr>
                                         </table>
@@ -502,11 +483,7 @@
                     </div>
             </div>
         </div><!--/header_top-->
-<script src="http://kendo.cdn.telerik.com/2015.3.1111/js/jquery.min.js"></script>
-    <script src="http://kendo.cdn.telerik.com/2015.3.1111/js/kendo.all.min.js"></script>
- 
       <script src="js/jquery.js"></script>
-       <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src="js/price-range.js"></script>
     <script src="js/jquery.scrollUp.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
@@ -514,9 +491,8 @@
     <script src="js/main.js"></script>
     <script src="js/Appointment.js"></script>
 
-     
-   
-<script src="http://kendo.cdn.telerik.com/2015.3.1111/js/jquery.min.js"></script>
+
+    <script src="http://kendo.cdn.telerik.com/2015.3.1111/js/jquery.min.js"></script>
     <script src="http://kendo.cdn.telerik.com/2015.3.1111/js/kendo.all.min.js"></script>
     
     <script>
@@ -528,21 +504,6 @@
 
 
                 });
-
-                 $(document).ready(function () {
-                    // create DateTimePicker from input HTML element
-                    $("#new_date_time").kendoDateTimePicker({
-                        value:new Date()
-                    });
-
-
-                });
-            </script>   
-
-    <script src="js/jquery.raty.js"></script>
-    <script src="js/RatingJs.js"></script>
-     
-
-             
+            </script>        
 </body>
 </html>
