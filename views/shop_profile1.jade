@@ -46,6 +46,7 @@ html(lang='en')
                     span
                       button#btnBookAppointment.btn.btn-fefault.cart(type='button')
                         | Book Appointment
+                div(id='divSalonInfo' class='product-information')
             .category-tab.shop-details-tab
               .col-sm-12
                 ul.nav.nav-tabs
@@ -129,6 +130,12 @@ html(lang='en')
                           textarea(name='')
                           button.btn.btn-default.pull-right(type='button')
                             | Submit
+                      b Write Your Review
+                    form(action='#')
+                      textarea(name='')
+                      b Rating: 
+                      button.btn.btn-default.pull-right(type='button')
+                        | Submit
     include footer
     
     script(src='/js/Table_salon.js')
