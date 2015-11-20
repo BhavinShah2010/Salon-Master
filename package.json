@@ -21,6 +21,7 @@
     "passport-local": "*",
     "passport-local-mongoose": "^3.1.0",
     "serve-favicon": "~2.3.0",
-    "node-gcm": "*"
+    "node-gcm": "*",
+    "multer": "~0.1.6"
   }
 }
