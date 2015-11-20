@@ -3,6 +3,7 @@ var userA = require('../modules/user');
 var salonA = require('../modules/salon');
 var eventA = require('../modules/event');
 var serviceA = require('../modules/service');
+var gcm = require('node-gcm');
 var express = require('express');
 var router = express.Router();
 
@@ -55,10 +56,37 @@ router.post('/add',function(req,res){
                 res.send("Unsuccessful");
             }
             else{
-                res.send("Successful");
+                
+                //Push Notification GCM
+                salonA.find({_id:data.salon}).exec(function(err, salons) {
+                    if (err) throw err;
+                    else{
+                        var device_tokens = [];
+                        var message = new gcm.Message();
+                        var sender = new gcm.Sender('AIzaSyBiuGydi5Otohq4HQo1BzCm-I8_9cUvcVY');
+                        var device_token=salons.deviceId;
+                        message.addData('title', 'Appointment Received');
+                        message.addData('message', 'New Appointment has been received');
+                        message.addData('sound', 'notification');
+
+                        message.collapseKey = 'testing';
+                        message.delayWhileIdle = true;
+                        message.timeToLive = 3;
+
+                        console.log('sending to: ' + device_token);
+
+                        device_tokens.push(device_token);
+
+                        sender.send(message, device_token, 4, function(result){
+                        console.log(result);
+                        console.log('push sent to: ' + device_token);
+                        });
+                        res.json({"response":"success"});
+                    }
+                })
             }
         })
-    });
+});
 
 //Get Appointments of a particular User
 router.post('/getUserAppointment',function(req,res){
