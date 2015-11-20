@@ -52,11 +52,12 @@ $(document).ready(function () {
          objectId: id
      },
      function (data) {
-
+            debugger;
          $("#lbl_shopname").html(data[0].name);
          $("#lblShopMobile").html(data[0].phoneNo[0]);
          $("#lblShopDescription").html(data[0].description);
-         $('#lblShopAddress').html(data[0].address.area);
+         //$('#lblShopAddress').html(data[0].address.area);
+         
 
      });
     $.post("/reviews/getReviewsBySalon",

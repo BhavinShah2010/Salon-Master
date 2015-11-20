@@ -18,7 +18,19 @@ router.post('/getSalon',function(req,res){
 
   })
 });
-
+//Get All salon details whose ids are passed
+router.post('/getAllSalonsById',function(req,res,next){
+	var ids = req.body.salons;
+	//var query = salon.find({}).where('_id').in(salons);
+	var salonQuery = salon.find({}).where('_id').in(ids);
+    salonQuery.populate('address').exec(function(err,salons) {
+        if(err) {
+               res.json(err);
+               return;
+        }
+        res.json(salons); 
+    });
+});
 
 //View Single Salon Profile
 router.post('/getDetails',function(req,res){
