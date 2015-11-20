@@ -3,6 +3,33 @@ var router = express.Router();
 var salon = require('../modules/salon');
 var address = require('../modules/address');
 var passport = require('./../auth');
+var multer  = require('multer');
+var upload  =   multer({ dest: './uploads/'});
+var app=express();
+
+//For File Upload
+router.use(multer({ dest: './uploads/',
+    rename: function (fieldname, filename) {
+    	//console.log(fieldname);
+        return "Image"+Date.now();
+    },
+    onFileUploadStart: function (file) {
+        console.log(file.originalname + ' is starting ...');
+    },
+    onFileUploadComplete: function (file) {
+        console.log(file.fieldname + ' uploaded to  ' + file.path)
+    }
+}));
+
+router.post('/api/photo',function(req,res){
+    upload(req,res,function(err) {
+        if(err) {
+            return res.end("Error uploading file.");
+        }
+        res.end("File is uploaded");
+    });
+});
+
 //This library is imported to perform join operation
 //var populatePlugin = require('mongoose-power-populate')(mongoose);
 
@@ -173,6 +200,15 @@ router.post('/add',function(req,res){
 		})
 	
 	s.address=a;
+
+	//File Upload
+	upload(req,res,function(err) {
+        if(err) {
+            return res.end("Error uploading file.");
+        }
+        res.end("File is uploaded");
+    });
+
 	s.save(function(err){
 			if(err){
 				res.send('Database error! '+err);
