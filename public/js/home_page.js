@@ -199,7 +199,7 @@ function getAllSalons()
 				htmlContent += salon.address.zipcode
 				htmlContent += "</p><p>"
 				htmlContent += salon.phoneNo
-				htmlContent +="</p></div><div class='product-overlay'><div class='overlay-content'></div></div></div></div></div>"
+				htmlContent +="</p></div></div></div></div>"
     		});				
 				//htmlContent += JSON.stringify(result);
 				document.getElementById("divSalons").innerHTML = htmlContent;
