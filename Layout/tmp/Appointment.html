@@ -151,16 +151,16 @@
                                             <td>DDDDD</td>
                                             <td>
                                              <span class="rating">
-                                                <input id="rating5" type="radio" name="rating" value="5">
-                                                <label for="rating5">5</label>
-                                                <input id="rating4" type="radio" name="rating" value="4">
-                                                <label for="rating4">4</label>
-                                                <input id="rating3" type="radio" name="rating" value="3">
-                                                <label for="rating3">3</label>
-                                                <input id="rating2" type="radio" name="rating" value="2">
-                                                <label for="rating2">2</label>
-                                                <input id="rating1" type="radio" name="rating" value="1">
-                                                <label for="rating1">1</label>
+                                                <input id="rating51" type="radio" name="rating1" value="5">
+                                                <label for="rating51">5</label>
+                                                <input id="rating41" type="radio" name="rating2" value="4">
+                                                <label for="rating41">4</label>
+                                                <input id="rating31" type="radio" name="rating3" value="3">
+                                                <label for="rating31">3</label>
+                                                <input id="rating21" type="radio" name="rating4" value="2">
+                                                <label for="rating21">2</label>
+                                                <input id="rating11" type="radio" name="rating5" value="1">
+                                                <label for="rating11">1</label>
                                             </span></td>
                                         </tr>
                                         <tr>
@@ -170,18 +170,8 @@
                                             <td>CCCCC</td>
                                             <td>DDDDD</td>
                                             <td>
-                                             <span class="rating">
-                                                <input id="rating5" type="radio" name="rating" value="5">
-                                                <label for="rating5">5</label>
-                                                <input id="rating4" type="radio" name="rating" value="4">
-                                                <label for="rating4">4</label>
-                                                <input id="rating3" type="radio" name="rating" value="3">
-                                                <label for="rating3">3</label>
-                                                <input id="rating2" type="radio" name="rating" value="2">
-                                                <label for="rating2">2</label>
-                                                <input id="rating1" type="radio" name="rating" value="1">
-                                                <label for="rating1">1</label>
-                                            </span></td>
+                                            <div id="divRate"></div>
+                                            </td>
 
                                         </tr>
                                         <tr>
@@ -439,10 +429,10 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                        	<td width="39%">
+                                        	<td>
                                             <span >Total price:</span>
                                             </td>
-                                             <td>
+                                                <td>
                                             <input type="text" id="totalprice" disabled value="0" class="fullwidth">
                                             </td>
                                         </tr>
@@ -495,15 +485,6 @@
     <script src="http://kendo.cdn.telerik.com/2015.3.1111/js/jquery.min.js"></script>
     <script src="http://kendo.cdn.telerik.com/2015.3.1111/js/kendo.all.min.js"></script>
     
-    <script>
-                $(document).ready(function () {
-                    // create DateTimePicker from input HTML element
-                    $("#datetimepicker").kendoDateTimePicker({
-                        value:new Date()
-                    });
-
-
-                });
-            </script>        
+    <script src="js/Rating.js"></script>        
 </body>
 </html>
