@@ -6,9 +6,10 @@ var passport = require('./../auth');
 var multer  = require('multer');
 var upload  =   multer({ dest: './public/uploads/'});
 var app=express();
-var newfilename;
+var newfilename="temp";
+
 //For File Upload
-router.use(multer({ dest: './uploads/',
+router.use(multer({ dest: './public/uploads/',
     rename: function (fieldname, filename) {
     	console.log(fieldname);
         return newfilename;
@@ -22,6 +23,8 @@ router.use(multer({ dest: './uploads/',
 }));
 
 router.post('/api/photo',function(req,res){
+	newfilename="Happinezz";
+	console.log(newfilename);
     upload(req,res,function(err) {
         if(err) {
             return res.end("Error uploading file.");
@@ -35,16 +38,33 @@ router.post('/api/photo',function(req,res){
 
 /* GET users listing. */
 //Get salon detail through its ID
+/*
 router.post('/getSalon',function(req,res){
   salon.find({_id:req.body.salonId}).populate('address').exec(function(err, salons) {
     if (err) throw err;
     //res.render('home',{salonData:salons, user:req.user, views:req.session.views});
       //res.json(salons);
+      console.log(salons.address);
+      console.log(salons);
       res.json(salons);
 
 
   })
 });
+*/
+router.post('/getSalon',function(req,res){
+  salon.find({_id:req.body.salonId}).exec(function(err, salons) {
+    if (err) throw err;
+    address.find({_id:req.body.address}).exec(function(err, add1) {
+    	//res.render('home',{salonData:salons, user:req.user, views:req.session.views});
+      	//res.json(salons);
+      	res.json(add1);
+      	res.json(salons);
+		})
+  	})
+});
+
+
 //Get All salon details whose ids are passed
 router.post('/getAllSalonsById',function(req,res,next){
 	var ids = req.body.salons;
@@ -125,7 +145,7 @@ router.post('/checkLogin', function(req,res){
 	  if(salons){
 	  		var status=salons.comparePassword(req.body.password);
 	  		if(status)
-	  			res.json([{"username":salons.username,"password":req.body.password,"salonId":salons._id}]);
+	  			res.json([{"username":salons.username,"password":req.body.password,"salonId":salons._id,"addressId":salons.address}]);
 	  		else{
 	  			res.json({"status":"false"});
 	  		}
@@ -214,7 +234,7 @@ router.post('/add',function(req,res){
 				res.send('Database error! '+err);
 			}
 			else{
-				res.json([{"salonID":s._id}]);
+				res.json([{"salonID":s._id,"addressId":s.address}]);
 			}
 		})
 	});
