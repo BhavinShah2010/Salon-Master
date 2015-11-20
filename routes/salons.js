@@ -163,9 +163,7 @@ router.post('/checkLogin', function(req,res){
 	  			res.json({"status":"false"});
 	  		}
 	  	}
-	  	else{
-	  		res.json({"status":"false"});
-	  	}
+	  	
 	});
 
 });
