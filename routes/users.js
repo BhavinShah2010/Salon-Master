@@ -119,7 +119,22 @@ router.post('/add',function(req,res)
         }
     });
 
+
+//Forget Password
+router.post('/forgetPassword',function(req,res){
+	data=req.body;
+	var u=new user();
+	u.password=u.generateHash(data.newpassword);
+	var now=new Date();
+	user.findOneAndUpdate({"_id":data.objectId}, {password: u.password}, function(err, data) {
+		if(err) throw err;
+		//It will not change password if old password is wrong without notifying right now.
+		res.json("true");
+	})
 });
+
+});
+
 //View Profile
 router.post('/getDetails',function(req,res){
     data=req.body;

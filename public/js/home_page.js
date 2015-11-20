@@ -1,320 +1,213 @@
 
-//document.getElementById('disablingDiv').style.display='block';
-
+//global variables 
 var services = [];
 var salons = [];
-function servicesForBody(){
-    salons =[];
-    services=[];
-    $('#servicesForBody input:checked').each(function() {
-    services.push($(this).attr('name'));   
-    });
 
-    //Retrieve checked service details
-    $.each(services,function(i,serviceName){
-        /*$.post("/services/getServiceDetail",{name:serviceName},function(serviceDetail){
-            //Get salonIds of salons, who provide selected services
-            //Binary search is used to check existance of salonId in an array
-            $.each(serviceDetail,function(index,data){
-                var start=0,end=salons.length,mid=0;
-                var flag = true;
-                while(start<=end)
-                {
-                    mid = Math.floor((start+end)/2);
-                    if(salons[mid] == data.salonID)
-                    {
-                        flag = false;
-                        break;
-                    }
-                    else if(salons[mid]>data.salonID)
-                    {
-                        end = mid - 1;
-                    }    
-                    else
-                    {
-                        start = mid + 1;
-                    }        
-                }
-                if(flag == true)
-                {
-                    salons.push(data.salonID);
-                }
-            });
-            salons.sort();
-            //alert(salons);
-        });*/
-
-		jQuery.ajax({
-			url: "/services/getServiceDetail",
-			method: "POST",
-			async: false,
-			data: {name : serviceName},
-			success: function(result) {
-				$.each(result,function(index,data){
-				    var start=0,end=salons.length,mid=0;
-				    var flag = true;
-				    while(start<=end)
-				    {
-				        mid = Math.floor((start+end)/2);
-				        if(salons[mid] == data.salonID)
-				        {
-				            flag = false;
-				            break;
-				        }
-				        else if(salons[mid]>data.salonID)
-				        {
-				            end = mid - 1;
-				        }    
-				        else
-				        {
-				            start = mid + 1;
-				        }        
-				    }
-				    if(flag == true)
-				    {
-				        salons.push(data.salonID);
-				    }
-				});
-				salons.sort();
-			}
-		});
-    });
-    /*if (typeof callback === 'function')
-    {
-        callback();
-    }*/    
-}
-
-function printSalonDetails()
-{
-    //alert(salons);
-    var htmlContent = "<h2 class='title text-center'>Salons in <span id='text_value' > </span> </h2>";
-    $.each(salons,function(i,salon){
-    	//alert(salon);
-        $.post("/salons/getSalon",{salonId:salon},function(salonInfo){
-            //debugger;
-            htmlContent += "";
-            alert(salonInfo[0].name);
-            //document.getElementById("sname").innerHTML = salonInfo[0].name;
-        });
-    });    
-}
-
-function getSalonByservices()
-{	var htmlContent = "";
-	jQuery.ajax({
-			url: "/services/getSalonByServices",
-			method: "POST",
-			async: false,
-			data: {services : services},
-			success: function(result) {
-				htmlContent += "<div class='col-sm-4'>
-							<div class='product-image-wrapper'>
-								<div class='single-products' id='first_image'>
-										<div class='productinfo text-center'>
-											<img src='images/home/product1.jpg' alt='' />
-											<h2><a href='a.html'>";
-					htmlContent += "Salon Name";
-					htmlContent += "</a></h2><p>";
-					htmlContent += "Street and Area of Salon";
-					htmlContent += "</p><p>";
-					htmlContent += "Additional info";
-					htmlContent += "</p><p>";
-					htmlContent += "City and State name";
-					htmlContent += "</p></div><div class='product-overlay'>
-											<div class='overlay-content'></div>
-										</div>	
-								</div>
-								
-							</div>
-						</div>"
-				document.getElementById("demo").innerHTML = htmlContent;
-				//alert(JSON.stringify(result));
-			}
-		});
-}
-
-function body_spa_filter (obj) {
+//UpdateSalons() function retrieve all selected services, and then it will check services
+//if services array is null, getAllSalons() will be called to display all salons on home-page 
+//else getSalonByServices() will be called to display salons, which provide selected services
+function updateSalons(obj) {
+		//alert("home");
 		services = [];
 		//var services = $.document.getElementById(obj);
 		//var services = $(obj).val();
 		$("input[name='services[]']:checked").each(function() {
     		services.push($(this).val());   
     	});
-		alert(services);
-	    //getSalonByservices();
+
+		if (services.length > 0)
+		//alert(services);
+	    	//getSalonByservices();
+	    	getSalonByServices();
+	    else
+	    	getAllSalons();	
 }
 
 
-
-function body_treatment_filter (obj) {
-    //servicesForBody();
-    //setTimeout(printSalonDetails,1000);
-    getSalonByservices();
+ // Array.prototype.[method name] allows you to define/overwrite an objects method
+ // needle is the item you are searching for
+ // this is a special variable that refers to "this" instance of an Array.
+ // returns true if needle is in the array, and false otherwise
+Array.prototype.contains = function ( needle ) {
+    for (i in this) {
+   		//alert(this[i]===needle)
+       if (this[i] === needle) return true;
+   }
+   return false;
 }
 
+//isProvideServices() function checks all selected services are present in salonservices or not.if yes it will return true, otherwise false.
+function isProvideServices(services,salonservices)
+{
+	for(var i=0;i<services.length;i++)
+	{
 
-
-function waxing_filter (obj) {
-    //servicesForBody();
-    //setTimeout(printSalonDetails,1000);
-    getSalonByservices();
+		if(!salonservices.contains(services[i]))
+			return false;
+	}	
+	return true;
 }
 
+//getSalonByservices() function retrieve salons information from database, and display those salons on home-page.
+function getSalonByServices(){
+	var salonsWithItsServices = [];
+	salons = [];
+	jQuery.ajax({
+		url: "/services/getSalonByServices",
+		method: "POST",
+		async: false,
+		success: function(result){
+			
+			for(var i=0;i<result.length;i++)
+			{
+				debugger;
+				//alert("Hello");	
+				if(isProvideServices(services,result[i].serviceArray))
+					salons.push(result[i]._id);
+			}
+			
+			//salonsWithItsServices = JSON.stringify(result);
+			
+		}
+	});
+	
+	//alert(salonsWithItsServices);
+	var htmlContent = "<div class='features_items'><h2 class='title text-center'>Salons in <span id='text_value' > </span> </h2>";	
+	jQuery.ajax({
+		url: "/salons/getAllSalonsById",
+		method: "POST",
+		data: {salons : salons},
+		async: false,
+		success: function(result){
+			debugger;
+		//	alert(JSON.stringify(result));
+			if(result.length > 0)
+				$.each(result,function(i,salon){
+			    			//alert(salon);
+						    htmlContent += "<div class='col-sm-4' id="
+						    htmlContent += salon._id
+						    htmlContent += "><a href='salons/profile?id="
+						    htmlContent += salon._id
+						    htmlContent += "'><div class='product-image-wrapper'><div class='single-products' id='first_image'><div class='productinfo text-center'>"
+							htmlContent += "<img src='images/home/product1.jpg' alt='' /><h2><a href='a.html'>"
+							htmlContent += salon.name
+							htmlContent += "</a></h2><p>"
+							htmlContent += salon.type
+							htmlContent += " salons </p><p>"
+							//htmlContent += "Street name and number of Salon"
+							//htmlContent += "</p><p>"
+							htmlContent += salon.address.area
+							htmlContent += ", "
+							htmlContent += salon.address.city
+							htmlContent += "</p><p>"
+							htmlContent += salon.address.state
+							htmlContent += ", "
+							htmlContent += salon.address.zipcode
+							htmlContent += "</p><p>"
+							htmlContent += salon.phoneNo
+							htmlContent +="</p></div></div></div></a></div>"
+			    		});
+			else
+					htmlContent += "<h2>Sorry, Currently no salon is providing selected service(s).</h2>"
+			salonsWithItsServices = JSON.stringify(result);
+			
+		}
+	});
 
-
-function Laser_Hair_filter (obj) {
-    servicesForBody();
-    setTimeout(printSalonDetails,1000);
-}
-
-
-
-function Body_scrub (obj) {
-    servicesForBody();
-    setTimeout(printSalonDetails,1000);
-}
-
-
-
-function hair_smooth(obj) {
-	if (obj.checked == true) {
-			$("#sixth_image").hide();
-
-	}
-	else
-		$("#sixth_image").show();
-
-}
-
-function hair_cut (obj) {
-	if (obj.checked == true) {
-			$("#first_image").hide();
-
-	}
-	else
-		$("#first_image").show();
-
-}
-
-
-
-function hair_wash (obj) {
-	if (obj.checked == true) {
-			$("#second_image").hide();
-
-	}
-	else
-		$("#second_image").show();
-
-}
-
-
-
-function straight (obj) {
-	if (obj.checked == true) {
-			$("#third_image").hide();
-
-	}
-	else
-		$("#third_image").show();
-
-}
-
-
-
-function hair_treatment (obj) {
-	if (obj.checked == true) {
-			$("#fourth_image").hide();
-
-	}
-	else
-		$("#fourth_image").show();
-
-}
-
-
-
-
-function nail_art (obj) {
-	if (obj.checked == true) {
-			$("#fifth_image").hide();
-
-	}
-	else
-		$("#fifth_image").show();
-
-}
-
-
-
-function manicure_padicure (obj) {
-	if (obj.checked == true) {
-			$("#sixth_image").hide();
-
-	}
-	else
-		$("#sixth_image").show();
+	//alert(salons);
+	htmlContent += "</div>"
+	document.getElementById("divSalons").innerHTML = htmlContent;
+				
 
 }
 
 
 
-function nail_extension (obj) {
-	if (obj.checked == true) {
-			$("#first_image").hide();
+//getSalonByservices() function retrieve salons information from database, and display those salons on home-page.
+/*function getSalonByservices()
+{	var htmlContent = "<div class='features_items'><h2 class='title text-center'>Salons in <span id='text_value' > </span> </h2>";
+	jQuery.ajax({
+			url: "/services/getSalonByServices",
+			method: "POST",
+			async: false,
+			data: {services : services},
+			success: function(result) {
+				if(result.length > 0)
+					$.each(result,function(i,salon){
+		    			//alert(salon);
+					    htmlContent += "<div class='col-sm-4' id="
+					    htmlContent += salon._id
+					    htmlContent += "><a href='salons/profile?id="
+					    htmlContent += salon._id
+					    htmlContent += "'><div class='product-image-wrapper'><div class='single-products' id='first_image'><div class='productinfo text-center'>"
+						htmlContent += "<img src='images/home/product1.jpg' alt='' /><h2><a href='a.html'>"
+						htmlContent += salon.name
+						htmlContent += "</a></h2><p>"
+						htmlContent += salon.type
+						htmlContent += " salons </p><p>"
+						//htmlContent += "Street name and number of Salon"
+						//htmlContent += "</p><p>"
+						htmlContent += salon.address.area
+						htmlContent += ", "
+						htmlContent += salon.address.city
+						htmlContent += "</p><p>"
+						htmlContent += salon.address.state
+						htmlContent += ", "
+						htmlContent += salon.address.zipcode
+						htmlContent += "</p><p>"
+						htmlContent += salon.phoneNo
+						htmlContent +="</p></div></div></div></a></div>"
+		    		});				
+				else
+					htmlContent += "<h2>Sorry, Currently no salon is providing selected service(s).</h2>"	
+				//htmlContent += JSON.stringify(result);
+				htmlContent += "</div>"
+				document.getElementById("divSalons").innerHTML = htmlContent;
+				//alert(JSON.stringify(result));
+			}
+		});
+}
+*/
+//getAllSalons() retrieve all salons information, and display salons info on home-page.
+function getAllSalons()
+{
+	var htmlContent = "<div class='features_items'><h2 class='title text-center'>Salons in <span id='text_value' > </span> </h2>";
+	jQuery.ajax({
+			url: "/salons/getSalons",
+			method: "GET",
+			async: false,
+			success: function(result) {
 
-	}
-	else
-		$("#first_image").show();
-
+			$.each(result,function(i,salon){
+    			//alert(salon);
+			    htmlContent += "<div class='col-sm-4' id="
+			    htmlContent += salon._id
+			    htmlContent += "><div class='product-image-wrapper'><div class='single-products' id='first_image'><div class='productinfo text-center'>"
+				htmlContent += "<img src='images/home/product1.jpg' alt='' /><h2><a href='a.html'>"
+				htmlContent += salon.name
+				htmlContent += "</a></h2><p>"
+				htmlContent += salon.type
+				htmlContent += " salons </p><p>"
+				//htmlContent += "Street name and number of Salon"
+				//htmlContent += "</p><p>"
+				htmlContent += salon.address.area
+				htmlContent += ", "
+				htmlContent += salon.address.city
+				htmlContent += "</p><p>"
+				htmlContent += salon.address.state
+				htmlContent += ", "
+				htmlContent += salon.address.zipcode
+				htmlContent += "</p><p>"
+				htmlContent += salon.phoneNo
+				htmlContent +="</p></div><div class='product-overlay'><div class='overlay-content'></div></div></div></div></div>"
+    		});				
+				//htmlContent += JSON.stringify(result);
+				document.getElementById("divSalons").innerHTML = htmlContent;
+				//alert(JSON.stringify(result));
+			}
+		});	
 }
 
-
-
-function facial (obj) {
-	if (obj.checked == true) {
-			$("#second_image").hide();
-
-	}
-	else
-		$("#second_image").show();
-
-}
-
-
-
-function bleach (obj) {
-	if (obj.checked == true) {
-			$("#third_image").hide();
-
-	}
-	else
-		$("#third_image").show();
-
-}
-
-
-function cleanup (obj) {
-	if (obj.checked == true) {
-			$("#fourth_image").hide();
-
-	}
-	else
-		$("#fourth_image").show();
-
-}
-
-
-function threading (obj) {
-	if (obj.checked == true) {
-			$("#fifth_image").hide();
-
-	}
-	else
-		$("#fifth_image").show();
-
-}
 
 
 

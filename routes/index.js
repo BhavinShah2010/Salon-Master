@@ -28,8 +28,12 @@ router.get('/admin', function(req, res, next) {
 router.get('/', function(req, res, next) {
     salon.find({}).populate('address').exec(function(err, salons) {
     if (err) throw err;
-    console.log(salons.address)
-    res.render('home',{salonData:salons, user:req.user, views:req.session.views});
+    //console.log(salons.address)
+    var query = category.find({});
+    query.exec(function(err,categories){
+      res.render('home',{salonData:salons, category:categories, user:req.user, views:req.session.views});  
+    })
+    
     //res.json(salons);
   })
 });
@@ -71,6 +75,9 @@ router.get('/login', function(req, res, next) {
 	console.log();
   res.render('login_master');
 });
-
+router.get('/appointment', function(req, res, next) {
+  console.log();
+  res.render('Appointment');
+});
 
 module.exports = router;

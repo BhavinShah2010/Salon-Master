@@ -168,7 +168,7 @@
       var that = this;
 
       that.stars.on('click.raty', function(evt) {
-        var
+       /* var
           execute = true,
           score   = (that.opt.half || that.opt.precision) ? that.self.data('score') : (this.alt || $(this).data('alt'));
 
@@ -182,7 +182,7 @@
           }
 
           methods._apply.call(that, score);
-        }
+        }*/
       });
     },
 

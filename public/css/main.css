@@ -1481,7 +1481,7 @@ h2.title {
 }
 
 
-.login-form form input, .signup-form form input {
+.login-form form input, .signup-form form input, #Statelistdown {
   background: #F0F0E9;
   border: medium none;
   color: #696763;
@@ -2696,6 +2696,7 @@ cursor: pointer;
   background-color:#FFF;
   border:solid;
   border-width:thin;
+  margin-left: -50px;
   border-color:#CCC;
   color:#000;
 }
@@ -2714,6 +2715,122 @@ cursor: pointer;
 }
 /*Jaydeep CSS Ends.*/
 
+
+.box .k-textbox {
+                width: 80px;
+              }
+              .box .k-button {
+                min-width: 80px;
+              }
+.fullwidth
+{
+  width:100% !important;
+}
+
+.Booking-form form input,#salonList {
+  background: #F0F0E9;
+  border: medium none;
+  color: #696763;
+  display: block;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  height: 40px;
+  margin-bottom: 20px;
+  outline: medium none;
+  padding-left: 10px;
+}
+
+.Booking-form form span{
+  font-size:18px;
+}
+#errortr
+{
+  width:100%;
+  height: 50px; 
+  display: none;
+}
+
+.Booking-form form span input ,{
+  width: 15px;
+  float: left;
+  height: 15px;
+  margin-right: 5px;
+}
+
+.Booking-form form button {
+  margin-top: 23px;
+}
+
+.Booking-form form button{
+  background: #FE980F;
+  border: medium none;
+  border-radius: 0;
+  color: #FFFFFF;
+  display: block;
+  font-family: 'Roboto', sans-serif;
+  padding: 6px 25px;
+}
+.Booking-form label input {
+  border: medium none;
+  display: inline-block;
+  height: 0;
+  margin-bottom: 0;
+  outline: medium none;
+  padding-left: 0;
+}
+.insameline,#insameline{
+height: 18px  !important;
+width:45px  !important;
+float:left !important;
+}
+.hiddentr
+{
+  display:none;
+}
+.formtable
+{
+  height:100%;
+  width:90%;
+  margin:0px auto;
+}
+
+
+#servicelisttr td
+{
+  width:33%;
+}
+#servicelisttr td span
+{
+  margin-right: 20px;
+}
+#cancel_delay_box
+{
+  width: 50%;
+  height: 100%;
+  //border: thin red solid;
+  font-size: 15px;
+  //display: none;
+ // z-index: 1002;
+}
+
+
+#new_date_time_err
+{
+  width:100%;
+  height: 30px; 
+  display: none;
+}
+#new_date_time_btn button
+{
+  width: 70px;
+  height: 30px;
+  background: #FE980F;
+  color: #fff;
+  margin: 0 auto;
+  border: none;
+  margin-left: 40%;
+  margin-top: 10%;
+}
 
 
 
