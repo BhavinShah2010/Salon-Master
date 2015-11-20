@@ -10,7 +10,7 @@ var app=express();
 //For File Upload
 router.use(multer({ dest: './uploads/',
     rename: function (fieldname, filename) {
-    	//console.log(fieldname);
+    	console.log(fieldname);
         return "Image"+Date.now();
     },
     onFileUploadStart: function (file) {
@@ -201,20 +201,12 @@ router.post('/add',function(req,res){
 	
 	s.address=a;
 
-	//File Upload
-	upload(req,res,function(err) {
-        if(err) {
-            return res.end("Error uploading file.");
-        }
-        res.end("File is uploaded");
-    });
-
 	s.save(function(err){
 			if(err){
 				res.send('Database error! '+err);
 			}
 			else{
-				res.send('Instance of salon schema is successfully added');
+				res.json([{"salonID":s._id}]);
 			}
 		})
 	});
