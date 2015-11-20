@@ -19,20 +19,23 @@ html(lang='en')
         #popup_header
           span Select New Date & Time : 
           #close
-            img(src='/images/Cross/Cross.png', width='20', height='20')
+            img(src='images/Cross/Cross.png', width='20', height='20')
         table.new_date_time(cellpadding='5px')
           tr
-            td(width='19%')
+            td
               span Date and Time:
               br
-            td(width='29%')
+            td(colspan='2')
               .demo-section.k-content
                 input#new_date_time(style='width: 100%;', maxlength='19/')
           tr#new_date_time_err.alert.alert-danger
-            td(colspan='5')
+            td(colspan='3')
               label#new_date_time_err_msg
-        #new_date_time_btn
-          button(type='button') Save
+          tr
+            td(colspan='3')
+              center
+                button#btnDelaySave(type='button', style='background: #FE980F; border:none; color:#fff; width:30%; height:2.5em;') Save
+    // main_box
     section
       .container
         .row
@@ -62,7 +65,7 @@ html(lang='en')
                             td AAAAA
                             td BBBBB
                             td CCCCC
-                            td#status Completed
+                            td#status DDDDD
                             td
                               #divDefault
                               #cancel_delay_box
@@ -271,11 +274,11 @@ html(lang='en')
                             tr
                               td
                                 button#btnBook(type='button') Book
-    script(src='http://code.jquery.com/jquery-latest.min.js')
     script(src='/js/Appointment.js')
+    script(src='/js/apointment_script.js') 
+    script(src='http://code.jquery.com/jquery-latest.min.js')
     script(src='http://kendo.cdn.telerik.com/2015.3.1111/js/jquery.min.js')
     script(src='http://kendo.cdn.telerik.com/2015.3.1111/js/kendo.all.min.js')
     script(src='/js/jquery.raty.js')
-    script(src='/js/RatingJs.js')
-    script(src='/js/apointment_script.js')    
+    script(src='/js/RatingJs.js')   
     include footer

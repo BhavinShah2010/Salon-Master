@@ -1,15 +1,13 @@
 
 $(document).ready(function () {
 
-//	$('#datetimepicker').val() = "MM/DD/YYYY HH:MM AM/PM ";
-
-	//alert($('#status').text());
-
-                    // create DateTimePicker from input HTML element
+	/**/
                     $("#datetimepicker").kendoDateTimePicker({
                         value:new Date()
                     });
-
+				$("#new_date_time").kendoDateTimePicker({
+                        value:new Date()
+                    });
 
                
 
@@ -29,18 +27,6 @@ $(document).ready(function () {
 
 
 				}
-			if($('#salonList').val()=='0')
-			{
-				$('#servicelbltr').css('display','none');
-				$('#servicelisttr').css('display','none');
-			}
-			else
-			{
-				$('#servicelbltr').css('display','table-row');
-				$('#servicelisttr').css('display','table');
-			}
-
-
 
 		$('#cancel').click(function () {
 				$('#status').text("Cancelled");
@@ -278,21 +264,6 @@ $(document).ready(function () {
 				}
 		});
 			
-		$('input[type=checkbox]').change(function () {
-			var pretotprice=parseInt($("#totalprice").val(),10);
-			var checkedboxvalue=parseInt($(this).val(),10);
-    if ($(this).is(":checked")) {
-		var val=pretotprice+checkedboxvalue;
-       $('#totalprice').val(val);
-        return;
-    }
-	var val=pretotprice-checkedboxvalue;
-	$('#totalprice').val(val);
-    //Here do the stuff you want to do when 'unchecked'
-
-});
-
-
 $('#new_date_time_btn').click(function() {
 				//alert("dsf");
 			var today1 = new Date(); // current date with time
@@ -332,7 +303,7 @@ $('#new_date_time_btn').click(function() {
                  {
                      if (dd1>ListofDays1[mm1-1])
                      {
-                       $('#new_date_time_err_msg').text('Please Enter Valid  Date & Time 1 ');	
+                       $('#new_date_time_err_msg').text('Please Enter Valid  Date & Time');	
 					   $('#new_date_time_err').css('display','table-row');
                          return false;
                      }
@@ -346,13 +317,13 @@ $('#new_date_time_btn').click(function() {
                      }
                      if ((lyear1==false) && (dd1>=29))
                      {
-                          $('#new_date_time_err_msg').text('Please Enter Valid  Date & Time 2');	
+                          $('#new_date_time_err_msg').text('Please Enter Valid  Date & Time');	
 					      $('#new_date_time_err').css('display','table-row');
                          return false;
                      }
                      if ((lyear1==true) && (dd1>29))
                      {
-                          $('#new_date_time_err_msg').text('Please Enter Valid  Date & Time 3');	
+                          $('#new_date_time_err_msg').text('Please Enter Valid  Date & Time');	
 					      $('#new_date_time_err').css('display','table-row');
                          return false;
                      }
@@ -360,7 +331,7 @@ $('#new_date_time_btn').click(function() {
              }
              else 
              {
-                  $('#new_date_time_err_msg').text('Please Enter Valid Date & Time 4');	
+                  $('#new_date_time_err_msg').text('Please Enter Valid Date & Time');	
 				  $('#new_date_time_err').css('display','table-row');
  
                  return false;
@@ -372,27 +343,27 @@ $('#new_date_time_btn').click(function() {
 
 			 if (user_date1 == '')
 				{
-					   $('#new_date_time_err_msg').text('Please Enter  Date & Time 5 ');	
+					   $('#new_date_time_err_msg').text('Please Enter  Date & Time');	
 					   $('#new_date_time_err').css('display','table-row');				
 				}
 				else if(user_date1=='Invalid Date')
 
 				{
 						
-							$('#new_date_time_err_msg').text('Please Enter Valid Date & Time 6');	
+							$('#new_date_time_err_msg').text('Please Enter Valid Date & Time');	
 					  		 $('#new_date_time_err').css('display','table-row');
 				}
 				else if(com1 < 0 )
 					{
 
-					   $('#new_date_time_err_msg').text('Please Enter Valid Date & Time 7');	
+					   $('#new_date_time_err_msg').text('Please Enter Valid Date & Time');	
 					   $('#new_date_time_err').css('display','table-row');
 					   alert(com1);				
 					}
 
    				else if(time1 == '' && time1.match(re1))
    				 {
-     				 $('#new_date_time_err_msg').text('Please Enter Valid Date & Time 8');	
+     				 $('#new_date_time_err_msg').text('Please Enter Valid Date & Time');	
 					   $('#new_date_time_err').css('display','table-row');
       					//form.starttime.focus();
       					return false;
@@ -408,5 +379,119 @@ $('#new_date_time_btn').click(function() {
 
 				}
 		});
+$('#btnDelaySave').click(function() {
+                //alert("dsf");
+            var today1 = new Date(); // current date with time
+            var dateval1=$('#new_date_time').val().split(" ");
 
+            var date1 = dateval1[0]; // user entered date
+            var time1 = dateval1[1] + " " + dateval1[2]; // user entered time
+
+        //    var cur_hour = today.getHours();
+        //    var cur_min = today.getMinutes();
+
+        //    var cur_time = cur_hour + ":" cur_min;
+
+            //alert(date);
+            //alert(time);
+
+            var dateformat1 = /^(0?[1-9]|1[012])[\/\-](0?[1-9]|[12][0-9]|3[01])[\/\-]\d{4}$/;
+            var re1 = /^\d{1,2}:\d{2}([ap]m)?$/;
+            var Val_date1= date1;
+             if(Val_date1.match(dateformat1)){
+                 var seperator11 = Val_date1.split('/');
+                 var seperator21 = Val_date1.split('-');
+ 
+                 if (seperator11.length>1)
+                 {
+                     var splitdate1 = Val_date1.split('/');
+                 }
+                 else if (seperator21.length>1)
+                 {
+                     var splitdate1 = Val_date1.split('-');
+                 }
+                 var mm1  = parseInt(splitdate1[0]);
+                 var dd1 = parseInt(splitdate1[1]);
+                 var yy1 = parseInt(splitdate1[2]);
+                 var ListofDays1 = [31,28,31,30,31,30,31,31,30,31,30,31];
+                 if (mm1==1 || mm1>2)
+                 {
+                     if (dd1>ListofDays1[mm1-1])
+                     {
+                       $('#new_date_time_err_msg').text('Please Enter Valid  Date & Time  ');    
+                       $('#new_date_time_err').css('display','table-row');
+                         return false;
+                     }
+                 }
+                 if (mm1==2)
+                 {
+                     var lyear1 = false;
+                     if ( (!(yy1 % 4) && yy1 % 100) || !(yy1 % 400))
+                     {
+                         lyear1 = true;
+                     }
+                     if ((lyear1==false) && (dd1>=29))
+                     {
+                          $('#new_date_time_err_msg').text('Please Enter Valid  Date & Time ');    
+                          $('#new_date_time_err').css('display','table-row');
+                         return false;
+                     }
+                     if ((lyear1==true) && (dd1>29))
+                     {
+                          $('#new_date_time_err_msg').text('Please Enter Valid  Date & Time ');    
+                          $('#new_date_time_err').css('display','table-row');
+                         return false;
+                     }
+                 }
+             }
+             else 
+             {
+                  $('#new_date_time_err_msg').text('Please Enter Valid Date & Time ');    
+                  $('#new_date_time_err').css('display','table-row');
+ 
+                 return false;
+             }
+
+            var user_date1 = new Date($('#new_date_time').val());
+            var com1= user_date1 - today1;
+
+
+             if (user_date1 == '')
+                {
+                       $('#new_date_time_err_msg').text('Please Enter  Date & Time  ');    
+                       $('#new_date_time_err').css('display','table-row');                
+                }
+                else if(user_date1=='Invalid Date')
+
+                {
+                        
+                            $('#new_date_time_err_msg').text('Please Enter Valid Date & Time ');    
+                               $('#new_date_time_err').css('display','table-row');
+                }
+                else if(com1 < 0 )
+                    {
+
+                       $('#new_date_time_err_msg').text('Please Enter Valid Date & Time ');    
+                       $('#new_date_time_err').css('display','table-row');
+                      // alert(com1);                
+                    }
+
+                   else if(time1 == '' && time1.match(re1))
+                    {
+                      $('#new_date_time_err_msg').text('Please Enter Valid Date & Time');    
+                       $('#new_date_time_err').css('display','table-row');
+                          //form.starttime.focus();
+                          return false;
+                }    
+                else
+                {
+                    //alert("Ds");
+                       //$('#new_date_time_err_msg').text('Ho Gaya');    
+                       //$('#new_date_time_err').css('display','table-row');
+                       $('#main_box').css('display' , 'none');
+                       $('#popup_box').reload();
+                      
+
+                }
+        });
 });
