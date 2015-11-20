@@ -1,6 +1,6 @@
 $(document).ready(function () {
     //alert(0);
-    debugger;
+    //debugger;
     //aa
     var d = jQuery.parseJSON($("#txtData").text());
     // console.log($("#txtData").text());
@@ -13,7 +13,19 @@ $(document).ready(function () {
     //var tname= !{{user.name}};
     //console.log({user.name});
     //$("#user_name").html(user.username);
+
+    
+    $("#cancel_det").click(function () {
+
+        $("#user_name_val").val(d.name);
+        $("#user_email_val").val(d.email);
+        $("#user_contact_val").val(d.phno);
+        //$("#lblUserGender").html(d.gender);
+        //lblChangePwdUserEmail").html(d.email);
+        user_det_save()
+    });
     $("#change_det").click(function () {
+        debugger;
         //  alert(1);
         //console.log($("#user_name_val").val());
         $.post("/users/updateProfile",
@@ -27,8 +39,8 @@ $(document).ready(function () {
             address: d.address
         },
         function (data) {
-            alert(2);
-            debugger;
+            //alert(2);
+           debugger;
             console.log(data);
             //var y=JSON.stringify(data)
             //var x = JSON.parse(y);  
@@ -70,7 +82,7 @@ $(document).ready(function () {
             // $("#lblShopEmail").html(data[0].name);
             //$("#lblShopMobile").html(data[0].phoneNo[0]);
             //$("#lblShopAddress").html(data[0].name); 
-            //$("#lblShopDescription").html(data[0].description);
+            //$(" #lblShopDescription").html(data[0].description);
 
         });
 
@@ -87,6 +99,7 @@ $(document).ready(function () {
             // $("#change_det").c
 
             isWll = false;
+            return false;
         }
 
         if ($("#user_email_val").val() == '') {
@@ -94,6 +107,7 @@ $(document).ready(function () {
             $("#lblError").html("Please Enter EmailId");
             $("#divResult").css("display", "block");
             isWll = false;
+            return false;
         }
 
         if ($("#user_email_val").val() != '') {
@@ -103,6 +117,7 @@ $(document).ready(function () {
                 $("#lblError").html("Please Enter Valid EmailId");
                 $("#divResult").css("display", "block");
                 isWll = false;
+                return false;
             }
         }
 
@@ -112,6 +127,7 @@ $(document).ready(function () {
             $("#lblError").html("Please Phone Number");
             $("#divResult").css("display", "block");
             isWll = false;
+            return false;
         }
 
         if ($("#user_contact_val").val() != '') {
@@ -121,6 +137,7 @@ $(document).ready(function () {
                 $("#lblError").html("Invalid Mobile Number");
                 $("#divResult").css("display", "block");
                 isWll = false;
+                return false;
             }
         }
 
@@ -225,4 +242,3 @@ function user_det_save() {
 
 
 }
-

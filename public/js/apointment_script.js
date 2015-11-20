@@ -24,34 +24,36 @@ $(document).ready(function () {
 		{
 			$.post("/services/getSalonServices",
 		     {
-		         objectId: $('#salonList').val()
+		     	 //salonID: '564b062108534b2012ada465'
+		         salonId: $('#salonList').val()
 		     },
-		     function (servicelist) {
+		     function (data) {
 		         debugger;
-		         //alert(JSON.stringify(servicelist));
+
+		         alert($('#salonList').val());
 		         var servicelistcontent = "";
-		         if (servicelist.length==0) {
+		         if (data.length==0) {
 		         	servicelistcontent+="<tr><td>No Services Available</td></tr>";
 		         }
 		         else{
-			         for (var i = 0; i <servicelist.length; i++) {
-			         	if(i%3==0)
+			         for (var i = 0; i <data.length; i++) {
+			         	if(i%3==0 && i!=0)
 			         	{
-			         		servicelistcontent+="<tr>";
+			         		servicelistcontent+="</tr><tr>";
 			         	};
-			         	servicelistcontent+="<td><span>"+servicelist[0].name+"</span>";
-			         	//if (servicelist[0].offer!=null) {
-			         	//servicelistcontent+="<td><span>"+servicelist[0].offer+"</span>";
+			         	servicelistcontent+="<td><span>"+data[i].name+"</span>";
+			         	//if (data[0].offer!=null) {
+			         	//servicelistcontent+="<td><span>"+data[0].offer+"</span>";
 			         	//};
-			         	servicelistcontent+="<td><span>temp offer</span>";
-			         	servicelistcontent+="<td><span>"+servicelist[0].price+"</span>";
-			         	servicelistcontent+="<input type='checkbox' name='services' value="+servicelist[0].price+" class='insameline'>"
+			         	servicelistcontent+="<span>temp offer</span>";
+			         	servicelistcontent+="<span>"+data[i].price+" RS</span>";
+			         	servicelistcontent+="<input type='checkbox' name='services' value="+data[i].price+" class='insameline'>"
 			         	servicelistcontent+="</td>";
-			         	if (i-1%3==0) {
+			         	if ((i-1)%3==0) {
 			         		servicelistcontent+="</tr>";
 			         	};
 			         };
-			         if(servicelist.length%3!=0)
+			         if(data.length%3!=0)
 			         	{
 			         		servicelistcontent+="</tr>";
 			         	};
@@ -62,4 +64,23 @@ $(document).ready(function () {
 		     });
 		}
 	});
+	$('#cancel').click(function () {
+			/*$.post("/services/getSalonServices",
+		     {
+		         objectId: $('#lbl_appointmentID').val()
+		     },
+		     function () {
+
+		     });*/
+		});
+	$('#btndelaydate').click(function () {
+			/*$.post("/services/getSalonServices",
+		     {
+		         objectId: $('#lbl_appointmentID').val()
+		     },
+		     function () {
+
+		     });*/
+		});
+
 });

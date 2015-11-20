@@ -82,7 +82,7 @@ router.post('/add',function(req,res)
 	var a=new address();
 	a.area=data.area;
 	a.city=data.city;
-	a.state=data.state;
+	a.state=data.state.value;
 	a.zipcode=data.zipcode;
 	a.save(function(err){
 			if(err){
@@ -124,10 +124,7 @@ router.post('/forgetPassword',function(req,res){
 	})
 });
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 12a804838b86ebc4bc3a2b61e52985bf63243e0a
 });
 
 //View Profile
@@ -158,10 +155,10 @@ router.post('/updateProfile',function(req,res){
 	  "Enter a valid Gender"
 	).isIn(['Male','Female','Other','male','female','other']);
 
-
+/*
 	req.checkBody(  
 	  "zipcode",
-	  "Enter a valid zipcode").isNumeric();
+	  "Enter a valid zipcode").isNumeric();*/
 
 	var errors = req.validationErrors();
   	if (errors) {
@@ -170,6 +167,7 @@ router.post('/updateProfile',function(req,res){
     } else {
   	data=req.body;
 	var a=new address();
+	a.Street=data.Street;
 	a.area=data.area;
 	a.city=data.city;
 	a.state=data.state;

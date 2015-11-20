@@ -2795,10 +2795,10 @@ float:left !important;
 }
 
 
-#servicelisttr td
+/*#servicelisttr td
 {
   width:33%;
-}
+}*/
 #servicelisttr td span
 {
   margin-right: 20px;
