@@ -1,53 +1,67 @@
 $(document).ready(function () {
 	
 	debugger;
-	$('#viewAppointment').bootstrapTable({
+	$('#tblviewappointment').bootstrapTable({
 
-            url: '/categories/getAllCategories',
-            method: 'get',
-            height: 400,
-            striped: true,
-            pagination: true,
-            pageSize: 6,
-            pageList: [10, 25, 50, 100, 200],
-
-            showRefresh: true,
-            search: true,
-            minimumCountColumns: 2,
+            /*url: '/appointments/getUserAppointment',
+            method: 'post',
+	        height: 400,
+	        striped: true,
+	        pagination: true,
+	        pageSize: 10,
+	        pageList: [10, 25, 50, 100, 200],
+	        search: true,
+	        showRefresh: true,
+	        minimumCountColumns: 2,
+	        queryParams: function (p) {
+	            return { userId: '564e3a922b0c3a3c155c864c'}
+	        },
             columns: [
             {
-                field: 'name',
-                title: 'Category Name',
+                field: 'salon',
+                title: 'Salon Name',
                 align: 'center',
                 valign: 'middle',
                 sortable: true
             },
             {
-                field: 'description',
-                title: 'Description',
+                field: 'time',
+                title: 'Date and Time',
                 align: 'left',
                 valign: 'top',
                 sortable: true
             },
             {
-                field: 'sub_cat',
+                field: 'serviceslist',
                 title: 'Services Name',
                 align: 'sleft',
                 valign: 'top',
                 sortable: true
             },
             {
-                field: 'operate',
-                title: 'Edit',
+                field: 'totalprice',
+                title: 'Price',
                 align: 'center',
                 valign: 'middle',
-                formatter: editFormatter,
+                sortable: true
+            },
+            {
+                field: 'status',
+                title: 'Status',
+                align: 'center',
+                valign: 'right',
+                sortable: true
+            },
+            {
+                field: 'rating',
+                title: 'Rating',
+                align: 'center',
+                valign: 'right',
+                sortable: true
             }
             ]
-
+*/
         });
-
-
 	$.get("/salons/getSalons",
      function (data) {
          debugger;
