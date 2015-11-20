@@ -91,7 +91,7 @@ router.post('/add',function(req,res)
 	var a=new address();
 	a.area=data.area;
 	a.city=data.city;
-	a.state=data.state.value;
+	a.state=data.state;
 	a.zipcode=data.zipcode;
 	a.save(function(err){
 			if(err){
@@ -115,9 +115,33 @@ router.post('/add',function(req,res)
             console.log(err);
         }
     else{
-            console.log("Instance of user schema is successfully uploaded.");
-        }
+                  var transporter = nodemailer.createTransport({
+                        service: 'Gmail',
+                        auth: {
+                            user: 'noreply.salonmaster@gmail.com', // Your email id
+                            pass: 'salon123' // Your password
+                        }
+                    });
+
+                    var mailOptions = {
+                        from: 'noreply.salonMaster@gmail.com', // sender address
+                        to: u.email, // list of receivers
+                        subject: 'Email Verification', // Subject line
+                        text: 'http://localhost:3000/users/activateUser?objectId=' +u._id,
+                        // html: '<b>Hello world ?</b>' // You can choose to send an HTML body instead
+                    };
+
+                    transporter.sendMail(mailOptions, function(error, info){
+                        if(error){
+                            res.send('Unsuccessful Email');
+                        }else{
+                            res.send('Successful');
+                        }
+                    })
+                  }
+        })
     });
+
 
 
 //Forget Password
@@ -133,14 +157,11 @@ router.post('/forgetPassword',function(req,res){
 	})
 });
 
-
-});
-
 //View Profile
 router.post('/getDetails',function(req,res){
     data=req.body;
     var objectId=data.objectId;
-    user.find({ "_id": objectId }).exec(function(err, data) {
+    user.find({ "_id": objectId }).populate('address').exec(function(err, data) {
   		if (err) throw err;
   		res.json(data);
   		 res.render('user_profile',{user:req.user, views:req.session.views});

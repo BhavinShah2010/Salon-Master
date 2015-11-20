@@ -4,14 +4,14 @@ var salon = require('../modules/salon');
 var address = require('../modules/address');
 var passport = require('./../auth');
 var multer  = require('multer');
-var upload  =   multer({ dest: './uploads/'});
+var upload  =   multer({ dest: './public/uploads/'});
 var app=express();
-
+var newfilename;
 //For File Upload
 router.use(multer({ dest: './uploads/',
     rename: function (fieldname, filename) {
     	console.log(fieldname);
-        return "Image"+Date.now();
+        return newfilename;
     },
     onFileUploadStart: function (file) {
         console.log(file.originalname + ' is starting ...');
@@ -200,6 +200,14 @@ router.post('/add',function(req,res){
 		})
 	
 	s.address=a;
+	newfilename=data.username;
+	
+	upload(req,res,function(err) {
+        if(err) {
+            return res.end("Error uploading file.");
+        }
+        console.log("File is uploaded");
+    });
 
 	s.save(function(err){
 			if(err){
