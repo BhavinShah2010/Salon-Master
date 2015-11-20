@@ -1,0 +1,162 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/prettyPhoto.css" rel="stylesheet">
+    <link href="css/price-range.css" rel="stylesheet">
+    <link href="css/animate.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+    <link href="js/loginScript.js">
+    <link href="css/responsive.css" rel="stylesheet">
+    <link rel="shortcut icon" href="images/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
+    <script src="js/jquery.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/jquery.scrollUp.min.js"></script>
+	<script src="js/price-range.js"></script>
+    <script src="js/jquery.prettyPhoto.js"></script>
+    <script src="js/main.js"></script>
+
+    <title>Login | Salon Master</title>
+  </head>
+  <body>
+    <section id="Loginform">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-4 col-sm-offset-1">
+            <div class="login-form">
+              <h2>Login</h2>
+              <form action="/users/login" method="post">
+                <div>
+                  <div>
+                    <input id="txtLoginUserName" type="text" name="username" placeholder="User Name">
+                  </div>
+                  <div>
+                    <input id="txtLoginPassword" type="password" placeholder="Password" name="password">
+                  </div>
+                  <div><span>
+                      <input type="checkbox" class="checkbox">                                        Keep me signed in </span>
+                    <div style="float: right"><a href="#">Forgot Password ?</a></div>
+                    <div id="divResult" style="height: 50px; display: none;" class="alert alert-danger">
+                      <label id="lblError">    </label>
+                    </div>
+                    <button id="btnLogin" type="submit">Login</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="col-sm-1">
+            <h2 class="or">OR</h2>
+          </div>
+          <div class="col-sm-4">
+            <div class="signup-form">
+              <h2>New User ?, Signup!</h2>
+              <form action="/users/add" method="post">
+                <div class="col-sm-12">
+                  <input id="txtName" type="text" placeholder="Name" name="name">
+                </div>
+                <div class="col-sm-12">
+                  <input id="txtUserEmailid" type="email" placeholder="Email Address" name="email">
+                </div>
+                <div class="col-sm-6">
+                  <input id="txtUserName" type="text" placeholder="User Name" name="username" onchange="Chk()">
+                </div>
+                <div class="col-sm-6">
+                  <input id="txtUserMobileNum" type="text" placeholder="Mobile Number" maxlength="10" name="phno">
+                </div>
+                <div class="col-sm-6">
+                  <input id="txtUserPassword" type="password" placeholder="Password" maxlength="15" name="password">
+                </div>
+                <div class="col-sm-6">
+                  <input id="txtConifemPwd" type="password" placeholder="Confirm Password" maxlength="15">
+                </div>
+                <div class="col-sm-6">
+                  <input id="txtArea" type="text" placeholder="Area" name="area">
+                </div>
+                <div class="col-sm-6">
+                  <input id="txtCity" type="text" placeholder="City" name="city">
+                </div>
+                <div class="col-sm-6">
+                  								<select id="Statelistdown" class="fullwidth" >
+                                                	<option value="none">--Select State --</option>
+                                                    <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+                                                    <option value="Andhra Pradesh">Andhra Pradesh</option>
+                                                    <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                                                    <option value="Assam">Assam</option>
+                                                    <option value="Bihar">Bihar</option>
+                                                    <option value="Chandigarh">Chandigarh</option>
+                                                    <option value="Chhattisgarh">Chhattisgarh</option>
+                                                    <option value="Dadra and Nagar Haveli">Dadra and Nagar Haveli</option>
+                                                    <option value="Daman and Diu">Daman and Diu</option>
+                                                    <option value="Delhi">Delhi</option>
+                                                    <option value="Goa">Goa</option>
+                                                    <option value="Gujarat">Gujarat</option>
+                                                    <option value="Haryana">Haryana</option>
+                                                    <option value="Himachal Pradesh">Himachal Pradesh</option>
+                                                    <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                                                    <option value="Jharkhand">Jharkhand</option>
+                                                    <option value="Karnataka">Karnataka</option>
+                                                    <option value="Kerala">Kerala</option>
+                                                    <option value="Lakshadweep">Lakshadweep</option>
+                                                    <option value="Madhya Pradesh">Madhya Pradesh</option>
+                                                    <option value="Maharashtra">Maharashtra</option>
+                                                    <option value="Manipur">Manipur</option>
+                                                    <option value="Meghalaya">Meghalaya</option>
+                                                    <option value="Mizoram">Mizoram</option>
+                                                    <option value="Nagaland">Nagaland</option>
+                                                    <option value="Orissa">Orissa</option>
+                                                    <option value="Pondicherry">Pondicherry</option>
+                                                    <option value="Punjab">Punjab</option>
+                                                    <option value="Rajasthan">Rajasthan</option>
+                                                    <option value="Sikkim">Sikkim</option>
+                                                    <option value="Tamil Nadu">Tamil Nadu</option>
+                                                    <option value="Tripura">Tripura</option>
+                                                    <option value="Uttaranchal">Uttaranchal</option>
+                                                    <option value="Uttar Pradesh">Uttar Pradesh</option>
+                                                    <option value="West Bengal">West Bengal</option>
+                                                </select>
+
+                </div>
+                <div class="col-sm-6">
+                  <input id="txtZipcode" type="text" placeholder="Zipcode" name="zipcode" maxlength="6">
+                </div>
+                <div class="col-sm-12">
+                  <table>
+                    <tr>
+                      <td style="width: 50%">
+                        <input id="m_radioStyle" type="radio" name="gender" value="Male"><span style="font-size: large">Male</span>
+                      </td>
+                      <td>
+                        <input id="f_radioStyle" type="radio" name="gender" value="Female" checked="checked"><span style="font-size: large">Female</span>
+                      </td>
+                    </tr>
+                  </table>
+                </div><br><br>
+                <div class="col-sm-12">
+                  <div id="divSingup" style="height: 50px; display: none;" class="alert alert-danger">
+                    <label id="lblSingUpError"></label>
+                  </div>
+                </div>
+                <button id="btnSingup" type="button">Signup</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script src="/js/loginScript.js"></script>
+  </body>
+</html>

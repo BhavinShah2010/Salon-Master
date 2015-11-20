@@ -36,7 +36,18 @@ router.post('/api/photo',function(req,res){
 //This library is imported to perform join operation
 //var populatePlugin = require('mongoose-power-populate')(mongoose);
 
+
+
+
 /* GET users listing. */
+
+///profile method will redirect us to shop_profile with salonId
+router.get('/profile', function(req, res, next) {
+	console.log();
+  res.render('shop_profile1',{user:req.user,salonId:req.query.id, msg:req.message, views:req.session.views});
+});
+
+
 //Get salon detail through its ID
 /*
 router.post('/getSalon',function(req,res){
@@ -77,13 +88,24 @@ router.post('/getAllSalonsById',function(req,res,next){
                return;
         }
         res.json(salons); 
-    });
+        });
+});
+
+//View Single Salon Profile
+router.post('/getDetails',function(req,res){
+    data=req.body;
+    var objectId=data.objectId;
+    salon.find({"_id":objectId}).populate('address').exec(function(err, salons) {
+    if (err) throw err;
+    //console.log(salons.address)
+    res.json(salons);
+  })
 });
 
 //refirect to index.js if user is not logged in
 /*router.use(function(req,res,next){
 */
-/*router.use(function(req,res,next){
+router.use(function(req,res,next){
   if(!req.user){
     res.redirect('/');
   }
@@ -92,7 +114,7 @@ router.post('/getAllSalonsById',function(req,res,next){
 
 
 
-*/
+
 //redirect to Home page
 router.get('/', function(req, res, next) {
   //res.send('respond with a resource');
@@ -124,7 +146,7 @@ router.get('/', function(req, res, next) {
 
 router.get('/profile', function(req, res, next) {
 	console.log();
-  res.render('shop_profile1',{salonId:req.query.id, msg:req.message, views:req.session.views});
+  res.render('shop_profile1',{user:req.user,salonId:req.query.id, msg:req.message, views:req.session.views});
 });
 
 
@@ -197,6 +219,7 @@ router.post('/add',function(req,res){
 	s.deviceId=data.deviceId;
 	s.type = data.type;
 	var a=new address();
+	a.street = data.street;
 	a.area=data.area;
 	a.city=data.city;
 	a.state=data.state;
