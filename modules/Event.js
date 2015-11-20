@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var schema = mongoose.Schema({
-	name:{ 		// event name
-		type:String,
+	totalPersons:{
+		type:Number,
 		required:true,
 	},
 	type:{
@@ -14,7 +14,6 @@ var schema = mongoose.Schema({
 		type:Date,
 		required:true
 	}
-
 });
 
 

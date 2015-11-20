@@ -14,7 +14,7 @@ var Salon = require('mongoose').model('salon').schema;
 var schema = mongoose.Schema({
 	user:{type: mongoose.Schema.Types.ObjectId, ref: 'user',required:true},
 	salon:{type: mongoose.Schema.Types.ObjectId, ref: 'salon',required:true},
-	event:{type: mongoose.Schema.Types.ObjectId, ref: 'event',required:true},
+	event:{type: mongoose.Schema.Types.ObjectId, ref: 'event',required:false},
 	serviceslist:[{type: mongoose.Schema.Types.ObjectId, ref: 'service',required:true}],
 	time:{
 		type:Date,
