@@ -1,4 +1,5 @@
-                 .rating{
+
+            .rating{
                 overflow: hidden;
                 vertical-align: bottom;
                 display: inline-block;
@@ -36,6 +37,37 @@
             }
 
 
-
-
-            
+            .fixrating{
+                overflow: hidden;
+                vertical-align: bottom;
+                display: inline-block;
+                height: 25px;
+              
+            }
+            .fixrating > input{
+                opacity: 0;
+               // margin-right: -100%;
+            }
+            .fixratingoff{
+                position: relative;
+                display: block;
+                float: right;
+                background: url('../images/star/star-off-big.png');
+                background-size: 20px 20px;
+                background-repeat: no-repeat;
+            }
+            .fixratingon{
+                display: block;
+                opacity: 0;
+                content: '';
+                width: 30px;
+                height: 30px;
+                background: url('../images/star/star-on-big.png');
+                background-size: 20px 20px;
+                transition: opacity 0.2s linear;
+                background-repeat: no-repeat;
+            }
+            .fixrating:not(:hover) > :checked ~ label:before{
+                opacity: 1;
+                cursor: pointer;
+            }

@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Appointment | Salon Master</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/prettyPhoto.css" rel="stylesheet">
+    <link href="css/price-range.css" rel="stylesheet">
+    <link href="css/animate.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+    <link href="css/responsive.css" rel="stylesheet">
+    <link href="css/five_star.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2015.3.1111/styles/kendo.common-material.min.css" />
+    <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2015.3.1111/styles/kendo.material.min.css" />
+    <link rel="stylesheet" href="http//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+
+
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <link rel="shortcut icon" href="images/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
+</head>
+<!--/head-->
+
+<body>
+
+    <header id="header">
+        
+        <div class="header-middle">
+            <!--header-middle-->
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="logo pull-left">
+                            <a href="index.html">
+                                <img src="Logo_images/Salon_logo.png" alt="" width:"130" height="50" /></a>
+                        </div>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="shop-menu pull-right">
+                            <ul id="nav_before_login" class="nav navbar-nav" style="display:none;" >
+                                <li><a href="login.html"><i class="fa fa-lock"></i>Login</a></li>
+                            </ul>
+                            <ul id="nav_after_login" class="nav navbar-nav" >
+                               <li ><a href="#"><span id="loc_name">Location</span></a>
+                               
+                               </li>
+                               <li class="dropdown"><a href="#">Welcome , UserName<i class="fa fa-angle-down"></i></a>
+                                    <ul id="usersubmenu" role="menu" class="sub-menu">
+                                        <li><a href="user_profile.html" class="usermenufont">Myaccount</a></li><br>
+                                        <li><a href="#" class="usermenufont">Logout</a></li>
+                                    </ul>
+                                </li> 
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="header-bottom"><!--header-bottom-->
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-9">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                        </div>
+                        <div class="mainmenu pull-left">
+                             <ul class="nav navbar-nav collapse navbar-collapse">
+                                <li><a href="index.html">Home</a></li>
+                                <li><a href="contact-us.html">Salon</a></li>
+                                <li><a href="contact-us.html">Map</a></li>
+                                
+                                <li><a href="contact-us.html">Contact Us</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!--/header-bottom-->
+    </header><!--/header finish-->
+    <section>
+        <div class="container">
+            <div class="row">
+                <div id="Shop_Details" class="col-sm-9 padding-right">
+                        <div class="tab-content">
+                            <div class="tab-pane fade active in " id="companyprofile">
+                            <div class="category-tab shop-details-tab">
+                        <div class="col-sm-12">
+                            <ul class="nav nav-tabs">
+                            	<li class="active"><a href="#bookAppointment" data-toggle="tab">Book Appointments</a></li>
+                                <li><a href="#viewAppointment" data-toggle="tab">Previous Appointments</a></li>
+                            </ul>
+                        </div>
+                        <div class="tab-content">
+                            <div class="tab-pane fade " id="viewAppointment">
+                                 <div class="col-sm-11">
+                                    <table border="2" class="table">
+                                          <tr>
+                                            <th> Salon Name</th>
+                                            <th>Date</th>
+                                            <th>Service</th>
+                                            <th>Price</th>
+                                            <th>Status</th>
+                                            <th>Give Rating</th>
+                                      </tr>
+                                        <tr>
+                                            <td> Lips & Tips</td>
+                                            <td>AAAAA</td>
+                                            <td>BBBBB</td>
+                                            <td>CCCCC</td>
+                                            <td>DDDDD</td>
+                                            <td>
+        
+            <span class="rating">
+                <input id="rating5" type="radio" name="rating" value="5">
+                <label for="rating5">5</label>
+                <input id="rating4" type="radio" name="rating" value="4">
+                <label for="rating4">4</label>
+                <input id="rating3" type="radio" name="rating" value="3">
+                <label for="rating3">3</label>
+                <input id="rating2" type="radio" name="rating" value="2">
+                <label for="rating2">2</label>
+                <input id="rating1" type="radio" name="rating" value="1">
+                <label for="rating1">1</label>
+            </span>
+        
+        
+</td>
+                                        </tr>
+                                        <tr>
+                                            <td> Lips & Tips</td>
+                                            <td>AAAAA</td>
+                                            <td>BBBBB</td>
+                                            <td>CCCCC</td>
+                                            <td>DDDDD</td>
+                                            <td>
+                                             <span class="rating">
+                                                <input id="rating51" type="radio" name="rating1" value="5">
+                                                <label for="rating51">5</label>
+                                                <input id="rating41" type="radio" name="rating2" value="4">
+                                                <label for="rating41">4</label>
+                                                <input id="rating31" type="radio" name="rating3" value="3">
+                                                <label for="rating31">3</label>
+                                                <input id="rating21" type="radio" name="rating4" value="2">
+                                                <label for="rating21">2</label>
+                                                <input id="rating11" type="radio" name="rating5" value="1">
+                                                <label for="rating11">1</label>
+                                            </span></td>
+                                        </tr>
+                                        <tr>
+                                            <td> Lips & Tips</td>
+                                            <td>AAAAA</td>
+                                            <td>BBBBB</td>
+                                            <td>CCCCC</td>
+                                            <td>DDDDD</td>
+                                            <td>
+                                            <div id="divRate"></div>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                            <td> Lips & Tips</td>
+                                            <td>AAAAA</td>
+                                            <td>BBBBB</td>
+                                            <td>CCCCC</td>
+                                            <td>DDDDD</td>
+                                            <td>
+                                             <span class="rating">
+                                                <input id="rating5" type="radio" name="rating" value="5">
+                                                <label for="rating5">5</label>
+                                                <input id="rating4" type="radio" name="rating" value="4">
+                                                <label for="rating4">4</label>
+                                                <input id="rating3" type="radio" name="rating" value="3">
+                                                <label for="rating3">3</label>
+                                                <input id="rating2" type="radio" name="rating" value="2">
+                                                <label for="rating2">2</label>
+                                                <input id="rating1" type="radio" name="rating" value="1">
+                                                <label for="rating1">1</label>
+                                            </span></td>
+                                        </tr>
+                                        <tr>
+                                            <td> Lips & Tips</td>
+                                            <td>AAAAA</td>
+                                            <td>BBBBB</td>
+                                            <td>CCCCC</td>
+                                            <td>DDDDD</td>
+                                            <td>
+                                             <span class="rating">
+                                                <input id="rating5" type="radio" name="rating" value="5">
+                                                <label for="rating5">5</label>
+                                                <input id="rating4" type="radio" name="rating" value="4">
+                                                <label for="rating4">4</label>
+                                                <input id="rating3" type="radio" name="rating" value="3">
+                                                <label for="rating3">3</label>
+                                                <input id="rating2" type="radio" name="rating" value="2">
+                                                <label for="rating2">2</label>
+                                                <input id="rating1" type="radio" name="rating" value="1">
+                                                <label for="rating1">1</label>
+                                            </span></td>
+                                        </tr>
+                                        <tr>
+                                            <td> Lips & Tips</td>
+                                            <td>AAAAA</td>
+                                            <td>BBBBB</td>
+                                            <td>CCCCC</td>
+                                            <td>DDDDD</td>
+                                            <td>
+                                             <span class="rating">
+                                                <input id="rating5" type="radio" name="rating" value="5">
+                                                <label for="rating5">5</label>
+                                                <input id="rating4" type="radio" name="rating" value="4">
+                                                <label for="rating4">4</label>
+                                                <input id="rating3" type="radio" name="rating" value="3">
+                                                <label for="rating3">3</label>
+                                                <input id="rating2" type="radio" name="rating" value="2">
+                                                <label for="rating2">2</label>
+                                                <input id="rating1" type="radio" name="rating" value="1">
+                                                <label for="rating1">1</label>
+                                            </span></td>
+                                        </tr>
+                                        <tr>
+                                            <td> Lips & Tips</td>
+                                            <td>AAAAA</td>
+                                            <td>BBBBB</td>
+                                            <td>CCCCC</td>
+                                            <td>DDDDD</td>
+                                            <td>
+                                             <span class="rating">
+                                                <input id="rating5" type="radio" name="rating" value="5">
+                                                <label for="rating5">5</label>
+                                                <input id="rating4" type="radio" name="rating" value="4">
+                                                <label for="rating4">4</label>
+                                                <input id="rating3" type="radio" name="rating" value="3">
+                                                <label for="rating3">3</label>
+                                                <input id="rating2" type="radio" name="rating" value="2">
+                                                <label for="rating2">2</label>
+                                                <input id="rating1" type="radio" name="rating" value="1">
+                                                <label for="rating1">1</label>
+                                            </span></td>
+                                        </tr>
+                                        <tr>
+                                            <td> Lips & Tips</td>
+                                            <td>AAAAA</td>
+                                            <td>BBBBB</td>
+                                            <td>CCCCC</td>
+                                            <td>DDDDD</td>
+                                            <td>
+                                             <span class="rating">
+                                                <input id="rating5" type="radio" name="rating" value="5">
+                                                <label for="rating5">5</label>
+                                                <input id="rating4" type="radio" name="rating" value="4">
+                                                <label for="rating4">4</label>
+                                                <input id="rating3" type="radio" name="rating" value="3">
+                                                <label for="rating3">3</label>
+                                                <input id="rating2" type="radio" name="rating" value="2">
+                                                <label for="rating2">2</label>
+                                                <input id="rating1" type="radio" name="rating" value="1">
+                                                <label for="rating1">1</label>
+                                            </span></td>
+                                        </tr>
+                                        <tr>
+                                            <td> Lips & Tips</td>
+                                            <td>AAAAA</td>
+                                            <td>BBBBB</td>
+                                            <td>CCCCC</td>
+                                            <td>DDDDD</td>
+                                            <td>
+                                             <span class="rating">
+                                                <input id="rating5" type="radio" name="rating" value="5">
+                                                <label for="rating5">5</label>
+                                                <input id="rating4" type="radio" name="rating" value="4">
+                                                <label for="rating4">4</label>
+                                                <input id="rating3" type="radio" name="rating" value="3">
+                                                <label for="rating3">3</label>
+                                                <input id="rating2" type="radio" name="rating" value="2">
+                                                <label for="rating2">2</label>
+                                                <input id="rating1" type="radio" name="rating" value="1">
+                                                <label for="rating1">1</label>
+                                            </span></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div>
+                                    <ul class="pagination" id="PageBackround">
+                                        <li><a href="#">&laquo;</a></li>
+                                        <li><a href="#">1</a></li>
+                                        <li><a href="#">2</a></li>
+                                        <li><a href="#">3</a></li>
+                                        <li><a href="#">4</a></li>
+                                        <li><a href="#">5</a></li>
+                                        <li><a href="#">&raquo;</a></li>
+                                    </ul>
+                                </div>
+                       </div>
+                        <div class="tab-pane fade active in" id="bookAppointment">
+                                <div class="Booking-form">
+                                <form action="/" method="post" style="border:solid #FFF;">
+                                        <table class="formtable"  cellpadding="5px">
+                                        <tr>
+                                            <td width="19%">
+                                            	<span>Date and Time:</span><br>
+                                            </td>
+                                             <td width="29%">
+                                                 <div class="demo-section k-content">
+                                                    <input id="datetimepicker" style="width: 100%;" />
+                                                 </div>
+                                            </td>
+                                            
+                                            <td width="4%">
+                                            </td>
+                                            <td width="19%">
+                                            	<span>Salon name :</span>
+                                                </td>
+                                                <td width="29%">
+                                                  <select id="salonList" class="fullwidth" >
+                                                	<option value="0">--Select Salon --</option>
+                                                    <option>salon 1</option>
+                                                    <option>salon 2</option>
+                                                    <option>salon 3</option>
+                                                    <option>salon 4</option>
+                                                    <option>salon 5</option>
+                                                    <option>salon 6</option>
+                                                    <option>salon 7</option>
+                                                    <option>salon 8</option>
+                                                </select>
+                                                
+                                            </td>
+                                            
+                                        </tr>
+                                        <tr>
+                                        <td colspan="5" id="servicelbltr" class="hiddentr">
+                                        		<span>&nbspSelect Services:</span>
+                                        </td>
+                                        </tr>
+                                        <tr >
+                                        <td colspan="5"> 
+                                        <table width="100%" id="servicelisttr" class="hiddentr">
+                                        <tr>
+                                        <td>
+                                        		<span id="services1" >service 1</span>
+                                                <span id="offer1" >offer 1</span>
+                                                <span id="price1" >15</span>
+                                                <input type="checkbox" name="services" value="15" class="insameline">
+                                        </td>
+                                        <td width="4%">
+                                            </td>
+                                        <td>
+                                        		<span id="services1" >service 1</span>
+                                                <span id="offer1" >offer 1</span>
+                                                <span id="price1" >25</span>
+                                                <input type="checkbox" name="services" value="25" class="insameline">
+                                        </td>
+                                        <td>
+                                        		<span id="services1" >service 1</span>
+                                                <span id="offer1" >offer 1</span>
+                                                <span id="price1" >35</span>
+                                                <input type="checkbox" name="services" value="35" class="insameline">
+                                        </td>
+                                        </tr>
+                                        <tr>
+                                        <td>
+                                        		<span id="services1" >service 1</span>
+                                                <span id="offer1" >offer 1</span>
+                                                <span id="price1" >45</span>
+                                                <input type="checkbox" name="services" value="45" class="insameline">
+                                        </td>
+                                        <td width="4%">
+                                            </td>
+                                        <td>
+                                        		<span id="services1" >service 1</span>
+                                                <span id="offer1" >offer 1</span>
+                                                <span id="price1" >50</span>
+                                                <input type="checkbox" name="services" value="50" class="insameline">
+                                        </td>
+                                        <td>
+                                        		<span id="services1" >service 1</span>
+                                                <span id="offer1" >offer 1</span>
+                                                <span id="price1" >10</span>
+                                                <input type="checkbox" name="services" value="10" class="insameline">
+                                        </td>
+                                        </tr>
+                                        </table>   
+                                        		
+                                          </td>
+                                         </tr>
+
+                                         <tr>
+                                            <td >
+                                            <span>Any Event</span>
+                                            </td>
+                                            <td>
+                                                <input type="radio" checked name="event" value="no" class="insameline" >
+                                                <span class="insameline">No</span>
+                                                <input type="radio" id="eventyes" name="event" value="yes" class="insameline" >
+                                                <span  class="insameline" >Yes</span>
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                        <tr id="Eventtr" class="hiddentr">
+                                        	<td>
+                                            	<span >Event Name:</span>
+                                                </td>
+                                                <td>
+                                                <input type="text" id="txteventname" class="fullwidth">
+                                            </td>
+                                            <td width="4%">
+                                            </td>
+                                            <td>
+                                            	<span >Event Type:</span>
+                                                </td>
+                                                <td>
+                                            	<input type="text" id="txteventtype" class="fullwidth">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                        	<td>
+                                            <span >Total price:</span>
+                                            </td>
+                                                <td>
+                                            <input type="text" id="totalprice" disabled value="0" class="fullwidth">
+                                            </td>
+                                        </tr>
+                                        <tr id="errortr" class="alert alert-danger" >
+                                        	<td colspan="5">
+                                            <label id="errmsg"></label>
+                                            </td>
+                                          </tr>
+                                        <tr>
+                                            <td>
+                                                <button type="button" id="btnBook" >Book</button>
+                                            </td>
+                                        </tr>
+                                        </table>
+                                 </form>
+                   			 </div>
+                           </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </section>
+
+
+    <div class="header_top" style="bottom:0 ; position:fixed; width:100%;"><!--header_top-->
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="contactinfo">
+                            <ul class="nav nav-pills">
+                                <li>&copy Copyright @ Salon Master</a></li>
+                                <!--<li><a href=""><i class="fa fa-envelope"></i> info@domain.com</a></li>-->
+                            </ul>
+                        </div>
+                    </div>
+            </div>
+        </div><!--/header_top-->
+      <script src="js/jquery.js"></script>
+    <script src="js/price-range.js"></script>
+    <script src="js/jquery.scrollUp.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.prettyPhoto.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/Appointment.js"></script>
+
+
+    <script src="http://kendo.cdn.telerik.com/2015.3.1111/js/jquery.min.js"></script>
+    <script src="http://kendo.cdn.telerik.com/2015.3.1111/js/kendo.all.min.js"></script>
+    
+    <script src="js/Rating.js"></script>        
+</body>
+</html>

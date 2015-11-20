@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    //alert("Hello");
+    alert("Hello");
     var id = document.getElementById("salonId").value;
     //alert(id);
     //alert(req.body.salonId);
@@ -7,7 +7,16 @@ $(document).ready(function () {
    //  var tech = GetURLParameter(id);
   //   var Id= $.url.attr('id')
    //  console.log(tech);
-
+   var ses=$('#user').val();
+   if(ses=="null")
+   {
+    debugger;
+    //alert("ooo");
+    $('#divbookappointment').css("display","none");
+    $('#linkPriviousAppointment').css("display","none");
+    $('#reviewForm').css("display","none");
+   }
+debugger;
     $('#tblservices').bootstrapTable({
         url: '/services/getSalonServices',
         method: 'post',
@@ -53,13 +62,69 @@ $(document).ready(function () {
      },
      function (data) {
             debugger;
+         var htmlContent = "";
+
+         htmlContent += "<h2>";
+         htmlContent += data[0].name;
+         htmlContent += "</h2><br>";
+         htmlContent += "<b>Type</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+         htmlContent += data[0].type;
+         htmlContent += "<br><b>Address</b>&nbsp;&nbsp;";
+         htmlContent += data[0].address.street;
+         htmlContent += "<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+         htmlContent += data[0].address.area;
+         htmlContent += ", ";
+         htmlContent += data[0].address.city;
+         htmlContent += "<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+         htmlContent += data[0].address.state;
+         htmlContent += data[0].address.zipcode;
+         htmlContent += "<br> <b>Contact No.</b>&nbsp;";
+         htmlContent += data[0].phoneNo;
+         htmlContent += "<br> <b>Owners </b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+         for(var i=0;i<data[0].owners.length;i++)
+         {
+            htmlContent += data[0].owners[i];
+            if(i < data[0].owners.length-1)
+                htmlContent += ", ";
+         }
+         htmlContent += "<input type='hidden' id='rating' value='";
+         htmlContent += data[0].ratings;
+         htmlContent += "'><br><div id='fixstardefault'></div>";
+         //debugger;
+         var rate = data[0].ratings;
+         var full = 5;
+         htmlContent += "<br><div id='fixstardefault' style='cursor: pointer;'>";
+         while(rate > 0)
+         {
+            htmlContent += "<img ";
+            if(rate == 0.5)
+                htmlContent += "src='/images/Star/star-half.png'";
+            else
+                htmlContent += "src='/images/Star/star-on.png'";
+            htmlContent += "/>&nbsp;";
+            rate = rate - 1;
+            full = full - 1;     
+         }
+         while(full>0)
+         {
+            htmlContent += "<img alt='5' src='/images/Star/star-off.png' title='gorgeous'>";
+            full = full - 1;
+         }    
+
+         htmlContent += "<input type='hidden' name='score' value='4'></div>";
+         htmlContent += "<br><span><button type='button' class='btn btn-fefault cart'>Book Appointment</button></span></div>";
+         debugger;
+         document.getElementById('divSalonInfo').innerHTML = htmlContent;
+
+/*
          $("#lbl_shopname").html(data[0].name);
          $("#lblShopMobile").html(data[0].phoneNo[0]);
          $("#lblShopDescription").html(data[0].description);
          //$('#lblShopAddress').html(data[0].address.area);
-         
-
+         //$('#lblShop').html(data[0])
+*/
      });
+  
     $.post("/reviews/getReviewsBySalon",
     {
         objectId: id
