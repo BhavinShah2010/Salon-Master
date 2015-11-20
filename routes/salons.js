@@ -92,14 +92,13 @@ router.get('/profile', function(req, res, next) {
 
 
 
-// To check username is available or not
+// To check username and password are correct or not
 router.post('/checkLogin', function(req,res){
 	salon.findOne({username:req.body.username},function(err, salons) {
 	  if(salons){
-	  		console.log(salons.password);
 	  		var status=salons.comparePassword(req.body.password);
 	  		if(status)
-	  			res.json({"username":salons.username,"password":req.body.password,"salonId":salons._id});
+	  			res.json([{"username":salons.username,"password":req.body.password,"salonId":salons._id}]);
 	  		else{
 	  			res.json({"status":"false"});
 	  		}
@@ -158,6 +157,7 @@ router.post('/add',function(req,res){
 	s.ratings=data.ratings;
 	s.personsVisited=data.personsVisited;
 	s.phoneNo=data.phoneNo;
+	s.deviceId=data.deviceId;
 	s.type = data.type;
 	var a=new address();
 	a.area=data.area;
@@ -166,20 +166,6 @@ router.post('/add',function(req,res){
 	a.zipcode=data.zipcode;
 	a.latitude=data.latitude;
 	a.longitude=data.longitude;
-	a.save(function(err){
-			if(err){
-				res.send('Database error! '+err);
-			}
-		})
-	console.log(s.username+data.username+
-	s.password+s.generateHash(data.password)+
-	s.name+data.name+s.owners+data.owners+
-	s.ratings+data.ratings+s.personsVisited+data.personsVisited+
-	s.phoneNo+data.phoneNo+
-	a.area+data.area+
-	a.city+data.city+
-	a.state+data.state+
-	+a.zipcode+data.zipcode);
 	a.save(function(err){
 			if(err){
 				res.send('Database error! '+err);

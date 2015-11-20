@@ -45,6 +45,10 @@ var schema = mongoose.Schema({
 		type:String,
 		default:'Unisex',
 		enum:['Unisex','Male','Female']
+	},
+	deviceId:{
+		type:String,
+		required:true
 	}
 
 });
