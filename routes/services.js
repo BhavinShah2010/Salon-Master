@@ -93,40 +93,22 @@ router.post('/getSalonServices',function(req,res){
     });
 });
 
-router.post('/DemoSalonByServices',function(req,res,next){
-    var services = req.body.services;
-    console.log(services);
+router.post('/getSalonByServices',function(req,res,next){
     
-    salon.find({}).populate('address').exec(function(err, salons) {
-    if (err) throw err;
-        
-    //res.render('home',{salonData:salons, user:req.user, views:req.session.views});
-    res.json(salons);
-    //return salons;
-  });
 
-    var query = service.find({});
+    service.aggregate(
+        [
+            {
+                $group:{
+                    _id: "$salonID",
+                    serviceArray : {$push:"$name"}
+                }
 
-    query.exec(function(err,salonIds) {
-        if(err) {
-            res.json(err);
-            return;
-        }
-        console.log(salonIds);
-        /*var ids = new Array();
-        for(var i=0; i < salonIds.length ; i++) {
-            ids[i] = salonIds[i]['salonID'];
-        }
-        console.log(ids);
-        var salonQuery = salon.find({}).where('_id').in(ids);
-        salonQuery.populate('address').exec(function(err,salons) {
-           if(err) {
-               res.json(err);
-               return;
-           }
-           res.json(salons); 
-        });*/
-        res.json(salonIds);
+            }
+        ]
+    ).exec(function(err,result){
+        console.log(result);
+        res.json(result);
     });
 });
 

@@ -1,0 +1,9 @@
+diff a/routes/users.js b/routes/users.js	(rejected hunks)
+@@ -133,6 +133,7 @@
+ 	})
+ });
+ 
++<<<<<<< HEAD
+ 
+ =======
+ >>>>>>> 9256d2a9d1e08e16dbf946d063005f21138d0efd

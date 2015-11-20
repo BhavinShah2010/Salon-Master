@@ -38,6 +38,15 @@ router.get('/logout',function(req,res){
 });
 
 
+//Get All User By Altaf(For Admin)
+router.get('/getAllUser', function(req, res, next) {
+  user.find({}).populate('address').exec(function(err, data) {
+    if (err) throw err;
+    //res.render('home',{salonData:salons, user:req.user, views:req.session.views});
+  	res.json(data);
+  	//return salons;
+  })
+});
 
 //Register new User
 router.post('/add',function(req,res)
