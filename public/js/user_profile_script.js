@@ -2,6 +2,14 @@ $(document).ready(function () {
     //alert(0);
     //debugger;
     //aa
+    
+    $("#btnCancelChangePassword").click(function () {
+
+        $("#txtChangePwdUser").val("");
+        $("#txtChangePwdNewPassword").val("");
+        $("#txtChangePwdConfirmPassword").val("");
+        $("#divChangePwdResult").css("display", "none");
+    });
     var d = jQuery.parseJSON($("#txtData").text());
     // console.log($("#txtData").text());
     $("#lblUserName").html(d.name);
@@ -142,7 +150,7 @@ $(document).ready(function () {
         }
 
         if (isWll == true) {
-            //  alert("Fine");      
+                  
             $(this).click(user_det_save());
         }
     });

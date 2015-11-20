@@ -234,7 +234,7 @@
       });
     },
 
-    _bindOver: function() {
+   /* _bindOver: function() {
       var that   = this,
           action = that.opt.half ? 'mousemove.raty' : 'mouseover.raty';
 
@@ -257,7 +257,7 @@
         }
       });
     },
-
+*/
     _bindOverCancel: function() {
       var that = this;
 

@@ -33,6 +33,10 @@ html
     script(src='//cdnjs.cloudflare.com/ajax/libs/json3/3.2.4/json3.min.js')
       <\/scr'+'ipt>
   body
+    if user
+      input(type='hidden', id='user', value='#{user.username}')
+    else
+      input(type='hidden', id='user', value='null')  
     header#header
       .header-middle
         // header-middle
@@ -74,7 +78,7 @@ html
                           a.usermenufont(href='/users/logout') Logout
         .container
           .row
-            .col-sm-9
+            .col-sm-8
               .navbar-header
                 button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
                   span.sr-only Toggle navigation
@@ -89,5 +93,9 @@ html
                     a(href='/map') Map
                   li
                     a(href='/contactUS') Contact Us
+            .col-sm-4
+              .search_box.pull-right
+                input(type='text', placeholder='Search')
+                button#btnSearch(type='submit') Search
     script.
         $('.dropdown-toggle').dropdown();      
