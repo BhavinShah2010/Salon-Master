@@ -11,13 +11,7 @@ $(document).ready(function () {
                     });
 
 
-                });
-
-                 $(document).ready(function () {
-                    // create DateTimePicker from input HTML element
-                    $("#new_date_time").kendoDateTimePicker({
-                        value:new Date()
-                    });
+               
 
 				if($('#status').text() == "DDDDD")
 				{
@@ -35,6 +29,16 @@ $(document).ready(function () {
 
 
 				}
+			if($('#salonList').val()=='0')
+			{
+				$('#servicelbltr').css('display','none');
+				$('#servicelisttr').css('display','none');
+			}
+			else
+			{
+				$('#servicelbltr').css('display','table-row');
+				$('#servicelisttr').css('display','table');
+			}
 
 
 

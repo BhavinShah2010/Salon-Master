@@ -1,5 +1,12 @@
 $(document).ready(function () {
-  //  alert(1);
+    //alert("Hello");
+    var id = document.getElementById("salonId").value;
+    //alert(id);
+    //alert(req.body.salonId);
+     debugger;
+   //  var tech = GetURLParameter(id);
+  //   var Id= $.url.attr('id')
+   //  console.log(tech);
 
     $('#tblservices').bootstrapTable({
         url: '/services/getSalonServices',
@@ -10,11 +17,10 @@ $(document).ready(function () {
         pageSize: 10,
         pageList: [10, 25, 50, 100, 200],
         search: true,
-        //  showColumns: true,
         showRefresh: true,
         minimumCountColumns: 2,
         queryParams: function (p) {
-            return { salonId: '5640cf93084c1c301bd613d5' }
+            return { salonId: id }
         },
         columns: [
         {
@@ -43,26 +49,23 @@ $(document).ready(function () {
   
     $.post("/salons/getDetails",
      {
-         objectId: "5640cf93084c1c301bd613d5"
+         objectId: id
      },
      function (data) {
-         debugger;
-         //var y=JSON.stringify(data)
-         //var x = JSON.parse(y);  
+            debugger;
          $("#lbl_shopname").html(data[0].name);
-         // $("#lblShopEmail").html(data[0].name);
          $("#lblShopMobile").html(data[0].phoneNo[0]);
-         //$("#lblShopAddress").html(data[0].name); 
          $("#lblShopDescription").html(data[0].description);
+         //$('#lblShopAddress').html(data[0].address.area);
+         
 
      });
     $.post("/reviews/getReviewsBySalon",
     {
-        objectId: "5640c75217b0c6f00a9e29ca"
+        objectId: id
     },
     function(data)
     {
-       // debugger;
         for(var i=0;i<data.length;i++){
             var uName;
             var dt = new Date(data[i].timestamp);
@@ -79,4 +82,7 @@ $(document).ready(function () {
             $("#divAddReviews").append('<b>' + data[i].title + '</b><br/>' + data[i].description);
         }
     });
+
+
+  
 });

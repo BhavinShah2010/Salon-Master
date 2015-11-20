@@ -18,7 +18,19 @@ router.post('/getSalon',function(req,res){
 
   })
 });
-
+//Get All salon details whose ids are passed
+router.post('/getAllSalonsById',function(req,res,next){
+	var ids = req.body.salons;
+	//var query = salon.find({}).where('_id').in(salons);
+	var salonQuery = salon.find({}).where('_id').in(ids);
+    salonQuery.populate('address').exec(function(err,salons) {
+        if(err) {
+               res.json(err);
+               return;
+        }
+        res.json(salons); 
+    });
+});
 
 //View Single Salon Profile
 router.post('/getDetails',function(req,res){
@@ -75,7 +87,7 @@ router.get('/', function(req, res, next) {
 
 router.get('/profile', function(req, res, next) {
 	console.log();
-  res.render('shop_profile1',{msg:req.message, views:req.session.views});
+  res.render('shop_profile1',{salonId:req.query.id, msg:req.message, views:req.session.views});
 });
 
 
@@ -183,8 +195,7 @@ router.post('/add',function(req,res){
 				res.send('Instance of salon schema is successfully added');
 			}
 		})
-	}
-);
+	});
 
 
 //Update Salon Details
@@ -215,7 +226,7 @@ router.post('/changePassword',function(req,res){
 	salon.findOneAndUpdate({"_id":data.objectId, "password":s.generateHash(data.oldpassword)}, {password: s.password}, function(err, data) {
 		if(err) throw err;
 		//It will not change password if old password is wrong without notifying right now.
-		res.send("Done if old password you entered was correct.");
+		res.send("Done if old password was you entered correct.");
 	})
 });
 
@@ -246,7 +257,7 @@ router.get('/getSalons', function(req, res, next) {
 router.get('/getSalonById', function(req, res, next) {
   
   //console.log(req.query.id);
-  salon.find({"_id": req.query.id}).populate('address').	exec(function(err, salons) {
+  salon.find({"_id": req.query.id}).populate('address').exec(function(err, salons) {
     if (err) throw err;
     //res.render('shop_profile1',{salon:salons, user:req.user, views:req.session.views});
   	res.json(salons);
@@ -272,8 +283,8 @@ router.post('/updateRatings',function(req,res){
 
 
 // To check username is available or not
-router.post('/checkUname', function(req,res){
-	salon.findOne({username:req.data.username},function(err, salons) {
+router.get('/checkUname', function(req,res){
+	salon.findOne({username:req.query.username},function(err, salons) {
 	  if(salons){
 	  		res.send('Username not Available');
 	  	}
