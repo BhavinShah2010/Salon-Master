@@ -6,6 +6,7 @@ var passport = require('./../auth');
 //This library is imported to perform join operation
 //var populatePlugin = require('mongoose-power-populate')(mongoose);
 
+
 /* GET users listing. */
 //Get salon detail through its ID
 router.post('/getSalon',function(req,res){
@@ -288,12 +289,12 @@ router.get('/checkUname', function(req,res){
 router.post('/delete',function(req,res){
 	data=req.body;
 	var uname=data.username;
-	salon.findOneAndRemove({ username:uname }, function(err){
+	salon.findOneAndRemove({ username:req.body.username}, function(err){
   		if (err){
   			res.send('Deletion Problem' + err);
   		}
   		else{
-  			res.send('Salon Deleted successfully'+uname);
+  			res.send(uname+ ' is Deleted successfully.');
   		}
 	});
 });
