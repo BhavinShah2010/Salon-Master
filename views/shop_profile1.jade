@@ -13,8 +13,6 @@ html(lang='en')
     meta(name='description', content='')
     meta(name='author', content='')
   body
-
-
     section
       .container
         .row
@@ -44,15 +42,16 @@ html(lang='en')
                   input#salonId(type="hidden",value="#{salonId}")
                   #fixstardefault
                   br
-                  span
-                    button.btn.btn-fefault.cart(type='button')
-                      | Book Appointment
+                  div#divbookappointment
+                    span
+                      button#btnBookAppointment.btn.btn-fefault.cart(type='button')
+                        | Book Appointment
             .category-tab.shop-details-tab
               .col-sm-12
                 ul.nav.nav-tabs
                   li.active
                     a#aService(href='#Service', data-toggle='tab') Services
-                  li
+                  li#linkPriviousAppointment
                     a#aPrevious(href='#divPrevious', data-toggle='tab') Previous Appointments
                   li
                     a#aReviews(href='#reviews', data-toggle='tab') Reviews
@@ -124,12 +123,12 @@ html(lang='en')
                         </ul>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
                     p
-                      b Write Your Review
-                    form(action='#')
-                      textarea(name='')
-                      b Rating: 
-                      button.btn.btn-default.pull-right(type='button')
-                        | Submit
+                      div#reviewForm
+                        b Write Your Review
+                        form(action='#')
+                          textarea(name='')
+                          button.btn.btn-default.pull-right(type='button')
+                            | Submit
     include footer
     
     script(src='/js/Table_salon.js')
