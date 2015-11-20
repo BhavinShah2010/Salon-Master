@@ -53,12 +53,14 @@ html(lang='en')
                   input#txtUserPassword(type='password', placeholder='Password',maxlength='15', name='password')
                 .col-sm-6
                   input#txtConifemPwd(type='password', placeholder='Confirm Password',maxlength='15')
+                .col-sm-12
+                  input#txtStreet(type='text', placeholder='Address', name='address')
                 .col-sm-6
                   input#txtArea(type='text', placeholder='Area', name='area')
                 .col-sm-6
                   input#txtCity(type='text', placeholder='City', name='city')
                 .col-sm-6
-                  select#Statelistdown.fullwidth
+                  select#Statelistdown.fullwidth(name='state')
                     option(value='None') --Select State --
                     option(value='Andaman and Nicobar Islands') Andaman and Nicobar Islands
                     option(value='Andhra Pradesh') Andhra Pradesh

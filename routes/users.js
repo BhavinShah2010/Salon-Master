@@ -38,6 +38,15 @@ router.get('/logout',function(req,res){
 });
 
 
+//Get All User By Altaf(For Admin)
+router.get('/getAllUser', function(req, res, next) {
+  user.find({}).populate('address').exec(function(err, data) {
+    if (err) throw err;
+    //res.render('home',{salonData:salons, user:req.user, views:req.session.views});
+  	res.json(data);
+  	//return salons;
+  })
+});
 
 //Register new User
 router.post('/add',function(req,res)
@@ -106,9 +115,33 @@ router.post('/add',function(req,res)
             console.log(err);
         }
     else{
-            console.log("Instance of user schema is successfully uploaded.");
-        }
+                  var transporter = nodemailer.createTransport({
+                        service: 'Gmail',
+                        auth: {
+                            user: 'noreply.salonmaster@gmail.com', // Your email id
+                            pass: 'salon123' // Your password
+                        }
+                    });
+
+                    var mailOptions = {
+                        from: 'noreply.salonMaster@gmail.com', // sender address
+                        to: u.email, // list of receivers
+                        subject: 'Email Verification', // Subject line
+                        text: 'http://localhost:3000/users/activateUser?objectId=' +u._id,
+                        // html: '<b>Hello world ?</b>' // You can choose to send an HTML body instead
+                    };
+
+                    transporter.sendMail(mailOptions, function(error, info){
+                        if(error){
+                            res.send('Unsuccessful Email');
+                        }else{
+                            res.send('Successful');
+                        }
+                    })
+                  }
+        })
     });
+
 
 
 //Forget Password
@@ -124,13 +157,11 @@ router.post('/forgetPassword',function(req,res){
 	})
 });
 
-});
-
 //View Profile
 router.post('/getDetails',function(req,res){
     data=req.body;
     var objectId=data.objectId;
-    user.find({ "_id": objectId }).exec(function(err, data) {
+    user.find({ "_id": objectId }).populate('address').exec(function(err, data) {
   		if (err) throw err;
   		res.json(data);
   		 res.render('user_profile',{user:req.user, views:req.session.views});
@@ -154,10 +185,10 @@ router.post('/updateProfile',function(req,res){
 	  "Enter a valid Gender"
 	).isIn(['Male','Female','Other','male','female','other']);
 
-
+/*
 	req.checkBody(  
 	  "zipcode",
-	  "Enter a valid zipcode").isNumeric();
+	  "Enter a valid zipcode").isNumeric();*/
 
 	var errors = req.validationErrors();
   	if (errors) {
@@ -166,6 +197,7 @@ router.post('/updateProfile',function(req,res){
     } else {
   	data=req.body;
 	var a=new address();
+	a.Street=data.Street;
 	a.area=data.area;
 	a.city=data.city;
 	a.state=data.state;

@@ -1,5 +1,5 @@
 function initialize() {
-var coords,coords2;
+var coords;
 var lat,longt;
 //var lat=23.19,longt=72.633;
 if (navigator.geolocation) {
@@ -14,7 +14,7 @@ if (navigator.geolocation) {
                 longt= position.coords.longitude;
                 //alert(lat+" "+ longt);
       coords = new google.maps.LatLng(lat, longt);
-      coords2 = new google.maps.LatLng(lat+0.0015, longt+0.0015);   
+       
      // 
         var mapCanvas = document.getElementById('map');
         var mapOptions = {
@@ -30,13 +30,33 @@ if (navigator.geolocation) {
             var marker = new google.maps.Marker({
             position: coords,
             map: map,
-            title: "Current location!"
+            title: "Current location!",
+            url: "/home"
             });
-            var marker = new google.maps.Marker({
-            position: coords2,
-            map: map,
-            title: "xyz salon"
-            });
-            }   
+
+            
+
+             $.get("/salons/getSalons",
+        function (data) {
+             //alert(2);
+           debugger;
+            for (var i = 0; i<data.length; i++) { 
+              var a=data[i].address.latitude,b= data[i].address.longitude;
+              var urllink="/salons/profile?id="+data[i]._id;
+              debugger;
+              var coords = new google.maps.LatLng(a, b);
+              var marker = new google.maps.Marker({
+                position: coords,
+                map: map,
+                title: data[i].name,
+                url: urllink
+                });
+              google.maps.event.addListener(marker, 'click', function() {
+                window.location.href = this.url;
+                });
+            };
+        });
+            
+  }   
  }
 google.maps.event.addDomListener(window, 'load', initialize);

@@ -16,12 +16,25 @@ body {
 ul li {
   list-style: none;
 }
+/*search css*/
+#btnSearch
+    {
+      margin-left: 5px;
+    }
+    /*search css ends*/
 /*map css*/
 #map
     {
       margin:auto;
     }
     /*map css ends*/
+    /*form submited successfuly*/
+    .formsuccess
+    {
+    color:black;
+    background-color: ##69EF58;
+    border-color: ##31F71A;
+  }
 a:hover {
 outline: none;
 text-decoration:none;
@@ -2795,10 +2808,10 @@ float:left !important;
 }
 
 
-#servicelisttr td
+/*#servicelisttr td
 {
   width:33%;
-}
+}*/
 #servicelisttr td span
 {
   margin-right: 20px;

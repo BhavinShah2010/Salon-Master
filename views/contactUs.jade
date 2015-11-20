@@ -30,15 +30,18 @@ html(lang='en')
               .status.alert.alert-success(style='display: none')
               form#main-contact-form.contact-form.row(name='contact-form', method='post')
                 .form-group.col-md-6
-                  input.form-control(type='text', name='name', required='required', placeholder='Name')
+                  input#txtUserName.form-control(type='text', name='name',  placeholder='Name')
                 .form-group.col-md-6
-                  input.form-control(type='email', name='email', required='required', placeholder='Email')
+                  input#txtUserEmail.form-control(type='email', name='email',  placeholder='Email')
                 .form-group.col-md-12
-                  input.form-control(type='text', name='subject', required='required', placeholder='Subject')
+                  input#txtUserSubject.form-control(type='text', name='subject', placeholder='Subject')
                 .form-group.col-md-12
-                  textarea#message.form-control(name='message', required='required', rows='8', placeholder='Your Message Here')
+                  textarea#message.form-control(name='message', rows='8', placeholder='Your Message Here')
                 .form-group.col-md-12
-                  input.btn.btn-primary.pull-right(type='submit', name='submit', value='Submit')
+                  div#divConatactusError(class='alert alert-danger')
+                    label#errmsg
+                .form-group.col-md-12
+                  input#btnsubmit.btn.btn-primary.pull-right(type='button', name='submit', value='Submit') 
           .col-sm-4
             .contact-info
               h2.title.text-center Contact Info
@@ -49,4 +52,5 @@ html(lang='en')
                 p Mobile: +2346 17 38 93
                 p Fax: 1-714-252-0026
                 p Email: info@salonmaster.com
+script(src='/js/contactus.js')
 include footer
