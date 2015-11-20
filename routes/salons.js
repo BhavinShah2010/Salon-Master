@@ -92,10 +92,11 @@ router.get('/profile', function(req, res, next) {
 
 
 
-// To check username and password are correct or not
+// To check username is available or not
 router.post('/checkLogin', function(req,res){
 	salon.findOne({username:req.body.username},function(err, salons) {
 	  if(salons){
+	  		console.log(salons.password);
 	  		var status=salons.comparePassword(req.body.password);
 	  		if(status)
 	  			res.json([{"username":salons.username,"password":req.body.password,"salonId":salons._id}]);
