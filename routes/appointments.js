@@ -92,6 +92,14 @@ router.post('/delayAppointment',function(req,res){
     })
 });
 
+//Change Appointment Status
+router.post('/changeStatus',function(req,res){
+    appointment.findOneAndUpdate({"_id":req.body.objectId}, {status:req.body.status}, function(err, approvedAppointment) {
+        if(err) throw err;
+        res.send("Successful");
+    })
+});
+/*
 //Approve Appointment
 router.post('/approveAppointment',function(req,res){
     appointment.findOneAndUpdate({"_id":req.body.objectId}, {status:"approved"}, function(err, approvedAppointment) {
@@ -116,5 +124,5 @@ router.post('/completeAppointment',function(req,res){
         res.send("Completed");
     })
 });
-
+*/
 module.exports = router;
