@@ -53,15 +53,16 @@ router.post('/getSalon',function(req,res){
 });
 */
 router.post('/getSalon',function(req,res){
-  salon.find({_id:req.body.salonId}).exec(function(err, salons) {
-    if (err) throw err;
-    address.find({_id:req.body.address}).exec(function(err, add1) {
-    	//res.render('home',{salonData:salons, user:req.user, views:req.session.views});
-      	//res.json(salons);
-      	res.json(add1);
-      	res.json(salons);
+	salon.findOne({_id:req.body.salonId}).exec(function(err, salons) {
+    	if (err) throw err;
+    	address.findOne({_id:req.body.addressId}).exec(function(err, add1) {
+    		if (err) throw err;
+	    	//res.render('home',{salonData:salons, user:req.user, views:req.session.views});
+    	  	res.send([{"username":salons.username, "name":salons.name, "owners":salons.owners, "description":salons.description, "ratings":salons.ratings,
+      		 "personsVisited":salons.personsVisited, "phoneNo":salons.phoneNo, "type":salons.type, "latitude":salons.latitude, "longitude":salons.longitude, 
+      	 	"street":salons.street, "area":add1.area, "state":add1.state, "city":add1.city, "zipcode":add1.zipcode}]);
 		})
-  	})
+	})
 });
 
 
@@ -77,17 +78,6 @@ router.post('/getAllSalonsById',function(req,res,next){
         }
         res.json(salons); 
     });
-});
-
-//View Single Salon Profile
-router.post('/getDetails',function(req,res){
-    data=req.body;
-    var objectId=data.objectId;
-    salon.find({ "_id": objectId }).exec(function(err, data) {
-  		if (err) throw err;
-  		res.send(data);
-		});
-
 });
 
 //refirect to index.js if user is not logged in
@@ -167,7 +157,7 @@ router.post('/checkUname', function(req,res){
 	  	else{
 	  		res.json({"status":"true"});
 	  	}
-	});
+	})
 });
 
 router.post('/login',passport.authenticate('local',{
@@ -252,12 +242,12 @@ router.post('/updateProfile',function(req,res){
 	a.zipcode=data.zipcode;
 	var now=new Date();
 	salon.findOneAndUpdate({"_id":data.objectId}, { username: data.username, name:data.name, owners: data.owners, address:a, description:data.description , ratings:data.ratings, personsVisited:data.personsVisited, phoneNo:data.phoneNo}, function(err, updatedSalon) {
-  	if (err) throw err;
-  	salon.find({ "_id": data.objectId}).exec(function(err, finalSalon) {
-  	if(err) throw err;
-  	res.send(finalSalon);
+  		if (err) throw err;
+  		salon.find({ "_id": data.objectId}).exec(function(err, finalSalon) {
+  			if(err) throw err;
+  			res.send(finalSalon);
+		})
 	})
-  })
 });
 
 //Change Password
@@ -272,21 +262,9 @@ router.post('/changePassword',function(req,res){
 	})
 });
 
-//View Profile
-router.post('/getDetails',function(req,res){
-    data=req.body;
-    var objectId=data.objectId;
-    salon.find({ "_id": objectId }).exec(function(err, data) {
-  		if (err) throw err;
-  		res.json(data);
-		});
-});
 
 
-
-//get all details of salon
-
-
+//get all salons
 router.get('/getSalons', function(req, res, next) {
   salon.find({}).populate('address').exec(function(err, salons) {
     if (err) throw err;
@@ -295,18 +273,6 @@ router.get('/getSalons', function(req, res, next) {
   	//return salons;
   })
 });
-
-router.get('/getSalonById', function(req, res, next) {
-  
-  //console.log(req.query.id);
-  salon.find({"_id": req.query.id}).populate('address').exec(function(err, salons) {
-    if (err) throw err;
-    //res.render('shop_profile1',{salon:salons, user:req.user, views:req.session.views});
-  	res.json(salons);
-  	//return salons;
-  })
-});
-
 
 //Update Rating
 router.post('/updateRatings',function(req,res){
@@ -319,7 +285,7 @@ router.post('/updateRatings',function(req,res){
   	salon.findOneAndUpdate({"_id":req.body.objectId}, {ratings:updateRatings, personsVisited:oldPersons+1}, function(err, updatedSalon) {
 		if(err) throw err;
 		res.send("Ratings updated successfully");
-	})
+		})
 	})	
 });
 
@@ -333,7 +299,7 @@ router.get('/checkUname', function(req,res){
 	  	else{
 	  		res.send('Available');
 	  	}
-	});
+	})
 });
 
 
@@ -351,6 +317,6 @@ router.post('/delete',function(req,res){
   		else{
   			res.send('Salon Deleted successfully'+uname);
   		}
-	});
+	})
 });
 module.exports = router;
