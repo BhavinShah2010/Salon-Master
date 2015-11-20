@@ -3,6 +3,36 @@ var router = express.Router();
 var salon = require('../modules/salon');
 var address = require('../modules/address');
 var passport = require('./../auth');
+var multer  = require('multer');
+var upload  =   multer({ dest: './public/uploads/'});
+var app=express();
+var newfilename="temp";
+
+//For File Upload
+router.use(multer({ dest: './public/uploads/',
+    rename: function (fieldname, filename) {
+    	console.log(fieldname);
+        return newfilename;
+    },
+    onFileUploadStart: function (file) {
+        console.log(file.originalname + ' is starting ...');
+    },
+    onFileUploadComplete: function (file) {
+        console.log(file.fieldname + ' uploaded to  ' + file.path)
+    }
+}));
+
+router.post('/api/photo',function(req,res){
+	newfilename="Happinezz";
+	console.log(newfilename);
+    upload(req,res,function(err) {
+        if(err) {
+            return res.end("Error uploading file.");
+        }
+        res.end("File is uploaded");
+    });
+});
+
 //This library is imported to perform join operation
 //var populatePlugin = require('mongoose-power-populate')(mongoose);
 
@@ -19,16 +49,33 @@ router.get('/profile', function(req, res, next) {
 
 
 //Get salon detail through its ID
+/*
 router.post('/getSalon',function(req,res){
   salon.find({_id:req.body.salonId}).populate('address').exec(function(err, salons) {
     if (err) throw err;
     //res.render('home',{salonData:salons, user:req.user, views:req.session.views});
       //res.json(salons);
+      console.log(salons.address);
+      console.log(salons);
       res.json(salons);
 
 
   })
 });
+*/
+router.post('/getSalon',function(req,res){
+  salon.find({_id:req.body.salonId}).exec(function(err, salons) {
+    if (err) throw err;
+    address.find({_id:req.body.address}).exec(function(err, add1) {
+    	//res.render('home',{salonData:salons, user:req.user, views:req.session.views});
+      	//res.json(salons);
+      	res.json(add1);
+      	res.json(salons);
+		})
+  	})
+});
+
+
 //Get All salon details whose ids are passed
 router.post('/getAllSalonsById',function(req,res,next){
 	var ids = req.body.salons;
@@ -103,14 +150,13 @@ router.get('/profile', function(req, res, next) {
 
 
 
-// To check username is available or not
+// To check username and password are correct or not
 router.post('/checkLogin', function(req,res){
 	salon.findOne({username:req.body.username},function(err, salons) {
 	  if(salons){
-	  		console.log(salons.password);
 	  		var status=salons.comparePassword(req.body.password);
 	  		if(status)
-	  			res.json({"username":salons.username,"password":req.body.password,"salonId":salons._id});
+	  			res.json([{"username":salons.username,"password":req.body.password,"salonId":salons._id,"addressId":salons.address}]);
 	  		else{
 	  			res.json({"status":"false"});
 	  		}
@@ -169,6 +215,7 @@ router.post('/add',function(req,res){
 	s.ratings=data.ratings;
 	s.personsVisited=data.personsVisited;
 	s.phoneNo=data.phoneNo;
+	s.deviceId=data.deviceId;
 	s.type = data.type;
 	var a=new address();
 	a.street = data.street;
@@ -183,28 +230,23 @@ router.post('/add',function(req,res){
 				res.send('Database error! '+err);
 			}
 		})
-	console.log(s.username+data.username+
-	s.password+s.generateHash(data.password)+
-	s.name+data.name+s.owners+data.owners+
-	s.ratings+data.ratings+s.personsVisited+data.personsVisited+
-	s.phoneNo+data.phoneNo+
-	a.area+data.area+
-	a.city+data.city+
-	a.state+data.state+
-	+a.zipcode+data.zipcode);
-	a.save(function(err){
-			if(err){
-				res.send('Database error! '+err);
-			}
-		})
 	
 	s.address=a;
+	newfilename=data.username;
+	
+	upload(req,res,function(err) {
+        if(err) {
+            return res.end("Error uploading file.");
+        }
+        console.log("File is uploaded");
+    });
+
 	s.save(function(err){
 			if(err){
 				res.send('Database error! '+err);
 			}
 			else{
-				res.send('Instance of salon schema is successfully added');
+				res.json([{"salonID":s._id,"addressId":s.address}]);
 			}
 		})
 	});

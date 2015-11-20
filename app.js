@@ -5,7 +5,6 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var validator = require('express-validator'); // to validate the data refer : https://booker.codes/input-validation-in-express-with-express-validator/
-
 var session = require('express-session');
 //database connection with the system...
 var mongoose = require('mongoose');
@@ -41,7 +40,6 @@ var appointments = require('./routes/appointments');
 //var user = require('../modules/User');
 
 var app = express();
-
 
 // test commit
 // view engine setup

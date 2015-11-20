@@ -85,6 +85,11 @@ $(document).ready(function () {
             $("#divSingup").css("display", "block");
             return false;
         }
+        if ($("#txtStreet").val() == '') {
+            $("#lblSingUpError").html("Please Enter Address");
+            $("#divSingup").css("display", "block");
+            return false;
+        }
         if ($("#txtArea").val() == '') {
             $("#lblSingUpError").html("Please Enter Area");
             $("#divSingup").css("display", "block");
@@ -105,7 +110,7 @@ $(document).ready(function () {
             $("#divSingup").css("display", "block");
             return false;
         }
-        if ($("#txtZipcode").val().length < 10) {
+        if ($("#txtZipcode").val().length < 6) {
             $("#lblSingUpError").html("Invalid Zipcode");
             $("#divSingup").css("display", "block");
             return false;
