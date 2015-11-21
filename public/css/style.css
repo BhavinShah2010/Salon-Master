@@ -1759,7 +1759,7 @@ div[data-role="editor-toolbar"] {
 
 .search {
     margin-top: 6px ;
-    width: 20px;
+    width: 300px;
     -webkit-transition: all .3s ease;
     -moz-transition: all .3s ease;
     -ms-transition: all .3s ease;

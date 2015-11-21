@@ -151,10 +151,11 @@ router.get('/profile', function(req, res, next) {
 
 
 
-// To check username and password are correct or not
+// To check username is available or not
 router.post('/checkLogin', function(req,res){
 	salon.findOne({username:req.body.username},function(err, salons) {
 	  if(salons){
+	  		console.log(salons.password);
 	  		var status=salons.comparePassword(req.body.password);
 	  		if(status)
 	  			res.json([{"username":salons.username,"password":req.body.password,"salonId":salons._id,"addressId":salons.address}]);
@@ -162,10 +163,16 @@ router.post('/checkLogin', function(req,res){
 	  			res.json([{"status":"false"}]);
 	  		}
 	  	}
+<<<<<<< HEAD
 	  	else{
 	  		res.json([{"status":"false"}]);
 	  	}
 	})
+=======
+	  	
+	});
+
+>>>>>>> a5e1b25f77772fc3370de582f5130b501ce7ac8a
 });
 
 
@@ -332,12 +339,12 @@ router.get('/checkUname', function(req,res){
 router.post('/delete',function(req,res){
 	data=req.body;
 	var uname=data.username;
-	salon.findOneAndRemove({ username:uname }, function(err){
+	salon.findOneAndRemove({ username:req.body.username}, function(err){
   		if (err){
   			res.send('Deletion Problem' + err);
   		}
   		else{
-  			res.send('Salon Deleted successfully'+uname);
+  			res.send(uname+ ' is Deleted successfully.');
   		}
 	})
 });
