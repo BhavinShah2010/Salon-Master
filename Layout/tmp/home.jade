@@ -1,0 +1,80 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(name='description', content='')
+    meta(name='author', content='')
+    link(href='css/bootstrap.min.css', rel='stylesheet')
+    link(href='css/font-awesome.min.css', rel='stylesheet')
+    link(href='css/prettyPhoto.css', rel='stylesheet')
+    link(href='css/price-range.css', rel='stylesheet')
+    link(href='css/animate.css', rel='stylesheet')
+    link(href='css/main.css', rel='stylesheet')
+    link(href='css/responsive.css', rel='stylesheet')
+    link(rel='shortcut icon', href='images/ico/favicon.ico')
+    link(rel='apple-touch-icon-precomposed', sizes='144x144', href='images/ico/apple-touch-icon-144-precomposed.png')
+    link(rel='apple-touch-icon-precomposed', sizes='114x114', href='images/ico/apple-touch-icon-114-precomposed.png')
+    link(rel='apple-touch-icon-precomposed', sizes='72x72', href='images/ico/apple-touch-icon-72-precomposed.png')
+    link(rel='apple-touch-icon-precomposed', href='images/ico/apple-touch-icon-57-precomposed.png')
+    script(src='js/jquery.js')
+    script(src='js/bootstrap.min.js')
+    script(src='js/jquery.scrollUp.min.js')
+    script(src='js/price-range.js')
+    script(src='js/jquery.prettyPhoto.js')
+    script(src='js/main.js')
+  body
+    header#header
+      .header-middle
+        // header-middle
+        .container
+          .row
+            .col-sm-4
+              .logo.pull-left
+                a(href='/home')
+                  img(src='images/home/logo.png', alt='')
+            .col-sm-8
+              .shop-menu.pull-right
+                ul#nav_before_login.nav.navbar-nav
+                  li
+                    a(href='/login_master')
+                      i.fa.fa-lock
+                      | Login
+                ul#nav_after_login.nav.navbar-nav
+                  li
+                    a(href='#') Location
+                    ul#usersubmenu.sub-menu(role='menu')
+                      li
+                        .signup-form
+                          form
+                            input(type='text', placeholder='Enter Location')
+                            button(type='submit') Find
+                  li.dropdown
+                    a(href='#')
+                      | Welcome , UserName
+                      i.fa.fa-angle-down
+                    ul#usersubmenu.sub-menu(role='menu')
+                      li
+                        a.usermenufont(href='/user_profile1') Myaccount
+                      br
+                      li
+                        a.usermenufont(href='#') Logout
+      .header-bottom
+        // header-bottom
+        .container
+          .row
+            .col-sm-9
+              .navbar-header
+                button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
+                  span.sr-only Toggle navigation
+                  span.icon-bar
+                  span.icon-bar
+                  span.icon-bar
+              .mainmenu.pull-left
+                ul.nav.navbar-nav.collapse.navbar-collapse
+                  li
+                    a(href='/home') Home
+                  li
+                    a(href='/map') Map
+                  li
+                    a(href='/contactUs') Contact Us

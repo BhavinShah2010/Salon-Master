@@ -54,7 +54,7 @@ html(lang='en', xmlns='http://www.w3.org/1999/xhtml')
                         #user_contact.user_det_value
                           label#lblUserContact.control-label(for='Email')
                         #user_contact_text.col-lg-3(style='display: none;')
-                          input#user_contact_val.form-control(type='text', name='user_contact')
+                          input#user_contact_val.form-control(type='text', name='user_contact' maxlength="10")
                       .form-group
                         label.control-label.col-lg-2(for='Email') Gender
                         .user_det_value
@@ -71,7 +71,7 @@ html(lang='en', xmlns='http://www.w3.org/1999/xhtml')
                             div
                               input#change_det.change_det.btn.btn-primary(type='button', value='Save')
                               | &nbsp
-                              input#cancel_det.cancel_det.btn.btn-primary(type='button', value='Cancel')
+                              input#cancel_det.cancel_det.btn.btn-primary(type='button', value='Cancel' )
                           //
                             <button type="submit" class="btn btn-primary">Publish</button>
                             <button type="submit" class="btn btn-danger">Save Draft</button>
@@ -114,7 +114,7 @@ html(lang='en', xmlns='http://www.w3.org/1999/xhtml')
                           div
                             input#btnChangePwd.change_det.btn.btn-primary(type='button', value='Save')
                             | &nbsp
-                            input#Button2.cancel_det.btn.btn-primary(type='button', value='Cancel')
+                            input#btnCancelChangePassword.cancel_det.btn.btn-primary(type='button', value='Cancel')
                         //
                           <button type="submit" class="btn btn-primary">Publish</button>
                           <button type="submit" class="btn btn-danger">Save Draft</button>

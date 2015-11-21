@@ -6,8 +6,9 @@ var schema = mongoose.Schema({
 	longitude:{
 		type:Number
 	},
-	Street:{
-		type:String
+	street:{
+		type:String,
+		required:true
 	},
 	area:{
 		type:String,

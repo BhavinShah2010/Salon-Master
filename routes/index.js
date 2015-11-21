@@ -31,7 +31,7 @@ router.get('/', function(req, res, next) {
     //console.log(salons.address)
     var query = category.find({});
     query.exec(function(err,categories){
-      res.render('home',{salonData:salons, category:categories, user:req.user, views:req.session.views});  
+      res.render('home',{salonData:salons, locatn: true, category:categories, user:req.user, views:req.session.views});  
     })
     
     //res.json(salons);
@@ -44,7 +44,7 @@ router.get('/home', function(req, res, next) {
     //console.log(salons.address)
     var query = category.find({});
     query.exec(function(err,categories){
-      res.render('home',{salonData:salons, category:categories, user:req.user, views:req.session.views});  
+      res.render('home',{salonData:salons, locatn: true, category:categories, user:req.user, views:req.session.views});  
     })
     
     //res.json(salons);

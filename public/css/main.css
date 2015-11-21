@@ -16,12 +16,33 @@ body {
 ul li {
   list-style: none;
 }
+/*search css*/
+#btnSearch
+    {
+      margin-left: 10px;
+          float: right;
+      background: #FE980F;
+    border: medium none;
+    border-radius: 0;
+    color: #FFFFFF;
+    display: block;
+    font-family: 'Roboto', sans-serif;
+    padding: 6px 25px;
+    }
+    /*search css ends*/
 /*map css*/
 #map
     {
       margin:auto;
     }
     /*map css ends*/
+    /*form submited successfuly*/
+    .formsuccess
+    {
+    color:black;
+    background-color: ##69EF58;
+    border-color: ##31F71A;
+  }
 a:hover {
 outline: none;
 text-decoration:none;
@@ -2615,7 +2636,7 @@ position: relative;
 width: 100%;
 margin: 0;
 top: 5px;
-//border: thin red solid;
+
 
 
 }
@@ -2795,10 +2816,10 @@ float:left !important;
 }
 
 
-#servicelisttr td
+/*#servicelisttr td
 {
   width:33%;
-}
+}*/
 #servicelisttr td span
 {
   margin-right: 20px;

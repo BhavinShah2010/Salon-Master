@@ -2,11 +2,12 @@
 //global variables 
 var services = [];
 var salons = [];
-
+var loc;
+var searchSalons;
 //UpdateSalons() function retrieve all selected services, and then it will check services
 //if services array is null, getAllSalons() will be called to display all salons on home-page 
 //else getSalonByServices() will be called to display salons, which provide selected services
-function updateSalons(obj) {
+function updateSalons() {
 		//alert("home");
 		services = [];
 		//var services = $.document.getElementById(obj);
@@ -50,6 +51,7 @@ function isProvideServices(services,salonservices)
 
 //getSalonByservices() function retrieve salons information from database, and display those salons on home-page.
 function getSalonByServices(){
+	var count = 0;
 	var salonsWithItsServices = [];
 	salons = [];
 	jQuery.ajax({
@@ -84,11 +86,13 @@ function getSalonByServices(){
 			if(result.length > 0)
 				$.each(result,function(i,salon){
 			    			//alert(salon);
-						    htmlContent += "<div class='col-sm-4' id="
-						    htmlContent += salon._id
-						    htmlContent += "><a href='salons/profile?id="
-						    htmlContent += salon._id
-						    htmlContent += "'><div class='product-image-wrapper'><div class='single-products' id='first_image'><div class='productinfo text-center'>"
+						if((loc == null || loc === salon.address.city) && (searchSalons == null || searchSalons === salon.name)){
+							count++;
+							htmlContent += "<div class='col-sm-4' id="
+							htmlContent += salon._id
+							htmlContent += "><a href='salons/profile?id="
+							htmlContent += salon._id
+							htmlContent += "'><div class='product-image-wrapper'><div class='single-products' id='first_image'><div class='productinfo text-center'>"
 							htmlContent += "<img src='images/home/product1.jpg' alt='' /><h2><a href='a.html'>"
 							htmlContent += salon.name
 							htmlContent += "</a></h2><p>"
@@ -105,12 +109,18 @@ function getSalonByServices(){
 							htmlContent += salon.address.zipcode
 							htmlContent += "</p><p>"
 							htmlContent += salon.phoneNo
-							htmlContent +="</p></div></div></div></a></div>"
+							htmlContent +="</p></div></div></div></div>"
+						}
+									
 			    		});
 			else
 					htmlContent += "<h2>Sorry, Currently no salon is providing selected service(s).</h2>"
 			salonsWithItsServices = JSON.stringify(result);
-			
+			if(count == 0)
+			{	htmlContent += "<h2>Sorry, No salon is available at ";
+				htmlContent += loc;
+				htmlContent += ".</h2>";
+			}
 		}
 	});
 
@@ -170,7 +180,8 @@ function getSalonByServices(){
 */
 //getAllSalons() retrieve all salons information, and display salons info on home-page.
 function getAllSalons()
-{
+{	
+	var count =0;
 	var htmlContent = "<div class='features_items'><h2 class='title text-center'>Salons in <span id='text_value' > </span> </h2>";
 	jQuery.ajax({
 			url: "/salons/getSalons",
@@ -180,27 +191,39 @@ function getAllSalons()
 
 			$.each(result,function(i,salon){
     			//alert(salon);
-			    htmlContent += "<div class='col-sm-4' id="
-			    htmlContent += salon._id
-			    htmlContent += "><div class='product-image-wrapper'><div class='single-products' id='first_image'><div class='productinfo text-center'>"
-				htmlContent += "<img src='images/home/product1.jpg' alt='' /><h2><a href='a.html'>"
-				htmlContent += salon.name
-				htmlContent += "</a></h2><p>"
-				htmlContent += salon.type
-				htmlContent += " salons </p><p>"
-				//htmlContent += "Street name and number of Salon"
-				//htmlContent += "</p><p>"
-				htmlContent += salon.address.area
-				htmlContent += ", "
-				htmlContent += salon.address.city
-				htmlContent += "</p><p>"
-				htmlContent += salon.address.state
-				htmlContent += ", "
-				htmlContent += salon.address.zipcode
-				htmlContent += "</p><p>"
-				htmlContent += salon.phoneNo
-				htmlContent +="</p></div><div class='product-overlay'><div class='overlay-content'></div></div></div></div></div>"
-    		});				
+
+				if((loc == null || loc === salon.address.city) && (searchSalons == null || searchSalons === salon.name)){
+					count++;
+					htmlContent += "<div class='col-sm-4' id="
+					htmlContent += salon._id
+					htmlContent += "><a href='salons/profile?id="
+					htmlContent += salon._id
+					htmlContent += "'><div class='product-image-wrapper'><div class='single-products' id='first_image'><div class='productinfo text-center'>"
+					htmlContent += "<img src='images/home/product1.jpg' alt='' /><h2><a href='a.html'>"
+					htmlContent += salon.name
+					htmlContent += "</a></h2><p>"
+					htmlContent += salon.type
+					htmlContent += " salons </p><p>"
+					//htmlContent += "Street name and number of Salon"
+					//htmlContent += "</p><p>"
+					htmlContent += salon.address.area
+					htmlContent += ", "
+					htmlContent += salon.address.city
+					htmlContent += "</p><p>"
+					htmlContent += salon.address.state
+					htmlContent += ", "
+					htmlContent += salon.address.zipcode
+					htmlContent += "</p><p>"
+					htmlContent += salon.phoneNo
+					htmlContent +="</p></div></div></div></div>"
+				}
+				
+    		});	
+    			if(count == 0)
+				{	htmlContent += "<h2>Sorry, No salon is available at ";
+					htmlContent += loc;
+					htmlContent += ".</h2>";
+				}			
 				//htmlContent += JSON.stringify(result);
 				document.getElementById("divSalons").innerHTML = htmlContent;
 				//alert(JSON.stringify(result));
@@ -208,7 +231,36 @@ function getAllSalons()
 		});	
 }
 
+//findLocation method will find the salons which are present in given location and display those locations on home-page.
+function findLocation()
+{
+	//alert(document.getElementById("txtLocation").value);
+	//alert(loc);
+	loc = document.getElementById("txtLocation").value;
+	if(loc == 'All')
+		loc = null;
+	
+	if(loc == null)
+		document.getElementById("lblloc").innerHTML = 'Location';
+	else
+		document.getElementById("lblloc").innerHTML = loc;
+				
+		document.getElementById("lblloc").value = loc;
+		document.getElementById("txtLocation").value = "";
+	//alert(loc);
+	updateSalons();
+}
 
+function searchSalonsByName()
+{
+	alert(document.getElementById("txtsearch").value);
+	searchSalons = document.getElementById("txtsearch").value;
+	document.getElementById("txtsearch").value = "";
+	if(searchSalons == 'All')
+		searchSalons = null;
+	updateSalons();	
+
+}
 
 
 function marriage (obj) {
