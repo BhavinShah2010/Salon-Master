@@ -6,16 +6,16 @@ html(lang='en')
     meta(name='description', content='Creative - Bootstrap 3 Responsive Admin Template')
     meta(name='author', content='GeeksLabs')
     meta(name='keyword', content='Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal')
-    link(rel='shortcut icon', href='/img/favicon.png')
-    link(rel='stylesheet',href='/css/bootstrap.min.css')    
-    link(href='/css/bootstrap-theme.css', rel='stylesheet')
-    link(href='/css/elegant-icons-style.css', rel='stylesheet')
-    link(href='/css/font-awesome.min.css', rel='stylesheet')
-    link(href='/css/style.css', rel='stylesheet')
+    link(href='/css/bootstrap-table.css', rel='stylesheet')
+    link(rel='stylesheet', href='/css/bootstrap.min.css')
     link(href='/css/style-responsive.css', rel='stylesheet')
+    link(href='/css/style.css', rel='stylesheet')
+    link(href='/css/elegant-icons-style.css', rel='stylesheet')
+    link(href='/css/bootstrap-theme.css', rel='stylesheet')
+    link(href='/css/font-awesome.min.css', rel='stylesheet')
     link(href='/css/jquery-ui-1.10.4.min.css', rel='stylesheet')
-     
   body
+    lable#lblId(style='display:none')
     // container section start
     section#container
       header.header.dark-bg
@@ -65,7 +65,6 @@ html(lang='en')
         section.wrapper
           // overview start
           #divCategory
-            | This is Category.
             .row
               .col-lg-12
                 h2 Category Master 
@@ -74,35 +73,73 @@ html(lang='en')
                     a#A1(href='#', runat='server')
                       i.icon-dashboard
                   li#aNavigationCategory.active
-                    label#lblaNavigationCategory  Add Category
-                #divresult.alert.alert-info.alert-dismissable(runat='server', style='display:none')
+                    label#lblaNavigationCategory Add Category
+                #divCategoryresult.alert.alert-info.alert-dismissable(runat='server', style='display: none')
                   label#lblCategoryResult
             div
-              #divCategoryAdd.row(runat='server', style='display:none')
+              #divCategoryAdd.row(runat='server', style='display: none')
                 .col-lg-6
                   .form-group
                     label
                       | Cateogry Name 
                       span(style='color: red') *
                     input#txtCategoryName.form-control(type='text')
-                  input#btnAddCategory.btn.btn-primary(type='button', value='Save')
+                  .form-group
+                    label
+                      | Description 
+                      span(style='color: red') *
+                    textarea#txtDescription.form-control(style='width: 557px; height: 97px; margin: 0px -3.5px 0px 0px;')
+                  .form-group
+                    div
+                      label
+                        | Service Name 
+                        span(style='color: red') *
+                    .col-lg-4
+                      input#txtSubServiceName.form-control(name='c', type='text')
+                    .col-lg-2
+                      input#btnAddSubCategory.btn.btn-primary(type='button', value='Add')
+                  #divSubCategory.form-group.checkbox
+                  .clearfix
+                  br
+                  #divCategoryMsg.alert.alert-danger(style='height: 50px; display: none;')
+                    label#lblCategoryError
+                  .form-group
+                    input#btnAddCategory.btn.btn-primary(type='button', value='Save')
+                    span   
+                    input#btnUpdateCategory.btn.btn-primary(type='button', value='Update', style='display:none')
+                    span   
+                    input#btnCancelCategory.btn.btn-primary(type='button', value='Cancel')
               #divCategoryList.row(runat='server')
-                .col-lg-6
-                  .form-group
-                .col-lg-6
-                  .form-group
-                .clearfix
                 .col-lg-12
                   .table-responsive
-                    table#tblCategory(data-url='/categories/getAllCategories')
+                    table#tblCategory
           #divSalon(style='display: none')
-            | This is Salon
+            .row
+              .col-lg-12
+                h2 Salon Master 
+                #divSalonMsg.alert.alert-info.alert-dismissable(runat='server', style='display: none')
+                  label#lblSalonMsg
+            div
+              #divSaloneList.row(runat='server')
+                .col-lg-12
+                  .table-responsive
+                    table#tblSalon
           #divUser(style='display: none')
-            | This is divMenu3
+            .row
+              .col-lg-12
+                h2 User Master 
+                #divUserMsg.alert.alert-info.alert-dismissable(runat='server', style='display: none')
+                  label#lblUserMsg
+            div
+              #div2.row(runat='server')
+                .col-lg-12
+                  .table-responsive
+                    table#tblUser
       // main content end
     // container section start
     // javascripts
     script(src='/js/jquery.js')
     script(src='/js/bootstrap.min.js')
     script(src='/js/admin.js')
-  
+    script(src='/js/bootstrap-table.js')
+    script(src='/js/Admin_bind.js')

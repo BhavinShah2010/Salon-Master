@@ -30,7 +30,7 @@ router.post('/api/photo',function(req,res){
             return res.end("Error uploading file.");
         }
         res.end("File is uploaded");
-    });
+    })
 });
 
 //This library is imported to perform join operation
@@ -152,22 +152,22 @@ router.get('/profile', function(req, res, next) {
 
 
 
-// To check username and password are correct or not
+// To check username is available or not
 router.post('/checkLogin', function(req,res){
 	salon.findOne({username:req.body.username},function(err, salons) {
 	  if(salons){
+	  		console.log(salons.password);
 	  		var status=salons.comparePassword(req.body.password);
 	  		if(status)
 	  			res.json([{"username":salons.username,"password":req.body.password,"salonId":salons._id,"addressId":salons.address}]);
 	  		else{
-	  			res.json({"status":"false"});
+	  			res.json([{"status":"false"}]);
 	  		}
 	  	}
 	  	else{
-	  		res.json({"status":"false"});
+	  		res.json([{"status":"false"}]);
 	  	}
-	});
-
+	})	
 });
 
 
@@ -175,10 +175,10 @@ router.post('/checkLogin', function(req,res){
 router.post('/checkUname', function(req,res){
 	salon.findOne({username:req.body.username},function(err, salons) {
 	  if(salons){
-	  		res.json({"status":"false"});
+	  		res.json([{"status":"false"}]);
 	  	}
 	  	else{
-	  		res.json({"status":"true"});
+	  		res.json([{"status":"true"}]);
 	  	}
 	})
 });
@@ -334,12 +334,12 @@ router.get('/checkUname', function(req,res){
 router.post('/delete',function(req,res){
 	data=req.body;
 	var uname=data.username;
-	salon.findOneAndRemove({ username:uname }, function(err){
+	salon.findOneAndRemove({ username:req.body.username}, function(err){
   		if (err){
   			res.send('Deletion Problem' + err);
   		}
   		else{
-  			res.send('Salon Deleted successfully'+uname);
+  			res.send(uname+ ' is Deleted successfully.');
   		}
 	})
 });
