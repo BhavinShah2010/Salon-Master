@@ -30,7 +30,7 @@ router.post('/api/photo',function(req,res){
             return res.end("Error uploading file.");
         }
         res.end("File is uploaded");
-    });
+    })
 });
 
 //This library is imported to perform join operation
@@ -105,13 +105,14 @@ router.post('/getDetails',function(req,res){
 //refirect to index.js if user is not logged in
 /*router.use(function(req,res,next){
 */
+/*
 router.use(function(req,res,next){
   if(!req.user){
     res.redirect('/');
   }
   next();
 });
-
+*/
 
 
 
@@ -163,16 +164,10 @@ router.post('/checkLogin', function(req,res){
 	  			res.json([{"status":"false"}]);
 	  		}
 	  	}
-<<<<<<< HEAD
 	  	else{
 	  		res.json([{"status":"false"}]);
 	  	}
-	})
-=======
-	  	
-	});
-
->>>>>>> a5e1b25f77772fc3370de582f5130b501ce7ac8a
+	})	
 });
 
 
