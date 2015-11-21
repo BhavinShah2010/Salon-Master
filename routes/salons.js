@@ -159,14 +159,13 @@ router.post('/checkLogin', function(req,res){
 	  		if(status)
 	  			res.json([{"username":salons.username,"password":req.body.password,"salonId":salons._id,"addressId":salons.address}]);
 	  		else{
-	  			res.json({"status":"false"});
+	  			res.json([{"status":"false"}]);
 	  		}
 	  	}
 	  	else{
-	  		res.json({"status":"false"});
+	  		res.json([{"status":"false"}]);
 	  	}
-	});
-
+	})
 });
 
 
@@ -174,10 +173,10 @@ router.post('/checkLogin', function(req,res){
 router.post('/checkUname', function(req,res){
 	salon.findOne({username:req.body.username},function(err, salons) {
 	  if(salons){
-	  		res.json({"status":"false"});
+	  		res.json([{"status":"false"}]);
 	  	}
 	  	else{
-	  		res.json({"status":"true"});
+	  		res.json([{"status":"true"}]);
 	  	}
 	})
 });
