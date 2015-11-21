@@ -5,7 +5,7 @@ html(lang='en')
     link(rel='stylesheet', href='/css/jquery.raty.css')
     link(href='/css/star.css', rel='stylesheet', type='text/css')
     script(src='/js/jquery_fixstar.raty.js')
-    
+    script(src='/js/RatingJs.js')
     link(href='/css/stylesheet.css', rel='stylesheet')
     title Shop Details | Salon Master
     meta(charset='utf-8')
@@ -13,8 +13,6 @@ html(lang='en')
     meta(name='description', content='')
     meta(name='author', content='')
   body
-
-    input#salonId(type="hidden",value="#{salonId}")
     section
       .container
         .row
@@ -24,13 +22,37 @@ html(lang='en')
                 .view-product
                   img(src='/images/product-details/1.jpg', alt='')
               .col-sm-7
+                .product-information
+                  h2
+                    label#lbl_shopname
+                  br
+                  |Email ID: 
+                  label#lblShopEmail
+                  br
+                  b Mobile:
+                  label#lblShopMobile
+                  br
+                  | Address: 
+                  label#lblShopAddress
+                  br
+                  label#lblShopDescription
+                  br
+                  label#lblservicelabel Offers are
+                  table#tblOffers.formtable
+                  input#salonId(type="hidden",value="#{salonId}")
+                  #fixstardefault
+                  br
+                  div#divbookappointment
+                    span
+                      button#btnBookAppointment.btn.btn-fefault.cart(type='button')
+                        | Book Appointment
                 div(id='divSalonInfo' class='product-information')
             .category-tab.shop-details-tab
               .col-sm-12
                 ul.nav.nav-tabs
                   li.active
                     a#aService(href='#Service', data-toggle='tab') Services
-                  li
+                  li#linkPriviousAppointment
                     a#aPrevious(href='#divPrevious', data-toggle='tab') Previous Appointments
                   li
                     a#aReviews(href='#reviews', data-toggle='tab') Reviews
@@ -102,18 +124,18 @@ html(lang='en')
                         </ul>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
                     p
+                      div#reviewForm
+                        b Write Your Review
+                        form(action='#')
+                          textarea(name='')
+                          button.btn.btn-default.pull-right(type='button')
+                            | Submit
                       b Write Your Review
                     form(action='#')
                       textarea(name='')
                       b Rating: 
                       button.btn.btn-default.pull-right(type='button')
                         | Submit
-                        
     include footer
-    
     script(src='/js/Table_salon.js')
     script(src='/js/bootstrap-table.js')
-    
-
-
-            

@@ -215,7 +215,7 @@ router.post('/updateProfile',function(req,res){
 //active account
 router.get('/activateUser',function(req,res){
 	var now=new Date();
-	user.findOneAndUpdate({"_id":req.param.objectId}, {active:true, modified:now}, function(err, activeUser) {
+	user.findOneAndUpdate({"_id":req.query.objectId}, {active:true, modified:now}, function(err, activeUser) {
 		if(err) throw err;
 		res.send("Activated");
 	})

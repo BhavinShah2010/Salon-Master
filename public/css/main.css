@@ -19,7 +19,15 @@ ul li {
 /*search css*/
 #btnSearch
     {
-      margin-left: 5px;
+      margin-left: 10px;
+          float: right;
+      background: #FE980F;
+    border: medium none;
+    border-radius: 0;
+    color: #FFFFFF;
+    display: block;
+    font-family: 'Roboto', sans-serif;
+    padding: 6px 25px;
     }
     /*search css ends*/
 /*map css*/
@@ -2628,7 +2636,7 @@ position: relative;
 width: 100%;
 margin: 0;
 top: 5px;
-//border: thin red solid;
+
 
 
 }

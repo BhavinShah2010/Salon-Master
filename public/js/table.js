@@ -403,8 +403,6 @@ $(function () {
             events: operateOrderEvents
         }]
     });
-    
-
 });
 function operateFormatter(value, row, index) {
     return [

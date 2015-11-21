@@ -1,7 +1,9 @@
 
 $(document).ready(function () {
     // to show Category
-    debugger
+    // debugger
+    var id;
+    BindCategoryTable();
     $("#aCategory").click(function () {
         $("#divCategory").show();
         $("#divSalon").hide();
@@ -9,23 +11,25 @@ $(document).ready(function () {
         $("#liCategory").addClass("active");
         $("#liSalon").removeClass("active");
         $("#liUser").removeClass("active");
+        BindCategoryTable();
 
 
     });
     // to show Salon
     $("#aSalon").click(function () {
-        debugger;
+        // debugger;
         $("#divCategory").hide();
         $("#divSalon").show();
         $("#divUser").hide();
         $("#liCategory").removeClass("active");
         $("#liSalon").addClass("active");
         $("#liUser").removeClass("active");
+        $("#divSalonMsg").css("display", "none");
         BindSalonTable();
     });
 
     $("#aUser").click(function () {
-        debugger;
+        //  debugger;
         $("#divCategory").hide();
         $("#divSalon").hide();
         $("#divUser").show();
@@ -38,11 +42,16 @@ $(document).ready(function () {
         //debugger;
         // alert(1);
         //$("#divCategoryList").hide();
+
+        $("#divCategoryresult").hide();
+        $("#lblCategoryResult").val("");
         if ($("#divCategoryList").is(":visible")) {
             //alert("List True");
             $("#lblaNavigationCategory").html("View Category");
             $("#divCategoryAdd").show();
             $("#divCategoryList").hide();
+            $("#btnUpdateCategory").hide();
+            $("#btnAddCategory").show();
         }
         else {
             $("#lblaNavigationCategory").html("Add Category");
@@ -90,7 +99,7 @@ $(document).ready(function () {
 
             $('input[name^="chkSubCategory"]').each(function () {
                 if ($(this).val().toLowerCase() == $current.val().toLowerCase()) {
-                    $("#lblCategoryError").html("Category is alrady exists.");
+                    $("#lblCategoryError").html("Service is alrady exists.");
                     $("#divCategoryMsg").css("display", "block");
                     isVal = false;
                 }
@@ -108,8 +117,69 @@ $(document).ready(function () {
         }
     });
 
+    $("#btnUpdateCategory").click(function () {
 
-   
+        $(".alert").hide();
+        $(".alert-danger").hide();
+        var isVal = true;
+        //debugger;
+        if ($("#txtCategoryName").val() == '') {
+            // alert(1);
+            $("#lblCategoryError").html("Please Enter Category.");
+            $("#divCategoryMsg").css("display", "block");
+            isVal = false;
+            return false;
+        }
+        if ($("#txtDescription").val() == '') {
+            // alert(1);
+            $("#lblCategoryError").html("Please Enter Description.");
+            $("#divCategoryMsg").css("display", "block");
+            isVal = false;
+            return false;
+        }
+        var numberOfChecked = $('input:checkbox:checked').length;
+        var totalCheckboxes = $('input:checkbox').length;
+        var numberNotChecked = totalCheckboxes - numberOfChecked;
+
+        if (totalCheckboxes <= 0) {
+            // alert(1);
+            $("#lblCategoryError").html("Please Add Atleast One Category.");
+            $("#divCategoryMsg").css("display", "block");
+            isVal = false;
+            return false;
+        }
+
+        if (isVal) {
+
+            // debugger;
+            var i = 0;
+            var arr = [];
+            $('.checkbox:checked').each(function () {
+                arr[i++] = $(this).val();
+            });
+            console.log[arr];
+
+
+            $.post("/categories/updateCategory",
+             {
+                 objectId: $("#lblId").val(),
+                 name: $("#txtCategoryName").val(),
+                 sub_cat: arr,
+                 description: $("#txtDescription").val()
+             },
+             function (data) {
+                 debugger;
+                 if (data == "successful") {
+                     cleareCategory();
+                     $("#aNavigationCategory").click();
+                     BindCategoryTable();
+                     $('[name="refresh"]').click();
+                 }
+             })
+        }
+
+    });
+
 
     $("#btnAddCategory").click(function () {
 
@@ -134,7 +204,7 @@ $(document).ready(function () {
         var numberOfChecked = $('input:checkbox:checked').length;
         var totalCheckboxes = $('input:checkbox').length;
         var numberNotChecked = totalCheckboxes - numberOfChecked;
-       
+
         if (totalCheckboxes <= 0) {
             // alert(1);
             $("#lblCategoryError").html("Please Add Atleast One Category.");
@@ -145,7 +215,7 @@ $(document).ready(function () {
 
         if (isVal) {
 
-            debugger;
+            // debugger;
             var i = 0;
             var arr = [];
             $('.checkbox:checked').each(function () {
@@ -166,6 +236,7 @@ $(document).ready(function () {
                  cleareCategory();
                  $("#aNavigationCategory").click();
                  BindCategoryTable();
+                 $('[name="refresh"]').click();
              }
          })
         }
@@ -226,7 +297,8 @@ $(document).ready(function () {
                 title: 'Edit',
                 align: 'center',
                 valign: 'middle',
-                formatter: editFormatter,
+                formatter: editFormatter
+
             }
             ]
 
@@ -234,7 +306,7 @@ $(document).ready(function () {
     }
 
     function BindSalonTable() {
-        debugger;
+        //debugger;
         $('#tblSalon').bootstrapTable({
 
             url: '/salons/getSalons',
@@ -244,7 +316,7 @@ $(document).ready(function () {
             pagination: true,
             pageSize: 6,
             pageList: [10, 25, 50, 100, 200],
-            
+
             showRefresh: true,
             search: true,
             minimumCountColumns: 2,
@@ -275,8 +347,8 @@ $(document).ready(function () {
                 align: 'sleft',
                 valign: 'top',
                 sortable: true,
-               
-             
+
+
             },
             {
                 field: 'address.city',
@@ -291,15 +363,23 @@ $(document).ready(function () {
                  align: 'sleft',
                  valign: 'top',
                  sortable: true,
-             }
+             },
+            {
+                field: 'operate',
+                title: 'Delete',
+                align: 'center',
+                valign: 'middle',
+                formatter: deleteFormatter,
+                events: deleteSalonEvent
+            }
             ]
-                           
+
 
         });
     }
 
     function BindUser() {
-     //   alert("bind");
+        //   alert("bind");
         //debugger;
         $('#tblUser').bootstrapTable({
 
@@ -370,14 +450,24 @@ $(document).ready(function () {
                 align: 'center',
                 valign: 'middle',
                 formatter: linkFormatter,
+                events: statuschangeEvent
             }
             ]
         });
     }
 
     //edit link
+    function deleteFormatter(value, row, index) {
+        return [
+        '<a class="delete ml10" href="javascript:void(0)" title="Delete"',
+        '<i>',
+        '<button type="button" class="btn btn-danger">Delete</button>',
+        '</i>',
+        '</a>&nbsp;&nbsp;'
+        ].join('');
+    }
     function linkFormatter(value, row, index) {
-       // debugger;
+        // debugger;
         var status;
         //console.log(value);
         if (row.active) {
@@ -387,7 +477,7 @@ $(document).ready(function () {
             status = "Deactivated";
         }
         return [
-        '<a class="approve ml10" title="Click"',
+        '<a class="status ml10" title="Click"',
         '<i>',
         '<lable>' + status + '</lable>',
         '</i>',
@@ -406,40 +496,108 @@ $(document).ready(function () {
         '</a>&nbsp;&nbsp;'
         ].join('');
     }
-    $('#tblUser').on('click-row.bs.table', function (e, row, $element) {
+
+    $('#tblCategory').on('click-row.bs.table', function (e, row, $element) {
         // console.log(row, $element);
         //alert("in");;
-       // debugger;
+        // debugger;
         var status;
+
+        $("#aNavigationCategory").click();
+        $("#btnUpdateCategory").show();
+        $("#btnAddCategory").hide();
+        $("#lblId").val(row._id);
         //console.log(value);
-        if (row.active) {
-            $.post("/users/deactivateUser?", { objectId: row._id }, function (data) {
-             //   debugger;
-                if (data == "Deactivated") {
-                    row.active = false;
-                    BindUser();
-                    //linkFormatter("", row, $element);
-                    // changstatus("", row, $element);
-                    //  formatter: linkFormatter(" ",row,"");
-                    $( '[name="refresh"]').click();
-                }
-            });
+        debugger;
+        $("#txtCategoryName").val(row.name);
+        $("#txtDescription").val(row.name);
+        for (var i = 0; i < row.sub_cat.length; i++) {
+            $("#divSubCategory").append('<br/><label><input type="checkbox" class="checkbox" name="chkSubCategory" checked="true" value="' + row.sub_cat[i] + '">' + row.sub_cat[i] + '</label>');
         }
-        else {
-            $.get("/users/activateUser?", { objectId: row._id }, function (data) {
-               // debugger;
-                if (data == "Activated") {
-                    row.active = true;
-                    BindUser();
-                    //linkFormatter("", row, $element);
-                    $('[name="refresh"]').click();
-                    //formatter: linkFormatter(" ", row, " ");
-                }
-
-            });
-        }
-
     })
-   
+    window.statuschangeEvent = {
+        'click .status': function (e, value, row, index) {
 
+            var data = JSON.stringify(row);
+            //alert("Are you sure you want delete  " + row.name);
+
+            var status;
+            //console.log(value);
+            if (row.active) {
+                $.post("/users/deactivateUser?", { objectId: row._id }, function (data) {
+                    //   debugger;
+                    if (data == "Deactivated") {
+                        row.active = false;
+                        BindUser();
+                        //linkFormatter("", row, $element);
+                        // changstatus("", row, $element);
+                        //  formatter: linkFormatter(" ",row,"");
+                        $('[name="refresh"]').click();
+                    }
+                });
+            }
+            else {
+                ;
+                $.get("/users/activateUser?", { objectId: row._id }, function (data) {
+                    //debugger;
+                    if (data == "Activated") {
+                        row.active = true;
+                        BindUser();
+                        //linkFormatter("", row, $element);
+                        $('[name="refresh"]').click();
+                        //formatter: linkFormatter(" ", row, " ");
+                    }
+
+                });
+            }
+
+        }
+    };
+
+    window.deleteSalonEvent = {
+        'click .delete': function (e, value, row, index) {
+
+            var data = JSON.stringify(row);
+            //alert("Are you sure you want delete  " + row.name);
+            if (confirm("Are you sure you want delete  " + row.name + "?")) {
+                // your deletion code
+                $.post("/salons/delete",
+                {
+                    username: row.name
+                },
+                function (data) {
+                    debugger;
+                    $("#lblSalonMsg").html(data);
+                    $("#divSalonMsg").css("display", "block");
+                    $('[name="refresh"]').click();
+                })
+            }
+        }
+    };
+
+    $("#txtCategoryName").focusout(function () {
+        // alert('working');
+        //alert($("#txtUserName").val());
+
+        // alert('working');
+        //alert($("#txtUserName").val());
+        $.get("/categories/checkCategory?", { name: $("#txtCategoryName").val() }, function (data) {
+            if (data != "0") {
+
+
+
+                $("#lblCategoryError").html(data);
+                $("#divCategoryMsg").css("display", "block");
+                $("#btnAddCategory").attr('disabled', 'disabled');
+
+                return false;
+            }
+            else {
+                //alert('not working');
+                $("#btnAddCategory").attr('disabled', false);
+                $("#divCategoryMsg").css("display", "none");
+            }
+
+        });
+    }); 
 });

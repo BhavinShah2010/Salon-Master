@@ -91,7 +91,7 @@ router.post('/add',function(req,res){
 //Get Appointments of a particular User
 router.post('/getUserAppointment',function(req,res){
     var userId=req.body.userId;
-    appointment.find({ "user": userId }).exec(function(err, data) {
+    appointment.find({ "user": userId }).populate('salon').exec(function(err, data) {
         if (err) throw err;
             res.send(data);
     });

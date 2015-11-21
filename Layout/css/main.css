@@ -1,10 +1,26 @@
-
+﻿
 /*************************
 *******Typography******
 **************************/
 @import url(http://fonts.googleapis.com/css?family=Roboto:400,300,400italic,500,700,100);
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,800,300,600,700);
 @import url(http://fonts.googleapis.com/css?family=Abel);
+#PageBackround {
+    background:#FFF;
+    border-bottom:none;
+}
+/*map css*/
+#map
+    {
+      margin:auto;
+    }
+    /*map css ends*/
+#m_radioStyle, #f_radioStyle{
+height: 18px ;
+width:45px ;
+float:left;
+
+}
 
 body {
   font-family: 'Roboto', sans-serif;
@@ -12,7 +28,117 @@ body {
   position: relative;
   font-weight:400px;
 }
+/*appointment css*/
 
+.box .k-textbox {
+                width: 80px;
+              }
+              .box .k-button {
+                min-width: 80px;
+              }
+.fullwidth
+{
+	width:100% !important;
+}
+
+.Booking-form form input {
+  background: #F0F0E9;
+  border: medium none;
+  color: #696763;
+  display: block;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  height: 40px;
+  margin-bottom: 20px;
+  outline: medium none;
+  padding-left: 10px;
+}
+
+.Booking-form form span{
+  font-size:18px;
+}
+#errortr
+{
+	width:100%;
+	height: 50px; 
+	display: none;
+}
+
+.Booking-form form span input ,{
+  width: 15px;
+  float: left;
+  height: 15px;
+  margin-right: 5px;
+}
+
+.Booking-form form button {
+  margin-top: 23px;
+}
+
+.Booking-form form button{
+  background: #FE980F;
+  border: medium none;
+  border-radius: 0;
+  color: #FFFFFF;
+  display: block;
+  font-family: 'Roboto', sans-serif;
+  padding: 6px 25px;
+}
+.Booking-form label input {
+  border: medium none;
+  display: inline-block;
+  height: 0;
+  margin-bottom: 0;
+  outline: medium none;
+  padding-left: 0;
+}
+.insameline,#insameline{
+height: 18px  !important;
+width:45px  !important;
+float:left !important;
+}
+.hiddentr
+{
+	display:none;
+}
+.formtable
+{
+	height:100%;
+	width:90%;
+	margin:0px auto;
+}
+#salonList
+{
+	height:40px;
+}
+/*appointment css ends*/
+/*shop profile page css start*/
+#Shop_Details
+{
+	width:100% !important;
+}/*shop profile page css end*/
+/*header css start */
+#usersubmenu
+{
+	background-color:#FFF;
+	border:solid;
+	border-width:thin;
+	border-color:#CCC;
+	color:#000;
+}
+.usermenufont
+{
+	color:#333 !important;
+}
+#nav_after_login
+{
+	display:none;
+}/*header css ends*/
+
+.col-sm-6
+{
+	width:90%;
+}
 ul li {
   list-style: none;
 }
@@ -90,7 +216,7 @@ a#scrollUp i{
 
 
 .contactinfo ul li a:hover{
-  background:inherit;
+	background:inherit;
 }
 
 
@@ -103,7 +229,7 @@ a#scrollUp i{
 
 
 .social-icons ul li{
-  display:inline-block;
+	display:inline-block;
 }
 
 .social-icons ul li a i {
@@ -128,19 +254,19 @@ a#scrollUp i{
 }
 
 .fa-twitter:hover  {
-  background:#5BBCEC;
+	background:#5BBCEC;
 }
 
 .fa-linkedin:hover  {
-  background:#FF4518;
+	background:#FF4518;
 }
 
 .fa-dribbble:hover  {
-  background:#90C9DC;
+	background:#90C9DC;
 }
 
 .fa-google-plus:hover  {
-  background:#CE3C2D;
+	background:#CE3C2D;
 }
 
 .header-middle .container .row {
@@ -156,7 +282,7 @@ a#scrollUp i{
 }
 
 .header-middle .container .row .col-sm-8 {
-  padding-right:0;
+	padding-right:0;
 }
 
 .usa {
@@ -169,9 +295,9 @@ a#scrollUp i{
 }
 
 .usa:hover {
-  background:#FE980F;
-  color:#fff;
-  border-color:#FE980F;
+	background:#FE980F;
+	color:#fff;
+	border-color:#FE980F;
 }
 
 .usa:active, .usa.active {
@@ -194,7 +320,7 @@ a#scrollUp i{
 
 
 .shop-menu ul li {
-  display:table;
+	display:inline-block;
   padding-left: 15px;
   padding-right: 15px;
 }
@@ -217,13 +343,13 @@ a#scrollUp i{
 
 
 .shop-menu ul li a i{
-  margin-right:3px;
+	margin-right:3px;
 }
 
 
 .shop-menu ul li a:hover {
-  color:#fe980f;
-  background:#fff;
+	color:#fe980f;
+	background:#fff;
 }
 
 
@@ -246,17 +372,17 @@ a#scrollUp i{
 }
 
 .mainmenu ul li a {
-  color: #696763;
-  font-family: 'Roboto', sans-serif;
-  font-size: 17px;
-  font-weight: 300;
-  padding: 0;
-  padding-bottom: 10px;
+	color: #696763;
+	font-family: 'Roboto', sans-serif;
+	font-size: 17px;
+	font-weight: 300;
+	padding: 0;
+	padding-bottom: 10px;
 }
 
 .mainmenu ul li a:hover, .mainmenu ul li a.active,  .shop-menu ul li a.active{
-  background:none;
-  color:#fdb45e;
+	background:none;
+	color:#fdb45e;
 }
 
 .search_box input {
@@ -294,18 +420,18 @@ a#scrollUp i{
 }
 
 ul.sub-menu {
-  position: absolute;
-  top: 30px;
-  left: 0;
-  background: rgba(0, 0, 0, 0.6);
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  width: 220px;
-  -webkit-box-shadow: 0 3px 3px rgba(0, 0, 0, 0.1);
-  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.1);
-  display: none;
-  z-index: 999;
+	position: absolute;
+	top: 30px;
+	left: 0;
+	background: rgba(0, 0, 0, 0.6);
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	width: 220px;
+	-webkit-box-shadow: 0 3px 3px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 3px 3px rgba(0, 0, 0, 0.1);
+	display: none;
+	z-index: 999;
 }
 
 .dropdown ul.sub-menu li .active{
@@ -459,7 +585,7 @@ ul.sub-menu {
   overflow: hidden;
 }
 .address  img {
-  width:100%;
+	width:100%;
 }
 
 .address p {
@@ -491,15 +617,15 @@ ul.sub-menu {
 }
 
 .single-widget h2 i{
-  margin-right:15px;
+	margin-right:15px;
 }
 
 .single-widget ul li a{
-  color: #8C8C88;
-  font-family: 'Roboto', sans-serif;
-  font-size: 14px;
-  font-weight: 300;
-  padding: 5px 0;
+	color: #8C8C88;
+	font-family: 'Roboto', sans-serif;
+	font-size: 14px;
+	font-weight: 300;
+	padding: 5px 0;
 }
 
 .single-widget ul li a i {
@@ -507,8 +633,8 @@ ul.sub-menu {
 }
 
 .single-widget ul li a:hover{
-  background:none;
-  color:#FE980F;
+	background:none;
+	color:#FE980F;
 }
 
 
@@ -540,7 +666,7 @@ ul.sub-menu {
 
 .searchform  button:hover, 
 .searchform  button:focus{
-  background-color:#FE980F;
+	background-color:#FE980F;
 }
 
 .searchform p {
@@ -584,17 +710,11 @@ ul.sub-menu {
 }
 
 .carousel-indicators li.active {
-    background: #FE980F;
+	  background: #FE980F;
 }
 
 .item {
   padding-left: 100px;
-}
-
-
-.col-sm
-{
-  width: 90%;
 }
 
 
@@ -616,7 +736,7 @@ ul.sub-menu {
 }
 
 .item h1 span {
-  color:#FE980F;
+	color:#FE980F;
 }
 
 .item h2 {
@@ -629,10 +749,10 @@ ul.sub-menu {
 }
 
 .item  p {
-  color:#363432;
-  font-size:16px;
-  font-weight:300;
-  font-family: 'Roboto', sans-serif;
+	color:#363432;
+	font-size:16px;
+	font-weight:300;
+	font-family: 'Roboto', sans-serif;
 }
 
 .get {
@@ -682,51 +802,49 @@ ul.sub-menu {
   text-transform: uppercase;
   position: relative;
   z-index:3;
-
 }
 
-
 .left-sidebar h2:after, h2.title:after{
-  content: " ";
-  position: absolute;
-  border: 1px solid #f5f5f5;
-  bottom:8px;
-  left: 0;
-  width: 100%;
-  height: 0;
-  z-index: -2;
+	content: " ";
+	position: absolute;
+	border: 1px solid #f5f5f5;
+	bottom:8px;
+	left: 0;
+	width: 100%;
+	height: 0;
+	z-index: -2;
 }
 
 .left-sidebar h2:before{
-  content: " ";
-  position: absolute;
-  background: #fff;
-  bottom: -6px;
-  width: 100px;
-  height: 30px;
-  z-index: -1;
-  left: 50%;
-  margin-left: -65px;
+	content: " ";
+	position: absolute;
+	background: #fff;
+	bottom: -6px;
+	width: 130px;
+	height: 30px;
+	z-index: -1;
+	left: 50%;
+	margin-left: -65px;
 }
 
 h2.title:before{
-  content: " ";
-  position: absolute;
-  background: #fff;
-  bottom: -6px;
-  width: 220px;
-  height: 30px;
-  z-index: -1;
-  left: 50%;
-  margin-left: -110px;
+	content: " ";
+	position: absolute;
+	background: #fff;
+	bottom: -6px;
+	width: 220px;
+	height: 30px;
+	z-index: -1;
+	left: 50%;
+	margin-left: -110px;
 }
 
 .category-products .panel {
-  background-color: #FFFFFF;
-  border: 0px;
-  border-radius: 0px;
-  box-shadow:none;
-  margin-bottom: 0px;
+	background-color: #FFFFFF;
+	border: 0px;
+	border-radius: 0px;
+	box-shadow:none;
+	margin-bottom: 0px;
 }
 
 .category-products .panel-default .panel-heading {
@@ -845,7 +963,7 @@ h2.title:before{
 }
 
 .features_items{
-  overflow:hidden;
+	overflow:hidden;
 }
 
 
@@ -861,14 +979,13 @@ h2.title {
 }
 
 .product-image-wrapper{
-  border:1px solid #F7F7F5;
-  overflow: hidden;
-  margin-bottom:30px;
+	border:1px solid #F7F7F5;
+	overflow: hidden;
+	margin-bottom:30px;
 }
 
 .single-products {
   position: relative;
-  border: thin solid #82ab00;
 }
 
 .new, .sale {
@@ -878,16 +995,16 @@ h2.title {
 }
 
 .productinfo h2{
-  color: #FE980F;
-  font-family: 'Roboto', sans-serif;
-  font-size: 24px;
-  font-weight: 700;
+	color: #FE980F;
+	font-family: 'Roboto', sans-serif;
+	font-size: 24px;
+	font-weight: 700;
 }
 .product-overlay h2{
-  color: #fff;
-  font-family: 'Roboto', sans-serif;
-  font-size: 24px;
-  font-weight: 700;
+	color: #fff;
+	font-family: 'Roboto', sans-serif;
+	font-size: 24px;
+	font-weight: 700;
 }
 
 
@@ -907,7 +1024,7 @@ h2.title {
 }
 
 .product-overlay {
-  background: #000;
+  background:#FE980F;
   top: 0;
   display: none;
   height: 0;
@@ -915,7 +1032,7 @@ h2.title {
   transition: height 500ms ease 0s;
   width: 100%;
   display: block;
-  opacity:0.3;
+  opacity:;
 }
 
 .single-products:hover .product-overlay {
@@ -979,7 +1096,7 @@ h2.title {
 }
 
 .add-to-cart i{
-  margin-right:5px;
+	margin-right:5px;
 }
 
 .add-to-cart:hover {
@@ -1000,12 +1117,12 @@ h2.title {
 }
 
 .choose ul li a i{
-  margin-right:5px;
+	margin-right:5px;
 }
 
 .choose ul li a:hover{
-  background:none;
-  color:#FE980F;
+	background:none;
+	color:#FE980F;
 }
 
 .category-tab {
@@ -1013,8 +1130,8 @@ h2.title {
 }
 
 .category-tab ul {
- // background: #40403E;
-  //border-bottom: 1px solid #FE980F;
+  background: #40403E;
+  border-bottom: 1px solid #FE980F;
   list-style: none outside none;
   margin: 0 0 30px;
   padding: 0;
@@ -1024,7 +1141,7 @@ h2.title {
 .category-tab ul li a {
   border: 0 none;
   border-radius: 0;
-  color: #000;
+  color: #B3AFA8;
   display: block;
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
@@ -1032,8 +1149,8 @@ h2.title {
 }
 
 .category-tab ul  li  a:hover{
-  background:#FE980F;
-  color:#fff;
+	background:#FE980F;
+	color:#fff;
 }
 
 .nav-tabs  li.active  a, .nav-tabs  li.active  a:hover, .nav-tabs  li.active  a:focus {
@@ -1094,7 +1211,7 @@ h2.title {
 
 
 .our_partners ul li a:hover{
-  background:none;
+	background:none;
 }
 
 /*************************
@@ -1150,8 +1267,8 @@ h2.title {
 }
 
 .pagination  li  a:hover{
-  background:#FE980F;
-  color:#fff;
+	background:#FE980F;
+	color:#fff;
 }
 
 
@@ -1161,7 +1278,7 @@ h2.title {
 **************************/
 
 .product-details{
-  overflow:hidden;
+	overflow:hidden;
 }
 
 
@@ -1207,7 +1324,7 @@ h2.title {
 }
 
 #similar-product .carousel-inner .item{
-  padding-left:0px;
+	padding-left:0px;
 }
 
 #similar-product .carousel-inner .item img {
@@ -1227,7 +1344,7 @@ h2.title {
 }
 
 .item-control i:hover{
-  background:#ccccc6;
+	background:#ccccc6;
 }
 
 .product-information {
@@ -1240,9 +1357,9 @@ h2.title {
 }
 
 .newarrival{
-  position:absolute;
-  top:0;
-  left:0
+	position:absolute;
+	top:0;
+	left:0
 }
 
 .product-information h2 {
@@ -1317,8 +1434,8 @@ h2.title {
   padding-bottom: 10px;
 }
 .shop-details-tab .col-sm-12 {
-  padding-left: 0;
-  padding-right: 0;
+	padding-left: 0;
+	padding-right: 0;
 }
 
 
@@ -1331,7 +1448,7 @@ h2.title {
 }
 
 #reviews  ul  li {
-  display:inline-block;
+	display:inline-block;
 }
 
 #reviews ul li a {
@@ -1343,17 +1460,17 @@ h2.title {
 }
 
 #reviews ul li a i{
-  color:#FE980F;
-  padding-right:8px;
+	color:#FE980F;
+	padding-right:8px;
 }
 
 #reviews ul li a:hover{
-  background:#fff;
-  color:#FE980F;
+	background:#fff;
+	color:#FE980F;
 }
 
 #reviews p{
-  color:#363432;
+	color:#363432;
 }
 
 #reviews  form span {
@@ -1488,17 +1605,6 @@ h2.title {
 }
 
 
-#Male_Female {
-    border:thin black solid;
-}
-#m_radioStyle, #f_radioStyle {
-height: 18px;
-width:45px;
-float:left;
-
-}
-
-
 
 .login-form form span{
   line-height: 25px;
@@ -1541,16 +1647,16 @@ float:left;
 
 
 .or{
-  background: #FE980F;
-  border-radius: 40px;
-  color: #FFFFFF;
-  font-family: 'Roboto', sans-serif;
-  font-size: 16px;
-  height: 50px;
-  line-height: 50px;
-  margin-top: 75px;
-  text-align: center;
-  width: 50px;
+	background: #FE980F;
+	border-radius: 40px;
+	color: #FFFFFF;
+	font-family: 'Roboto', sans-serif;
+	font-size: 16px;
+	height: 50px;
+	line-height: 50px;
+	margin-top: 75px;
+	text-align: center;
+	width: 50px;
 }
 
 
@@ -2555,287 +2661,3 @@ float:left;
 .contact-info .social-networks ul li a:hover{
   color: #FE980F;
 }
-
-
-/*Check Box CSS* Bhavin*/
-
-.panel-body ul li {
-  width: 90%;
-  //border: thin black solid;
-}
-
-.panel-body ul li input[type="checkbox"]
-{
-  float: right;
-  margin-bottom:2px; 
-} 
-
-
-/*Bhavin CSS for index Page Location*/
-
-#disablingDiv
-{
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    background-color:#000;
-    opacity: 0.85;
-    z-index: 1001;
-}
-
-#location_div
-{
-  width: 35%;
-  height: 5%;
- // border: thin white solid;
-  margin:0 auto;
-  background: #000;
-  opacity: 1;
-  position: relative;
-  margin-top: 20%;
-  z-index: 1004;
-}
-
-/*Search Box CSS*/
-
-
-#search-box {
-position: relative;
-width: 100%;
-margin: 0;
-top: 5px;
-//border: thin red solid;
-
-
-}
-
-#search-form 
-{
-height: 40px;
-border: 1px solid #999;
--webkit-border-radius: 1px;
--moz-border-radius: 1px;
-border-radius: 1px;
-overflow: hidden;
-}
-#search-text 
-{
-font-size: 14px;
-color: #000;
-border-width: 0;
-opacity: 1;
-}
-#search-box input[type="text"]
-{
-width: 90%;
-padding: 11px 0 12px 1em;
-color: #000;
-}
-
-#search-button {
-position: absolute;
-right: 0;
-top: 0;
-height: 43px;
-width: 80px;
-font-size: 14px;
-color: #fff;
-text-align: center;
-line-height: 42px;
-border-width: 0;
-background-color: #4d90fe;
--webkit-border-radius: 0px 1px 1px 0px;
--moz-border-radius: 0px 1px 1px 0px;
-border-radius: 0px 1px 1px 0px;
-cursor: pointer;
-}
-
-/* Offers Divs*/
-
-#main_offer
-{
-  width: 100%;
-  height: 50%;
-  border: thin black solid;
-}
-
-#main_offer .images
-{
-  width: 100%;
-  height: auto;
-  border: thin black solid;
-  margin-right: 2%;
-}
-
-
-/*Bhavin CSS Ends */
-
-
-
-
-
-/*Jaydeep Header CSS*/
-
-#Shop_Details
-{
-  width:100% !important;
-}
-#usersubmenu
-{
-  background-color:#FFF;
-  border:solid;
-  border-width:thin;
-  border-color:#CCC;
-  color:#000;
-}
-.usermenufont
-{
-  color:#333 !important;
-}
-#nav_after_login
-{
-  //display:none;
-  z-index: 1002;
-}
-.col-sm-6
-{
-  width:90%;
-}
-
-
-
-/*Jaydeep CSS Ends.*/
-
-
-/*Jaydeep CSS*/
-
-
-/*appointment css*/
-
-.box .k-textbox {
-                width: 80px;
-              }
-              .box .k-button {
-                min-width: 80px;
-              }
-.fullwidth
-{
-  width:100% !important;
-}
-
-.Booking-form form input {
-  background: #F0F0E9;
-  border: medium none;
-  color: #696763;
-  display: block;
-  font-family: 'Roboto', sans-serif;
-  font-weight: 300;
-  height: 40px;
-  margin-bottom: 20px;
-  outline: medium none;
-  padding-left: 10px;
-}
-
-.Booking-form form span{
-  font-size:18px;
-}
-#errortr
-{
-  width:100%;
-  height: 50px; 
-  display: none;
-}
-
-.Booking-form form span input ,{
-  width: 15px;
-  float: left;
-  height: 15px;
-  margin-right: 5px;
-}
-
-.Booking-form form button {
-  margin-top: 23px;
-}
-
-.Booking-form form button{
-  background: #FE980F;
-  border: medium none;
-  border-radius: 0;
-  color: #FFFFFF;
-  display: block;
-  font-family: 'Roboto', sans-serif;
-  padding: 6px 25px;
-}
-.Booking-form label input {
-  border: medium none;
-  display: inline-block;
-  height: 0;
-  margin-bottom: 0;
-  outline: medium none;
-  padding-left: 0;
-}
-.insameline,#insameline{
-height: 18px  !important;
-width:45px  !important;
-float:left !important;
-}
-.hiddentr
-{
-  display:none;
-}
-.formtable
-{
-  height:100%;
-  width:90%;
-  margin:0px auto;
-}
-#salonList
-{
-  height:40px;
-}
-
-#cancel_delay_box
-{
-  width: 50%;
-  height: 100%;
-  //border: thin red solid;
-  font-size: 15px;
-  //display: none;
- // z-index: 1002;
-}
-
-
-#new_date_time_err
-{
-  width:100%;
-  height: 25px; 
-  display: none;
-}
-
-#new_date_time_btn
-{
-  width:17%;
-  height: 35px;
-  //border: thin red solid;
-}
-
-#new_date_time_btn button
-{
-  width: auto;
-  height: 10%;
-  background: #FE980F;
-  color: #fff;
-  //margin: 0 auto;
-  border: none;
-  //margin-left: 40%;
-  margin-top: 10%;
-
-}
-
-/*appointment css ends*/
-
-
-
-

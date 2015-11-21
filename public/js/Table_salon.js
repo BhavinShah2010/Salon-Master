@@ -7,7 +7,16 @@ $(document).ready(function () {
    //  var tech = GetURLParameter(id);
   //   var Id= $.url.attr('id')
    //  console.log(tech);
-
+   var ses=$('#user').val();
+   if(ses=="null")
+   {
+    debugger;
+    //alert("ooo");
+    $('#divbookappointment').css("display","none");
+    $('#linkPriviousAppointment').css("display","none");
+    $('#reviewForm').css("display","none");
+   }
+debugger;
     $('#tblservices').bootstrapTable({
         url: '/services/getSalonServices',
         method: 'post',

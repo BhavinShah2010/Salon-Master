@@ -30,7 +30,7 @@ router.post('/api/photo',function(req,res){
             return res.end("Error uploading file.");
         }
         res.end("File is uploaded");
-    });
+    })
 });
 
 //This library is imported to perform join operation
@@ -64,15 +64,16 @@ router.post('/getSalon',function(req,res){
 });
 */
 router.post('/getSalon',function(req,res){
-  salon.find({_id:req.body.salonId}).exec(function(err, salons) {
-    if (err) throw err;
-    address.find({_id:req.body.address}).exec(function(err, add1) {
-    	//res.render('home',{salonData:salons, user:req.user, views:req.session.views});
-      	//res.json(salons);
-      	res.json(add1);
-      	res.json(salons);
+	salon.findOne({_id:req.body.salonId}).exec(function(err, salons) {
+    	if (err) throw err;
+    	address.findOne({_id:req.body.addressId}).exec(function(err, add1) {
+    		if (err) throw err;
+	    	//res.render('home',{salonData:salons, user:req.user, views:req.session.views});
+    	  	res.send([{"username":salons.username, "name":salons.name, "owners":salons.owners, "description":salons.description, "ratings":salons.ratings,
+      		 "personsVisited":salons.personsVisited, "phoneNo":salons.phoneNo, "type":salons.type, "latitude":salons.latitude, "longitude":salons.longitude, 
+      	 	"street":salons.street, "area":add1.area, "state":add1.state, "city":add1.city, "zipcode":add1.zipcode}]);
 		})
-  	})
+	})
 });
 
 
@@ -128,7 +129,12 @@ router.post('/getSalonByName', function(req, res, next) {
 //refirect to index.js if user is not logged in
 /*router.use(function(req,res,next){
 */
+<<<<<<< HEAD
 /*router.use(function(req,res,next){
+=======
+/*
+router.use(function(req,res,next){
+>>>>>>> 58dd23a1e96f4e153d4037a0a5bf910861724b4c
   if(!req.user){
     res.redirect('/');
   }
@@ -136,7 +142,11 @@ router.post('/getSalonByName', function(req, res, next) {
 });
 */
 
+<<<<<<< HEAD
  
+=======
+
+>>>>>>> 58dd23a1e96f4e153d4037a0a5bf910861724b4c
 
 //redirect to Home page
 router.get('/', function(req, res, next) {
@@ -174,22 +184,22 @@ router.get('/profile', function(req, res, next) {
 
 
 
-// To check username and password are correct or not
+// To check username is available or not
 router.post('/checkLogin', function(req,res){
 	salon.findOne({username:req.body.username},function(err, salons) {
 	  if(salons){
+	  		console.log(salons.password);
 	  		var status=salons.comparePassword(req.body.password);
 	  		if(status)
 	  			res.json([{"username":salons.username,"password":req.body.password,"salonId":salons._id,"addressId":salons.address}]);
 	  		else{
-	  			res.json({"status":"false"});
+	  			res.json([{"status":"false"}]);
 	  		}
 	  	}
 	  	else{
-	  		res.json({"status":"false"});
+	  		res.json([{"status":"false"}]);
 	  	}
-	});
-
+	})	
 });
 
 
@@ -197,12 +207,12 @@ router.post('/checkLogin', function(req,res){
 router.post('/checkUname', function(req,res){
 	salon.findOne({username:req.body.username},function(err, salons) {
 	  if(salons){
-	  		res.json({"status":"false"});
+	  		res.json([{"status":"false"}]);
 	  	}
 	  	else{
-	  		res.json({"status":"true"});
+	  		res.json([{"status":"true"}]);
 	  	}
-	});
+	})
 });
 
 router.post('/login',passport.authenticate('local',{
@@ -288,12 +298,12 @@ router.post('/updateProfile',function(req,res){
 	a.zipcode=data.zipcode;
 	var now=new Date();
 	salon.findOneAndUpdate({"_id":data.objectId}, { username: data.username, name:data.name, owners: data.owners, address:a, description:data.description , ratings:data.ratings, personsVisited:data.personsVisited, phoneNo:data.phoneNo}, function(err, updatedSalon) {
-  	if (err) throw err;
-  	salon.find({ "_id": data.objectId}).exec(function(err, finalSalon) {
-  	if(err) throw err;
-  	res.send(finalSalon);
+  		if (err) throw err;
+  		salon.find({ "_id": data.objectId}).exec(function(err, finalSalon) {
+  			if(err) throw err;
+  			res.send(finalSalon);
+		})
 	})
-  })
 });
 
 //Change Password
@@ -308,6 +318,7 @@ router.post('/changePassword',function(req,res){
 	})
 });
 
+<<<<<<< HEAD
 //View Profile
 router.post('/getDetails',function(req,res){
     data=req.body;
@@ -321,6 +332,11 @@ router.post('/getDetails',function(req,res){
 
 
 //get all details of salon
+=======
+
+
+//get all salons
+>>>>>>> 58dd23a1e96f4e153d4037a0a5bf910861724b4c
 router.get('/getSalons', function(req, res, next) {
   salon.find({}).populate('address').exec(function(err, salons) {
     if (err) throw err;
@@ -330,11 +346,14 @@ router.get('/getSalons', function(req, res, next) {
   })
 });
 
+<<<<<<< HEAD
 
 
 
 
 
+=======
+>>>>>>> 58dd23a1e96f4e153d4037a0a5bf910861724b4c
 //Update Rating
 router.post('/updateRatings',function(req,res){
 	salon.find({"_id":req.body.objectId}, function(err, salon1) {
@@ -346,7 +365,7 @@ router.post('/updateRatings',function(req,res){
   	salon.findOneAndUpdate({"_id":req.body.objectId}, {ratings:updateRatings, personsVisited:oldPersons+1}, function(err, updatedSalon) {
 		if(err) throw err;
 		res.send("Ratings updated successfully");
-	})
+		})
 	})	
 });
 
@@ -360,7 +379,7 @@ router.get('/checkUname', function(req,res){
 	  	else{
 	  		res.send('Available');
 	  	}
-	});
+	})
 });
 
 
@@ -371,13 +390,13 @@ router.get('/checkUname', function(req,res){
 router.post('/delete',function(req,res){
 	data=req.body;
 	var uname=data.username;
-	salon.findOneAndRemove({ username:uname }, function(err){
+	salon.findOneAndRemove({ username:req.body.username}, function(err){
   		if (err){
   			res.send('Deletion Problem' + err);
   		}
   		else{
-  			res.send('Salon Deleted successfully'+uname);
+  			res.send(uname+ ' is Deleted successfully.');
   		}
-	});
+	})
 });
 module.exports = router;
