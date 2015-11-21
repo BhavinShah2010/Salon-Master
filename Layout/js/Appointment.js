@@ -138,5 +138,15 @@ $(document).ready(function () {
 
 });
 
+<<<<<<< HEAD
+
+$( document ).on( 'keydown', function ( e ) {
+   			 if ( e.keyCode === 27 ) { // ESC
+        		$( "#main_box" ).hide();
+   		 }
+
+});
+=======
 });
     
+>>>>>>> 8bb750f39d49f954dd508637be3cfcfe6057cd13

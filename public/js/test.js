@@ -13,4 +13,16 @@ $(document).ready(function () {
 		    //Here do the stuff you want to do when 'unchecked'
 
 	});
-	
+	/*window.starEvents = {
+	    'click .cancel': function (e, value, row, index) {
+	        alert('You click cancel link, row: ');
+	        console.log(value, row, index);
+	    },
+	    'click .delay': function (e, value, row, index) {
+	        alert('You click edit link, row: ');
+	        console.log(value, row, index);
+	    }
+    };*/
+    bind_data+="<div id='cancel_delay_box'><a id='aCancel"+row._id;
+            bind_data+=" style='cursor:pointer;' class='cancel' > Cancel</a> / <a id='adelay"+row._id;
+            bind_data+="+style='cursor:pointer;' class='delay'>Delay</a></div>";

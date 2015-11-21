@@ -1,5 +1,183 @@
-extends layout
-
-block content
-  h1= title
-  p Welcome to #{title}
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(name='description', content='')
+    meta(name='author', content='')
+    title Home | Salon Master
+    link(href='css/bootstrap.min.css', rel='stylesheet')
+    link(href='css/font-awesome.min.css', rel='stylesheet')
+    link(href='css/prettyPhoto.css', rel='stylesheet')
+    link(href='css/price-range.css', rel='stylesheet')
+    link(href='css/animate.css', rel='stylesheet')
+    link(href='css/main.css', rel='stylesheet')
+    link(href='css/responsive.css', rel='stylesheet')
+    script(src='js\jquery_min.js')
+    script(src='js\jquery.js')
+    script(type='text/javascript', src='js\home_page.js')
+    //if lt IE 9
+      script(src='js/html5shiv.js')
+      script(src='js/respond.min.js')
+    link(rel='shortcut icon', href='images/ico/favicon.ico')
+    link(rel='apple-touch-icon-precomposed', sizes='144x144', href='images/ico/apple-touch-icon-144-precomposed.png')
+    link(rel='apple-touch-icon-precomposed', sizes='114x114', href='images/ico/apple-touch-icon-114-precomposed.png')
+    link(rel='apple-touch-icon-precomposed', sizes='72x72', href='images/ico/apple-touch-icon-72-precomposed.png')
+    link(rel='apple-touch-icon-precomposed', href='images/ico/apple-touch-icon-57-precomposed.png')
+  // /head
+  section
+    .row
+      .col-sm-3
+        .left-sidebar
+          #accordian.panel-group.category-products
+            // category-productsr
+            .panel-heading
+              h2.panel-title
+                a(data-toggle='collapse', data-parent='#accordian', href='#Services')
+                  span.badge.pull-right
+                    i.fa.fa-plus
+                  | 								Services
+            #Services.panel-collapse.collapse
+              .panel.panel-default
+                .panel-heading
+                  h4.panel-title
+                    a(data-toggle='collapse', data-parent='#accordian', href='#Body')
+                      span.badge.pull-right
+                        i.fa.fa-plus
+                      | 											Body
+                #Body.panel-collapse.collapse
+                  .panel-body
+                    ul
+                      li
+                        | Body Spa 
+                        input#Body_spa(type='checkbox', name='BodySpa', onchange='body_spa_filter (this)')
+                      li
+                        | Body Treatment
+                        input(type='checkbox', name='BodyTreatment', onchange='body_treatment_filter (this)')
+                      li
+                        | Waxing 
+                        input(type='checkbox', name='Waxing', onchange='waxing_filter (this)')
+                      li
+                        | Laser Hair Removeal
+                        input(type='checkbox', name='LaserHair', onchange='Laser_Hair_filter (this)')
+                      li
+                        | Body Scrub 
+                        input(type='checkbox', name='BodySpa', onchange='Body_scrub(this)')
+              .panel.panel-default
+                .panel-heading
+                  h4.panel-title
+                    a(data-toggle='collapse', data-parent='#accordian', href='#Hair')
+                      span.badge.pull-right
+                        i.fa.fa-plus
+                      | 											Hair
+                #Hair.panel-collapse.collapse
+                  .panel-body
+                    ul
+                      li
+                        | Hair Smoothning
+                        input(type='checkbox', name='HairSmoothning', onchange='hair_smooth(this)')
+                      li
+                        | Hair Cutting
+                        input(type='checkbox', name='HairCutting', onchange='hair_cut(this)')
+                      li
+                        | Hair Wash
+                        input(type='checkbox', name='HairWash', onchange='hair_wash (this)')
+                      li
+                        | Straightenning
+                        input(type='checkbox', name='Straightenning', onchange='straight(this)')
+                      li
+                        | Hair Treatment
+                        input(type='checkbox', name='Hair Treatment', onchange='hair_treatment(this)')
+              .panel.panel-default
+                .panel-heading
+                  h4.panel-title
+                    a(data-toggle='collapse', data-parent='#accordian', href='#Nail')
+                      span.badge.pull-right
+                        i.fa.fa-plus
+                      | 											Nail
+                #Nail.panel-collapse.collapse
+                  .panel-body
+                    ul
+                      li
+                        | Nail Art
+                        input(type='checkbox', name='NailArt', onchange='nail_art(this)')
+                      li
+                        | Padicure
+                        input(type='checkbox', name='Padicure', onchange='manicure_padicure(this)')
+                      li
+                        | Menicure
+                        input(type='checkbox', name='Menicure', onchange='manicure_padicure(this)')
+                      li
+                        | Nail Extension 
+                        input(type='checkbox', name='NailExtension', onchange='nail_extension(this)')
+              .panel.panel-default
+                .panel-heading
+                  h4.panel-title
+                    a(data-toggle='collapse', data-parent='#accordian', href='#face')
+                      span.badge.pull-right
+                        i.fa.fa-plus
+                      | 											face
+                #face.panel-collapse.collapse
+                  .panel-body
+                    ul
+                      li
+                        | Facial 
+                        input(type='checkbox', name='Facial', onchange='facial(this)')
+                      li
+                        | Bleach 
+                        input(type='checkbox', name='Bleach', onchange='bleach(this)')
+                      li
+                        | Threading
+                        input(type='checkbox', name='Threading', onchange='threading(this)')
+                      li
+                        | Clean-up
+                        input(type='checkbox', name='CleanUp', onchange='cleanup(this)')
+              .panel.panel-default
+                .panel-heading
+                  h4.panel-title
+                    a(data-toggle='collapse', data-parent='#accordian', href='#Make-up')
+                      span.badge.pull-right
+                        i.fa.fa-plus
+                      | 											Make-up
+                #Make-up.panel-collapse.collapse
+                  .panel-body
+                    ul
+                      li
+                        | Marriage
+                        input(type='checkbox', name='Marriage', onchange='marriage(this)')
+                      li
+                        | Party
+                        input(type='checkbox', name='Party', onchange='party(this)')
+            .panel-heading
+              h2.panel-title
+                a(data-toggle='collapse', data-parent='#accordian', href='#Offers')
+                  span.badge.pull-right
+                    i.fa.fa-plus
+                  | 											Offers
+            #Offers.panel-collapse.collapse
+              .panel.panel-default(align='left')
+                .panel-heading(align='left')
+                  h4.panel-title
+                    a(data-toggle='collapse', data-parent='#accordian', href='#Dove')
+                      #main_offers
+                        .images
+                          img(src='images/offers/1.png', width='200', height='200')
+                        hr
+                        .images
+                          img(src='images/offers/1.png', width='200', height='200')
+          .price-range
+            // price-range
+            h2 Price Range
+            .well.text-center
+              input#sl2.span2(type='text', value='', data-slider-min='0', data-slider-max='600', data-slider-step='5', data-slider-value='[250,450]')
+              br
+              b.pull-left 0
+              b.pull-right 600
+          // /price-range
+      script(src='js/jquery.js')
+      script(src='js/bootstrap.min.js')
+      script(src='js/jquery.scrollUp.min.js')
+      script(src='js/price-range.js')
+      script(src='js/jquery.prettyPhoto.js')
+      script(src='js/main.js')
+      script(type='text/javascript', src='js/jquery_min.js')

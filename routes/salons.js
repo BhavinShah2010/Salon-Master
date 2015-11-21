@@ -91,7 +91,8 @@ router.post('/getAllSalonsById',function(req,res,next){
         });
 });
 
-//View Single Salon Profile
+
+//View Single Salon Profile [Doesnt require login]
 router.post('/getDetails',function(req,res){
     data=req.body;
     var objectId=data.objectId;
@@ -102,11 +103,38 @@ router.post('/getDetails',function(req,res){
   })
 });
 
+//It takes salon Id as parameter and send full information of salon. [Doesnt require login]
+router.get('/getSalonById', function(req, res, next) {  
+  //console.log(req.query.id);
+  salon.find({"_id": req.query.id}).populate('address').exec(function(err, salons) {
+    if (err) throw err;
+    //res.render('shop_profile1',{salon:salons, user:req.user, views:req.session.views});
+  	res.json(salons);
+  	//return salons;
+  })
+});
+
+//It takes name of salon, and send all those salons which match with that name. [Doesnt require login]
+router.post('/getSalonByName', function(req, res, next) {  
+  //console.log(req.query.id);
+  salon.find({"name": req.body.name}).populate('address').exec(function(err, salons) {
+    if (err) throw err;
+    res.render('shop_profile1',{salon:salons, salonId:salons._id, user:req.user, views:req.session.views});
+  	res.json(salons);
+  	//return salons;
+  })
+});
+
+
 //refirect to index.js if user is not logged in
 /*router.use(function(req,res,next){
 */
+<<<<<<< HEAD
+/*router.use(function(req,res,next){
+=======
 /*
 router.use(function(req,res,next){
+>>>>>>> 58dd23a1e96f4e153d4037a0a5bf910861724b4c
   if(!req.user){
     res.redirect('/');
   }
@@ -114,7 +142,11 @@ router.use(function(req,res,next){
 });
 */
 
+<<<<<<< HEAD
+ 
+=======
 
+>>>>>>> 58dd23a1e96f4e153d4037a0a5bf910861724b4c
 
 //redirect to Home page
 router.get('/', function(req, res, next) {
@@ -285,9 +317,25 @@ router.post('/changePassword',function(req,res){
 	})
 });
 
+<<<<<<< HEAD
+//View Profile
+router.post('/getDetails',function(req,res){
+    data=req.body;
+    var objectId=data.objectId;
+    salon.find({ "_id": objectId }).exec(function(err, data) {
+  		if (err) throw err;
+  		res.json(data);
+		});
+});
+
+
+
+//get all details of salon
+=======
 
 
 //get all salons
+>>>>>>> 58dd23a1e96f4e153d4037a0a5bf910861724b4c
 router.get('/getSalons', function(req, res, next) {
   salon.find({}).populate('address').exec(function(err, salons) {
     if (err) throw err;
@@ -297,6 +345,14 @@ router.get('/getSalons', function(req, res, next) {
   })
 });
 
+<<<<<<< HEAD
+
+
+
+
+
+=======
+>>>>>>> 58dd23a1e96f4e153d4037a0a5bf910861724b4c
 //Update Rating
 router.post('/updateRatings',function(req,res){
 	salon.find({"_id":req.body.objectId}, function(err, salon1) {

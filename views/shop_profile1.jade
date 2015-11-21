@@ -5,7 +5,7 @@ html(lang='en')
     link(rel='stylesheet', href='/css/jquery.raty.css')
     link(href='/css/star.css', rel='stylesheet', type='text/css')
     script(src='/js/jquery_fixstar.raty.js')
-    script(src='/js/RatingJs.js')
+    
     link(href='/css/stylesheet.css', rel='stylesheet')
     title Shop Details | Salon Master
     meta(charset='utf-8')
@@ -13,6 +13,11 @@ html(lang='en')
     meta(name='description', content='')
     meta(name='author', content='')
   body
+<<<<<<< HEAD
+
+    input#salonId(type="hidden",value="#{salonId}")
+=======
+>>>>>>> 8bb750f39d49f954dd508637be3cfcfe6057cd13
     section
       .container
         .row
@@ -22,6 +27,8 @@ html(lang='en')
                 .view-product
                   img(src='/images/product-details/1.jpg', alt='')
               .col-sm-7
+<<<<<<< HEAD
+=======
                 .product-information
                   h2
                     label#lbl_shopname
@@ -46,6 +53,7 @@ html(lang='en')
                     span
                       button#btnBookAppointment.btn.btn-fefault.cart(type='button')
                         | Book Appointment
+>>>>>>> 8bb750f39d49f954dd508637be3cfcfe6057cd13
                 div(id='divSalonInfo' class='product-information')
             .category-tab.shop-details-tab
               .col-sm-12
@@ -136,10 +144,15 @@ html(lang='en')
                       b Rating: 
                       button.btn.btn-default.pull-right(type='button')
                         | Submit
+                        
     include footer
-    
     script(src='/js/Table_salon.js')
+<<<<<<< HEAD
     script(src='/js/bootstrap-table.js')
+    
 
 
             
+=======
+    script(src='/js/bootstrap-table.js')
+>>>>>>> 8bb750f39d49f954dd508637be3cfcfe6057cd13

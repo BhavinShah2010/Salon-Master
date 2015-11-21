@@ -103,7 +103,31 @@ html(lang='en')
                           each sub in subCat
                             li 
                               | #{sub} 
-                              input#Body_spa(type='checkbox', name='services[]', value='#{sub}', onchange='updateSalons(this)')
+                              input#Body_spa(type='checkbox', name='services[]', value='#{sub}', onchange='updateSalons()')
+
+              .panel-heading
+                h2.panel-title
+                  a(data-toggle='collapse', data-parent='#accordian', href='#divOffers')
+                    span.badge.pull-right
+                      i.fa.fa-plus
+                    | Current Offers
+              #divOffers.panel-collapse.collapse
+                each cat in category
+                  .panel.panel-default
+                    .panel-heading
+                      h4.panel-title
+                        a(data-toggle='collapse', data-parent='#accordian', href="\##{cat.name}")
+                          span.badge.pull-right
+                            i.fa.fa-plus
+                          |  #{cat.name}
+                    div(id="#{cat.name}", class="panel-collapse collapse")
+                      .panel-body
+                        -var subCat = cat.sub_cat
+                        ul
+                          each sub in subCat
+                            li 
+                              | #{sub} 
+                              input#Body_spa(type='checkbox', name='services[]', value='#{sub}', onchange='updateSalons()')                
         .container
           div(class="col-sm-9 padding-right", id="divSalons")         
             .features_items

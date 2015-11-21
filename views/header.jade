@@ -50,13 +50,15 @@ html
               .shop-menu.pull-right
                 ul.nav.navbar-nav
                   li
-                    a(href='#') Location
+                    a(href='#')
+                      if locatn  
+                        label#lblloc Location
                     ul#usersubmenu.sub-menu(role='menu')
                       li
                         .signup-form
                           form
-                            input(type='text', placeholder='Enter Location')
-                            button(type='submit')
+                            input(type='text', placeholder='Enter Location', id='txtLocation')
+                            button(type='button',id='btnFind', onclick='findLocation()')
                               | Find
                 if (!user)
                   ul#nav_before_login.nav.navbar-nav
@@ -93,9 +95,17 @@ html
                     a(href='/map') Map
                   li
                     a(href='/contactUS') Contact Us
+<<<<<<< HEAD
+            if locatn
+              .col-sm-3
+                .search_box.pull-right
+                  input(type='text', placeholder='Search', id='txtsearch')
+                  button#btnSearch(type='button', onclick='searchSalonsByName()') Search
+=======
             .col-sm-4
               .search_box.pull-right
                 input(type='text', placeholder='Search')
                 button#btnSearch(type='submit') Search
+>>>>>>> 58dd23a1e96f4e153d4037a0a5bf910861724b4c
     script.
         $('.dropdown-toggle').dropdown();      
