@@ -1,0 +1,16 @@
+diff a/public/js/apointment_script.js b/public/js/apointment_script.js	(rejected hunks)
+@@ -1,9 +1,13 @@
+ $(document).ready(function () {
+ 	
+ 	debugger;
++	function demo(){
++		alert("HELLO");
++	}
++$.fn.raty.defaults.path = '/images/Star';
+ 	$('#tblviewappointment').bootstrapTable({
+ 
+-            /*url: '/appointments/getUserAppointment',
++            url: '/appointments/getUserAppointment',
+             method: 'post',
+ 	        height: 400,
+ 	        striped: true,

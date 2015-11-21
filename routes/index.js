@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var salon = require('../modules/salon');
 var category = require('../modules/category');
-
+var nodemailer=require('nodemailer');
 
 
 /* GET home page. */
@@ -10,9 +10,31 @@ var category = require('../modules/category');
 //redirect to login page if not logged in
 
 
-router.get('/contact', function(req, res, next) {
-  console.log();
-  res.render('contactUs');
+router.post('/contact', function(req, res, next) {
+  var transporter = nodemailer.createTransport({
+    service: 'Gmail',
+    auth: {
+      user: 'noreply.salonmaster@gmail.com', // Your email id
+      pass: 'salon123' // Your password
+      }
+    });
+
+    
+
+    var mailOptions = {
+      from: 'noreply.salonMaster@gmail.com', // sender address
+      to: 'noreply.salonMaster@gmail.com', // list of receivers
+      subject: "New Inquiry", // Subject line
+      html: '<tr><td>Name</td><td>'+req.body.name+'</td></tr><tr><td>Email:</td><td>'+req.body.email+'</td></tr><tr><td>Subject:</td><td>'+req.body.subject+'</td></tr><tr><td>Description:</td><td>'+req.body.description+'</td></tr>' // You can choose to send an HTML body instead
+      };
+
+    transporter.sendMail(mailOptions, function(error, info){
+      if(error){
+        res.send('Unsuccessful Email');
+      }else{
+        res.send('Successful');
+        }
+      })
 });
 
 //altaf Testing

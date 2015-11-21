@@ -89,6 +89,7 @@ router.post('/add',function(req,res)
 	u.email=data.email;
 	u.phno=data.phno;
 	var a=new address();
+	a.street=data.street;
 	a.area=data.area;
 	a.city=data.city;
 	a.state=data.state;
@@ -150,10 +151,37 @@ router.post('/forgetPassword',function(req,res){
 	var u=new user();
 	u.password=u.generateHash(data.newpassword);
 	var now=new Date();
-	user.findOneAndUpdate({"_id":data.objectId}, {password: u.password}, function(err, data) {
-		if(err) throw err;
+	user.findOne({"username":data.username}, function(err, user1) {
+		if(user1){
+			if(req.body.email==user1.email){
+				var transporter = nodemailer.createTransport({
+            		service: 'Gmail',
+            		auth: {
+	            		user: 'noreply.salonmaster@gmail.com', // Your email id
+    	            	pass: 'salon123' // Your password
+        	        	}
+                	});
+				var link="http://localhost:3000/users/recover_password?obj="+user1._id+"key="+user1.password;
+				var str='<b>Open the link to set new password : <a href='+link+'>Click Here</a>';
+
+            	var mailOptions = {
+	            	from: 'noreply.salonMaster@gmail.com', // sender address
+    	        	to: user1.email, // list of receivers
+        	        subject: 'Forget Passoword', // Subject line
+            	    html: str,
+                	// html: '<b>Hello world ?</b>' // You can choose to send an HTML body instead
+	                };
+
+    	        transporter.sendMail(mailOptions, function(error, info){
+        	    	if(error){
+            			res.send('Unsuccessful Email');
+	            	}else{
+	    	        	res.send('Successful');
+						}
+        	        })
+			}
 		//It will not change password if old password is wrong without notifying right now.
-		res.json("true");
+		}
 	})
 });
 

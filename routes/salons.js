@@ -156,7 +156,6 @@ router.get('/profile', function(req, res, next) {
 router.post('/checkLogin', function(req,res){
 	salon.findOne({username:req.body.username},function(err, salons) {
 	  if(salons){
-	  		console.log(salons.password);
 	  		var status=salons.comparePassword(req.body.password);
 	  		if(status)
 	  			res.json([{"username":salons.username,"password":req.body.password,"salonId":salons._id,"addressId":salons.address}]);
