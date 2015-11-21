@@ -1,5 +1,6 @@
 var offer = require('../modules/offer');
 var express = require('express');
+var service = require('../modules/service');
 var router = express.Router();
 
 router.post('/add',function(req,res){
@@ -40,6 +41,21 @@ router.post('/getCurrentOffers',function(req,res){
     if (err) throw err;
     res.send(currentOffers);  
   })
+});
+
+router.get('/getCurrentOffersDemo',function(req,res){
+    var now=new Date().toISOString();
+    //var now = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '')
+    //console.log("Date" + now);
+   
+    offer.find({"startDate": {"$lte": now}, "endDate":{"$gte":now}}).populate('serviceID').exec(function(err, data){
+        console.log(data);
+        res.json(data);
+    }); 
+   /* offer.find({"startDate": {"$lte": now}, "endDate":{"$gte":now}}, function(err, currentOffers) {
+    if (err) throw err;
+    res.send(currentOffers);  
+  })*/
 });
 
 //Check Stock

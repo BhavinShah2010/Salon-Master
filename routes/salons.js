@@ -90,7 +90,8 @@ router.post('/getAllSalonsById',function(req,res,next){
         });
 });
 
-//View Single Salon Profile
+
+//View Single Salon Profile [Doesnt require login]
 router.post('/getDetails',function(req,res){
     data=req.body;
     var objectId=data.objectId;
@@ -101,18 +102,41 @@ router.post('/getDetails',function(req,res){
   })
 });
 
+//It takes salon Id as parameter and send full information of salon. [Doesnt require login]
+router.get('/getSalonById', function(req, res, next) {  
+  //console.log(req.query.id);
+  salon.find({"_id": req.query.id}).populate('address').exec(function(err, salons) {
+    if (err) throw err;
+    //res.render('shop_profile1',{salon:salons, user:req.user, views:req.session.views});
+  	res.json(salons);
+  	//return salons;
+  })
+});
+
+//It takes name of salon, and send all those salons which match with that name. [Doesnt require login]
+router.post('/getSalonByName', function(req, res, next) {  
+  //console.log(req.query.id);
+  salon.find({"name": req.body.name}).populate('address').exec(function(err, salons) {
+    if (err) throw err;
+    res.render('shop_profile1',{salon:salons, salonId:salons._id, user:req.user, views:req.session.views});
+  	res.json(salons);
+  	//return salons;
+  })
+});
+
+
 //refirect to index.js if user is not logged in
 /*router.use(function(req,res,next){
 */
-router.use(function(req,res,next){
+/*router.use(function(req,res,next){
   if(!req.user){
     res.redirect('/');
   }
   next();
 });
+*/
 
-
-
+ 
 
 //redirect to Home page
 router.get('/', function(req, res, next) {
@@ -297,8 +321,6 @@ router.post('/getDetails',function(req,res){
 
 
 //get all details of salon
-
-
 router.get('/getSalons', function(req, res, next) {
   salon.find({}).populate('address').exec(function(err, salons) {
     if (err) throw err;
@@ -308,16 +330,9 @@ router.get('/getSalons', function(req, res, next) {
   })
 });
 
-router.get('/getSalonById', function(req, res, next) {
-  
-  //console.log(req.query.id);
-  salon.find({"_id": req.query.id}).populate('address').exec(function(err, salons) {
-    if (err) throw err;
-    //res.render('shop_profile1',{salon:salons, user:req.user, views:req.session.views});
-  	res.json(salons);
-  	//return salons;
-  })
-});
+
+
+
 
 
 //Update Rating
