@@ -1,9 +1,13 @@
 $(document).ready(function () {
 	
 	debugger;
+	function demo(){
+		alert("HELLO");
+	}
+$.fn.raty.defaults.path = '/images/Star';
 	$('#tblviewappointment').bootstrapTable({
 
-            /*url: '/appointments/getUserAppointment',
+            url: '/appointments/getUserAppointment',
             method: 'post',
 	        height: 400,
 	        striped: true,
@@ -22,6 +26,7 @@ $(document).ready(function () {
                 title: 'Salon Name',
                 align: 'center',
                 valign: 'middle',
+                formatter: salonNameFormater,
                 sortable: true
             },
             {
@@ -29,6 +34,7 @@ $(document).ready(function () {
                 title: 'Date and Time',
                 align: 'left',
                 valign: 'top',
+                formatter: dateAndTimeFormater,
                 sortable: true
             },
             {
@@ -36,6 +42,7 @@ $(document).ready(function () {
                 title: 'Services Name',
                 align: 'sleft',
                 valign: 'top',
+                formatter: slonlistFormater,
                 sortable: true
             },
             {
@@ -57,10 +64,10 @@ $(document).ready(function () {
                 title: 'Rating',
                 align: 'center',
                 valign: 'right',
+                formatter: starFormatter,
                 sortable: true
-            }
-            ]
-*/
+            }]
+
         });
 	$.get("/salons/getSalons",
      function (data) {
@@ -108,7 +115,7 @@ $(document).ready(function () {
 			         	//};
 			         	servicelistcontent+="<span>temp offer</span>";
 			         	servicelistcontent+="<span>"+data[i].price+" RS</span>";
-			         	servicelistcontent+="<input type='checkbox' name='price'";
+			         	servicelistcontent+="<input type='checkbox' name='price' onchange='demo()'";
 			         	servicelistcontent+=" value="+data[i].price+" class='insameline'/>";
 			         	servicelistcontent+="</td>";
 			         	if (count==2) {
@@ -159,5 +166,96 @@ $(document).ready(function () {
 
 		     });
 		});*/
+function dateAndTimeFormater(value, row, index) {
+	var databind="";
+	var dateandtime=value;
+	var dates=dateandtime.split("T");
+	var dateonly=dates[0].split("-");
+	databind+=dateonly[1]+"/"+dateonly[2]+"/"+dateonly[0]+" ";
+	var timeonly=dates[1].split(":");
+	var ampm;
+	if(timeonly[0]>12)
+	{
+		ampm="PM";
+		timeonly[0]=-12;
+	}
+	else
+	{
+		ampm="AM";
+	}
+	if (timeonly[0]==0) {
+		timeonly[0]==12;
+	};
+	databind+=timeonly[0]+":"+timeonly[1]+" "+ampm;
+		//alert(databind);
+	//alert(dates[1]);
+	return [databind].join('');
+}
+function salonNameFormater(value, row, index) {
+	var databind="";
+	//alert(value);
+	debugger;
+		$.post("/salons/getDetails",
+		     {
+		         objectId: value
+		     },
+		     function (data) {
+		     	debugger;
+		     	databind+=data[0].name;
+		     });	
+   return [databind].join('');
+}
+function slonlistFormater(value, row, index) {
+	var databind="";
+	//alert(value);
+	for (var i = 0; i<value.length; i++) {
+		//alert(value[0]);
+		$.post("/services/getDetails",
+		     {
+		         objectId: value[i]
+		     },
+		     function (data) {
+		     	debugger;
+		     	databind+=data[0].name;
+		     	//alert(databind+" "+i);
+		     });
+		if(i!=value.length)
+			databind+=",";
+		//alert(databind+"last");
+		};
+    return [databind].join('');
+}
+
+function starFormatter(value, row, index) {
+	//formatter: starFormatter,
+    //        	events: changeOrCanelAppointment
+	//return ['bind_data'].join('');
+	debugger;
+	//alert("hh");
+       // debugger;
+       var bind_data="";
+        //console.log(value);
+        //alert(row.status);
+        if (row.status=="complete" || row.status=="Complete" ) {
+        	//alert("stars");
+            bind_data+="<div id='star"+row._id+"' class='giveStar'></div>";
+           /* $('#'+row._id).raty({
+			  half     : true,
+			  starHalf : 'star-half.png'
+			}*/
+        }
+        else {
+        	//alert("not stars");
+            bind_data+="<div id='cancel_delay_box'><a id='cancel"+row._id;
+            bind_data+=" style='cursor:pointer;'> Cancel</a> / <a id='delay"+row._id;
+            bind_data+="+style='cursor:pointer;'>Delay</a></div>";
+        }
+        debugger;
+        return [bind_data].join('');
+    }
+    /*window.operateEvents = {
+    	debugger;
+    //alert("okEvent");
+    };*/
 
 });

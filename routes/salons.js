@@ -105,13 +105,14 @@ router.post('/getDetails',function(req,res){
 //refirect to index.js if user is not logged in
 /*router.use(function(req,res,next){
 */
+/*
 router.use(function(req,res,next){
   if(!req.user){
     res.redirect('/');
   }
   next();
 });
-
+*/
 
 
 
