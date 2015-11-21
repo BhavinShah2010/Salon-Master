@@ -381,4 +381,10 @@ $('#btnDelaySave').click(function() {
 				}
 		});
 
+
+$( document ).on( 'keydown', function ( e ) {
+   			 if ( e.keyCode === 27 ) { // ESC
+        		$( "#main_box" ).hide();
+   		 }
+
 });

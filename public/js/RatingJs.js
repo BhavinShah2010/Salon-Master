@@ -1,5 +1,5 @@
 //alert(1);
-$.fn.raty.defaults.path = 'images/Star';
+$.fn.raty.defaults.path = '/images/Star';
 
 $(function () {
 
@@ -18,7 +18,7 @@ $('#default').raty({
             alert(score)
         }
     });*/
-   $('#fixstardefault').raty({ score: 3.5,
+   $('#fixstardefault').raty({ score: '3.5',
    half     : true,
   starHalf : 'star-half.png'
 });
